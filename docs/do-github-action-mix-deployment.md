@@ -263,7 +263,6 @@ git push
 ### Create secrets
 The `x mix` templates needs **6 pieces of information** to perform the deployment, this information is added to the GitHub repository as the following *secrets*.
 
-- CR_PAT - GitHub Personal Token with read/write access to packages.
 - DEPLOY_HOST - hostname used to SSH to, this should be a domain or subdomain with A record pointing to the server's IP adddress.
 - DEPLOY_PORT - SSH port, usually 22
 - DEPLOY_USERNAME - the username being logged into via SSH. Eg, `ubuntu`, `ec2-user`, `root` etc.
@@ -273,7 +272,6 @@ The `x mix` templates needs **6 pieces of information** to perform the deploymen
 These secrets can use the [GitHub CLI](https://cli.github.com/manual/gh_secret_set) for ease of creation. Eg, using the GitHub CLI the following can be set.
 
 ```bash
-gh secret set CR_PAT -b"<CR_PAT, Container Registry Personal Access Token>"
 gh secret set DEPLOY_HOST -b"<DEPLOY_HOST, domain or subdomain for your application and server host.>"
 gh secret set DEPLOY_PORT -b"<DEPLOY_PORT, eg SSH port, usually 22>"
 gh secret set DEPLOY_USERNAME -b"<DEPLOY_USERNAME, the username being logged into via SSH. Eg, `ubuntu`, `ec2-user`, `root` etc.>"
@@ -281,14 +279,7 @@ gh secret set DEPLOY_KEY < [path to ssh key]
 gh secret set LETSENCRYPT_EMAIL -b"<LETSENCRYPT_EMAIL, Email address for your TLS certificate generation, eg me@example.com>"
 ```
 
-The `CR_PAT` can be created via your [GitHub Settings->Developer Settings->Personal access tokens page](https://github.com/settings/tokens/), and selecting the `write:packages` permission. Copy the token somewhere secure, so we can use it when creating the secrets.
-
-::: info
-Both the creation of the token and use in secrets are *only available on creation*, so if you want/need to reuse this, note it down somewhere secure like your password manager for reuse.
-The `CR_PAT` (Container Registry Personal Access Token) is required during the beta of GitHub Container Registry, however once released the standard `secrets.GITHUB_TOKEN` built into GitHub Actions should be able to be used and is recommended to avoid higher data transfer charges.
-:::
-
-Repository secrets can be created under Settings->Secrets.
+Repository secrets can be created under Settings->Actions->Secrets.
 
 ### Tag release
 To kick off any new deployment, we use GitHub Releases.
