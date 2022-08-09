@@ -59,7 +59,7 @@ Alternatively as the [Docker compose](/github-action-templates) configurations a
 x mix blazor-litestream-aws
 :::
 
-Since Litestream is tied to deployment, hosting environment & preferred configured storage, we've had to create a matrix of configurations to integrate with depending on which template you use.
+Since Litestream is tied to deployment, hosting environment & preferred configured storage, we've created a matrix of configurations to cover each of the supported templates and storage preferences.
 
 | Project Template     | AWS S3                  | Azure Blob Storage        | SFTP (generic)           | 
 |----------------------|-------------------------|---------------------------|--------------------------|
