@@ -74,6 +74,10 @@ Since Litestream is tied to deployment, hosting environment & preferred configur
 
 These GitHub Action configurations are a quicker way to create and deploy new Applications, which only need to be filled in with your environment's access credentials configured in your [projects GitHub Action Secrets](/litestream-templates.html#github-action-workflow).
 
+For a detailed overview for creating and setting up deployment for a new App from scratch checkout:
+
+<iframe class="video-hd" src="https://www.youtube.com/embed/fY50dWszpw4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## Setting up your Linux host
 
 This project template is set up to deploy to any Linux with SSH access, and Docker with Docker Compose installed. This means you can choose any hosting provider or own server to make your application extremely portable.

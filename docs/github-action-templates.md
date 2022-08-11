@@ -52,3 +52,8 @@ We have a full tutorial along with a video walk through available, showing from 
 
 Reference for this GitHub Action configuration is provided with the template itself, [also available on GitHub](https://github.com/ServiceStack/mix/blob/master/actions/release-ecr-aws/.github/workflows/README.md) here along with the [required Repository Secrets](https://github.com/ServiceStack/mix/blob/master/actions/release-ecr-aws/.github/workflows/README.md#github-repository-setup).
 
+### Blazor Litestream
+
+For a detailed overview for creating and setting up deployment for a new [Blazor Litestream App](/blazor-litestream) from scratch checkout:
+
+<iframe class="video-hd" src="https://www.youtube.com/embed/fY50dWszpw4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

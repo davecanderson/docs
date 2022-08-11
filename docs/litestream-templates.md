@@ -72,6 +72,10 @@ Below is a table matching project templates to mix templates including different
 
 To automate deployment, creation of additional GitHub Action Secrets is required. Below is a list of the name of the secrets related to the type of storage target used.
 
+For a detailed overview for creating and setting up deployment for a new App from scratch checkout:
+
+<iframe class="video-hd" src="https://www.youtube.com/embed/fY50dWszpw4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ### Working with AWS S3
 
 | GitHub Secret Name    | Description                                        | Example               |
