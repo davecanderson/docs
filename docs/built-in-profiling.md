@@ -14,7 +14,7 @@ The MVC Mini Profiler plugin is only available for classic ASP.NET Framework Web
 
 The built-in Mini Profiler is available in ServiceStack's .NET Framework features package:
 
-:::::: nuget
+::: nuget
 `<PackageReference Include="ServiceStack.NetFramework" Version="6.*" />`
 :::
 
