@@ -3,7 +3,7 @@ slug: built-in-profiling
 title: Built-in Mini Profiler
 ---
 
-ServiceStack's [HTML5 JSON Report Format](/html5reportformat) also includes the excellent [Mvc Mini Profiler](http://code.google.com/p/mvc-mini-profiler/) - by [@jarrod_dixon](https://twitter.com/jarrod_dixon) and [@samsaffron](https://twitter.com/samsaffron).
+ServiceStack's [HTML5 JSON Report Format](/html5reportformat) also includes the [Mvc Mini Profiler](https://github.com/MiniProfiler/dotnet) - by [@jarrod_dixon](https://twitter.com/jarrod_dixon) and [@samsaffron](https://twitter.com/samsaffron).
 It's the same profiler used to profile and help speed up sites like [Stack Overflow](http://www.stackoverflow.com) and more recently the much faster [NuGet v2.0](http://nuget.org) website.
 
 The MVC Mini Profiler plugin is only available for classic ASP.NET Framework Web Apps, for .NET Core Apps you can use the official [MiniProfiler.AspNetCore.Mvc](https://www.nuget.org/packages/MiniProfiler.AspNetCore.Mvc) NuGet package, please see this community post for details:
@@ -12,10 +12,15 @@ The MVC Mini Profiler plugin is only available for classic ASP.NET Framework Web
 
 ### Using the MVC Mini Profiler
 
-Just like the [Normal Mvc Mini Profiler](http://code.google.com/p/mvc-mini-profiler/) you can enable it by registering the `MiniProfilerFeature` Plugin:
+The built-in Mini Profiler is available in ServiceStack's .NET Framework features package:
+
+:::::: nuget
+`<PackageReference Include="ServiceStack.NetFramework" Version="6.*" />`
+:::
+
+Just like the [Normal Mvc Mini Profiler](https://github.com/MiniProfiler/dotnet) you can enable it by registering the `MiniProfilerFeature` Plugin:
 
 ```csharp
-// In ServiceStack.NetFramework package, not available for .NET Core
 Plugins.Add(new MiniProfilerFeature());  
 ```
 
@@ -60,7 +65,7 @@ this.Container.Register<IDbConnectionFactory>(c =>
     });
 ```
 
-Refer to the [Main MVC MiniProfiler home page](http://code.google.com/p/mvc-mini-profiler/) for instructions on how to configure profiling for Linq2Sql and EntityFramework.
+Refer to the [Main MVC MiniProfiler home page](https://github.com/MiniProfiler/dotnet) for instructions on how to configure profiling for Linq2Sql and EntityFramework.
 
 It's also trivial to add custom steps enabling even finer-grained profiling for your services. 
 Here's a [simple web service DB example](https://github.com/ServiceStack/ServiceStack/blob/master/tests/ServiceStack.WebHost.IntegrationTests/Services/ProfilerService.cs) 
