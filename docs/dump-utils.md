@@ -133,4 +133,4 @@ Even if you don’t use the new JSV endpoint you can still benefit from it by in
 
 - [GetOrders?debug](https://northwind.netcore.io/jsv/reply/GetOrders?debug)
 - [GetAllCustomers?debug](https://northwind.netcore.io/jsv/reply/GetAllCustomers?debug)
-- [GetCustomerDetails?Id=ALFKI&debug](https://northwind.netcore.io/json/reply/GetCustomerDetails?Id=ALFKI&debug)
+- [GetCustomerDetails?Id=ALFKI&debug](https://northwind.netcore.io/jsv/reply/GetCustomerDetails?Id=ALFKI&debug)
