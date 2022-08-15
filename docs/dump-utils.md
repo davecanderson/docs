@@ -129,5 +129,8 @@ As this feature has come in super useful for debugging, it's also included it as
 
 Even if you don’t use the new JSV endpoint you can still benefit from it by instantly being able to read the data provided by your web service. Here are some live examples showing the same web services called from the XML and JSV endpoint that shows the difference in readability:
 
-  - [GetNorthwindCustomerOrders](http://northwind.netcore.io/json/reply/Orders?debug)
+#### Northwind
 
+- [GetOrders?debug](https://northwind.netcore.io/jsv/reply/GetOrders?debug)
+- [GetAllCustomers?debug](https://northwind.netcore.io/jsv/reply/GetAllCustomers?debug)
+- [GetCustomerDetails?Id=ALFKI&debug](https://northwind.netcore.io/json/reply/GetCustomerDetails?Id=ALFKI&debug)
