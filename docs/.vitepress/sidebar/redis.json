@@ -40,7 +40,7 @@
         "link": "/redis/lua"
       },
       {
-        "text": "Distributed Locking",
+        "text": "Redis Distributed Locking",
         "link": "/redis/distributed-locking"
       },
       {
