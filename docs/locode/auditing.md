@@ -192,7 +192,7 @@ The [Bookings CRUD Demo](/autoquery-crud-bookings) is a good representative exam
 effort it takes to implement a traditional CRUD API with AutoQuery:
 
 <div class="relative">
-    <iframe class="video-hd" width="560" height="315" src="https://www.youtube.com/embed/nhc4MZufkcM" title="YouTube video player"
+    <iframe class="video-hd" width="560" height="315" src="https://www.youtube.com/embed/rSFiikDjGos" title="YouTube video player"
             frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
