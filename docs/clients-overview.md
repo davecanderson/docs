@@ -123,7 +123,7 @@ Support for all languages are implemented the same way where the generated DTOs 
 The [x dotnet tool](/dotnet-tool) also allows us to generate these native service references from the command-line with the format `x <lang> <url>`, e.g. we can create C# DTOs for our App with:
 
 :::sh
-x csharp https://localhost:5001
+`x csharp https://localhost:5001`
 :::
 
 Output:
@@ -135,7 +135,7 @@ Saved to: dtos.ts
 Or create a TypeScript ServiceStack Reference with:
 
 :::sh
-x typescript https://localhost:5001
+`x typescript https://localhost:5001`
 :::
 
 ### Updating a ServiceStack Reference

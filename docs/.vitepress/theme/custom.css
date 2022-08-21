@@ -96,6 +96,7 @@
 
 .nuget-copy p, .nuget-copy p code { color:#fff }
 
+.sh-copy code { font-family: var(--font-family-base); font-size: 16px }
 .sh-copy p, .sh-copy p code { color: rgb(243 244 246) }
 .sh-copy p::before { content:'$ '; color: rgb(156 163 175) }
 .sh-copy a { color: rgb(243 244 246) }
