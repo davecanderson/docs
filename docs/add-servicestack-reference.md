@@ -27,7 +27,7 @@ ServiceStackVS offers the generation and updating of these clients through the s
 
 ### Supported Languages
 
-<table class="table table-bordered" style="text-align:center">
+<table class="table table-bordered w-full" style="text-align:center">
     <tr>
         <td><a href="/csharp-add-servicestack-reference">C#</a></td>
         <td><a href="/typescript-add-servicestack-reference">TypeScript</a></td>
@@ -55,13 +55,9 @@ Here's a quick walk through installing the **ServiceStack** plugin and using it 
 
 <iframe class="video-hd" src="https://www.youtube.com/embed/JKsgrstNnYY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-Whilst VSCode and other IDEs will be able to [Simple Command Line Utility](#simple-command-line-utilities) for adding and updating multiple Services references with a single command.
-
-### C# Xamarin.Android Example in VS.NET
-
-Using C# to develop native Mobile and Desktop Apps provides a number of benefits including maximum reuse of your investments across multiple Client Apps where they're able to reuse shared functionality, libraries, knowledge, development workflow and environment in both Client and Server Apps. 
-
-<iframe class="video-hd" src="https://www.youtube.com/embed/cbYuem1b2tg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+:::tip
+VSCode and other IDEs will be able to use the [Simple Command Line Utility](#simple-command-line-utilities) to add and update multiple Services references with a single command.
+:::
 
 ### Call ServiceStack APIs from a Flutter App with native Dart client and DTOs
 
@@ -69,6 +65,35 @@ Walk through showing how you can use ServiceStack's Dart client library with you
 
 <iframe class="video-hd" src="https://www.youtube.com/embed/ocH5L-CikQ0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
+### C# Xamarin.Android Example in VS.NET
+
+Using C# to develop native Mobile and Desktop Apps provides a number of benefits including maximum reuse of your investments across multiple Client Apps where they're able to reuse shared functionality, libraries, knowledge, development workflow and environment in both Client and Server Apps. 
+
+<iframe class="video-hd" src="https://www.youtube.com/embed/cbYuem1b2tg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+### Call ServiceStack APIs from Python
+
+This video tutorial looks at how we can leverage Add ServiceStack Reference for Python in PyCharm, VSCode and [Python Jupyter Notebooks](/jupyter-notebooks-python).
+
+<iframe class="video-hd" src="https://www.youtube.com/embed/WjbhfH45i5k" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+### Call ServiceStack APIs from Python
+
+This video tutorial looks at how we can leverage Add ServiceStack Reference for Python in PyCharm, VSCode and [Python Jupyter Notebooks](/jupyter-notebooks-python).
+
+<iframe class="video-hd" src="https://www.youtube.com/embed/WjbhfH45i5k" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+### Instant Client Apps
+
+[Instant Client Apps](https://apps.servicestack.net/) is a free tool to jump start your native client application development using a wide range of languages and platforms including: C#, NodeJS, Dart, Java, Kotlin, Swift, VB .NET and F#:
+
+<iframe class="video-hd" src="https://www.youtube.com/embed/GTnuMhvUayg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+## gRPC
+
+[ServiceStack gRPC](/grpc) enables a highly productive development environment for developing high-performance gRPC HTTP/2 Services by making ServiceStack's existing typed Services available from ASP.NET's gRPC endpoints where ServiceStack offers a simplified development model for gRPC Clients for streamlined end-to-end productivity.
+
+<iframe class="video-hd" src="https://www.youtube.com/embed/UQlYodNS1xc" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 ## C# Mobile and Desktop Apps
 
 [![](https://raw.githubusercontent.com/ServiceStackApps/HelloMobile/master/screenshots/splash-900.png)](https://github.com/ServiceStackApps/HelloMobile)
