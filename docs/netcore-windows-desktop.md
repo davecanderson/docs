@@ -60,7 +60,7 @@ dotnet publish -c Release
 Then in the `/publish` folder:
 
 :::sh
-cd bin\Release\netcoreapp3.1\publish
+cd bin\Release\net6.0\publish
 :::
 
 You can use `app` to run the .NET Core binary:
