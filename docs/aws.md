@@ -238,12 +238,29 @@ we can have files written to an S3 Bucket instead:
 var s3Client = new AmazonS3Client(AwsConfig.AwsAccessKey, AwsConfig.AwsSecretKey, RegionEndpoint.USEast1);
 VirtualFiles = new S3VirtualFiles(s3Client, AwsConfig.S3BucketName);
 ```
-
 If we comment out the above configuration any saved files are instead written to the local FileSystem (default).
 
 The benefit of using managed S3 File Storage is better scalability as your App Servers can remain stateless, improved
 performance as overhead of serving static assets can be offloaded by referencing the S3 Bucket directly and for even 
 better responsiveness you can connect the S3 bucket to a CDN.
+
+### Using S3VirtualFiles with S3 Compatible services
+
+To use `S3VirtualFiles` with another service provider with an S3 compatible service, the configuration of the `AmazonS3Client` will be different.
+For example, if we want to connect to [DigitalOcean Spaces](https://www.digitalocean.com/products/spaces) with `S3VirtualFiles` we would configure the `AmazonS3Client` with the following constructor.
+
+```csharp
+var doSpacesClient = new AmazonS3Client("my-spaces-key", "my-spaces-secret", 
+    new AmazonS3Config
+    {
+        ServiceURL = "https://sfo3.digitaloceanspaces.com",
+    });
+var doSpacesVfs = new S3VirtualFiles(doSpacesClient, "my-spaces-name");
+```
+
+The `ServiceURL` is a region specific URL rather than the URL to your Space directly, and your Space name is provided as a bucket name in the `S3VirtualFiles`.
+
+Other services might use the `AmazonS3Config` differently, but as long as the `AmazonS3Client` is configured correctly for the service you are using, the `S3VirtualFiles` can be used the same way.
 
 ## [REST Files](http://awsapps.servicestack.net/restfiles/)
 
