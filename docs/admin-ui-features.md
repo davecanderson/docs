@@ -78,6 +78,8 @@ Which will enable the Request Logging & Profiling UIs:
     <a href="/admin-ui-profiling"><img src="/images/admin-ui/admin-ui-logging.png"></a>
 </div>
 
+<iframe class="video-hd" src="https://www.youtube.com/embed/LgQHTSHSk1g" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ::: info
 See [Admin Logging & Profiling UI docs](/admin-ui-profiling) to learn about Admin Profiling feature and available customization options.
 :::
@@ -118,6 +120,8 @@ Which the built-in [Validation Feature](/validation.html#validation-feature) det
 <div class="block p-4 rounded shadow">
     <a href="/admin-ui-validation"><img src="/images/admin-ui/validation.png"></a>
 </div>
+
+<iframe class="video-hd" src="https://www.youtube.com/embed/W5OJAlOxH98" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ::: info
 See [Admin UI Validation Docs](/admin-ui-validation) to learn about dynamic DB Validation Rules
