@@ -197,7 +197,7 @@ public class Poco
 }
 
 db.AddColumn<Poco>(x => x.Code);
-db.AddColumn(typeof(Poco), x => x.Code);
+db.AddColumn(table:"Poco", new FieldDefinition { Name = "Code", FieldType = typeof(string) });
 ```
 
 ### AlterColumn
@@ -212,7 +212,7 @@ public class Poco
 }
 
 db.AlterColumn<Poco>(x => x.Code);
-db.AlterColumn<Poco>(typeof(Poco), x => x.Code);
+db.AlterColumn(table:"Booking", new FieldDefinition { Name = "Code", FieldType = typeof(string), IsIndexed = true });
 ```
 
 ### RenameColumn
@@ -221,7 +221,8 @@ For renaming an existing column, e.g:
 
 ```csharp
 db.RenameColumn<Poco>(x => x.ToName, fromName);
-db.RenameColumn<Poco>(fromName, toName);
+db.RenameColumn(typeof(Poco), fromName, toName);
+db.RenameColumn(table:"Poco", oldColumn:fromName, newColumn:toName);
 ```
 
 ### DropColumn
@@ -230,8 +231,8 @@ For dropping an existing column, e.g:
 
 ```csharp
 db.DropColumn<Poco>(x => x.Name);
-db.DropColumn<Poco>("Name");
 db.DropColumn(typeof(Poco), "Name");
+db.DropColumn(table:"Poco", column:"Name");
 ```
 
 ### AddForeignKey
