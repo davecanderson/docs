@@ -176,15 +176,103 @@ db.ColumnExists<Poco>(x => x.Age); //= true
 
 Additional Modify Schema APIs available in OrmLite include:
 
-- `AlterTable`
-- `AddColumn`
-- `AlterColumn`
-- `ChangeColumnName`
-- `DropColumn`
-- `AddForeignKey`
-- `DropForeignKey`
-- `CreateIndex`
-- `DropIndex`
+### AlterTable
+
+When maximum flexibility is needed to perform Alter table commands with custom SQL, e.g:
+
+```csharp
+db.AlterTable<Poco>("ADD Email VARCHAR(255)");
+db.AlterTable(typeof(Poco), "ADD Email VARCHAR(255)");
+```
+
+### AddColumn
+
+For adding a **new column** definition to an existing table, e.g:
+
+```csharp
+public class Poco
+{
+    [Index]
+    public string Code { get; set; }
+}
+
+db.AddColumn<Poco>(x => x.Code);
+db.AddColumn(typeof(Poco), x => x.Code);
+```
+
+### AlterColumn
+
+For modifying an **existing column** definition, e.g:
+
+```csharp
+public class Poco
+{
+    [Index]
+    public string Code { get; set; }
+}
+
+db.AlterColumn<Poco>(x => x.Code);
+db.AlterColumn<Poco>(typeof(Poco), x => x.Code);
+```
+
+### RenameColumn
+
+For renaming an existing column, e.g:
+
+```csharp
+db.RenameColumn<Poco>(x => x.ToName, fromName);
+db.RenameColumn<Poco>(fromName, toName);
+```
+
+### DropColumn
+
+For dropping an existing column, e.g:
+
+```csharp
+db.DropColumn<Poco>(x => x.Name);
+db.DropColumn<Poco>("Name");
+db.DropColumn(typeof(Poco), "Name");
+```
+
+### AddForeignKey
+
+To add a Foreign Key relationship to existing tables, e.g:
+
+```csharp
+db.AddForeignKey<Poco, ReferencedType>(
+    field: t => t.RefId, 
+    foreignField: tr => tr.Id,
+    onUpdate: OnFkOption.NoAction, 
+    onDelete: OnFkOption.Cascade, 
+    foreignKeyName);
+```
+
+### DropForeignKey
+
+To delete an existing Foreign Key:
+
+```csharp
+db.DropForeignKey<Poco>(foreignKeyName);
+```
+
+### CreateIndex
+
+To create an index on an existing column, e.g:
+
+```csharp
+db.CreateIndex<Poco>(x => x.Code);
+db.CreateIndex<Poco>(x => x.Code, indexName);
+db.CreateIndex<Poco>(x => x.Code, indexName, unique:true);
+```
+
+### DropIndex
+
+To drop an existing index, e.g:
+
+```csharp
+db.DropIndex<Poco>(indexName);
+```
+
 
 ## Typed `Sql.Cast()` SQL Modifier
 
