@@ -274,6 +274,25 @@ To drop an existing index, e.g:
 db.DropIndex<Poco>(indexName);
 ```
 
+## Custom SQL
+
+When you need functionality beyond what's available in the Modify Schema APIs like needing to access RDBMS-specific features you can drop down to SQL:
+
+```csharp
+db.ExecuteSql("ALTER TABLE Track ADD Rand INT default 0");
+db.ExecuteSql("UPDATE Track SET Rand = abs(random()) % 1000");
+
+Db.ExecuteSql("INSERT INTO page_stats (ref_id, fav_count) VALUES (@refId, @favCount)",
+              new { refId, favCount })
+
+//Async:
+Db.ExecuteSqlAsync("UPDATE page_stats SET view_count = view_count + 1 WHERE id = @id", new { id })
+
+//PostgreSQL Arrays
+await Db.ExecuteSqlAsync(@"UPDATE notification SET emailed_user_ids = emailed_user_ids || @userId WHERE id = @id", 
+    new { userId, id = notificationId });
+```
+
 
 ## Typed `Sql.Cast()` SQL Modifier
 
