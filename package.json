@@ -4,15 +4,15 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
-    "@iconify/vue": "^3.1.2",
+    "@iconify/vue": "^3.2.1",
     "@servicestack/client": "^1.2.1",
-    "autoprefixer": "^10.3.7",
+    "autoprefixer": "^10.4.8",
     "gray-matter": "^4.0.3",
     "markdown-it-container": "^3.0.0",
-    "postcss": "^8.3.9",
-    "tailwindcss": "^3.0.24",
+    "postcss": "^8.4.16",
+    "tailwindcss": "^3.1.8",
     "vitepress": "^0.22.4",
-    "vue-clipboard3": "^1.0.1"
+    "vue-clipboard3": "^2.0.0"
   },
   "scripts": {
     "postinstall": "node postinstall.js",
@@ -29,8 +29,8 @@
   },
   "dependencies": {
     "@tailwindcss/aspect-ratio": "^0.4.0",
-    "@tailwindcss/typography": "^0.5.2",
-    "glob": "^7.2.0",
-    "sass": "^1.43.2"
+    "@tailwindcss/typography": "^0.5.4",
+    "glob": "^8.0.3",
+    "sass": "^1.54.5"
   }
 }
