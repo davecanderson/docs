@@ -63,6 +63,47 @@ var result = db.SingleById<Poco>(1);
 result.PrintDump(); //= {Id: 1, Name:Seed Data}
 ```
 
+### Multiple database connections
+
+Any number of named RDBMS connections can be registered OrmLite's DbFactory `RegisterConnection`, e.g:
+
+```csharp
+// SqlServer with a named "Reporting" PostgreSQL connection as a part of the same `dbFactory`
+var dbFactory = new OrmLiteConnectionFactory(connString, SqlServer2012Dialect.Provider);
+container.Register<IDbConnectionFactory>(dbFactory);
+
+dbFactory.RegisterConnection("Reporting", pgConnString, PostgreSqlDialect.Provider);
+```
+
+Named connections can be opened by its name:
+
+```csharp
+using var db = dbFactory.Open("Reporting");
+```
+
+If using ServiceStack the `[NamedConnection]` attribute can be used to configure Services `base.Db` connection with the named connection RDBMS, e.g:
+
+```csharp
+[NamedConnection("Reporting")]
+public class QueryReports {}
+
+public class ReportServices : Service
+{
+    public object Any(QueryReports request) => Db.Select<Reports>();
+}
+```
+
+Or if using [AutoQuery](/autoquery) it can be used to associate Data Models with the named connection:
+
+```csharp
+[NamedConnection("Reporting")]
+public class Reports { ... }
+
+public class QueryReports : QueryDb<Reports> {}
+```
+
+More examples available in [Multitenancy](/multitenancy) docs.
+
 ## OrmLite Interactive Tour
 
 A quick way to learn about OrmLite is to take the [OrmLite Interactive Tour](https://gist.cafe/87164fa870ac7503b43333d1d275456c?docs=8a70f8bf2755f0a755afeca6b2a5238e) which lets you try out and explore different OrmLite features immediately from the comfort of your own
