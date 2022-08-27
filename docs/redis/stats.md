@@ -54,7 +54,15 @@ class provides better visibility and introspection into your running instances:
     </tr>
 </table>
 
-You can get and print a dump of all the stats at anytime with:
+## Redis Stats in Admin UI Dashboard
+
+These Stats are displayed in the [Admin UI Dashboard](/admin-ui-redis#redis-stats-on-dashboard)
+
+[![](/images/admin-ui/admin-ui-redis-stats.png)](/admin-ui-redis#redis-stats-on-dashboard)
+
+## Log to Console
+
+Alternatively you can get and print a dump of all the stats at anytime with:
 
 ```csharp
 RedisStats.ToDictionary().PrintDump();

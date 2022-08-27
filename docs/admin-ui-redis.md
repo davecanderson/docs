@@ -6,6 +6,16 @@ The Redis Admin UI lets you manage your App's configured Redis Server with a use
 
 <iframe class="video-hd" src="https://www.youtube.com/embed/K4459zrrxOY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
+### Redis Stats on Dashboard
+
+The [Admin UI Dashboard](/admin-ui#dashboard) contains valuable insight into monitoring the health of your App's redis usage with the client & server counters:
+
+[![](/images/admin-ui/admin-ui-redis-stats.png)](/admin-ui#dashboard)
+
+::: tip
+A description of each of these stats is available in the [Redis Stats docs](/redis/stats)
+:::
+
 ## Info
 
 The Redis Admin home page shows the output of the Redis [INFO](https://redis.io/commands/info/) command containing detailed information on the remote redis server:
@@ -13,6 +23,22 @@ The Redis Admin home page shows the output of the Redis [INFO](https://redis.io/
 ![](/images/admin-ui/admin-ui-redis.png)
 
 By default it uses the App's configured database but can easily switch between Redis databases with the numbered Database dropdown.
+
+### Modify Redis Connection
+
+Changing your App's Redis Configuration at runtime can be enabled with:
+
+```csharp
+Plugins.Add(new AdminRedisFeature {
+    ModifiableConnection = true
+});
+```
+
+Which will linkify the Redis Connection string to open the **Change Connection** Dialog:
+
+![](/images/admin-ui/admin-ui-redis-connection.png)
+
+Be aware this will change your App's Redis Connection at runtime to different redis server than what it was configured with, which can be useful if you have a warm stand-by Redis server you want to switch to without redeploying your App.
 
 ## Search
 
@@ -90,3 +116,5 @@ Plugins.Add(new AdminRedisFeature {
 ## Profile App Redis Usage
 
 The command history maintains a log for all commands executed in the Redis Admin UI, you can inspect the redis commands executed by your Services with the [Redis Profiling](/admin-ui-profiling#redis-profiling) built into the [Admin Profiling UI](/admin-ui-profiling).
+
+[![](/images/admin-ui/profiling-redis-CommandAfter.png)](/admin-ui-profiling#redis-profiling)
