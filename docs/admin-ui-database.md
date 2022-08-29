@@ -1,0 +1,57 @@
+---
+title: Database Admin
+---
+
+The Database Admin UI lets you quickly browse and navigate your App's configured RDBMS schemas and tables:
+
+<iframe class="video-hd" src="https://www.youtube.com/embed/NZkeyuc_prg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+Without any additional effort the home page will display all your App's configured databases, schemas and tables including those of any [named connections](/ormlite/getting-started#multiple-database-connections):
+
+![](/images/admin-ui/admin-ui-database.png)
+
+Clicking on a table takes us to a familiar tabular search grid, similar in appearance and functionality to [Locode's Auto UI](/locode/):
+
+![](/images/admin-ui/admin-ui-database-table.png)
+
+Whilst Locode gives you an entire Auto Management UI with all modifications performed through managed [AutoQuery APIs](/autoquery), Database Admin UI is instead focused on providing a great readonly UX for querying & inspecting your App's data, starting with multiple views or quickly previewing every row in either **Pretty** JSON format:
+
+<div class="block flex justify-center items-center">
+    <img class="max-w-screen-md" src="/images/admin-ui/admin-ui-database-table-pretty.png">
+</div>
+
+Where it will also let you copy every row in JSON format, whilst the **Preview** tab shows a friendlier view of the row's fields:
+
+<div class="block flex justify-center items-center">
+    <img class="max-w-screen-md" src="/images/admin-ui/admin-ui-database-table-preview.png">
+</div>
+
+The tabular grid is highly personalizable where it lets change the query preferences and display fields for each table, where they're persisted in localStorage so they're preserved across browser restarts:
+
+<div class="block flex justify-center items-center">
+    <img class="max-w-screen-md" src="/images/admin-ui/admin-ui-database-prefs.png">
+</div>
+
+Likewise so are the flexible filtering options allowing any number of filters per column:
+
+<div class="block flex justify-center items-center">
+    <img class="max-w-screen-md" src="/images/admin-ui/admin-ui-database-filter.png">
+</div>
+
+The number and type of filters are readily available from the **Filters** dropdown showing all filters grouped under their column name where they're easily cleared per filter, column or using **Clear All** to clear all filters:
+
+![](/images/admin-ui/admin-ui-database-filters.png)
+
+After you've finished customizing your table search view, you can export the data with the **Excel** button to download the results in [CSV Format](/csv-format) where it can be opened in your favorite spreadsheet, e.g:
+
+![](/images/admin-ui/admin-ui-database-excel.png)
+
+Alternatively the **Copy URL** button can be used to generate the API data URL to return results in JSON:
+
+<div class="block flex justify-center items-center">
+    <img class="max-w-screen-md" src="/images/admin-ui/admin-ui-database-api-url.png">
+</div>
+
+## Feedback Welcome
+
+We hope you'll find the Database Admin feature useful, please let us know what other features you would like in [ServiceStack/Discuss](https://github.com/ServiceStack/Discuss/discussions).

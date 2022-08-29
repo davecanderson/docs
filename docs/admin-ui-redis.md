@@ -118,3 +118,7 @@ Plugins.Add(new AdminRedisFeature {
 The command history maintains a log for all commands executed in the Redis Admin UI, you can inspect the redis commands executed by your Services with the [Redis Profiling](/admin-ui-profiling#redis-profiling) built into the [Admin Profiling UI](/admin-ui-profiling).
 
 [![](/images/admin-ui/profiling-redis-CommandAfter.png)](/admin-ui-profiling#redis-profiling)
+
+## Feedback Welcome
+
+We hope you'll find the Redis Admin feature useful, please let us know what other features you would like in [ServiceStack/Discuss](https://github.com/ServiceStack/Discuss/discussions).
