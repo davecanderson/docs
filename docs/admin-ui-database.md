@@ -6,15 +6,15 @@ The Database Admin UI lets you quickly browse and navigate your App's configured
 
 <iframe class="video-hd" src="https://www.youtube.com/embed/NZkeyuc_prg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-Without any additional effort the home page will display all your App's configured databases, schemas and tables including those of any [named connections](/ormlite/getting-started#multiple-database-connections):
+Without any additional configuration your App's configured databases will be listed on the home page, including their schemas, tables and any registered [named connections](/ormlite/getting-started#multiple-database-connections):
 
 ![](/images/admin-ui/admin-ui-database.png)
 
-Clicking on a table takes us to a familiar tabular search grid, similar in appearance and functionality to [Locode's Auto UI](/locode/):
+Selecting a table takes us to a familiar tabular search results grid, similar in appearance and functionality to [Locode's Auto UI](/locode/):
 
 ![](/images/admin-ui/admin-ui-database-table.png)
 
-Whilst Locode gives you an entire Auto Management UI with all modifications performed through managed [AutoQuery APIs](/autoquery), Database Admin UI is instead focused on providing a great readonly UX for querying & inspecting your App's data, starting with multiple views or quickly previewing every row in either **Pretty** JSON format:
+Whilst Locode gives you an entire Auto Management UI with all modifications performed through managed [AutoQuery APIs](/autoquery), Database Admin instead focuses on providing a great readonly UX for querying & inspecting your App's data, starting with multiple views or quickly previewing every row in either **Pretty** JSON format:
 
 <div class="block flex justify-center items-center">
     <img class="max-w-screen-md" src="/images/admin-ui/admin-ui-database-table-pretty.png">
@@ -26,7 +26,7 @@ Where it will also let you copy every row in JSON format, whilst the **Preview**
     <img class="max-w-screen-md" src="/images/admin-ui/admin-ui-database-table-preview.png">
 </div>
 
-The tabular grid is highly personalizable where it lets change the query preferences and display fields for each table, where they're persisted in localStorage so they're preserved across browser restarts:
+The tabular grid is highly personalizable where it lets change the query preferences and display fields for each table, where they're persisted in localStorage and preserved across browser restarts:
 
 <div class="block flex justify-center items-center">
     <img class="max-w-screen-md" src="/images/admin-ui/admin-ui-database-prefs.png">
@@ -51,6 +51,31 @@ Alternatively the **Copy URL** button can be used to generate the API data URL t
 <div class="block flex justify-center items-center">
     <img class="max-w-screen-md" src="/images/admin-ui/admin-ui-database-api-url.png">
 </div>
+
+## Database Admin Customizations
+
+Some customizations is available on the `AdminDatabaseFeature` plugin where you can control the maximum size of resultsets returned and you can use the `DatabaseFilter` to control which databases and schemas are displayed as well as changing the labels shown by setting their `Alias` properties, e.g:
+
+```csharp
+Plugins.Add(new AdminDatabaseFeature {
+    QueryLimit = 100,
+    DatabasesFilter = dbs => {
+        foreach (var db in dbs) 
+        {
+            if (db.Name == "main")
+            {
+                db.Alias = "Northwind";
+                db.Schemas[0].Alias = "Traders";
+            }
+            else if (db.Name == "chinook")
+            {
+                db.Alias = "Chinook";
+                db.Schemas[0].Alias = "Music";
+            }
+        }
+    },
+});
+```
 
 ## Feedback Welcome
 

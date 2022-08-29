@@ -2,13 +2,13 @@
 title: Redis Admin
 ---
 
-The Redis Admin UI lets you manage your App's configured Redis Server with a user-friendly UX for managing core Redis data types, including simple search to quickly find Redis values, quick navigation between related values, first class support for JSON values and a flexible command interface and command history to inspect all previously run redis commands that's easily editable & rerun.
+The Redis Admin UI lets you manage your App's configured Redis Server with a user-friendly UX for managing core Redis data types, simple search functionality to quickly find Redis values, quick navigation between related values, first class support for JSON values and a flexible command interface and command history to inspect all previously run redis commands that's easily editable & rerun.
 
-<iframe class="video-hd" src="https://www.youtube.com/embed/K4459zrrxOY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe class="video-hd" src="https://www.youtube.com/embed/AACZtTOcQbg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ### Redis Stats on Dashboard
 
-The [Admin UI Dashboard](/admin-ui#dashboard) contains valuable insight into monitoring the health of your App's redis usage with the client & server counters:
+The [Admin Dashboard](/admin-ui#dashboard) contains valuable insight into monitoring the health of your App's redis usage with both client & server counters:
 
 [![](/images/admin-ui/admin-ui-redis-stats.png)](/admin-ui#dashboard)
 
@@ -66,7 +66,7 @@ And an **Edit** mode where you can **add** and **delete** members:
 
 ### String
 
-The same functionality is available for all Data Types, whilst **Strings** contain first-class support for JSON strings in their **Pretty**:
+The same functionality is available for all Data Types, whilst **Strings** contain first-class support for JSON strings in the **Pretty** tab:
 
 ![](/images/admin-ui/admin-ui-redis-string-pretty.png)
 
@@ -74,7 +74,7 @@ The same functionality is available for all Data Types, whilst **Strings** conta
 
 ![](/images/admin-ui/admin-ui-redis-string-preview.png)
 
-and **Edit** views where you can **format JSON** when creating or edit JSON Strings:
+and **Edit** views where you can **indent JSON** when creating or editing JSON Strings:
 
 ![](/images/admin-ui/admin-ui-redis-string-edit.png)
 
@@ -92,11 +92,11 @@ Whilst Sorted Sets maintains an extra numerical field to capture Sorted Set scor
 
 ## Command
 
-The Command tab gives you a flexible Command bar letting you run adhoc Redis commands against the selected database. It includes a Command History displaying all previous commands run which you can select on to quickly edit & rerun commands:
+The Command tab gives you a flexible Command bar letting you run custom Redis commands against the selected database, including a Command History capturing all previously run commands that can be reselected to quickly edit & rerun commands:
 
 ![](/images/admin-ui/admin-ui-redis-command.png)
 
-By default it blocks running dangerous and unsuitable commands for a Web interface which can be modified when registering the `AdminRedisFeature`, which by default prevents the commands below:
+By default Redis Admin blocks running dangerous and unsuitable commands from a Web interface which can be modified when registering the `AdminRedisFeature`, that by default prevents the commands below:
 
 ```csharp
 Plugins.Add(new AdminRedisFeature {
