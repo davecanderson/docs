@@ -18,15 +18,14 @@ with rich, native support for intuitively mapping your re-usable code-first POCO
 
 ![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/aws/pocodynamo/related-customer.png)
 
-### [AutoQuery DynamoDB](https://github.com/ServiceStack/ServiceStack/wiki/AutoQuery-DynamoDB)
+### [AutoQuery DynamoDB](/aws-pocodynamo)
 
-Built on top of PocoDynamo, [AutoQuery Data's](https://github.com/ServiceStack/ServiceStack/wiki/AutoQuery-Data) 
-`DynamoDbSource` provides the most productive development experience for effortlessly creating rich, queryable 
-and optimized Services for DynamoDB data stores using only a typed Request DTO.
+Built on top of PocoDynamo, [AutoQuery Data's](/autoquery-data) `DynamoDbSource` provides the most productive development experience 
+for effortlessly creating rich, queryable and optimized Services for DynamoDB data stores using only a typed Request DTO.
 
 ### Quick Preview
 
-A quick CRUD preview of `PocoDynaamo` feature-rich high-level Typed client:
+A quick CRUD preview of **PocoDynamo** feature-rich high-level Typed client:
 
 ```csharp
 using System;
@@ -193,9 +192,7 @@ used in the [DynamoDB-powered AWS Todo Example](http://awsapps.servicestack.net/
 required when using AWSSDK's `IAmazonDynamoDB` client directly.
 
 The simple `Todo` POCO is the same data model used to store TODO's in every major RDBMS's with 
-[OrmLite](https://github.com/ServiceStack/ServiceStack.OrmLite), in Redis with 
-[ServiceStack.Redis](https://github.com/ServiceStack/ServiceStack.Redis) as well as 
-every supported [Caching provider](https://github.com/ServiceStack/ServiceStack/wiki/Caching). 
+[OrmLite](/ormlite/), in Redis with [ServiceStack.Redis](/redis/) as well as every supported [Caching provider](/caching). 
 
 PocoDynamo increases the re-use of `Todo` again which can now be used to store TODO's in DynamoDB as well: 
 
@@ -1090,8 +1087,7 @@ expensiveOrderIndexes.PrintDump();
 ]
 ```
 
-If preferred you can easily convert Typed Index into Orders by using ServiceStack's 
-[built-in Auto-Mapping](https://github.com/ServiceStack/ServiceStack/wiki/Auto-mapping), e.g:
+If preferred you can easily convert Typed Index into Orders by using ServiceStack's [built-in Auto-Mapping](/auto-mapping), e.g:
 
 ```csharp
 List<Order> expensiveOrders = expensiveOrderIndexes

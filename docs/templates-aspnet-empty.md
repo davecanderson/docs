@@ -15,8 +15,7 @@ cause down the line if they remove it.
 For ServiceStack and other lightweight Web Frameworks this added weight is completely unnecessary
 and can be safely removed. 
 E.g. [most ServiceStack Apps just needs a few ServiceStack .dlls](https://github.com/ServiceStackApps/Chat#super-lean-front-and-back) 
-and a [single Web.config mapping](https://github.com/ServiceStack/ServiceStack/wiki/Create-your-first-webservice#register-servicestack-handler)
-to tell ASP.NET to route all calls to ServiceStack. Any other ASP.NET config you would add in 
+and a [single Web.config mapping](/create-your-first-webservice) to tell ASP.NET to route all calls to ServiceStack. Any other ASP.NET config you would add in 
 ServiceStack projects is just to get ASP.NET to disable any conflicting default behavior, e.g:
 
 ```xml
@@ -26,9 +25,7 @@ ServiceStack projects is just to get ASP.NET to disable any conflicting default 
 ```
 
 Tells ASP.NET to stop hijacking Razor Views, required even when no ASP.NET Web Pages or MVC
-dlls are referenced. If using 
-[Server Events](https://github.com/ServiceStack/ServiceStack/wiki/Server-Events) 
-you'll also need to disable dynamic compression:
+dlls are referenced. If using [Server Events](/server-events) you'll also need to disable dynamic compression:
 
 ```xml
 <system.webServer>
@@ -107,9 +104,9 @@ ASP.NET Web Apps using lightweight Web Frameworks like ServiceStack or [Nancy](h
 
 ### Minimal but still Useful
 
-You can then easily [Convert this empty template into a functional ServiceStack Web App](https://github.com/ServiceStack/ServiceStack/wiki/Create-your-first-webservice) by: 
+You can then easily [Convert this empty template into a functional ServiceStack Web App](/create-your-first-webservice) by: 
 
-1) Installing [ServiceStack and any other dependency](https://github.com/ServiceStackApps/Todos/blob/master/src/Todos/packages.config) you want to use, e.g:
+1) Installing ServiceStack and any other dependency you want to use, e.g:
 
 ::: nuget
 `<PackageReference Include="ServiceStack" Version="6.*" />`

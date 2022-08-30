@@ -295,9 +295,9 @@ being executed from both HTTP and MQ Server by just
 </form>
 ```
 
-> The urls are populated from a typed Request DTO using the [Reverse Routing Extension methods](https://github.com/ServiceStack/ServiceStack/wiki/Routing#reverse-routing)
+> The urls are populated from a typed Request DTO using the [Reverse Routing Extension methods](/routing#reverse-routing)
 
-Checking the **Email via MQ** checkbox fires the JavaScript handler below that's registered as [declarative event in ss-utils.js](https://github.com/ServiceStack/ServiceStack/wiki/ss-utils.js-JavaScript-Client-Library#declarative-events):
+Checking the **Email via MQ** checkbox fires the JavaScript handler below that's registered as [declarative event in ss-utils.js](/ss-utils-js#declarative-events):
 
 ```js
 $(document).bindHandlers({
@@ -309,7 +309,7 @@ $(document).bindHandlers({
 });
 ```
 
-The code to configure and start an SQS MQ Server is similar to [other MQ Servers](https://github.com/ServiceStack/ServiceStack/wiki/Messaging): 
+The code to configure and start an SQS MQ Server is similar to [other MQ Servers](/messaging): 
 
 ```csharp
 container.Register<IMessageService>(c => new SqsMqServer(
@@ -322,9 +322,7 @@ mqServer.RegisterHandler<EmailContacts.EmailContact>(ExecuteMessage);
 mqServer.Start();
 ```
 
-When an MQ Server is registered, ServiceStack automatically publishes Requests accepted on the "One Way" 
-[pre-defined route](https://github.com/ServiceStack/ServiceStack/wiki/Routing#pre-defined-routes)
-to the registered MQ broker. The message is later picked up and executed by a Message Handler on a background Thread.
+When an MQ Server is registered, ServiceStack automatically publishes Requests accepted on the "One Way" [pre-defined route](/routing#pre-defined-routes) to the registered MQ broker. The message is later picked up and executed by a Message Handler on a background Thread.
 
 ## [AWS Auth](http://awsapps.servicestack.net/awsauth/)
 
@@ -368,8 +366,7 @@ return new AuthFeature(() => new AuthUserSession(),
 
 ### DynamoDbAppSettings
 
-The AuthFeature looks for the OAuth settings for each AuthProvider in the registered
-[AppSettings](https://github.com/ServiceStack/ServiceStack/wiki/AppSettings), which for deployed **Release** builds 
+The AuthFeature looks for the OAuth settings for each AuthProvider in the registered [AppSettings](/appsettings), which for deployed **Release** builds 
 gets them from multiple sources. Since `DynamoDbAppSettings` is registered first in a `MultiAppSettings` collection
 it checks entries in the DynamoDB `ConfigSetting` Table first before falling back to local 
 [Web.config appSettings](https://github.com/ServiceStackApps/AwsApps/blob/4817f5c6ad69defd74d528403bfdb03e5958b0b3/src/AwsApps/Web.config#L15): 
@@ -385,7 +382,7 @@ it checks entries in the DynamoDB `ConfigSetting` Table first before falling bac
 Storing production config in DynamoDB reduces the effort for maintaining production settings decoupled from source code. 
 The App Settings were populated in DynamoDB using
 [this simple script](https://github.com/ServiceStackApps/AwsApps/blob/9d4d3c3dfbf127ce0890d0984c264e8b440abd3f/src/AwsApps/AdminTasks.cs#L58)
-which imports its settings from a local [appsettings.txt file](https://github.com/ServiceStack/ServiceStack/wiki/AppSettings#textfilesettings):
+which imports its settings from a local [appsettings.txt file](/appsettings#textfilesettings):
 
 ```csharp
 var fileSettings = new TextFileSettings("~/../../deploy/appsettings.txt".MapHostAbsolutePath());
@@ -473,11 +470,9 @@ AWSSDK's low-level [IAmazonDynamoDB client](http://docs.aws.amazon.com/amazondyn
 with rich, native support for intuitively mapping your re-usable code-first POCO Data models into 
 [DynamoDB Data Types](http://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_Types.html). 
 
-#### [AutoQuery DynamoDB](https://github.com/ServiceStack/ServiceStack/wiki/AutoQuery-DynamoDB)
+#### [AutoQuery DynamoDB](/aws-pocodynamo)
 
-Built on top of PocoDynamo, [AutoQuery Data's](https://github.com/ServiceStack/ServiceStack/wiki/AutoQuery-Data) 
-`DynamoDbSource` provides the most productive development experience for effortlessly creating rich, queryable 
-and optimized Services for DynamoDB data stores using only a typed Request DTO.
+Built on top of PocoDynamo, [AutoQuery Data's](/autoquery-data) `DynamoDbSource` provides the most productive development experience for effortlessly creating rich, queryable and optimized Services for DynamoDB data stores using only a typed Request DTO.
 
 ### PocoDynamo Features
 

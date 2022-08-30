@@ -75,7 +75,7 @@ var dto = viewModel.ToDto();
 
 
   [3]: http://www.palmmedia.de/Blog/2011/8/30/ioc-container-benchmark-performance-comparison
-  [4]: https://github.com/ServiceStack/ServiceStack/wiki/Clients-overview
+  [4]: /clients-overview
   [5]: http://ayende.com/blog/4769/code-review-guidelines-avoid-inheritance-for-properties
-  [6]: https://github.com/ServiceStack/ServiceStack/wiki/Auto-mapping
+  [6]: /auto-mapping
   [7]: https://github.com/AutoMapper/AutoMapper

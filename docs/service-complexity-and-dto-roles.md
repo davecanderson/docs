@@ -112,7 +112,7 @@ return, the DTO includes additional fields populated from alternative sources, o
 to project them differently. At that point (YAGNI) you can take a copy of the DTO and add it to your Services 
 Implementation so they can grow separately, unimpeded by their different concerns. 
 You can then effortlessly convert between them using  
-[ServiceStack's built-in Auto Mapping](https://github.com/ServiceStack/ServiceStack/wiki/Auto-mapping), e.g:
+[ServiceStack's built-in Auto Mapping](/auto-mapping), e.g:
 
 ```csharp
 var dto = dbPoco.ConvertTo<Poco>();

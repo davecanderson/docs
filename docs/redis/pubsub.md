@@ -4,8 +4,7 @@ title: Redis Managed Pub/Sub Server
 ---
 
 The Pub/Sub engine powering
-[Redis ServerEvents](https://github.com/ServiceStack/ServiceStack/wiki/Redis-Server-Events) and
-[Redis MQ](https://github.com/ServiceStack/ServiceStack/wiki/Messaging-and-Redis) has been extracted
+[Redis ServerEvents](/redis-server-events) and [Redis MQ](/redis-mq) has been extracted
 and encapsulated it into a re-usable class that can be used independently for handling messages
 published to specific [Redis Pub/Sub](http://redis.io/commands#pubsub) channels.
 
@@ -13,8 +12,7 @@ published to specific [Redis Pub/Sub](http://redis.io/commands#pubsub) channels.
 when the redis-server connection fails and works like an independent background Service that can be
 stopped and started on command.
 
-The public API is captured in the
-[IRedisPubSubServer](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/Redis/IRedisPubSubServer.cs) interface:
+The public API is captured in the [IRedisPubSubServer](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/Redis/IRedisPubSubServer.cs) interface:
 
 ```csharp
 public interface IRedisPubSubServer : IDisposable

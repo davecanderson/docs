@@ -609,9 +609,34 @@ Please look at [SocialBootstrapApi](https://github.com/ServiceStack/SocialBootst
 Of course you can also implement your own - custom - authentication mechanism. You aren't forced to use the built-in ServiceStack auth mechanism
 :::
 
-## The `Authenticate` attribute
+## Declarative Validation Attributes
 
-The `[Authenticate]` [Request Filter Attribute](https://github.com/ServiceStack/ServiceStack/wiki/Filter-attributes) tells ServiceStack which Services needs authentication by adding it to your Service implementations, e.g:
+The recommended way to protect your APIs is to use the [Declarative Validation](/declarative-validation) attributes which as they're decoupled from any implementation can be safely annotated on Request DTOs without adding any implementation dependencies. In addition by annotating Authorization and Validation attributes on Request DTOs captures this information into your APIs reusable DTOs, filtering this information down to clients where they can provide enriched User Experiences.
+
+### Authorization Attributes
+
+The available Typed Authorization Attributes include:
+
+| Attribute                      | Description                                                             |
+|--------------------------------|-------------------------------------------------------------------------|
+| `[ValidateIsAuthenticated]`    | Protect access to this API to Authenticated Users only                  |
+| `[ValidateIsAdmin]`            | Protect access to this API to Admin Users only                          |
+| `[ValidateHasPermission]`      | Protect access to this API to only Users assigned with ALL Permissions  |
+| `[ValidateHasRole]`            | Protect access to this API to only Users assigned with ALL Roles        |
+
+Where they can be annotated on **Request DTOs** to protect APIs:
+
+```csharp
+[ValidateIsAuthenticated]            // or [ValidateRequest("IsAuthenticated")]
+[ValidateIsAdmin]                    // or [ValidateRequest("IsAdmin")]
+[ValidateHasRole(role)]              // or [ValidateRequest($"HasRole(`{role}`)")]
+[ValidateHasPermission(permission)]  // or [ValidateRequest($"HasPermission(`{permission}`)")
+public class Secured {}
+```
+
+## The Authenticate attribute
+
+The `[Authenticate]` [Request Filter Attribute](/filter-attributes) tells ServiceStack which Services needs authentication by adding it to your Service implementations, e.g:
 
 ```csharp
 [Authenticate]
@@ -644,31 +669,6 @@ If you want, that authentication is only required for GET and PUT requests for e
 
 ```csharp
 [Authenticate(ApplyTo.Get | ApplyTo.Put)] 
-```
-
-## Declarative Validation Attributes
-
-The recommended way to protect your APIs is to use the [Declarative Validation](/declarative-validation) attributes which as they're decoupled from any implementation can be safely annotated on Request DTOs without adding any implementation dependencies. In addition by annotating Authorization and Validation attributes on Request DTOs captures this information into your APIs reusable DTOs, filtering this information down to clients where they can provide enriched User Experiences.
-
-### Authorization Attributes
-
-The available Typed Authorization Attributes include:
-
-| Attribute                      | Description                                                             |
-|--------------------------------|-------------------------------------------------------------------------|
-| `[ValidateIsAuthenticated]`    | Protect access to this API to Authenticated Users only                  |
-| `[ValidateIsAdmin]`            | Protect access to this API to Admin Users only                          |
-| `[ValidateHasPermission]`      | Protect access to this API to only Users assigned with ALL Permissions  |
-| `[ValidateHasRole]`            | Protect access to this API to only Users assigned with ALL Roles        |
-
-Where they can be annotated on **Request DTOs** to protect APIs:
-
-```csharp
-[ValidateIsAuthenticated]            // or [ValidateRequest("IsAuthenticated")]
-[ValidateIsAdmin]                    // or [ValidateRequest("IsAdmin")]
-[ValidateHasRole(role)]              // or [ValidateRequest($"HasRole(`{role}`)")]
-[ValidateHasPermission(permission)]  // or [ValidateRequest($"HasPermission(`{permission}`)")
-public class Secured {}
 ```
 
 ## RequiredRole and RequiredPermission attributes

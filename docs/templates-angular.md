@@ -62,7 +62,7 @@ this.http.get<HelloResponse>(createUrl('/hello/{Name}', { name })).subscribe(r =
 
 ## [TechStacks](https://github.com/ServiceStackApps/TechStacks)
 
-TechStacks is an AngularJS App that lets you explore TechStacks of popular StartUps using your favorite techology
+TechStacks is an AngularJS App that lets you explore TechStacks of popular StartUps using your favorite technology
 
 [![TechStacks](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/livedemos/techstacks/screenshots/techstacks.png)](http://angular.techstacks.io)
 
@@ -83,8 +83,9 @@ and some of TechStacks back-end features include:
    - Dynamically generated [sitemaps.xml](https://techstacks.io/sitemap.xml)
  - Page-level Locking
  - Record and Restore Page Content Versioning
- - [Twitter and GitHub OAuth Providers](https://github.com/ServiceStack/ServiceStack/wiki/Authentication-and-authorization)
+ - [Twitter and GitHub OAuth Providers](/authentication-and-authorization)
  - Substitutable [OrmLite](https://github.com/ServiceStack/ServiceStack.OrmLite) RDBMS [PostgreSQL and Sqlite](https://github.com/ServiceStackApps/TechStacks/blob/875e78910e43d2230f0925b71d5990497216511e/src/TechStacks/TechStacks/AppHost.cs#L49-L56) back-ends
- - [Auto Query](https://github.com/ServiceStack/ServiceStack/wiki/Auto-Query) for automatic services of RDBMS tables
- - [RDBMS Sessions and In Memory Caching](https://github.com/ServiceStack/ServiceStack/wiki/Caching)
- - [Fluent Validation](https://github.com/ServiceStack/ServiceStack/wiki/Validation)
+ - [Auto Query](/autoquery) for automatic services of RDBMS tables
+ - [RDBMS Sessions and In Memory Caching](/caching)
+ - [Fluent Validation](/validation)
+

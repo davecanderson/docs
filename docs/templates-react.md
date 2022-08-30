@@ -151,7 +151,7 @@ built with the new
 [React Desktop Apps](https://github.com/ServiceStackApps/ReactDesktopApps)
 VS.NET template and packaged into a native Desktop App for Windows and OSX.
 It takes advantage of 
-[Server Events](https://github.com/ServiceStack/ServiceStack/wiki/Server-Events) to enable synchronized 
+[Server Events](/server-events) to enable synchronized 
 real-time control of multiple Windows Apps:
 
 [![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/livedemos/react-desktop-apps/dancing-windows.png)](https://youtu.be/-9kVqdPbqOM)
