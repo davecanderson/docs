@@ -646,26 +646,56 @@ If you want, that authentication is only required for GET and PUT requests for e
 [Authenticate(ApplyTo.Get | ApplyTo.Put)] 
 ```
 
-## `RequiredRole` and `RequiredPermission` attributes
+## Declarative Validation Attributes
 
-ServiceStack also includes a built-in permission based authorization mechanism. More details about how Roles and Permissions work is in this [StackOverflow Answer](http://stackoverflow.com/a/12096813).
+The recommended way to protect your APIs is to use the [Declarative Validation](/declarative-validation) attributes which as they're decoupled from any implementation can be safely annotated on Request DTOs without adding any implementation dependencies. In addition by annotating Authorization and Validation attributes on Request DTOs captures this information into your APIs reusable DTOs, filtering this information down to clients where they can provide enriched User Experiences.
 
-Your Request DTO can require specific permissions:
+### Authorization Attributes
+
+The available Typed Authorization Attributes include:
+
+| Attribute                      | Description                                                             |
+|--------------------------------|-------------------------------------------------------------------------|
+| `[ValidateIsAuthenticated]`    | Protect access to this API to Authenticated Users only                  |
+| `[ValidateIsAdmin]`            | Protect access to this API to Admin Users only                          |
+| `[ValidateHasPermission]`      | Protect access to this API to only Users assigned with ALL Permissions  |
+| `[ValidateHasRole]`            | Protect access to this API to only Users assigned with ALL Roles        |
+
+Where they can be annotated on **Request DTOs** to protect APIs:
+
+```csharp
+[ValidateIsAuthenticated]            // or [ValidateRequest("IsAuthenticated")]
+[ValidateIsAdmin]                    // or [ValidateRequest("IsAdmin")]
+[ValidateHasRole(role)]              // or [ValidateRequest($"HasRole(`{role}`)")]
+[ValidateHasPermission(permission)]  // or [ValidateRequest($"HasPermission(`{permission}`)")
+public class Secured {}
+```
+
+## RequiredRole and RequiredPermission attributes
+
+ServiceStack also includes a built-in role & permission based authorization attributes where you can apply the `[Required*]` Request Filter Attributes on your Service classes to apply to all Services or limited to a single Service:
 
 ```csharp
 [Authenticate]
 //All HTTP (GET, POST...) methods need "CanAccess"
 [RequiredRole("Admin")]
 [RequiredPermission("CanAccess")]
-[RequiredPermission(ApplyTo.Put | ApplyTo.Post, "CanAdd")]
-[RequiredPermission(ApplyTo.Delete, "AdminRights", "CanDelete")]
-public class Secured
+public class MyServices : Service
 {
-    public bool Test { get; set; }
-} 
+    public object Get(Secured request) {}
+
+    [RequiredPermission("CanAdd")]
+    public object Put(Secured request) {}
+    
+    [RequiredPermission("CanAdd")]
+    public object Post(Secured request) {}
+    
+    [RequiredPermission("AdminRights", "CanDelete")]
+    public object Delete(Secured request) {}
+}
 ```
 
-Now the client needs the permissions...
+Now the client needs the permissions:
 
 - **CanAccess** to make a GET request
 - **CanAccess**, **CanAdd** to make a PUT/POST request
@@ -675,23 +705,18 @@ If instead you want to allow access to users in **ANY** Role or Permission use:
 
 ```csharp
 [RequiresAnyRole("Admin","Member")]
-[RequiresAnyRole(ApplyTo.Post, "Admin","Owner","Member")]
+[RequiresAnyRole(ApplyTo.Put | ApplyTo.Post, "Admin","Owner","Member")]
 [RequiresAnyPermission(ApplyTo.Delete, "AdminRights", "CanDelete")]
-public class Secured
+public class MyServices : Service
 {
-    public bool Test { get; set; }
-} 
+    public object Get(Secured request) {}
+    public object Put(Secured request) {}
+    public object Post(Secured request) {}
+    public object Delete(Secured request) {}
+}
 ```
 
-Normally ServiceStack calls the method `bool HasPermission(string permission)` in [IAuthSession](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.ServiceInterface/Auth/IAuthSession.cs). This method checks if the list `List<string> Permissions` in [IAuthSession](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.ServiceInterface/Auth/IAuthSession.cs) contains the required permission.
-
-::: info
-[IAuthSession](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.ServiceInterface/Auth/IAuthSession.cs) is stored in a cache client as explained above
-:::
-
-You can fill this list in the method `OnAuthenticated` you've overridden in the first part of this tutorial.
-
-As with `Authenticate`, you can mark services (instead of DTO) with `RequiredPermission` attribute, too.
+These attributes can also be applied to Request DTOs however as they would add a dependency to **ServiceStack.dll**, it's recommended to 
 
 ## Enabling Authentication at different levels
 
