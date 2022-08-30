@@ -40,6 +40,46 @@ Which enables a familiar UI for searching & managing users:
 See [Admin UI User Docs](/admin-ui-users) to learn about Admin User features and available customization options
 :::
 
+## Redis Admin
+
+The [Redis Admin UI](/admin-ui-redis) lets you manage your App's configured Redis Server with a user-friendly UX for managing core Redis data types, simple search functionality to quickly find Redis values, quick navigation between related values, first class support for JSON values and a flexible command interface and command history to inspect all previously run redis commands.
+
+<iframe class="video-hd" src="https://www.youtube.com/embed/AACZtTOcQbg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+It can be enabled by registering the `AdminRedisFeature` plugin:
+
+```csharp
+Plugins.Add(new AdminRedisFeature());
+```
+
+Which will enable the **Redis** Admin UI:
+
+[![](/images/admin-ui/admin-ui-redis.png)](/admin-ui-redis)
+
+::: info
+See [Redis Admin docs](/admin-ui-redis) for more info.
+:::
+
+## Database Admin
+
+The [Database Admin UI](/admin-ui-database) lets you quickly browse and navigate your App's configured RDBMS schemas and tables:
+
+<iframe class="video-hd" src="https://www.youtube.com/embed/NZkeyuc_prg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+It can be enabled by registering the `AdminDatabaseFeature` plugin from [ServiceStack.Server](https://nuget.org/packages/ServiceStack.Server):
+
+```csharp
+Plugins.Add(new AdminDatabaseFeature());
+```
+
+Which will enable the **Database** Admin UI:
+
+[![](/images/admin-ui/admin-ui-database.png)](/admin-ui-database)
+
+::: info
+See [Database Admin docs](/admin-ui-database) for more info.
+:::
+
 ## Request Logging & Profiling
 
 Enables invaluable observability into your App, from being able to quickly inspect and browse incoming requests, to tracing their behavior:
