@@ -23,6 +23,10 @@
         "link": "/ormlite/async-apis"
       },
       {
+        "text": "DB Migrations",
+        "link": "/ormlite/db-migrations"
+      },
+      {
         "text": "Litestream",
         "link": "/ormlite/litestream"
       }
