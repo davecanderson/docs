@@ -25,16 +25,6 @@ As Admin is a capability-based UI it only shows the stats and features your App 
 
 Explore the available Admin UIs to learn more about each of their capabilities:
 
-### [DB Validation UI](/admin-ui-validation)
-
-Leverages the existing Declarative Validation infrastructure to enable dynamically managing Request DTO Type and Property Validators from a RDBMS data source
-
-<a href="/admin-ui-validation">
-    <div class="block p-4 rounded shadow hover:shadow-lg">
-        <img src="/images/admin-ui/admin-ui-validation.png">
-    </div>
-</a>
-
 ### [Managing Users UI](/admin-ui-users)
 
 Containing user management functionality for creating & modifying users, assigning Roles & Permissions, locking or updating passwords:
@@ -52,6 +42,36 @@ Enables invaluable observability into your App, from being able to quickly inspe
 <a href="/admin-ui-profiling">
     <div class="block p-4 rounded shadow hover:shadow-lg">
         <img src="/images/admin-ui/admin-ui-logging.png">
+    </div>
+</a>
+
+### [Redis Admin](/admin-ui-redis)
+
+Manage your App's configured Redis Server, query & edit core Redis data types and execute custom redis commands:
+
+<a href="/admin-ui-redis">
+    <div class="block p-4 rounded shadow hover:shadow-lg">
+        <img src="/images/admin-ui/admin-ui-redis.png">
+    </div>
+</a>
+
+### [Database Admin](/admin-ui-database)
+
+Quickly browse and navigate your App's configured RDBMS schemas and tables:
+
+<a href="/admin-ui-database">
+    <div class="block p-4 rounded shadow hover:shadow-lg">
+        <img src="/images/admin-ui/admin-ui-database.png">
+    </div>
+</a>
+
+### [DB Validation UI](/admin-ui-validation)
+
+Leverages the existing Declarative Validation infrastructure to enable dynamically managing Request DTO Type and Property Validators from a RDBMS data source
+
+<a href="/admin-ui-validation">
+    <div class="block p-4 rounded shadow hover:shadow-lg">
+        <img src="/images/admin-ui/admin-ui-validation.png">
     </div>
 </a>
 
