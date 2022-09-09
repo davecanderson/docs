@@ -400,6 +400,8 @@ The `*.html` file names aren't important, to create an API doc component it just
 </template>
 ```
 
+### Dynamic Components
+
 [QueryTodos](https://blazor-wasm-api.jamstacks.net/ui/QueryTodos?tab=details) is a more advanced example that generates a dynamic UI shared by all TODO APIs:
 
 ```html
