@@ -2,7 +2,17 @@
 title: OrmLite Logging and Introspection
 ---
 
-One way to see what queries OrmLite generates is to enable a **debug** enabled logger, e.g:
+### SQL Profiler
+
+The easiest way to view your App's generated SQL is by enabling the [Admin Profiling UI](/admin-ui-features#request-logging-profiling) where it's built-in [SQL Profiling](/admin-ui-profiling#sql-profiling) will show generated queries in context with your other App events:
+
+<a href="/admin-ui-profiling#sql-profiling" class="block flex justify-center items-center">
+    <img class="max-w-screen-md" src="/images/admin-ui/profiling-CreateBooking-CommandAfter.png">
+</a>
+
+### Logging Executed SQL
+
+Alternatively you can see what queries OrmLite generates by configuring it to use a **debug** enabled logger, e.g:
 
 ```csharp
 LogManager.LogFactory = new ConsoleLogFactory(debugEnabled:true);
