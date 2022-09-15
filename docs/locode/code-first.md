@@ -288,6 +288,53 @@ with the application having the `IPatch<Booking>` API defined.
 
 ![](/images/locode/code-first-bookings-mvp-4.png)
 
+## POCO References
+
+When it can be inferred Locode automatically detects and linkify [POCO references](/ormlite/reference-support) for easy navigation which is used a lot in https://talent.locode.dev like navigating to a Job's [Job Applications](https://talent.locode.dev/locode/QueryJobApplication):
+
+[![](/images/locode/talent/job-application-references.png)](https://talent.locode.dev/locode/QueryJobApplication)
+
+defined by its [POCO References](https://github.com/NetCoreApps/TalentBlazor/blob/ff6fd961f49141e617fef37b85240af04295359a/TalentBlazor.ServiceModel/Talent.cs#L87):
+
+
+```csharp
+public class JobApplication : AuditBase
+{
+    [AutoIncrement]
+    public int Id { get; set; }
+
+    [References(typeof(Job))]
+    public int JobId { get; set; }
+
+    [References(typeof(Contact))]
+    public int ContactId { get; set; }
+
+    [Reference]
+    public Contact Applicant { get; set; }
+    //...
+}
+```
+
+### Navigating Child References
+
+The references support also allows adding related records by navigating to the child relation then adding the child record where it will preserve and pre-populate the parent id as seen when navigating to a Job's Applications:
+
+```csharp
+public class Job : AuditBase
+{
+    //...
+    public List<JobApplication> Applications { get; set; } = new();
+}
+```
+
+Where it will pre-populate the **Job Id** reference making it easy to add multiple **1:Many** Job Applications:
+
+![](/images/locode/talent/job-job-application-reference.png)
+
+
+Checkout [Talent.cs](https://github.com/NetCoreApps/TalentBlazor/blob/main/TalentBlazor.ServiceModel/Talent.cs) DTOs for more Reference examples.
+
+
 ## Customizing Locode App
 
 We've walked through a simple example of how to create CRUD APIs for our `Booking` RDBMS table which Locode uses
