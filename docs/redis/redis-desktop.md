@@ -2,7 +2,7 @@
 title: Redis Admin Desktop App
 ---
 
-The [Redis Admin UI](/admin-ui-redis) lets you manage your App's configured Redis Server with a user-friendly UX for managing core Redis data types, simple search functionality to quickly find Redis values, quick navigation between related values, first class support for JSON values and a flexible command interface and command history to inspect all previously run redis commands that's easily editable & rerun.
+The [Redis Admin UI](/admin-ui-redis) is a [vuedesktop.com](https://www.vuedesktop.com/) App that lets you manage your App's configured Redis Server with a user-friendly UX for managing core Redis data types, simple search functionality to quickly find Redis values, quick navigation between related values, first class support for JSON values and a flexible command interface and command history to inspect all previously run redis commands that's easily editable & rerun.
 
 [![](/images/admin-ui/redis-desktop.png)](/admin-ui-redis)
 
