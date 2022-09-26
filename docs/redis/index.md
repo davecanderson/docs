@@ -2,7 +2,7 @@
 title: C#/.NET Client for Redis
 ---
 
-[ServiceStack's C# Redis Client](https://github.com/ServiceStack/ServiceStack.Redis) is a simple, high-performance and feature-rich C# Client for Redis with native support and [high-level abstractions](./design-nosql.md) for serializing POCOs and Complex Types.
+[ServiceStack's C# Redis Client](https://github.com/ServiceStack/ServiceStack.Redis) is a simple, high-performance and feature-rich C# Client for Redis with native support and [high-level abstractions](./design-nosql.md) for serializing POCOs and Complex Types supporting both native Sync and Async APIs.
 
 There are a number of different APIs available with the `RedisClient` implementing the following interfaces:
 

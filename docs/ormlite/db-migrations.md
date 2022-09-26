@@ -69,7 +69,7 @@ We'll use this feature in our 2nd migration for its Data Model changes where we 
 For these common use-cases we can use `Migrate<Table>` to apply schema changes from a declarative class definition or use `Revert<Table>` to revert them, e.g:
 
 ```csharp
-[Description("Updated MyTable")]
+[Description("Update MyTable")]
 class Migration1001 : MigrationBase
 {    
     class MyTable
@@ -92,7 +92,7 @@ class Migration1001 : MigrationBase
 In addition to being more productive and readable, it also benefits from being able to infer both schema migration and revert changes from the same declarative definition which is an alternative to using the [Modify Schema APIs](/ormlite/apis/schema.html#modify-custom-schema) to perform the same operations:
 
 ```csharp
-[Description("Updated MyTable")]
+[Description("Update MyTable")]
 class Migration1001 : MigrationBase
 {    
     class MyTable
@@ -121,7 +121,7 @@ class Migration1001 : MigrationBase
 Or for a more dynamic and Type-free approach it can also be rewritten as:
 
 ```csharp
-[Description("Updated MyTable")]
+[Description("Update MyTable")]
 class Migration1001 : MigrationBase
 {    
     public override void Up()
@@ -148,7 +148,7 @@ But our preference is to adopt the declarative approach when possible since it's
 
 ### Code-First approach
 
-To get the most out of DB migrations it's recommended that all schema changes are done through migrations to ensure they end up capturing all schema changes and saves duplicated efforts from having to create Migrations from out-of-band schema changes. It's a more explicit approach than relying on a tool to generate migrations from state diffs, but you'll have more control how changes are applied and organized together with any populated data required by new features which are tracked together in source control. They're also easier to debug, re-run and refactor during the development cycle of new features.
+To get the most out of DB migrations it's recommended that all schema changes are done through migrations to ensure they end up capturing all schema changes and saves duplicated efforts from having to create Migrations from out-of-band schema changes. It's a more explicit approach than relying on a tool to generate migrations from state diffs, but you'll have more control over how changes are applied and organized together with any populated data required by new features which are tracked together in source control. They're also easier to debug, re-run and refactor during the development cycle of new features.
 
 ### Complex Example
 
@@ -352,7 +352,7 @@ public class ConfigureDbMigrations : IHostingStartup
 
 Here we can see we need to configure our `Migrator` with the `IDbConnectionFactory` we want to run against and the assemblies where all our Migration classes are maintained. It also registers an AppTasks to **migrate** our App by comparing the **Migration** table with the Migrations in the specified Assembly to workout which Migrations are left to run (in order) and the **revert** AppTask to do the opposite and revert to the specified migration.
 
-This will now let us run your app in **Task Mode** where it will execute the specified task before promptly exiting with a **0** success exit code if successful or the index of the task that failed, e.g. **1**. 
+This will now let us run your app in **"Task Mode"** where it will execute the specified task before promptly exiting with a **0** success exit code if successful or the index of the task that failed, e.g. **1** if the first Task failed. 
 
 We can then execute our App Task by running our App with the `AppTasks` command-line argument of the Task we want to run, so we can run all pending migrations with:
 
@@ -366,7 +366,7 @@ The format to revert a migration is:
 $ dotnet run --AppTasks=migrate.revert:<name>
 ```
 
-Where name is either the class name of the Migration you want to revert to (inclusive) or you can use **last** to revert the last migration:
+Where **name** is either the class name of the Migration you want to revert to (inclusive) or you can use **last** to revert the last migration:
 
 :::sh
 dotnet run --AppTasks=migrate.revert:last
@@ -378,7 +378,7 @@ or **all** to revert all migrations:
 dotnet run --AppTasks=migrate.revert:all
 :::
 
-To make this easier to remember and use, these tasks will also be added as npm scripts:
+To make this easier to remember and use, these tasks are also added as npm scripts:
 
 ```csharp
 {
@@ -398,7 +398,7 @@ $ npm run revert:last
 $ npm run revert:all
 ```
 
-Rider provides a nice UX for running npm scripts directly from the IDE where it will print all executed SQL output in a separate Console:
+Which Rider provides a nice UX for running directly from the IDE where it will print all executed SQL output in a dedicated Console:
 
 ![](/images/ormlite/migration-scripts.png)
 
@@ -417,11 +417,33 @@ app.Run();
 
 ### New RDBMS Projects configured with DB Migrations by default
 
-Now that OrmLite has a formal solution for implementing and executing schema changes, the [Quick instal RDBMS mix scripts](/ormlite/installation.html#quick-install-in-asp-net-core-with-mix) now include **migrations** by default.
+Now that OrmLite has a formal solution for implementing and executing schema changes, the [Quick instal RDBMS mix scripts](/ormlite/installation.html#quick-install-in-asp-net-core-with-mix) are now configured to include **migrations** by default.
 
 ### Failed migration behavior
 
 Executing migrations from the command-line is also how they are run in CI. The strategy we've employed in our [GitHub Action Deployment Templates](https://docs.servicestack.net/github-action-templates) is to run the container to execute the **migrate** AppTask on the host machine first to validate migration was successful before completing deployment of the new App, so that a failed migration will cause deployment to fail and the previous App version to continue to run.
+
+## Running migrations from GitHub Actions
+
+Where applicable, [GitHub Action deployments](/github-action-templates) have been updated to automatically run on deployment before the new version of your application starts up. This is done in the **Run remote db migrations** step. 
+
+Output can be found in your GitHub Action run output. The task that is run is controlled in the `.deploy/docker-compose-template.yml` file as a separate service which is only run if specified directly or with the `--profiles migration` option.
+
+This migration approach enables an easy way to test your migration with a custom local docker-compose file. Such as the following for a SQLite setup.
+
+```yaml
+version: "3.9"
+services:
+  myapp-migration:
+    build: .
+    restart: "no"
+    command: --AppTasks=migrate
+    volumes:
+      - myapp-mydb:/app/App_Data
+
+volumes:
+  myapp-mydb:
+```
 
 ## Running migrations from unit tests
 
@@ -462,11 +484,88 @@ var db = DbFactory.Open();
 Migrator.Clear(db);
 ```
 
+### Running Migrations on Named Connections
+
+By default the Migration's `base.Db` connection is configured to use the primary database's connection string, e.g:
+
+```csharp
+var dbFactory = new OrmLiteConnectionFactory(
+    Configuration.GetConnectionString("DefaultConnection"), PostgreSqlDialect.Provider);    
+services.AddSingleton<IDbConnectionFactory>(dbFactory);
+```
+
+But if your App has [Multiple database connections](/ormlite/getting-started#multiple-database-connections) that you need to run migrations on, e.g:
+
+```csharp
+dbFactory.RegisterConnection("Sales", Configuration.GetConnectionString("Sales"), SqlServer2012Dialect.Provider);
+dbFactory.RegisterConnection("Reporting", "reporting.sqlite", SqliteDialect.Provider);
+```
+
+You can configure the Migration `base.Db` connection to be configured to use a named connection with the `[NamedConnection]` attribute, e.g:
+
+```csharp
+[NamedConnection("Sales")]
+class Migration1000 : MigrationBase
+{
+    class Order
+    {
+        public decimal Freight { get; set; }
+    }
+
+    public override void Up() => Db.Migrate<Order>();
+    public override void Down() => Db.Revert<Order>();
+}
+```
+
+Where you would maintain schema changes to different Databases in different Migrations, alternatively you could use `base.DbFactory` to create connections to named connections within the same Migration, e.g:
+
+
+```csharp
+class Migration1000 : MigrationBase
+{
+    class Order
+    {
+        public decimal Freight { get; set; }
+    }
+
+    class Subscription
+    {
+        public string Referral { get; set; }
+    }
+
+    public override void Up()
+    {
+        using var dbSales = DbFactory.Open("Sales");
+        dbSales.Migrate<Order>();
+
+        using var dbReporting = DbFactory.Open("Reporting");
+        dbReporting.Migrate<Subscription>();
+    }
+
+    public override void Down()
+    {
+        using var dbSales = DbFactory.Open("Sales");
+        dbSales.Revert<Order>();
+
+        using var dbReporting = DbFactory.Open("Reporting");
+        dbReporting.Revert<Subscription>();
+    }
+}
+```
+
+::: info
+Whilst schema changes are run on different RDBMS's, all migration state is maintained in the **primary database's** `Migration` table
+:::
+
 ## Reviewing Migrations
 
 The output of each Migration is logged to the Console (or configured Logger), logging useful information on Migrations found and run as well as the executed SQL run in each migration. This information is also captured in the **Migration** table on the database they were run on, where they can be easily viewed in your App's [Database Admin UI](/admin-ui-database), e.g:
 
 [![](/images/ormlite/migration-database-admin.png)](/admin-ui-database)
+
+::: tip
+In addition to capturing executed SQL in the `Log` column, failed Migrations capture error information in the `ErrorCode`, `ErrorMessage` and `ErrorStackTrace` columns
+:::
 
 ## Feedback Welcome
 

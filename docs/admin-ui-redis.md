@@ -6,6 +6,12 @@ The Redis Admin UI lets you manage your App's configured Redis Server with a use
 
 <iframe class="video-hd" src="https://www.youtube.com/embed/AACZtTOcQbg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
+It can be enabled by registering the `AdminRedisFeature` plugin:
+
+```csharp
+Plugins.Add(new AdminRedisFeature());
+```
+
 ### Redis Stats on Dashboard
 
 The [Admin Dashboard](/admin-ui#dashboard) contains valuable insight into monitoring the health of your App's redis usage with both client & server counters:

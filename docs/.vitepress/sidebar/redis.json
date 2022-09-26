@@ -73,8 +73,12 @@
         "link": "/redis/stats"
       },
       {
-        "text": "Redis Vue Desktop",
-        "link": "/redis/vue-desktop"
+        "text": "Redis Profiling",
+        "link": "/redis/profiling"
+      },
+      {
+        "text": "Redis Admin Desktop",
+        "link": "/redis/redis-desktop"
       },
       {
         "text": "Automatic Retries",

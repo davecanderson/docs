@@ -3,6 +3,11 @@ slug: autoquery-rdbms
 title: AutoQuery RDBMS
 ---
 
+<script setup>
+import { Icon } from "@iconify/vue"
+import AutoQueryExamples from "./src/components/AutoQueryExamples.vue"
+</script>
+
 AutoQuery RDBMS enables the rapid development of high-performance, fully-queryable typed RDBMS data-driven services with just a POCO Request DTO class definition and [supports most major RDBMS](/ormlite/#ormlite-rdbms-providers) courtesy of building on [OrmLite's high-performance RDBMS-agnostic API's](https://github.com/ServiceStack/ServiceStack.OrmLite).
 
 ### AutoQuery Services are ServiceStack Services
@@ -1453,67 +1458,4 @@ var client = new JsonServiceClient(BaseUrl);
 var response = client.SendAll(new CreateItem[] { ... });
 ```
 
-# AutoQuery Examples
-
-## AutoQuery Viewer
-
-AutoQuery Viewer provides an instant UI for constructing and browsing your 
-[AutoQuery](/autoquery) Services:
-
-[![](https://raw.githubusercontent.com/ServiceStack/Admin/master/img/query-default-values.png)](http://github.servicestack.net/ss_admin/autoquery)
-
-::: info YouTube
-[youtu.be/YejYkCvKsuQ](https://youtu.be/YejYkCvKsuQ)
-:::
-
-### Live AutoQuery Viewer Examples
-
-- [http://github.servicestack.net/ss_admin/](http://github.servicestack.net/ss_admin/)
-- [http://northwind.netcore.io/ss_admin/](http://northwind.netcore.io/ss_admin/)
-- [http://stackapis.netcore.io/ss_admin/](http://stackapis.netcore.io/ss_admin/)
-
-## [Northwind](https://github.com/ServiceStackApps/Northwind)
-
-::: info DEMO
-Northwind database viewer, showing how to easily expose read and cached view services of an internal dataset with OrmLite
-:::
-
-[![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/livedemos/northwind.png)](http://northwind.netcore.io)
-
-#### Features
-
- - [AutoQuery](/autoquery)
-   - [Northwind AutoQuery DTOs](https://github.com/ServiceStackApps/Northwind/blob/master/src/Northwind/Northwind.ServiceModel/AutoQuery.cs)
-   - [OrmLite Sqlite](/ormlite/installation)
-
-## [StackApis](https://github.com/ServiceStackApps/StackApis)
-
-::: info DEMO
-AngularJS Single Page App leveraging AutoQuery in <50 lines of JavaScript + 1 AutoQuery DTO
-:::
-
-[![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/livedemos/stackapis.png)](http://stackapis.netcore.io)
-
-#### Features
-
- - [AutoQuery](/autoquery)
-   - [StackApis AutoQuery DTO](https://github.com/ServiceStackApps/StackApis#stackapis-autoquery-service)
-   - [OrmLite Sqlite](/ormlite/installation)
-
-## [AutoQuery Viewer](https://github.com/ServiceStackApps/AutoQueryViewer)
-
-AutoQuery Viewer is a native iPad App that provides an automatic UI for browsing, inspecting and querying any publicly accessible [ServiceStack AutoQuery Service](/autoquery) from an iPad.
-
-[![AutoQuery Viewer on AppStore](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/wikis/autoquery/autoqueryviewer-appstore.png)](https://itunes.apple.com/us/app/autoquery-viewer/id968625288?ls=1&mt=8)
-
-#### Features
-
-  - [TechStacks AutoQuery DTOs](https://github.com/ServiceStackApps/AutoQueryViewer#techstacks-autoquery-reqeust-dtos)  
-  - [GitHub AutoQuery DTOs](https://github.com/ServiceStackApps/AutoQueryViewer#githubautoquery-request-dtos)  
-  - [Stack Apis AutoQuery DTO](https://github.com/ServiceStackApps/AutoQueryViewer#stakapi-autoquery-request-dto)  
-
-## [TechStacks Cocoa OSX Desktop App](https://github.com/ServiceStackApps/TechStacksDesktopApp)
-
-TechStacks OSX Desktop App is built around 2 AutoQuery Services showing how much querying functionality [AutoQuery Services](/autoquery) provides for free and how easy they are to call with [ServiceStack's new support for Swift and XCode](/swift-add-servicestack-reference).
-
-[![TechStack Desktop Search Fields](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/release-notes/techstacks-desktop-field.png)](https://github.com/ServiceStackApps/TechStacksDesktopApp)
+<AutoQueryExamples />
