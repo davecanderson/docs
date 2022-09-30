@@ -29,6 +29,18 @@ The developer workflow is further simplified with IDE plugins that let you gener
             </p>
           </div>
           <div class="w-full lg:w-1/4 mt-4">
+            <a href="https://plugins.jetbrains.com/plugin/17295-servicestack">
+              <div class="inline-flex justify-center">
+                <img src="/images/svg/ides/icon-rider.svg"  class="w-20 h-20">
+              </div>
+              <h3>Rider</h3>
+            </a>
+            <h4>Languages Supported</h4>
+            <p class="italic">
+              C#, F#, TypeScript, VB.NET
+            </p>
+          </div>
+          <div class="w-full lg:w-1/4 mt-4">
             <a href="https://plugins.jetbrains.com/plugin/7749-servicestack">
               <div class="inline-flex justify-center">
                 <img src="/images/svg/ides/icon-intellij-idea.svg" class="w-20 h-20">
@@ -62,18 +74,6 @@ The developer workflow is further simplified with IDE plugins that let you gener
             <h4>Languages Supported</h4>
             <p class="italic">
               Python, TypeScript
-            </p>
-          </div>
-          <div class="w-full lg:w-1/4 mt-4">
-            <a href="https://plugins.jetbrains.com/plugin/17295-servicestack">
-              <div class="inline-flex justify-center">
-                <img src="/images/svg/ides/icon-rider.svg"  class="w-20 h-20">
-              </div>
-              <h3>Rider</h3>
-            </a>
-            <h4>Languages Supported</h4>
-            <p class="italic">
-              C#, F#, TypeScript, VB.NET
             </p>
           </div>
           <div class="w-full lg:w-1/4 mt-4">
