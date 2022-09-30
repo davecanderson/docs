@@ -17,6 +17,18 @@ The developer workflow is further simplified with IDE plugins that let you gener
     </div>
         <div class="flex flex-wrap">
           <div class="w-full lg:w-1/4 mt-4">
+            <a href="https://marketplace.visualstudio.com/items?itemName=Mythz.ServiceStackVS">
+              <div class="inline-flex justify-center">
+                <img src="/images/svg/vs-2019.svg" class="w-20 h-20">
+              </div>
+              <h3>Visual Studio</h3>
+            </a>
+            <h4>Languages Supported</h4>
+            <p class="italic">
+              C#, F#, TypeScript, VB.NET
+            </p>
+          </div>
+          <div class="w-full lg:w-1/4 mt-4">
             <a href="https://plugins.jetbrains.com/plugin/7749-servicestack">
               <div class="inline-flex justify-center">
                 <img src="/images/svg/ides/icon-intellij-idea.svg" class="w-20 h-20">
@@ -74,18 +86,6 @@ The developer workflow is further simplified with IDE plugins that let you gener
             <h4>Languages Supported</h4>
             <p class="italic">
               TypeScript
-            </p>
-          </div>
-          <div class="w-full lg:w-1/4 mt-4">
-            <a href="https://marketplace.visualstudio.com/items?itemName=Mythz.ServiceStackVS">
-              <div class="inline-flex justify-center">
-                <img src="/images/svg/vs-2019.svg" class="w-20 h-20">
-              </div>
-              <h3>Visual Studio</h3>
-            </a>
-            <h4>Languages Supported</h4>
-            <p class="italic">
-              C#, F#, TypeScript, VB.NET
             </p>
           </div>
           <div class="w-full lg:w-1/4 mt-4">
