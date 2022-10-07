@@ -67,7 +67,7 @@ This can be done via
 ![Enable Floating IP option](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/mix/digital-ocean-enable-floating-ip.png)
 
 ## Docker setup
-Now that our Droplet is running and has a public IP address, we'll want to install Docker and docker-compose.
+Now that our Droplet is running and has a public IP address, we'll want to install Docker and docker compose.
 
 SSH into your Droplet using the appropriate SSH key and your preferred SSH client (straight `ssh`, Putty for Windows, etc).
 
@@ -77,7 +77,7 @@ Eg, with a Linux `ssh` client, the command would be `ssh root@<your_IP_or_domain
 the user may change depending on how your server is setup. See `man ssh` for more details/options.
 :::
 
-### Install docker and docker-compose
+### Install docker and docker compose
 Installing Docker for Ubuntu 20.04 can be done via the repository with some setup or via Docker provided convenience scripts. For a more detailed walk through, [DigitalOcean have a good write up here](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04). Scripted included below for ease of use.
 
 #### Docker via convenience script
@@ -93,25 +93,23 @@ Full repository based [script available here](https://docs.docker.com/engine/ins
 Docker is installed remoting under root in this example for simplification. Information of Docker security can be found in the [Docker docs](https://docs.docker.com/engine/security/#docker-daemon-attack-surface)
 :::
 
-### Docker-compose install
+### [Docker compose install](https://docs.docker.com/compose/install/linux/#install-using-the-repository)
 
-```bash
-sudo curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose
-```
-
-Run `docker-compose --version` to confirm.
+Run `docker compose version` to confirm.
 
 ::: info
-See [DigitalOcean article](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04#step-1-%E2%80%94-installing-docker-compose) for details on ensuring you have the latest version installed.
+Ensure you have v2+ of Docker Compose
+A compatibility script can be used for `docker-compose` via the following script.
+`echo 'docker compose --compatibility "$@"' > /usr/local/bin/docker-compose`
+`sudo chmod +x /bin/docker-compose`
 :::
 
 ### Get nginx reverse proxy and letsencrypt companion running
-Now we have Docker and docker-compose installed on our new Droplet, we want to setup an nginx reverse proxy running in Docker. This will handle mapping requests to specific domain/subdomain requests to specific docker applications that have matching configuration as well as TLS registration via LetEncrypt. When a new docker container starts up and joins the bridge network, the nginx and letsencrypt companion detect the new application and look to see if routing and TLS certificate is needed.
+Now we have Docker and Docker Compose installed on our new Droplet, we want to setup an nginx reverse proxy running in Docker. This will handle mapping requests to specific domain/subdomain requests to specific docker applications that have matching configuration as well as TLS registration via LetEncrypt. When a new docker container starts up and joins the bridge network, the nginx and letsencrypt companion detect the new application and look to see if routing and TLS certificate is needed.
 
 In the `x mix release-ghr-vanilla` template, we include `deploy/nginx-proxy-compose.yml` file which can be copied to the droplet and run.
 
-Here is the nginx docker-compose file in full.
+Here is the nginx Docker Compose file in full.
 
 ```yml
 version: '2'
@@ -162,10 +160,10 @@ You can use `scp` or shared clipboard to copy the short YML file over. For this 
 scp -i <path to private ssh key> ./nginx-proxy-compose.yml root@<server_floating_ip>:~/nginx-proxy-compose.yml
 ```
 
-Once copied, we can use `docker-compose` to bring up the nginx reverse proxy.
+Once copied, we can use `docker compose` to bring up the nginx reverse proxy.
 
 :::sh
-docker-compose -f ~/nginx-proxy-compose.yml up -d
+docker compose -f ~/nginx-proxy-compose.yml up -d
 :::
 
 To confirm these are running, you can run `docker ps` so have a look at what containers are running on your server.
@@ -203,14 +201,14 @@ Now our project is created, you can mix in our GitHub Action templates in the lo
 x mix build release-ghr-vanilla
 ```
 
-The `build` mix template provides a GitHub Action that builds and tests our dotnet project. The `release-ghr-vanilla` provides a GitHub Action that uses Docker to package the application, pushes the Docker image to GitHub Container Registry (ghcr.io) and deploys the application via SSH + `docker-compose` to our new Droplet.
+The `build` mix template provides a GitHub Action that builds and tests our dotnet project. The `release-ghr-vanilla` provides a GitHub Action that uses Docker to package the application, pushes the Docker image to GitHub Container Registry (ghcr.io) and deploys the application via SSH + `docker compose` to our new Droplet.
 
 Just like other `x mix` templates ServiceStack provides, these are a *starting* point to help get things running quickly with known patterns. Unlike external dependencies, they just copy the templated code that is editable and not tied to any code generation service that will update these files.
 
 Files provided by the `release-ghr-vanilla` are:
 
 - **.github/workflows/release.yml** - Release GitHub Action Workflow
-- **deploy/docker-compose-template.yml** - Templated docker-compose file used by the application
+- **deploy/docker-compose-template.yml** - Templated docker compose file used by the application
 - **deploy/nginx-proxy-compose.yml** - File provided to get nginx reserve proxy setup as used by steps above.
 - **Dockerfile** - Self contained Docker that builds, publishes and hosts your application.
 
@@ -294,7 +292,7 @@ Go to the Actions tab in your repository to see the progress of your deployment.
 
 ::: info
 The initial deployment might take upto a minute for LetsEncrypt to generate and use the certificate with your domain. Make sure your DNS is all setup **before publishing the Release**, otherwise further delays related to DNS TTL will likely occur.
-If you are having problems with your app hosting, be sure to configure the logs in the nginx and your app docker containers for any startup issues. You can also run in attached mode to watch the output of these containers via `docker-compose -f ~/nginx-proxy-compose.yml up`.
+If you are having problems with your app hosting, be sure to configure the logs in the nginx and your app docker containers for any startup issues. You can also run in attached mode to watch the output of these containers via `docker compose -f ~/nginx-proxy-compose.yml up`.
 :::
 
 ### GitHub Container Registry Pricing

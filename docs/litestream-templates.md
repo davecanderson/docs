@@ -11,13 +11,20 @@ Litestream runs as a dedicated [sidecar](https://docs.microsoft.com/en-us/azure/
 
 The template provides two files that are designed follow the [Linux SSH deployment using GitHub Actions](/github-action-templates.md) built into some templates.
 
-Just like most of the ServiceStack project templates, it uses a single Linux host with Docker and Docker-Compose running an NGINX container with Lets Encrypt companion to handle automated TLS certificate management. This could be on AWS, Azure, DigitalOcean or your own server, the only requirements are that it has SSH access, with Docker and Docker-Compose installed.
+Just like most of the ServiceStack project templates, it uses a single Linux host with Docker and Docker Compose running an NGINX container with Lets Encrypt companion to handle automated TLS certificate management. This could be on AWS, Azure, DigitalOcean or your own server, the only requirements are that it has SSH access, with Docker and Docker-Compose installed.
 
 ![](/images/actions/cloudcraft-host-digram-release-docker-aws.png)
 
 ## Docker Compose Template
 
 The `docker-compose-template.yml` uses the `depends_on` and `healthcheck` features of Docker-Compose to ensure a restore takes place before deployment unless a database file already exists locally or is missing on the target storage.
+
+::: info
+Ensure you have v2+ of Docker Compose
+A compatibility script can be used for `docker-compose` via the following script.
+`echo 'docker compose --compatibility "$@"' > /usr/local/bin/docker-compose`
+`sudo chmod +x /bin/docker-compose`
+:::
 
 ```yaml
 services:
@@ -54,7 +61,7 @@ Note the use of a 10-minute timeout for the restore process (`timeout: 10m`), th
 :::
 
 
-During the GitHub Action release workflow, a docker-compose YAML file is produced from the template, and copied to the Linux host before calling `docker-compose up` to run the Litestream process and application together.
+During the GitHub Action release workflow, a Docker Compose YAML file is produced from the template, and copied to the Linux host before calling `docker-compose up` to run the Litestream process and application together.
 
 Since Litestream is tied to deployment and hosting environment, we have made several templates that work with specific templates.
 Below is a table matching project templates to mix templates including different storage targets.

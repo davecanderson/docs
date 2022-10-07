@@ -13,7 +13,7 @@ Since hosting architectures vary so much, these templates are designed to get yo
 
 The simple build and test step is available using the [build](https://gist.github.com/gistlyn/856bd13c38ad388ef6d48d06c32ab395), mix template, whilst the [mix](/mix-tool) deployment templates uses the naming convention `release-{docker image repository}-{hosting configuration}`. 
 
-For example, `release-ghr-vanilla` where **ghr** uses GitHub for the Docker Repository and `vanilla` for our minimalist deployment that uses SSH and **docker-compose**.
+For example, `release-ghr-vanilla` where **ghr** uses GitHub for the Docker Repository and `vanilla` for our minimalist deployment that uses SSH and **docker compose**.
 
 ## GitHub Action Templates
 
@@ -21,25 +21,25 @@ Templates currently available are:
 
 | Name                    | Docker Repository                | Deployment and Hosting        | 
 |-------------------------|----------------------------------|-------------------------------|
-| **release-ghr-vanilla**	| GitHub Container Repository	     | SSH + docker-compose          |
-| **release-ecr-vanilla**	| AWS Elastic Container Repository | SSH + docker-compose          | 
-| **release-hub-vanilla**	| Docker Hub                       | SSH + docker-compose          | 
+| **release-ghr-vanilla**	| GitHub Container Repository	     | SSH + docker compose          |
+| **release-ecr-vanilla**	| AWS Elastic Container Repository | SSH + docker compose          | 
+| **release-hub-vanilla**	| Docker Hub                       | SSH + docker compose          | 
 | **release-ecr-aws**   	| AWS Elastic Container Repository | AWS ECS without Load Balancer | 
 
 ### release-ghr-vanilla
-Using GitHub Container Repository (ghcr.io) and deploying to a Linux host with `docker-compose` via SSH, this provides a GitHub centric option for prototyping your application. A [full tutorial using Digital Ocean as our Linux host provider is available](https://docs.servicestack.net/do-github-action-mix-deployment) as well as an accompanying video.
+Using GitHub Container Repository (ghcr.io) and deploying to a Linux host with `docker compose` via SSH, this provides a GitHub centric option for prototyping your application. A [full tutorial using Digital Ocean as our Linux host provider is available](https://docs.servicestack.net/do-github-action-mix-deployment) as well as an accompanying video.
 
 <iframe class="video-hd" src="https://www.youtube.com/embed/0PvzcnxlBvc" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 Also, a [shorter reference documentation](https://github.com/ServiceStack/mix/blob/master/actions/release-ghr-vanilla/.github/workflows/README.md) that comes with the template when using `mix` available that lists the setup as well as the required [GitHub Repository](https://github.com/ServiceStack/mix/blob/master/actions/release-ghr-vanilla/.github/workflows/README.md#github-repository-setup) Secrets for configuration.
 
 ### release-ecr-vanilla
-Using AWS ECR (Elastic Container Repository) and deploying to a Linux host with `docker-compose` via SSH, this provides a portable simple hosting with AWS ECR for those already in the AWS cloud provider environment.
+Using AWS ECR (Elastic Container Repository) and deploying to a Linux host with `docker compose` via SSH, this provides a portable simple hosting with AWS ECR for those already in the AWS cloud provider environment.
 
 Reference for this GitHub Action configuration is provided with the template itself, also [available here](https://github.com/ServiceStack/mix/blob/master/actions/release-ecr-vanilla/.github/workflows/README.md) along with the [required Repository Secrets](https://github.com/ServiceStack/mix/blob/master/actions/release-ecr-vanilla/.github/workflows/README.md#github-repository-setup).
 
 ### release-hub-vanilla
-Using the original Docker Hub as an Docker image repository and deploying to a Linux host with `docker-compose` via SSH, this might be more suited to those with existing use of Docker Hub or public application images.
+Using the original Docker Hub as an Docker image repository and deploying to a Linux host with `docker compose` via SSH, this might be more suited to those with existing use of Docker Hub or public application images.
 
 Reference for this GitHub Action configuration is provided with the template itself, [also available on GitHub](https://github.com/ServiceStack/mix/blob/master/actions/release-hub-vanilla/.github/workflows/README.md) here along with the [required Repository Secrets](https://github.com/ServiceStack/mix/blob/master/actions/release-hub-vanilla/.github/workflows/README.md#github-repository-setup).
 

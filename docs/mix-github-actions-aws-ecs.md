@@ -129,25 +129,23 @@ The default of 30gb is fine but take into account how large/how many application
 
 You'll want to expose at least ports 80, 443 and 22 for remote SSH access. We'll need SSH access for the next step, once setup it can be closed off or restricted.
 
-### Setup Docker-compose and nginx-proxy
+### Setup Docker Compose and nginx-proxy
 
-To route traffic to your ServiceStack applications and automate the generation and management of TLS certificates, an additional docker-compose file is provided via the `x mix` template, `nginx-proxy-compose.yml` under the `deploy` directory of your repository. This docker-compose file is ready to run and can be copied to the deployment server.
+To route traffic to your ServiceStack applications and automate the generation and management of TLS certificates, an additional docker compose file is provided via the `x mix` template, `nginx-proxy-compose.yml` under the `deploy` directory of your repository. This docker-compose file is ready to run and can be copied to the deployment server.
 
 ::: info
-This is done via docker-compose rather than via ECS itself for simplicity as ECS is really not designed to make it easy to handle routing on the EC2 instance itself
+This is done via docker compose rather than via ECS itself for simplicity as ECS is really not designed to make it easy to handle routing on the EC2 instance itself
 :::
 
-First you'll need to install `docker-compose`.
+First you'll need to [install `docker compose`](https://docs.docker.com/compose/install/linux/#install-using-the-repository).
 
-```bash
-sudo curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose
-```
-
-Run `docker-compose --version` to confirm.
+Run `docker compose version` to confirm.
 
 ::: info
-Check [docker-compose documentation](https://docs.docker.com/compose/install/) for changes or new versions
+Ensure you have v2+ of Docker Compose
+A compatibility script can be used for `docker-compose` via the following script.
+`echo 'docker compose --compatibility "$@"' > /usr/local/bin/docker-compose`
+`sudo chmod +x /bin/docker-compose`
 :::
 
 To copy you can use scp or create a new file via server text editor to copy the short YML file over. For this example, we are going to copy it straight to the ~/ (home) directory.
@@ -159,7 +157,7 @@ scp -i <path to private ssh key> ./nginx-proxy-compose.yml ec2-user@<server_floa
 For example, once copied to remote `~/nginx-proxy-compose.yml`, the following command can be run on the remote server.
 
 ```
-docker-compose -f ~/nginx-proxy-compose.yml up -d
+docker compose -f ~/nginx-proxy-compose.yml up -d
 ```
 
 This will run an nginx reverse proxy along with a companion container that will watch for additional containers in the same docker bridge network and attempt to initialize them with valid TLS certificates. This includes containers created and managed by the ECS agent.
@@ -231,7 +229,7 @@ Go to the Actions tab in your repository to see the progress of your deployment.
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/mix/github-actions-workflows-release.png)
 
-The initial deployment might take up to a minute for Lets-Encrypt to generate and use the certificate with your domain. Make sure your DNS is all setup before doing this, otherwise further delays related to DNS TTL will likely occur. If you are having problems with your app hosting, be sure to configure the logs in the nginx and your app docker containers for any startup issues. You can also run in attached mode to watch the output of these containers via docker-compose -f ~/nginx-proxy-compose.yml up. Logs for your application are automatically setup to use CloudWatch under the name `{your-ecs-cluster-name}-{your-app-name}`.
+The initial deployment might take up to a minute for Lets-Encrypt to generate and use the certificate with your domain. Make sure your DNS is all setup before doing this, otherwise further delays related to DNS TTL will likely occur. If you are having problems with your app hosting, be sure to configure the logs in the nginx and your app docker containers for any startup issues. You can also run in attached mode to watch the output of these containers via docker compose -f ~/nginx-proxy-compose.yml up. Logs for your application are automatically setup to use CloudWatch under the name `{your-ecs-cluster-name}-{your-app-name}`.
 
 
 ### Wrapping up
