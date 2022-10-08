@@ -429,7 +429,7 @@ Where applicable, [GitHub Action deployments](/github-action-templates) have bee
 
 Output can be found in your GitHub Action run output. The task that is run is controlled in the `.deploy/docker-compose-template.yml` file as a separate service which is only run if specified directly or with the `--profiles migration` option.
 
-This migration approach enables an easy way to test your migration with a custom local docker-compose file. Such as the following for a SQLite setup.
+This migration approach enables an easy way to test your migration with a custom local docker compose file. Such as the following for a SQLite setup.
 
 ```yaml
 version: "3.9"
@@ -444,6 +444,13 @@ services:
 volumes:
   myapp-mydb:
 ```
+
+::: info
+Ensure you have v2+ of Docker Compose
+A compatibility script can be used for `docker-compose` via the following script.
+`echo 'docker compose --compatibility "$@"' > /usr/local/bin/docker-compose`
+`sudo chmod +x /bin/docker-compose`
+:::
 
 ## Running migrations from unit tests
 

@@ -97,18 +97,25 @@ Using the DigitalOcean console, we can select `Create` droplet at the top and se
 
 Once our droplet is started, we will want to use a Reserved IP address and copy the value. This IP should be used with your DNS configuration for your domain as an A record. How this is done will depend on what service you use to manage your domains, eg AWS Route53, GoDaddy etc.
 
-## Docker and Docker-Compose Installation
+## Docker and Docker Compose Installation
 
-Below are two guides for installing Docker and Docker-Compose for Ubuntu 20.04 LTS.
+Below are two guides for installing Docker and Docker Compose for Ubuntu 20.04 LTS.
 
 - [Docker Installation Guide](https://docs.docker.com/engine/install/ubuntu)
-- [Docker-Compose Installation Guide](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04)
+- [Docker Compose Installation Guide](https://docs.docker.com/compose/install/linux/#install-using-the-repository)
+
+::: info
+Ensure you have v2+ of Docker Compose
+A compatibility script can be used for `docker-compose` via the following script.
+`echo 'docker compose --compatibility "$@"' > /usr/local/bin/docker-compose`
+`sudo chmod +x /bin/docker-compose`
+:::
 
 ## nginx reverse proxy
 
-Now that we have our host created with Docker and Docker-Compose installed, we need to do some one-off configuration to make it easy to host and deploy our application to it using GitHub Actions and docker-compose.
+Now that we have our host created with Docker and Docker Compose installed, we need to do some one-off configuration to make it easy to host and deploy our application to it using GitHub Actions and docker-compose.
 
-As a part of the `blazor-tailwind` project template, you will have a file called `nginx-proxy-compose.yml` in the `.deploy` directory. This contains a docker-compose configuration to run an NGINX reverse proxy and a companion container to automatically manage TLS certificates via LetsEncrypt.
+As a part of the `blazor-tailwind` project template, you will have a file called `nginx-proxy-compose.yml` in the `.deploy` directory. This contains a docker compose configuration to run an NGINX reverse proxy and a companion container to automatically manage TLS certificates via LetsEncrypt.
 
 ```yaml
 version: '2'
@@ -159,7 +166,7 @@ Copy the file to your Linux host using `scp` or pasting in the above into a `vi`
 Update the `DEFAULT_EMAIL` environment variable to make sure you will get notified about problems with your TLS certificates and use the following command on your Linux host to run these containers.
 
 ::: sh
-docker-compose -f nginx-proxy-compose.yml up -d
+docker compose -f nginx-proxy-compose.yml up -d
 :::
 
 Once running, you should see a message similar to the following.
@@ -174,7 +181,7 @@ Your Linux host is now ready to deploy to using GitHub Actions.
 ## GitHub Actions
 
 The Blazor-Tailwind project templates and Litestream mix templates have a `release.yml` GitHub Action workflow to deploying your application to a Linux host like the one we just set up.
-This workflow uses SSH access to remotely copy files and execute `docker-compose` commands on the remote host.
+This workflow uses SSH access to remotely copy files and execute `docker compose` commands on the remote host.
 
 Docker images are stored on GitHub Container Repository packages, and pulled down on the remote host during deployment.
 
@@ -205,7 +212,7 @@ Once deployed, the Litestream docker sidecar container will monitor changes to y
 The `docker-compose-template.yml` file in the template is used to create the final running docker-compose configuration of your application and related Litestream sidecar.
 The Litestream sidecar runs as a separate container with access to the same docker volume as your application to replicate data from your SQLite database file.
 
-This monitoring starts before your application docker container runs so that data isn't missed. This is achieved using the docker-compose functionality of `depends_on` and `test`, where your Blazor WASM application container will wait for the successful startup of the Litestream container before running.
+This monitoring starts before your application docker container runs so that data isn't missed. This is achieved using the docker compose functionality of `depends_on` and `test`, where your Blazor WASM application container will wait for the successful startup of the Litestream container before running.
 
 ```yaml
 my-app:
@@ -238,7 +245,7 @@ This restore will be skipped if either the database file already exists on the s
 
 It is always a good idea to test your disaster recovery process, and the easiest way to test it with this Litestream setup is by doing the following steps.
 
-- Take down your application using `docker-compose` `down` command pointing to the file on your remote server in the `.deploy` direct of your deploy user.
+- Take down your application using `docker compose down` command pointing to the file on your remote server in the `.deploy` direct of your deploy user.
 - Removing the docker volume using `docker volume rm <volume_name>`. You can find the volume name using `docker volume ls`, it will start with `deploy_` and contain your app name.
 - Verifying your SQLite database file no longer exists by checking `/var/lib/docker/volumes` for the existence of your shared volume files.
 
