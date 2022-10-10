@@ -534,10 +534,11 @@ The `FilePropertyName` matches the property name that is annotated by the `Uploa
 
 ### Existing Template Upgrade for 6.3
 
-If you created a `blazor-tailwind` project using this template before the ServiceStack 6.4 release, you should run the following commands to upgrade your project to use components from `ServiceStack.Blazor` component library.
-These commands should be run from your `.Client` project. They will clear local components, and replace the use of the `ServiceStackStateProvider`.  
-
+If you created a `blazor-tailwind` project using this template before the ServiceStack 6.4 release, you should run the following commands to upgrade your project to use components from `ServiceStack.Blazor` component library which should be run from your `.Client` project:
 ::: sh
 x mix -delete blazor-upgrade-clean
+:::
+
+::: sh
 x mix blazor-upgrade
 :::
