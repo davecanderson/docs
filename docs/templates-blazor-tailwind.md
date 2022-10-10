@@ -531,3 +531,13 @@ The Blazor `FileUpload` Control handles the [C# File Upload API Request](/locode
 ![](/images/templates/fileupload-blazor-example.png)
 
 The `FilePropertyName` matches the property name that is annotated by the `UploadTo` attribute. The `Request` is the instance of the Request DTO.
+
+### Existing Template Upgrade for 6.3
+
+If you created a `blazor-tailwind` project using this template before the ServiceStack 6.4 release, you should run the following commands to upgrade your project to use components from `ServiceStack.Blazor` component library.
+These commands should be run from your `.Client` project. They will clear local components, and replace the use of the `ServiceStackStateProvider`.  
+
+::: sh
+x mix -delete blazor-upgrade-clean
+x mix blazor-upgrade
+:::
