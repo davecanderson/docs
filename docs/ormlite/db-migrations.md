@@ -321,6 +321,56 @@ In most cases you'll be able to revert & rerun migrations however you should be 
 
 To support multiple use-cases, Migrations can easily be run from the command-line or from code which you can use to run or debug migrations from Unit tests.
 
+### Run or Debug Migrations from your IDE
+
+A benefit of DB Migrations being implemented in a library is that it's better integrated and more versatile in supporting more executable options like being able to run from code which many project templates benefit from with new `MigrationTasks` Explicit TestFixture enabling DB Migrations to be run or debugged directly from within your IDE, implemented as:
+
+ ```csharp
+[TestFixture, Explicit, Category(nameof(MigrationTasks))]
+public class MigrationTasks
+{
+    IDbConnectionFactory ResolveDbFactory() => new ConfigureDb().ConfigureAndResolve<IDbConnectionFactory>();
+    Migrator CreateMigrator() => new(ResolveDbFactory(), typeof(Migration1000).Assembly); 
+    
+    [Test]
+    public void Migrate()
+    {
+        var migrator = CreateMigrator();
+        var result = migrator.Run();
+        Assert.That(result.Succeeded);
+    }
+
+    [Test]
+    public void Revert_All()
+    {
+        var migrator = CreateMigrator();
+        var result = migrator.Revert(Migrator.All);
+        Assert.That(result.Succeeded);
+    }
+
+    [Test]
+    public void Revert_Last()
+    {
+        var migrator = CreateMigrator();
+        var result = migrator.Revert(Migrator.Last);
+        Assert.That(result.Succeeded);
+    }
+
+    [Test]
+    public void Rerun_Last_Migration()
+    {
+        Revert_Last();
+        Migrate();
+    }
+}
+```
+
+Which uses your App's `ConfigureDb` [Modular Startup](/modular-startup) configuration to resolve your App's configured `OrmLiteConnectionFactory` that the migrations are run against, that if needed can be run from Unit tests to debug through any schema migration issues.
+
+#### Revert and Rerun Last Migration
+
+The `Rerun_Last_Migration` task is especially useful during development of new features to easily revert and rerun the last migration before checking in a completed feature, allowing you to re-iterate and check in a completed and tested DB migration along with the new feature requiring it instead of multiple "micro migrations" for each DB change run at different times.
+
 ## Running migrations from command-line
 
 To be able to run from migrations from the command line, DB Migrations needs access to your App's DB configuration. The best way to do this is to run your App normally then access the configured `IDbConnectionFactory` from the IOC, perform the migrations then exit with either a success or failure error code.
@@ -417,7 +467,7 @@ app.Run();
 
 ### New RDBMS Projects configured with DB Migrations by default
 
-Now that OrmLite has a formal solution for implementing and executing schema changes, the [Quick instal RDBMS mix scripts](/ormlite/installation.html#quick-install-in-asp-net-core-with-mix) are now configured to include **migrations** by default.
+Now that OrmLite has a formal solution for implementing and executing schema changes, the [Quick install RDBMS mix scripts](/ormlite/installation.html#quick-install-in-asp-net-core-with-mix) are now configured to include **migrations** by default.
 
 ### Failed migration behavior
 

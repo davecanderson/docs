@@ -532,6 +532,10 @@
       {
         "text": "Create a WebService from scratch",
         "link": "/create-webservice-from-scratch"
+      },
+      {
+        "text": "App Tasks",
+        "link": "/app-tasks"
       }
     ]
   },
