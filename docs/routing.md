@@ -73,6 +73,18 @@ var client = new JsonHttpClient(baseUri) {
 };
 ```
 
+### Multiple Content Types
+
+The JSON API Route also supports returning API responses in multiple [registered content types](/formats) by using its format extension, e.g:
+
+<h3 class="text-4xl text-center text-indigo-800 pb-3">/api/{Request}.{ext}</h3>
+
+ - `/api/{Request}.csv`
+ - `/api/{Request}.xml`
+ - `/api/{Request}.jsv`
+ - `/api/{Request}.html`
+ 
+
 ### ApiHandlers
 
 Using the new [ApiHandlers](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/ApiHandlers.cs), the code to enable the new `/api` pre-defined route is just:
