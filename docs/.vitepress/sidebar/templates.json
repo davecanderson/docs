@@ -19,6 +19,10 @@
             "link": "/templates-blazor"
           },
           {
+            "text": "Blazor Components",
+            "link": "/templates-blazor-components"
+          },
+          {
             "text": "Jamstack Templates",
             "link": "/templates-jamstack"
           },
