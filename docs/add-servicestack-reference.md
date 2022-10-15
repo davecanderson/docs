@@ -627,7 +627,7 @@ In order for Add ServiceStack Reference to work consistently across all supporte
 #### All DTO Type Names must be unique
 ServiceStack only requires Request DTO's to be unique, but non .NET languages also require all DTO names to be unique.
 
-#### No `object` or `Interface` properties
+#### No object or Interface properties
 It's not possible to generate typed metadata and type information for deserializing unknown types.
 
 #### Base types must be marked abstract
