@@ -99,7 +99,7 @@ It's not possible to generate typed metadata and type information for deserializ
 #### Base types must be marked abstract
 When using inheritance in DTO's any Base types must be marked abstract.
 
-For C#, VB.NET and F# languages you can get around these limitations by sharing the **ServiceModel.dll** where your DTOs are defined instead.
+For C#, VB .NET and F# languages you can get around these limitations by sharing the **ServiceModel.dll** where your DTOs are defined instead.
 
 ### Using with IIS Windows Authentication
 
