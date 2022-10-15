@@ -101,7 +101,7 @@ When using inheritance in DTO's any Base types must be marked abstract.
 
 For C#, VB.NET and F# languages you can get around these limitations by sharing the **ServiceModel.dll** where your DTOs are defined instead.
 
-## Using with IIS Windows Authentication
+### Using with IIS Windows Authentication
 
 If you have configured your NativeTypes service to run on IIS with Windows Authentication enabled, you need to ensure that the **/types** routes are reachable and do not require the system-level authentication from IIS. To accomplish this, add the following to `<system.web>` in Web.config. 
 
