@@ -6,7 +6,7 @@ A number of new hooks are available to provide more flexibility when creating an
 
 ## CustomSelect Attribute
 
-The new `[CustomSelect]` can be used to define properties you want populated from a Custom SQL Function or
+The `[CustomSelect]` can be used to define properties you want populated from a Custom SQL Function or
 Expression instead of a normal persisted column, e.g:
 
 ```csharp
