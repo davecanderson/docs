@@ -642,22 +642,25 @@ This model is then used to generate the generated types, which for C# is at `/ty
 
 ## How it works
 
-The Add ServiceStack Reference dialog just takes the URL provided and requests the appropriate route for the current project. Eg, for C#, the path used is at `/types/csharp`. The defaults are specified by the server and the resultant DTOs are saved and added the the project as {Name}.dtos.{LanguageExtension}. The `Update ServiceStack Reference` menu is available when any file matches same naming convention of {Name}.dtos.{LanguageExtension}. An update then looks at the comments at the top of the file and parses them to provide overrides when requesting new DTOs from the server. ServiceStackVS also watches these DTO files for updates, so just by saving them these files are updated from the server.
+The Add ServiceStack Reference dialog just takes the URL provided and requests the appropriate route for the current project. Eg, for C#, the path used is at `/types/csharp`. The defaults are specified by the server and the resultant DTOs are saved and added the the project as `<Name>.dtos.<ext>`. The `Update ServiceStack Reference` menu is available when any file matches same naming convention of `<Name>.dtos.<ext>`. An update then looks at the comments at the top of the file and parses them to provide overrides when requesting new DTOs from the server. ServiceStackVS also watches these DTO files for updates, so just by saving them these files are updated from the server.
 
 ### Language Paths
 
-- `/types/csharp` - C# 
-- `/types/typescript` - TypeScript 
-- `/types/typescript.d` - Ambient TypeScript Definitions
-- `/types/js` - CommonJS
-- `/types/python` - Python
-- `/types/swift` - Swift 
-- `/types/java` - Java 
-- `/types/kotlin` - Kotlin 
-- `/types/dart` - Dart
-- `/types/fsharp` - F# 
-- `/types/vbnet` - VB.NET 
-- `/types/metadata` - Metadata 
+| Path                | Language |
+| --                  | -- |
+| /types/csharp       | C# |
+| /types/typescript   | TypeScript |
+| /types/typescript.d | Ambient TypeScript Definitions |
+| /types/js           | CommonJS |
+| /types/python       | Python |
+| /types/swift        | Swift |
+| /types/java         | Java |
+| /types/kotlin       | Kotlin |
+| /types/dart         | Dart |
+| /types/fsharp       | F# |
+| /types/vbnet        | VB .NET  |
+| /types/metadata     | Metadata |
+
 
 ## Limitations
 
@@ -676,16 +679,10 @@ For C#, VB.NET and F# languages you can get around these limitations by sharing 
 
 ## Using with IIS Windows Authentication
 
-If you have configured your NativeTypes service to run on IIS with Windows Authentication enabled, you need to ensure that the _/types_ routes are reachable and do not require the system-level authentication from IIS. To accomplish this, add the following to Web.config. 
+If you have configured your NativeTypes service to run on IIS with Windows Authentication enabled, you need to ensure that the **/types** routes are reachable and do not require the system-level authentication from IIS. To accomplish this, add the following to `<system.web>` in Web.config. 
 
 ```xml
-<configuration>
-    <location path="types">
-        <system.web>
-            <authorization>
-                <allow users="?" />
-            </authorization>
-        </system.web>
-    </location>
-</configuration>
+<authorization>
+    <allow users="?" />
+</authorization>
 ```
