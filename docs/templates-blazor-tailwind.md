@@ -104,7 +104,7 @@ SIDEBAR = `
     </div>
 </div>
 
-<BlazorTemplate repo="NetCoreTemplates/blazor-tailwind" class="pb-8" />
+<BlazorTemplate repo="NetCoreTemplates/blazor-server" repo2="NetCoreTemplates/blazor-tailwind" class="pb-8" />
 
 
 Alternatively you can create & download a new Blazor Project with the [x dotnet tool](/dotnet-new):
