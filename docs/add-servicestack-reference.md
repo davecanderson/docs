@@ -4,6 +4,8 @@ title: Add ServiceStack Reference
 ---
 <script setup>
 import jwtServiceClients from './.vitepress/includes/jwt-service-clients.md';
+// issue rendering entire page, moving non-rendered portion to include
+import PageFooter from './.vitepress/includes/add-servicestack-reference-footer.md';
 </script>
 
 ServiceStack's **Add ServiceStack Reference** feature allows adding generated Native Types for the most popular typed languages and client platforms directly from within most major IDE's starting with [ServiceStackVS](/create-your-first-webservice#step-1-download-and-install-servicestackvs) - providing a simpler, cleaner and more versatile alternative to WCF's legacy **Add Service Reference** feature built into VS.NET.
@@ -402,20 +404,6 @@ If you're updating references frequently you can save time by [assigning it a ke
 
 WCF's **Add Service Reference** also allows generating a typed client from a single url, and whilst it's a great idea, the complexity upon what it's built-on and the friction it imposes were the primary reasons we actively avoided using it (pre-ServiceStack). We instead opted to reuse our server DTO types and created Generic WCF Proxies, to provide a cleaner and simpler solution when consuming our own WCF services. 
 
-### Complexity of WCF's Add Service Reference
-
-To achieve this feature WCF generates its client proxies using a remote services WSDL. A WSDL is basically a machine-readable XML definition language for describing SOAP Services. It's abstract enough to cover different styles of services and introduces a number of artificial concepts to facilitate it, including: Service, Port, Binding, PortType, Operation, Message and Types. As WSDL's are complex they mandate the use of heavy tooling to generate and maintain both the WSDL file, the generated client proxies and its necessary client configuration. Despite all this complexity it's coupled and limited into using the verbose SOAP protocol and XML wire format which when coupled with WCF's promotion of RPC method signatures meant even minor changes would break existing clients, resulting in a heavy and fragile solution for evolving web services.
-
-### How Message based Services would benefit WCF
-
-A small part of a WSDL is the XSD definitions of Types used in the Services. Had WCF only supported a message-based style it could dispense with the overhead of using a WSDL at all and just use XSD schema to generate the DTO's, eliminating the neeed for a SOAP envelope where it could just send [Plain Old XML](http://en.wikipedia.org/wiki/Plain_Old_XML) across the wire. As an added benefit it would've got JSON support for free by reusing the generated types in .NET's JSON DataContract Serializer. 
-
-### Unnecessary Complexity of XSDs
-
-Despite being much simpler, even XSD's by themselves are more complex than it needs to be. The XML Schema specification is itself several hundred pages long and contains many elements which make it a poor programmatic fit for any programming language. E.g. use of XML namespaces and attributes in addition to elements does not naturally map to any language type system and causes unnecessary friction and additional boilerplate to handle this mismatch during serialization. 
-
-This is in stark contrast with the JSON spec which [fits on a single page](http://www.json.org/) yet manages to include most of the core elements required for data interchange consisting of `Arrays`, `Objects` and primitive `number`, `string`, `boolean` and `null` types. It's also a perfect fit for most languages where all valid JSON is always convertible to a valid JavaScript object. When more specialized types are required, you have access to the full power of the host programming language to perform custom conversions, providing a more flexible alternative than otherwise breaking clients requests on minor schema changes. 
-
 ## ServiceStack's Native Types Feature
 
 As with any ServiceStack feature one of our primary goals is to [minimize unnecessary complexity](/autoquery#why-not-complexity) by opting for approaches that yield maximum value and minimal complexity, favoring re-use and simple easy to reason about solutions over opaque heavy black-box tools.
@@ -552,94 +540,6 @@ Alternatively you can configure [AddImplicitVersion in client Options](/csharp-a
 
 Behind the scenes ServiceStack captures all metadata on your Services DTOs including Sub -classes, Routes, `IReturn` marker, C# Attributes, textual Description as well as desired configuration into a serializable object model accessible from `/types/metadata`: 
 
-## Advanced Native Type Code gen
-
-To enable greater flexibility when generating complex Typed DTOs, you can use `[Emit{Language}]` attributes to generate code before each type or property.
-
-These attributes can be used to generate different attributes or annotations to enable client validation for different validation libraries in different languages, e.g:
-
-```csharp
-[EmitCSharp("[Validate]")]
-[EmitTypeScript("@Validate()")]
-[EmitCode(Lang.Swift | Lang.Dart, "@validate()")]
-public class User : IReturn<User>
-{
-    [EmitCSharp("[IsNotEmpty]","[IsEmail]")]
-    [EmitTypeScript("@IsNotEmpty()", "@IsEmail()")]
-    [EmitCode(Lang.Swift | Lang.Dart, new[]{ "@isNotEmpty()", "@isEmail()" })]
-    public string Email { get; set; }
-}
-```
-
-Which will generate `[EmitCsharp]` code in C# DTOs:
-
-```csharp
-[Validate]
-public partial class User
-    : IReturn<User>
-{
-    [IsNotEmpty]
-    [IsEmail]
-    public virtual string Email { get; set; }
-}
-```
-
-`[EmitTypeScript]` annotations in TypeScript DTOs:
-
-```typescript
-@Validate()
-export class User implements IReturn<User>
-{
-    @IsNotEmpty()
-    @IsEmail()
-    public email: string;
-
-    public constructor(init?: Partial<User>) { (Object as any).assign(this, init); }
-    public createResponse() { return new User(); }
-    public getTypeName() { return 'User'; }
-}
-```
-
-Whilst the generic `[EmitCode]` attribute lets you emit the same code in multiple languages with the same syntax.
-
-### Type Generation Filters
-
-In addition you can use the `PreTypeFilter`, `InnerTypeFilter` & `PostTypeFilter` to generate source code before and after a Type definition, e.g. this will append the `@validate()` annotation on non enum types:
-
-```csharp
-TypeScriptGenerator.PreTypeFilter = (sb, type) => {
-    if (!type.IsEnum.GetValueOrDefault())
-    {
-        sb.AppendLine("@Validate()");
-    }
-};
-```
-
-The `InnerTypeFilter` gets invoked just after the Type Definition which can be used to generate common members for all Types and interfaces, e.g:
-
-```csharp
-TypeScriptGenerator.InnerTypeFilter = (sb, type) => {
-    sb.AppendLine("id:string = `${Math.random()}`.substring(2);");
-};
-```
-
-There's also `PrePropertyFilter` & `PostPropertyFilter` for generating source before and after properties, e.g:
-
-```csharp
-TypeScriptGenerator.PrePropertyFilter = (sb , prop, type) => {
-    if (prop.Name == "Id")
-    {
-        sb.AppendLine("@IsInt()");
-    }
-};
-```
-
-### Live examples
-
-  - [stackapis.netcore.io/types/metadata](http://stackapis.netcore.io/types/metadata)
-
-This model is then used to generate the generated types, which for C# is at `/types/csharp`.
-
 ## How it works
 
 The Add ServiceStack Reference dialog just takes the URL provided and requests the appropriate route for the current project. Eg, for C#, the path used is at `/types/csharp`. The defaults are specified by the server and the resultant DTOs are saved and added the the project as `<Name>.dtos.<ext>`. The `Update ServiceStack Reference` menu is available when any file matches same naming convention of `<Name>.dtos.<ext>`. An update then looks at the comments at the top of the file and parses them to provide overrides when requesting new DTOs from the server. ServiceStackVS also watches these DTO files for updates, so just by saving them these files are updated from the server.
@@ -661,28 +561,4 @@ The Add ServiceStack Reference dialog just takes the URL provided and requests t
 | /types/vbnet        | VB .NET  |
 | /types/metadata     | Metadata |
 
-
-## Limitations
-
-In order for Add ServiceStack Reference to work consistently across all supported languages without .NET semantic namespaces, DTOs includes an additional restriction due to the semantic differences and limitations in different languages there are some limitations of [highly-discouraged bad practices](http://stackoverflow.com/a/10759250/85785) that's not supported across all languages including:
-
-#### All DTO Type Names must be unique
-ServiceStack only requires Request DTO's to be unique, but non .NET languages also require all DTO names to be unique.
-
-#### No object or Interface properties
-It's not possible to generate typed metadata and type information for deserializing unknown types like `object` or `Interface` properties.
-
-#### Base types must be marked abstract
-When using inheritance in DTO's any Base types must be marked abstract.
-
-For C#, VB.NET and F# languages you can get around these limitations by sharing the **ServiceModel.dll** where your DTOs are defined instead.
-
-## Using with IIS Windows Authentication
-
-If you have configured your NativeTypes service to run on IIS with Windows Authentication enabled, you need to ensure that the **/types** routes are reachable and do not require the system-level authentication from IIS. To accomplish this, add the following to `<system.web>` in Web.config. 
-
-```xml
-<authorization>
-    <allow users="?" />
-</authorization>
-```
+<PageFooter />
