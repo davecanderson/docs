@@ -642,7 +642,7 @@ This model is then used to generate the generated types, which for C# is at `/ty
 
 ### How it works
 
-The Add ServiceStack Reference dialog just takes the URL provided and requests the appropriate route for the current project. Eg, for C#, the path used is at `/types/csharp`. The defaults are specified by the server and the resultant DTOs are saved and added the the project as {Name}.dtos.{LanguageExtension}. The `Update ServiceStack Reference` menu is available when any file matches same naming convention of {Name}.dtos.{LanguageExtension}. An update then looks at the comments at the top of the file and parses them to provide overrides when requesting new DTOs from the server. ServiceStackVS also watches these DTO files for updates, so just by saving them these files are updated from the server.
+The Add ServiceStack Reference dialog just takes the URL provided and requests the appropriate route for the current project. Eg, for C#, the path used is at `/types/csharp`. The defaults are specified by the server and the resultant DTOs are saved and added the the project as `{Name}.dtos.{LanguageExtension}`. The **Update ServiceStack Reference** menu is available when any file matches same naming convention of `{Name}.dtos.{LanguageExtension}`. An update then looks at the comments at the top of the file and parses them to provide overrides when requesting new DTOs from the server. ServiceStackVS also watches these DTO files for updates, so just by saving them these files are updated from the server.
 
 #### Language Paths
 
