@@ -634,31 +634,6 @@ TypeScriptGenerator.PrePropertyFilter = (sb , prop, type) => {
 };
 ```
 
-#### Live examples
-
-  - [stackapis.netcore.io/types/metadata](http://stackapis.netcore.io/types/metadata) ([JSON](http://stackapis.netcore.io/types/metadata.json))
-
-This model is then used to generate the generated types, which for C# is at `/types/csharp`.
-
-### How it works
-
-The Add ServiceStack Reference dialog just takes the URL provided and requests the appropriate route for the current project. Eg, for C#, the path used is at `/types/csharp`. The defaults are specified by the server and the resultant DTOs are saved and added the the project as `<Name>.dtos.<ext>`. The **Update ServiceStack Reference** menu is available when any file matches same naming convention of `<Name>.dtos.<ext>`. An update then looks at the comments at the top of the file and parses them to provide overrides when requesting new DTOs from the server. ServiceStackVS also watches these DTO files for updates, so just by saving them these files are updated from the server.
-
-#### Language Paths
-
-- `/types/csharp` - C# 
-- `/types/typescript` - TypeScript 
-- `/types/typescript.d` - Ambient TypeScript Definitions
-- `/types/js` - CommonJS
-- `/types/python` - Python
-- `/types/swift` - Swift 
-- `/types/java` - Java 
-- `/types/kotlin` - Kotlin 
-- `/types/dart` - Dart
-- `/types/fsharp` - F# 
-- `/types/vbnet` - VB.NET 
-- `/types/metadata` - Metadata 
-
 ## Limitations
 
 In order for Add ServiceStack Reference to work consistently across all supported languages without .NET semantic namespaces, DTOs includes an additional restriction due to the semantic differences and limitations in different languages there are some limitations of [highly-discouraged bad practices](http://stackoverflow.com/a/10759250/85785) that's not supported across all languages including:
@@ -689,3 +664,28 @@ If you have configured your NativeTypes service to run on IIS with Windows Authe
     </location>
 </configuration>
 ```
+
+#### Live examples
+
+  - [stackapis.netcore.io/types/metadata](http://stackapis.netcore.io/types/metadata) ([JSON](http://stackapis.netcore.io/types/metadata.json))
+
+This model is then used to generate the generated types, which for C# is at `/types/csharp`.
+
+### How it works
+
+The Add ServiceStack Reference dialog just takes the URL provided and requests the appropriate route for the current project. Eg, for C#, the path used is at `/types/csharp`. The defaults are specified by the server and the resultant DTOs are saved and added the the project as `<Name>.dtos.<ext>`. The **Update ServiceStack Reference** menu is available when any file matches same naming convention of `<Name>.dtos.<ext>`. An update then looks at the comments at the top of the file and parses them to provide overrides when requesting new DTOs from the server. ServiceStackVS also watches these DTO files for updates, so just by saving them these files are updated from the server.
+
+#### Language Paths
+
+- `/types/csharp` - C# 
+- `/types/typescript` - TypeScript 
+- `/types/typescript.d` - Ambient TypeScript Definitions
+- `/types/js` - CommonJS
+- `/types/python` - Python
+- `/types/swift` - Swift 
+- `/types/java` - Java 
+- `/types/kotlin` - Kotlin 
+- `/types/dart` - Dart
+- `/types/fsharp` - F# 
+- `/types/vbnet` - VB.NET 
+- `/types/metadata` - Metadata 
