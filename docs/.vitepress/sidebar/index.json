@@ -25,7 +25,7 @@
     "children": [
       {
           "text": "Latest Release Notes",
-          "link": "/releases/v6_3"
+          "link": "/releases/v6_4"
       },
       {
           "text": "Release Notes History",
@@ -532,6 +532,10 @@
       {
         "text": "Create a WebService from scratch",
         "link": "/create-webservice-from-scratch"
+      },
+      {
+        "text": "App Tasks",
+        "link": "/app-tasks"
       }
     ]
   },

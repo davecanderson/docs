@@ -11,10 +11,29 @@
       </div>
    </div>
 </section>
-<section class="w-full flex flex-col justify-center text-center">
-   <div class="mb-2">
+<section class="w-full flex justify-center text-center">
+   <div class="mb-2 mr-8">
       <div class="flex justify-center text-center">
          <a class="archive-url hover:no-underline netcoretemplates_empty" :href="zipUrl(repo)">
+            <div class="bg-white dark:bg-gray-800 px-4 py-4 mr-4 mb-4 rounded-lg shadow-lg text-center items-center justify-center hover:shadow-2xl dark:border-2 dark:border-pink-600 dark:hover:border-blue-600 dark:border-2 dark:border-pink-600 dark:hover:border-blue-600" style="min-width:150px">
+               <div class="text-center font-extrabold flex items-center justify-center mb-2">
+                  <div class="text-4xl text-blue-400 my-3">
+                     <Icon icon="simple-icons:blazor" class="w-14 h-14 text-purple-500" />
+                  </div>
+               </div>
+               <div class="text-xl font-medium text-gray-700">Blazor Server</div>
+               <div class="flex justify-center h-8"></div>
+               <span class="archive-name px-4 pb-2 text-blue-600 dark:text-indigo-400">{{ projectZip }}</span>
+               <div class="count mt-1 text-gray-400 text-sm">
+               </div>
+            </div>
+         </a>
+      </div>
+      <a :href="`https://${templateName}.jamstacks.net`">{{templateName}}.jamstacks.net</a>
+   </div>
+   <div v-if="repo2" class="mb-2">
+      <div v-if="repo2" class="flex justify-center text-center">
+         <a class="archive-url hover:no-underline netcoretemplates_empty" :href="zipUrl(repo2)">
             <div class="bg-white dark:bg-gray-800 px-4 py-4 mr-4 mb-4 rounded-lg shadow-lg text-center items-center justify-center hover:shadow-2xl dark:border-2 dark:border-pink-600 dark:hover:border-blue-600 dark:border-2 dark:border-pink-600 dark:hover:border-blue-600" style="min-width:150px">
                <div class="text-center font-extrabold flex items-center justify-center mb-2">
                   <div class="text-4xl text-blue-400 my-3">
@@ -29,7 +48,7 @@
             </div>
          </a>
       </div>
-      <a :href="`https://${templateName}.jamstacks.net`">{{templateName}}.jamstacks.net</a>
+      <a :href="`https://${template2Name}.jamstacks.net`">{{template2Name}}.jamstacks.net</a>
    </div>
 </section>   
 </div>
@@ -38,8 +57,9 @@
 import { ref, computed } from 'vue'
 import { Icon } from '@iconify/vue'
 
-const props = defineProps<{ repo: string }>()
+const props = defineProps<{ repo: string, repo2: string }>()
 let templateName = computed(() => props.repo.split('/')[1])
+let template2Name = computed(() => props.repo2 && props.repo2.split('/')[1])
 
 const project = ref('MyApp')
 const projectZip = computed(() => (project.value || 'MyApp') + '.zip')

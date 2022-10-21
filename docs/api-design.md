@@ -370,7 +370,46 @@ var response = client.Get<List<Contact>>("/contacts");
 All these Service Client APIs **have async equivalents** with an `*Async` suffix
 :::
 
-## Everything Just Works
+
+### API QueryParams
+
+ServiceStack's message-based design is centered around sending a single message which is all that's required to invoke any Typed API, however there may be times when you need to send additional params where you can't change the API's Request DTO definition or in AutoQuery's case its [Implicit Conventions](/autoquery-rdbms#implicit-conventions) would require too many permutations to be able to type the entire surface area on each Request DTO.
+
+Typically this would inhibit being able to invoke these Services from a typed Service Client API that would instead need to either use the untyped [`Get<T>(relativeUrl)`](https://reference.servicestack.net/api/ServiceStack/IRestClient/#-gettresponsestring) ServiceClient APIs or [HTTP Utils](/http-utils) to construct the API Request path manually.
+
+Alternatively Request DTOs can implement `IHasQueryParams` where any entries will be sent as additional query params along with the typed DTO:
+
+```csharp
+public interface IHasQueryParams
+{
+    Dictionary<string, string> QueryParams { get; set; }
+}
+```
+
+Which is available in all AutoQuery DTOs where it's added as a non-serializable property so it's only included in the QueryString:
+
+```csharp
+[DataContract]
+public abstract class QueryBase : IQuery, IHasQueryParams
+{
+    //...
+    [IgnoreDataMember]
+    public virtual Dictionary<string, string> QueryParams { get; set; }
+}
+```
+
+Which allows using existing ServiceClient typed APIs to send a combination of untyped queries in AutoQuery requests, e.g:
+
+```csharp
+var api = await client.ApiAsync(new QueryContacts {
+  IdsIn = new[]{ 1, 2, 3 },
+  QueryParams = new() {
+    ["LastNameStartsWith"] = "A"
+  }
+});
+```
+
+## Everything centered around Request DTOs
 
 A nice property of ServiceStack's message-based design is all functionality is centered around Typed Request DTOs which easily lets you take advantage of high-level value-added functionality like [Auto Batched Requests](/auto-batched-requests) or [Encrypted Messaging](/encrypted-messaging) which are enabled automatically without any effort or easily opt-in to enhanced functionality by decorating Request DTOs or thier Services with Metadata and [Filter Attributes](/filter-attributes) and everything works together, binded against typed models naturally.
 
