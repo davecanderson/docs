@@ -477,6 +477,10 @@ Now that OrmLite has a formal solution for implementing and executing schema cha
 
 Executing migrations from the command-line is also how they are run in CI. The strategy we've employed in our [GitHub Action Deployment Templates](https://docs.servicestack.net/github-action-templates) is to run the container to execute the **migrate** AppTask on the host machine first to validate migration was successful before completing deployment of the new App, so that a failed migration will cause deployment to fail and the previous App version to continue to run.
 
+::: info
+Ensure you are using Docker Compose v2+ and `--exit-code-from` the migration service in the `release.yml` file, in the `Run remote db migrations` step.
+:::
+
 ## Running migrations from GitHub Actions
 
 Where applicable, [GitHub Action deployments](/github-action-templates) have been updated to automatically run on deployment before the new version of your application starts up. This is done in the **Run remote db migrations** step. 
