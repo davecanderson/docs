@@ -27,7 +27,7 @@ The feature-rich Blazor WASM Tailwind template is ideal for teams with strong C#
     </div>
 </a>
 
-### Tailwind Components
+### Blazor Tailwind Components
 
 [Tailwind](https://tailwindcss.com) has quickly become the best modern CSS framework we've used to create scalable, 
 [mobile-first responsive](https://tailwindcss.com/#mobile-first) websites built upon a beautiful expert-crafted constraint-based 

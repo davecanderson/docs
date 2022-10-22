@@ -1,5 +1,5 @@
 ---
-title: Blazor Components
+title: Blazor Tailwind Components
 ---
 
 <script setup>
