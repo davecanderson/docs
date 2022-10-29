@@ -84,6 +84,8 @@ By default it shows the Request and Response DTOs in JSON, but clicking on previ
 
 A useful feature from having a dedicated UX-friendly UI is enabling quick navigation where each **blue** link will display results filtered to all matching requests, whilst the **trace request** link will navigate to the Profiling UI showing all diagnostic events performed within that request.
 
+### Inspect Cookies and JWT Tokens
+
 In addition to Request & Response DTOs, the Logging UI also shows all captured HTTP information including HTTP Request Headers with any Cookies being extracted into its own view for better readability as well as decoded JWT payload from the **ss-tok** cookie when using [JWT Auth](/jwt-authprovider) with non-encrypted JWT defaults.
 
 <div class="block flex justify-center items-center">
