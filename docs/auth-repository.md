@@ -453,7 +453,25 @@ public virtual bool HasRole(string role)
 
 These APIs are `virtual` so they can be overridden in both your Custom `AuthUserSession`. They default to looking at the `Roles` and `Permissions` collections stored on the Session. These collections are normally sourced from the `AuthUserRepository` when persisting the [UserAuth and UserAuthDetails POCO's](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/Auth/UserAuth.cs) and are used to populate the `UserAuthSession` on successful Authentication. These collections can be further customized by AuthProviders which is what `AspNetWindowsAuthProvider` does to add [Authenticated WindowsAuth Roles](https://github.com/ServiceStack/ServiceStack/blob/9773b7fccc31ac4d715a02221f396b46cd14d7db/src/ServiceStack/Auth/AspNetWindowsAuthProvider.cs#L126).
 
-As seen above Roles/Permissions can instead be managed by AuthProviders that implement `IManageRoles` API which is what OrmLiteAuthProvider uses to look at distinct RDBMS tables to validate Roles/Permissions:
+As seen above Roles/Permissions can instead be managed by AuthProviders that implement `IManageRoles` API which is what OrmLiteAuthProvider uses to look at distinct RDBMS tables to validate Roles/Permissions.
+
+### Microsoft Graph Roles
+
+[OAuth Providers](/auth#auth-providers) like Microsoft Graph have their own global roles for users managed separately. In order to combine both Microsoft Graph's Azure AD Roles with App-defined roles when using the `OrmLiteAuthRepository` it needs to be configured to persist roles in distinct role tables (required to capture the source of each role):
+
+```csharp
+services.AddSingleton<IAuthRepository>(c =>
+    new OrmLiteAuthRepository<AppUser, UserAuthDetails>(c.Resolve<IDbConnectionFactory>()) {
+        UseDistinctRoleTables = true
+    });
+```
+
+Once configured you'll be able to manage your App's local User roles via ServiceStack's [Auth Repository](/auth-repository), [Assign Roles APIs](/auth-repository#assigning-roles-and-permissions) or built-in [Admin Users UI](/admin-ui-users) without interfering with Azure AD managed roles:
+
+<div class="block flex justify-center items-center">
+    <a href="/admin-ui-users"><img class="max-w-screen-md" src="/images/admin-ui/users-edit-default.png"></a>
+</div>
+
 
 ### PBKDF2 Password Hashing implementation
 
