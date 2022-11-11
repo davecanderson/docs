@@ -378,7 +378,7 @@ catch (Exception ex)
     var isAnyServerError = ex.IsAny500();
 
     HttpStatusCode? errorStatus = ex.GetStatus();
-    string errorBody = ex.GetResponseBody();
+    string errorBody = ex.GetResponseBody(); // only available when using .NET HttpWebRequest
 }
 ```
 
