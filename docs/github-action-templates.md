@@ -39,7 +39,7 @@ Using AWS ECR (Elastic Container Repository) and deploying to a Linux host with 
 Reference for this GitHub Action configuration is provided with the template itself, also [available here](https://github.com/ServiceStack/mix/blob/master/actions/release-ecr-vanilla/.github/workflows/README.md) along with the [required Repository Secrets](https://github.com/ServiceStack/mix/blob/master/actions/release-ecr-vanilla/.github/workflows/README.md#github-repository-setup).
 
 ### release-hub-vanilla
-Using the original Docker Hub as an Docker image repository and deploying to a Linux host with `docker compose` via SSH, this might be more suited to those with existing use of Docker Hub or public application images.
+Using the original Docker Hub as a Docker image repository and deploying to a Linux host with `docker compose` via SSH, this might be more suited to those with existing use of Docker Hub or public application images.
 
 Reference for this GitHub Action configuration is provided with the template itself, [also available on GitHub](https://github.com/ServiceStack/mix/blob/master/actions/release-hub-vanilla/.github/workflows/README.md) here along with the [required Repository Secrets](https://github.com/ServiceStack/mix/blob/master/actions/release-hub-vanilla/.github/workflows/README.md#github-repository-setup).
 
@@ -57,3 +57,9 @@ Reference for this GitHub Action configuration is provided with the template its
 For a detailed overview for creating and setting up deployment for a new [Blazor Litestream App](/blazor-litestream) from scratch checkout:
 
 <iframe class="video-hd" src="https://www.youtube.com/embed/fY50dWszpw4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+::: info
+If you are using the template GitHub Actions and deploying to an Ubuntu 22.04 server, ensure you ssh key is generated using non RSA SHA1 algorithm.
+Eg `ssh-keygen -t ecdsa` or swap out the use of `appleboy/scp-action@v0.1.3` for your own step using the latest version of the `scp` command line tool in your CI environment.
+For a step by step and other options, see [this Ask Ubuntu Answer](https://askubuntu.com/a/1409528/366659)
+:::

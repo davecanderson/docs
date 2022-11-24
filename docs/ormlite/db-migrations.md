@@ -487,6 +487,12 @@ Where applicable, [GitHub Action deployments](/github-action-templates) have bee
 
 Output can be found in your GitHub Action run output. The task that is run is controlled in the `.deploy/docker-compose-template.yml` file as a separate service which is only run if specified directly or with the `--profiles migration` option.
 
+::: info
+If you are using the template GitHub Actions and deploying to an Ubuntu 22.04 server, ensure you ssh key is generated using non RSA SHA1 algorithm.
+Eg `ssh-keygen -t ecdsa` or swap out the use of `appleboy/scp-action@v0.1.3` for your own step using the latest version of the `scp` command line tool in your CI environment.
+For a step by step and other options, see [this Ask Ubuntu Answer](https://askubuntu.com/a/1409528/366659)
+:::
+
 This migration approach enables an easy way to test your migration with a custom local docker compose file. Such as the following for a SQLite setup.
 
 ```yaml
