@@ -37,6 +37,53 @@ that have benefited all our new modern jamstacks.net templates.
 
 [![](/images/blazor/tailwindui.png)](https://tailwindui.com)
 
+### ServiceStack.Blazor Components
+
+Many of Tailwind UI's popular components are encapsulated in ServiceStack.Blazor's righ high-level tailwind components to enable the rapid development of CRUD UIs in Blazor Server and WASM Apps:
+
+<div class="my-8 flex justify-center">
+    <iframe class="video-hd" src="https://www.youtube.com/embed/iKpQI2233nY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+<div id="blazor-component-gallery" class="mt-16 relative bg-white py-4">
+  <div class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
+    <p class="mt-2 text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">Blazor Gallery</p>
+    <p class="mx-auto mt-5 max-w-prose text-xl text-gray-500">
+      Discover ServiceStack.Blazor Rich UI Components and Integrated Features
+    </p>
+  </div>
+</div>
+
+[![](/images/blazor/gallery-splash.png)](https://blazor-gallery.servicestack.net)
+
+ServiceStack.Blazor Components support both hosting models which sees Blazor Gallery running on both **Blazor Server** and **WASM**:
+
+<div class="mb-16 mx-auto mt-5 max-w-md sm:flex sm:justify-center md:mt-8">
+  <div class="rounded-md shadow">
+    <a href="https://blazor-gallery.servicestack.net" class="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 md:py-4 md:px-10 md:text-lg hover:no-underline">
+      Blazor Server
+    </a>
+  </div>
+  <div class="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
+    <a href="https://blazor-gallery.jamstacks.net" class="flex w-full items-center justify-center rounded-md border border-transparent bg-white px-8 py-3 text-base font-medium text-indigo-600 hover:bg-gray-50 md:py-4 md:px-10 md:text-lg hover:no-underline">
+      Blazor WASM
+    </a>
+  </div>
+</div>
+
+For a closer look at ServiceStack.Blazor Components in action, download & run them to see how good they'll run in your Environment:
+
+<div class="flex flex-col">
+  <a href="https://github.com/NetCoreApps/BlazorGallery" class="text-xl text-gray-800">
+    <Icon icon="simple-icons:github" class="w-6 h-6 mr-2 align-text-bottom" />
+    <span>NetCoreApps/BlazorGallery</span>
+  </a>
+  <a href="https://github.com/NetCoreApps/BlazorGalleryWasm" class="mt-2 text-xl text-gray-800">
+    <Icon icon="simple-icons:github" class="w-6 h-6 mr-2 align-text-bottom" />
+    <span>NetCoreApps/BlazorGalleryWasm</span>
+  </a>
+</div>
+
 <div class="my-16 px-4 sm:px-6">
     <div class="text-center">
         <h1 class="text-4xl sm:text-5xl md:text-6xl tracking-tight font-extrabold text-gray-900">
