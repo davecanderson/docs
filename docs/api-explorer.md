@@ -44,6 +44,8 @@ Plugins.Add(new AuthFeature(() => new CustomUserSession(),
 });
 ```
 
+## Integrated Sign In
+
 Where it will dynamically render the **Sign Up** form with the App's enabled Auth capabilities.
 
 <a href="https://blazor-wasm-api.jamstacks.net/ui" class="block my-8 p-4 rounded shadow hover:shadow-lg">
