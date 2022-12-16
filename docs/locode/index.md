@@ -26,6 +26,11 @@ behaviour that can be further customized & extended and [customized using C# att
             frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
+After creating your AutoQuery APIs they'll be immediately accessible them from the built-in Locode UI at:
+
+<h3 class="text-4xl text-center text-indigo-800 pb-3"><span class="text-gray-300">https://example.org</span>/locode/</h3>
+
+
 <h1 class="mt-16 text-center text-4xl font-extrabold text-gray-900 tracking-tight sm:text-5xl">
     API Reference
 </h1>
