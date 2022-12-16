@@ -273,10 +273,10 @@ container.Register(c =>
 
 ## Live Example and code
 
-A live demo of the ICacheClient is available in [The ServiceStack.Northwind's example project](http://northwind.netcore.io/). Here are some requests to cached services:
+A live demo of the ICacheClient is available in [The ServiceStack.Northwind's example project](https://northwind.netcore.io/). Here are some requests to cached services:
 
-  * [/customers](http://northwind.netcore.io/cached/customers)
-  * [/customers/ALFKI](http://northwind.netcore.io/cached/customers/ALFKI)
-  * [/customers/ALFKI/orders](http://northwind.netcore.io/cached/customers/ALFKI/orders)
+  * [/customers](https://northwind.netcore.io/cached/customers)
+  * [/customers/ALFKI](https://northwind.netcore.io/cached/customers/ALFKI)
+  * [/customers/ALFKI/orders](https://northwind.netcore.io/cached/customers/ALFKI/orders)
 
 Which are simply existing web services wrapped using **ICacheClient** that are contained in [CachedServices.cs](https://github.com/ServiceStack/ServiceStack.Examples/blob/master/src/ServiceStack.Northwind/ServiceStack.Northwind.ServiceInterface/CachedServices.cs)

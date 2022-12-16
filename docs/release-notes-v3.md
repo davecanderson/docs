@@ -1636,13 +1636,13 @@ Use the **?format=[json|xml|html|csv|jsv]** to toggle and view the same webservi
 ### New ServiceStack.Northwind Example project added
 
 In order to be able to better demonstrate features with a 'real-world' DataSet, a new ServiceStack.Northwind project has been added which inspects the Northwind dataset from an SQLite database.
-A live demo is hosted at [http://northwind.netcore.io](http://northwind.netcore.io). Here are some links below to better demonstrate the new HTML format with a real-world dataset:
+A live demo is hosted at [https://northwind.netcore.io](https://northwind.netcore.io). Here are some links below to better demonstrate the new HTML format with a real-world dataset:
 
 #### Nortwind Database REST web services
 
-  * [All Customers](http://northwind.netcore.io/customers) 
-  * [Customer Detail](http://northwind.netcore.io/customers/ALFKI)
-  * [Customer Orders](http://northwind.netcore.io/customers/ALFKI/orders)
+  * [All Customers](https://northwind.netcore.io/customers) 
+  * [Customer Detail](https://northwind.netcore.io/customers/ALFKI)
+  * [Customer Orders](https://northwind.netcore.io/customers/ALFKI/orders)
 
 ### Improved Caching
 
@@ -1669,9 +1669,9 @@ The above code caches the most optimal output based on browser capabilities, i.e
 To see the difference caching provides, here are cached equivalents of the above REST web service calls:
 
 #### Nortwind Database **Cached** REST web services
-  * [All Customers](http://northwind.netcore.io/cached/customers) 
-  * [Customer Detail](http://northwind.netcore.io/cached/customers/ALFKI)
-  * [Customer Orders](http://northwind.netcore.io/cached/customers/ALFKI/orders)
+  * [All Customers](https://northwind.netcore.io/cached/customers) 
+  * [Customer Detail](https://northwind.netcore.io/cached/customers/ALFKI)
+  * [Customer Orders](https://northwind.netcore.io/cached/customers/ALFKI/orders)
 
 
 ### API Changes

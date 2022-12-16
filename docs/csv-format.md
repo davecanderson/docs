@@ -71,21 +71,21 @@ The ability to automatically to register another format and provide immediate va
 
 The CSV format is effectively a first-class supported format so everything should work as expected, including being registered as an available format on ServiceStack's metadata index page:
 
-* [/metadata](http://northwind.netcore.io/metadata)
+* [/metadata](https://northwind.netcore.io/metadata)
 
 And being able to preview the output of a service:
 
-* [/csv/metadata?op=CustomerDetails](http://northwind.netcore.io/csv/metadata?op=CustomerDetails)
+* [/csv/metadata?op=CustomerDetails](https://northwind.netcore.io/csv/metadata?op=CustomerDetails)
 
 By default they are automatically available using ServiceStack's standard calling conventions, e.g:
 
-* [/csv/reply/Customers](http://northwind.netcore.io/csv/reply/Customers)
+* [/csv/reply/Customers](https://northwind.netcore.io/csv/reply/Customers)
     
 ### REST Usage
 
 CSV also works just as you would expect with user-defined REST-ful urls, i.e. you can append `?format=csv` to specify the format in the url e.g:
 
-* [/customers?format=csv](http://northwind.netcore.io/customers?format=csv)
+* [/customers?format=csv](https://northwind.netcore.io/customers?format=csv)
 
 This is how the above web service output looks when opened up in [google docs](https://spreadsheets.google.com/pub?key=0AjnFdBrbn8_fdDBwX0Rha04wSTNWZDZlQXctcmp2bVE&hl=en_GB&output=html)
 

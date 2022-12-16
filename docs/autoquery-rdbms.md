@@ -720,11 +720,6 @@ that you can add when specifying custom fields is `ExcludeDefaultValues`, e.g:
 /query?Fields=Id,Name,Description,JoinTableId&jsconfig=ExcludeDefaultValues
 ```
 
-Which will remove any value type fields with a **default value** from the JSON response, e.g:
-    
- - [github.servicestack.net/repos.json?fields=Name,Homepage,Language,Updated_At](http://github.servicestack.net/repos.json?fields=Name,Homepage,Language,Updated_At)
- - [github.servicestack.net/repos.json?fields=Name,Homepage,Language,Updated_At&jsconfig=ExcludeDefaultValues](http://github.servicestack.net/repos.json?fields=Name,Homepage,Language,Updated_At&jsconfig=ExcludeDefaultValues)
-
 ### Wildcards
 
 You can use **wildcards** to quickly reference all fields on a table using the `table.*` format, e.g:
@@ -774,11 +769,11 @@ public class QueryCustomers : QueryDb<Customer> { }
 
 To return all unique City and Countries of Northwind Customers with:
 
- - [northwind.netcore.io/query/customers?Fields=DISTINCT City,Country](http://northwind.netcore.io/query/customers?Fields=DISTINCT%20City,Country)
+ - [northwind.netcore.io/query/customers?Fields=DISTINCT City,Country](https://northwind.netcore.io/query/customers?Fields=DISTINCT%20City,Country)
 
 Or to just return their unique Countries they're in:
 
- - [northwind.netcore.io/query/customers?Fields=DISTINCT Country](http://northwind.netcore.io/query/customers?Fields=DISTINCT%20Country)
+ - [northwind.netcore.io/query/customers?Fields=DISTINCT Country](https://northwind.netcore.io/query/customers?Fields=DISTINCT%20Country)
 
 ## Paging and Ordering
 

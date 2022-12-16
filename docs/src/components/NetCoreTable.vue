@@ -164,12 +164,12 @@
         <b>Features</b> -
         Fully-queryable <a href="/autoquery-rdbms.html">RDBMS AutoQuery Services</a>,
         <a href="https://github.com/ServiceStack/ServiceStack.OrmLite">OrmLite.Sqlite</a>,
-        <a href="http://stackapis.netcore.io/ss_admin/autoquery/">AutoQuery Viewer</a>
+        <a href="https://stackapis.netcore.io/ss_admin/autoquery/">AutoQuery Viewer</a>
       </td>
     </tr>
     <tr>
       <td>
-        <a href="http://stackapis.netcore.io">
+        <a href="https://stackapis.netcore.io">
           <img src="https://raw.githubusercontent.com/ServiceStack/Assets/master/img/livedemos/stackapis.png" width="350"/>
         </a>
       </td>
@@ -178,7 +178,7 @@
           <caption>.NET Core</caption>
           <tr>
             <td>Live Demo:</td>
-            <td><a href="http://stackapis.netcore.io">stackapis.netcore.io</a></td>
+            <td><a href="https://stackapis.netcore.io">stackapis.netcore.io</a></td>
           </tr>
           <tr>
             <td>Github:</td>
@@ -366,14 +366,14 @@
       <td colspan="2">
         <b>Features</b> -
         <a href="/autoquery-rdbms.html">RDBMS AutoQuery Services</a>,
-        <a href="http://stackapis.netcore.io/ss_admin/autoquery/">AutoQuery Viewer</a>,
+        <a href="https://stackapis.netcore.io/ss_admin/autoquery/">AutoQuery Viewer</a>,
         <a href="/http-caching.html">HTTP Caching</a> and
         <a href="/cacheresponse-attribute.html">CacheResponse attributes</a>
       </td>
     </tr>
     <tr>
       <td>
-        <a href="http://northwind.netcore.io">
+        <a href="https://northwind.netcore.io">
           <img src="https://raw.githubusercontent.com/ServiceStack/Assets/master/img/livedemos/northwind.png" width="350"/>
         </a>
       </td>
@@ -382,7 +382,7 @@
           <caption>.NET Core</caption>
           <tr>
             <td>Live Demo:</td>
-            <td><a href="http://northwind.netcore.io">northwind.netcore.io</a></td>
+            <td><a href="https://northwind.netcore.io">northwind.netcore.io</a></td>
           </tr>
           <tr>
             <td>Github:</td>

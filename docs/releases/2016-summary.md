@@ -1321,9 +1321,8 @@ builds after August 1, 2016 now that Microsoft no longer supports them. If you a
 
 An exciting new plugin available from the **ServiceStack.Admin** NuGet package which provides an instant automatic UI for all your AutoQuery services. As it's super quick to add we've enabled it on a number of existing live demos which you can try out:
 
-- http://github.servicestack.net/ss_admin/
-- http://northwind.netcore.io/ss_admin/
-- http://stackapis.netcore.io/ss_admin/
+- https://northwind.netcore.io/ss_admin/
+- https://stackapis.netcore.io/ss_admin/
 - https://techstacks.io/ss_admin/
 
 It also ships with a number of productive features out-of-the-box:
