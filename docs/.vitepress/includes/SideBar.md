@@ -228,7 +228,7 @@
     - [Cancellable Requests](/cancellable-requests)
     - [Webhooks](/webhooks)
 - ##### View Engines
-    - [Razor & Markdown Razor](http://razor.servicestack.net/)
+    - [Razor & Markdown Razor](https://razor.netcore.io/)
     - [Razor Notes](/razor-notes)
     - [View and Template Selection](/view-and-template-selection)
     - [Compiled Razor Views](/compiled-razor-views)

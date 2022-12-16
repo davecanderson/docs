@@ -310,7 +310,7 @@
           <caption>ASP.NET 4.5</caption>
           <tr>
             <td>Live Demo:</td>
-            <td><a href="http://razor.servicestack.net">razor.servicestack.net</a></td>
+            <td><a href="https://razor.netcore.io">razor.servicestack.net</a></td>
           </tr>
           <tr>
             <td>Github:</td>

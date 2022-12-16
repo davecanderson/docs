@@ -26,7 +26,7 @@ Developed in the modern age, ServiceStack provides an alternate, cleaner POCO-dr
 
 ### Features Overview
 
-ServiceStack is a simple, fast, versatile and highly-productive full-featured [Web](http://razor.servicestack.net) and 
+ServiceStack is a simple, fast, versatile and highly-productive full-featured [Web](https://razor.netcore.io) and 
 [Web Services](/web-services) Framework that's 
 thoughtfully-architected to [reduce artificial complexity](/why-not-odata#why-not-complexity) and promote 
 [remote services best-practices](/advantages-of-message-based-web-services) 
@@ -62,7 +62,7 @@ for all your existing services via [Plugins](/plugins).
 
 <img src="https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/svg/servicify.svg" width="100%">
 
-Your same Services also serve as the Controller in ServiceStack's [Smart Razor Views](http://razor.servicestack.net/)
+Your same Services also serve as the Controller in ServiceStack's [Smart Razor Views](https://razor.netcore.io/)
 reducing the effort to serve both 
 [Web and Single Page Apps](https://github.com/ServiceStackApps/LiveDemos) as well as 
 [Rich Desktop and Mobile Clients](https://github.com/ServiceStackApps/HelloMobile) that are able to deliver instant interactive 
@@ -427,7 +427,7 @@ of different formats, including:
  - HTML
    - [HTML5 Report Format](/html5reportformat)
    - [Sharp Pages](https://sharpscript.net/docs/script-pages)
-   - [Razor](http://razor.servicestack.net/)
+   - [Razor](https://razor.netcore.io/)
    - [Markdown Razor](/markdown-razor)
 
 ### Multiple Endpoints

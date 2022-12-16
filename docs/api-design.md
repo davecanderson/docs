@@ -413,7 +413,7 @@ var api = await client.ApiAsync(new QueryContacts {
 
 A nice property of ServiceStack's message-based design is all functionality is centered around Typed Request DTOs which easily lets you take advantage of high-level value-added functionality like [Auto Batched Requests](/auto-batched-requests) or [Encrypted Messaging](/encrypted-messaging) which are enabled automatically without any effort or easily opt-in to enhanced functionality by decorating Request DTOs or thier Services with Metadata and [Filter Attributes](/filter-attributes) and everything works together, binded against typed models naturally.
 
-E.g. you can take advantage of [ServiceStack's Razor support](http://razor.servicestack.net/) and create a web page for this service by just adding a Razor view with the same name as the Request DTO in the `/Views` folder,
+E.g. you can take advantage of [ServiceStack's Razor support](https://razor.netcore.io/) and create a web page for this service by just adding a Razor view with the same name as the Request DTO in the `/Views` folder,
 which for the `GetContacts` Request DTO you can just add `/Views/GetContacts.cshtml` and it will get rendered with the Services Response DTO as its View Model when the Service is called from a browser (i.e. HTTP Request with `Accept: text/html`). 
 
 Thanks to ServiceStack's built-in Content Negotiation you can fetch the HTML contents calling the same url: 
@@ -422,7 +422,7 @@ Thanks to ServiceStack's built-in Content Negotiation you can fetch the HTML con
 var html = $"{BaseUri}/contacts".GetStringFromUrl(accept:"text/html");
 ```
 
-This [feature is particularly nice](http://razor.servicestack.net/#unified-stack) as it lets you **re-use your existing services** to serve both Web and Native Mobile and Desktop clients.
+This [feature is particularly nice](https://razor.netcore.io/#unified-stack) as it lets you **re-use your existing services** to serve both Web and Native Mobile and Desktop clients.
 
 ### Action Filters
 
@@ -436,7 +436,7 @@ public class ContactsService : Service
 }
 ```
 
-This Request Filter allows the client to [change the selected Razor **View** and **Template**](http://razor.servicestack.net/#unified-stack) used at runtime. By default the view with the same name as the **Request** or **Response** DTO is used.
+This Request Filter allows the client to [change the selected Razor **View** and **Template**](https://razor.netcore.io/#unified-stack) used at runtime. By default the view with the same name as the **Request** or **Response** DTO is used.
 
 ## Handling different HTTP Verbs
 

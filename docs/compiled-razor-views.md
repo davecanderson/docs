@@ -33,7 +33,7 @@ The Compiled Views support continues to retain a great development experience in
 
 ### [Razor Rockstars](https://github.com/ServiceStackApps/RazorRockstars)
 
-The [RazorRockstars.CompiledViews](https://github.com/ServiceStackApps/RazorRockstars/tree/master/src/RazorRockstars.CompiledViews) VS.NET project shows an example of [Razor Rockstars](http://razor.servicestack.net/) which uses shared compiled Razor Views in a `.dll` in a number of different projects:
+The [RazorRockstars.CompiledViews](https://github.com/ServiceStackApps/RazorRockstars/tree/master/src/RazorRockstars.CompiledViews) VS.NET project shows an example of [Razor Rockstars](https://razor.netcore.io/) which uses shared compiled Razor Views in a `.dll` in a number of different projects:
 
   - [WPF Host](https://github.com/ServiceStackApps/RazorRockstars/tree/master/src/RazorRockstars.CompiledViews.WpfHost)
   - [HttpListener SelfHost](https://github.com/ServiceStackApps/RazorRockstars/tree/master/src/RazorRockstars.CompiledViews.SelfHost)

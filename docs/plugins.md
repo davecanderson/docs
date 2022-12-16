@@ -257,7 +257,7 @@ public class MyRequestDto
 }
 ```
 
-### [Razor Format](http://razor.servicestack.net/)
+### [Razor Format](https://razor.netcore.io/)
 Provides ServiceStack's primary HTML story with support for the MVC Razor view engine.
 
 ```csharp

@@ -216,7 +216,7 @@ Parallel compilation has been replaced in favor of a **FileSystemWatcher** which
 
 The one existing advanced feature no longer supported is multiple razor file extensions with different base types, as this was a fairly niche feature it hopefully wont affect many people. 
 
-All existing tests have been ported and are now passing, we've also added a few more as well as updating [Razor Rockstars](http://razor.servicestack.net/) which continues to work flawlessly with the new Razor2 support, but as this was a complete rewrite you may run into implementation differences between the old and new behavior so you should put some time aside for testing the upgraded Razor support. Please [report any issues](https://github.com/ServiceStack/ServiceStack/issues) you've had with the upgrade.
+All existing tests have been ported and are now passing, we've also added a few more as well as updating [Razor Rockstars](https://razor.netcore.io/) which continues to work flawlessly with the new Razor2 support, but as this was a complete rewrite you may run into implementation differences between the old and new behavior so you should put some time aside for testing the upgraded Razor support. Please [report any issues](https://github.com/ServiceStack/ServiceStack/issues) you've had with the upgrade.
 
 The HTML Helpers that were originally ported from MVC have been updated by [@dsimunic](https://github.com/dsimunic).
 
@@ -614,7 +614,7 @@ The metadata pages have undergone a significant re-factor to support new Securit
   - Added new pre-defined route `/reply/{Operation}` as a shorter alias for `/syncreply/{Operation}`
   - Added new pre-defined route `/oneway/{Operation}` as a shorter alias for `/asynconeway/{Operation}`
 
-### [Razor Support](http://razor.servicestack.net/)
+### [Razor Support](https://razor.netcore.io/)
 
   - Razor Format now looks for a view with the same name as the Request DTO first, before the Response DTO name
   - Service Errors now stored in `@ModelError` and typed Exception details available in `@ResponseStatus`
@@ -760,7 +760,7 @@ This was an exciting release where we've added an alternative [API design](/api-
 
 See the wiki for [full details on the new API](/api-design). As it's much nicer and more flexible than the previous one, it's now stands as our recommended option for designing new services with. We've already started work on porting the existing examples across, some of which will give you a good feel of its development experience in action:
 
-  - [The Razor Rockstars Service](http://razor.servicestack.net/rockstars)
+  - [The Razor Rockstars Service](https://razor.netcore.io/rockstars)
   - [The Home Page TODOs example](https://github.com/ServiceStack/ServiceStack/blob/master/tests/ServiceStack.WebHost.Endpoints.Tests/NewApiTodos.cs)
   - [The Comprehensive test suite](https://github.com/ServiceStack/ServiceStack/blob/master/tests/RazorRockstars.Console.Files/ReqStarsService.cs)
   - [Social Bootstrap Api project](https://github.com/ServiceStack/SocialBootstrapApi/) - See the [Old vs New Api Pull Request](https://github.com/ServiceStack/SocialBootstrapApi/commit/3b63651c13187ab93f5cefcb3d94fc3667b0fcd9)
@@ -777,7 +777,7 @@ Following in the heels of last months major [100k NuGet downloads](http://www.se
 
 By far the biggest feature in this release is ServiceStack's much improved HTML story with Razor and Multi-View Engine support. There's too many features to even begin listing here, but you can read all about it in the live showcase demo:
 
-  - [http://razor.servicestack.net](http://razor.servicestack.net) 
+  - [https://razor.netcore.io](https://razor.netcore.io) 
 
 #### Getting Started 
 
@@ -793,11 +793,11 @@ We continue to see providing first-class Mono Support as a core objective for th
 
 ### Specialized, Auto-correcting behaviour in Mono / Self-Hosts
 
-We've added normalizing behaviour to maintain the same unified experience across IIS/ASP.NET to Mono/ASP.NET and Self-Host (Win/Mono). At times when it differs from normal IIS/ASP.NET behaviour we apply auto-correcting behaviour to Mono and self-hosts to imitate IIS/ASP.NET, e.g. we auto-redirect dirs without '/' suffixes [/stars/alive/Vedder](http://razor.servicestack.net/stars/alive/Vedder) and allow Mono to support case-insensitive urls [/stars/alive/vedder](http://razor.servicestack.net/stars/alive/vedder).
+We've added normalizing behaviour to maintain the same unified experience across IIS/ASP.NET to Mono/ASP.NET and Self-Host (Win/Mono). At times when it differs from normal IIS/ASP.NET behaviour we apply auto-correcting behaviour to Mono and self-hosts to imitate IIS/ASP.NET, e.g. we auto-redirect dirs without '/' suffixes [/stars/alive/Vedder](https://razor.netcore.io/stars/alive/Vedder) and allow Mono to support case-insensitive urls [/stars/alive/vedder](https://razor.netcore.io/stars/alive/vedder).
 
 Our normalisation efforts allows the same website to work as-is in each of the supported ServiceStack hosts:
 
-  - [razor.servicestack.net](http://razor.servicestack.net) - ASP.NET Host on Linux / MonoFastCGI (+ Win)
+  - [razor.servicestack.net](https://razor.netcore.io) - ASP.NET Host on Linux / MonoFastCGI (+ Win)
   - [razor-console.servicestack.net](http://razor-console.servicestack.net) - Self-hosted console application behind Nginx Reverse proxy (+ Win)
   - [Windows Service](https://github.com/ServiceStack/RazorRockstars/tree/master/src/RazorRockstars.WinService)
 

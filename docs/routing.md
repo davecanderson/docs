@@ -278,14 +278,14 @@ Routes
 
 In addition to using the standard `Accept` HTTP Header to retrieve the response a different format, you can also request an alternative Content-Type by appending **?format=ext** to the query string, e.g:
 
-  - [/rockstars?format=xml](http://razor.servicestack.net/rockstars?format=xml)
-  - [/rockstars/1?format=json](http://razor.servicestack.net/rockstars/1?format=json)
+  - [/rockstars?format=xml](https://razor.netcore.io/rockstars?format=xml)
+  - [/rockstars/1?format=json](https://razor.netcore.io/rockstars/1?format=json)
 
 Or by appending the format **.ext** to the end of the route, e.g:
 
-  - [/rockstars.xml](http://razor.servicestack.net/rockstars.xml)
-  - [/rockstars/1.json](http://razor.servicestack.net/rockstars/1.json)
-  - [/rockstars.html?id=1](http://razor.servicestack.net/rockstars.html?id=1)
+  - [/rockstars.xml](https://razor.netcore.io/rockstars.xml)
+  - [/rockstars/1.json](https://razor.netcore.io/rockstars/1.json)
+  - [/rockstars.html?id=1](https://razor.netcore.io/rockstars.html?id=1)
 
 This is enabled on all custom routes and works for all built-in and user-registered formats. 
 It can be disabled by setting: 

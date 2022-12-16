@@ -8,7 +8,7 @@ import JamstackTemplates from "./src/components/JamstackTemplates.vue"
 </script>
 
 
-ServiceStack has its strong foundations as a Web and MQ Services framework whose [easy and versatile HTML support](http://razor.servicestack.net/) makes it the ideal services framework to create Backend Systems and Web APIs, Websites, Single Page Apps, Windows Services, Self-Hosting Console Apps and Rich OSX and Winforms Desktop Apps.
+ServiceStack has its strong foundations as a Web and MQ Services framework whose [easy and versatile HTML support](https://razor.netcore.io/) makes it the ideal services framework to create Backend Systems and Web APIs, Websites, Single Page Apps, Windows Services, Self-Hosting Console Apps and Rich OSX and Winforms Desktop Apps.
 
 ## x new
 
@@ -213,4 +213,4 @@ For normal server-generated websites that don't leverage Webpack to bundle their
   - [Backbone Todos with Redis back-end](http://www.servicestack.net/Backbone.Todos/)
   - [GitHub-like browser with complete remote file management over REST](http://www.servicestack.net/RestFiles/#!files)
   - [ServiceStack Docs with PushState support](http://www.servicestack.net/docs/)
-  - [Angular JS View in RazorRockstars](http://razor.servicestack.net/rockstars?View=AngularJS)
+  - [Angular JS View in RazorRockstars](https://razor.netcore.io/rockstars?View=AngularJS)

@@ -232,7 +232,7 @@ slug: community-resources
 ### Examples and Demos
 
   - [An API created in 2 days at govhack 2012. Exposes BoM public Acorn dataset via RESTful services.](http://www.govhack.org/2012/06/02/weatheredoak/) by [@layoric](https://twitter.com/layoric)
-  - [Razor Rockstars - Showcase of Razor and Markdown views, inc. AngularJS SinglePageApp](http://razor.servicestack.net) by [@ServiceStack](https://twitter.com/ServiceStack)
+  - [Razor Rockstars - Showcase of Razor and Markdown views, inc. AngularJS SinglePageApp](https://razor.netcore.io) by [@ServiceStack](https://twitter.com/ServiceStack)
   - [Social Bootstrap Api: ASP.NET MVC + Bootstrap + Backbone template](https://github.com/ServiceStack/SocialBootstrapApi) by [@ServiceStack](https://twitter.com/ServiceStack)
 
 ### Podcasts and Videos

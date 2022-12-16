@@ -37,14 +37,14 @@ Which would call a **service** matching the `/home` route that will use the most
 
 
   [1]: http://www.servicestack.net/
-  [2]: http://razor.servicestack.net/
-  [3]: http://razor.servicestack.net/stars/dead/cobain/
+  [2]: https://razor.netcore.io/
+  [3]: https://razor.netcore.io/stars/dead/cobain/
   [4]: https://github.com/ServiceStack/RazorRockstars/blob/master/src/RazorRockstars.WebHost/stars/dead/Cobain/default.cshtml
-  [5]: http://razor.servicestack.net/TypedModelNoController
+  [5]: https://razor.netcore.io/TypedModelNoController
   [6]: https://github.com/ServiceStack/RazorRockstars/blob/master/src/RazorRockstars.WebHost/TypedModelNoController.cshtml
-  [7]: http://razor.servicestack.net/rockstars
+  [7]: https://razor.netcore.io/rockstars
   [8]: https://github.com/ServiceStack/RazorRockstars/blob/master/src/RazorRockstars.WebHost/RockstarsService.cs
   [9]: https://github.com/ServiceStack/RazorRockstars/blob/master/src/RazorRockstars.WebHost/Views/Rockstars.cshtml
   [10]: https://github.com/ServiceStack/ServiceStack.UseCases/blob/master/Reusability/default.cshtml
   [11]: https://github.com/ServiceStack/ServiceStack.UseCases/tree/master/Reusability
-  [12]: http://razor.servicestack.net/
+  [12]: https://razor.netcore.io/

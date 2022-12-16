@@ -4,7 +4,7 @@ slug: contributors
 
 ## Big thanks to our 300+ .NET Open Source Contributors!
 
-These last few weeks have been the most eventful in ServiceStack's history where we've delivered [considerable enhancements](/release-notes-history) to the framework that includes our [compelling new HTML Story](http://razor.servicestack.net) followed shortly after by our [new API Design](/api-design) which promotes an even more flexible and enjoyable server and client apis that we we're happy to see was [well received by the Hacker Community](http://news.ycombinator.com/item?id=4564416).
+These last few weeks have been the most eventful in ServiceStack's history where we've delivered [considerable enhancements](/release-notes-history) to the framework that includes our [compelling new HTML Story](https://razor.netcore.io) followed shortly after by our [new API Design](/api-design) which promotes an even more flexible and enjoyable server and client apis that we we're happy to see was [well received by the Hacker Community](http://news.ycombinator.com/item?id=4564416).
 
 ### Our most important milestone yet!
 
@@ -69,7 +69,7 @@ The feedback we've received has led us to implement the most popular use-cases, 
 
 ### Web Services
 
-  - [HTML (MVC Razor, Markdown Razor, Markdown, HtmlReport)](http://razor.servicestack.net/)
+  - [HTML (MVC Razor, Markdown Razor, Markdown, HtmlReport)](https://razor.netcore.io/)
   - JSON (+ JSONP)
   - XML
   - [CSV](/csv-format)
