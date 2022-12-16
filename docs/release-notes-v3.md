@@ -797,7 +797,7 @@ We've added normalizing behaviour to maintain the same unified experience across
 
 Our normalisation efforts allows the same website to work as-is in each of the supported ServiceStack hosts:
 
-  - [razor.servicestack.net](https://razor.netcore.io) - ASP.NET Host on Linux / MonoFastCGI (+ Win)
+  - [razor.netcore.io](https://razor.netcore.io) - ASP.NET Host on Linux / MonoFastCGI (+ Win)
   - [razor-console.servicestack.net](http://razor-console.servicestack.net) - Self-hosted console application behind Nginx Reverse proxy (+ Win)
   - [Windows Service](https://github.com/ServiceStack/RazorRockstars/tree/master/src/RazorRockstars.WinService)
 

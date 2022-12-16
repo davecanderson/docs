@@ -89,9 +89,9 @@ their respective sub directories:
   - [/restfiles](https://github.com/ServiceStackApps/AwsApps/tree/master/src/AwsApps/restfiles)
   - [/todo](https://github.com/ServiceStackApps/AwsApps/tree/master/src/AwsApps/todo)
 
-## [AWS Razor Rockstars](http://awsrazor.servicestack.net/)
+## [AWS Razor Rockstars](http://awsrazor.netcore.io/)
 
-[![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/aws/apps/screenshots/awsrazor.png)](http://awsrazor.servicestack.net/)
+[![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/aws/apps/screenshots/awsrazor.png)](http://awsrazor.netcore.io/)
 
 ### Maintain Website Content in S3
 
@@ -211,9 +211,9 @@ HostContext.GetPlugin<MarkdownFormat>().RefreshPage(kurtMarkdown.VirtualPath); /
 You can test live reloading of the above Service with the routes below which modify Markdown and Razor views with the
 current time:
 
-  - [/updateS3](http://awsrazor.servicestack.net/updateS3) - Update Markdown Content
-  - [/updateS3?razor=true](http://awsrazor.servicestack.net/updateS3?razor=true) - Update Razor View
-  - [/updateS3?razor=true&clear=true](http://awsrazor.servicestack.net/updateS3?razor=true&clear=true) - Revert changes
+  - [/updateS3](http://awsrazor.netcore.io/updateS3) - Update Markdown Content
+  - [/updateS3?razor=true](http://awsrazor.netcore.io/updateS3?razor=true) - Update Razor View
+  - [/updateS3?razor=true&clear=true](http://awsrazor.netcore.io/updateS3?razor=true&clear=true) - Revert changes
   
 ::: info
 This forces a recompile of the modified views which greatly benefits from a fast CPU and is a bit slow on our 

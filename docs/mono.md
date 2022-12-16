@@ -14,7 +14,7 @@ If needed ServiceStack also runs on [Mono](http://www.mono-project.com):
 
 ### StackOverflow
 
-  - [ServiceStack's Nginx + FastCGI Mono config for razor.servicestack.net](http://stackoverflow.com/questions/16148251/running-servicestack-with-razor-views-on-centos/16152053#16152053)
+  - [ServiceStack's Nginx + FastCGI Mono config for razor.netcore.io](http://stackoverflow.com/questions/16148251/running-servicestack-with-razor-views-on-centos/16152053#16152053)
   - [What is the best way to run ServiceStack on Linux / Mono?](http://stackoverflow.com/questions/12188356/what-is-the-best-way-to-run-servicestack-on-linux-mono)
 
 # Community Resources

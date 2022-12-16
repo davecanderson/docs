@@ -228,7 +228,7 @@
           <caption>ASP.NET 4.5</caption>
           <tr>
             <td>Live Demo:</td>
-            <td><a href="http://imgur.servicestack.net">imgur.servicestack.net</a></td>
+            <td><a href="https://imgur.netcore.io">imgur.netcore.io</a></td>
           </tr>
           <tr>
             <td>Github:</td>
@@ -310,7 +310,7 @@
           <caption>ASP.NET 4.5</caption>
           <tr>
             <td>Live Demo:</td>
-            <td><a href="https://razor.netcore.io">razor.servicestack.net</a></td>
+            <td><a href="https://razor.netcore.io">razor.netcore.io</a></td>
           </tr>
           <tr>
             <td>Github:</td>

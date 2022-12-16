@@ -1559,7 +1559,7 @@ for developing DynamoDB-powered Apps.
 The [Live Demos](https://github.com/ServiceStackApps/LiveDemos) below were rewritten from their original RDBMS and OrmLite
 backends to utilize a completely managed AWS Stack that now uses PocoDynamo and a DynamoDB-backend:
 
-[![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/aws/pocodynamo/examples-razor-rockstars.png)](http://awsrazor.servicestack.net/)
+[![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/aws/pocodynamo/examples-razor-rockstars.png)](http://awsrazor.netcore.io/)
 
 [![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/aws/pocodynamo/examples-email-contacts.png)](http://awsapps.servicestack.net/emailcontacts/)
 

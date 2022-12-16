@@ -565,7 +565,7 @@ public object Post(MyFileUpload request)
 }
 ```
 
-ServiceStack's [imgur.servicestack.net](http://imgur.servicestack.net) example shows how to access the [byte stream of multiple uploaded files](https://github.com/ServiceStackApps/Imgur/blob/master/src/Imgur/Global.asax.cs#L62), e.g:
+ServiceStack's [imgur.netcore.io](https://imgur.netcore.io) example shows how to access the [byte stream of multiple uploaded files](https://github.com/ServiceStackApps/Imgur/blob/master/src/Imgur/Global.asax.cs#L62), e.g:
 
 ```csharp
 public object Post(Upload request)
