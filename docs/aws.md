@@ -220,9 +220,9 @@ This forces a recompile of the modified views which greatly benefits from a fast
 Live Demos server that's running on a **m1.small** instance shared with 25 other ASP.NET Web Applications
 :::
 
-## [AWS Imgur](http://awsapps.servicestack.net/imgur/)
+## AWS Imgur
 
-[![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/aws/apps/screenshots/imgur.png)](http://awsapps.servicestack.net/imgur/)
+![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/aws/apps/screenshots/imgur.png)
 
 ### S3VirtualFiles 
 
@@ -262,21 +262,21 @@ The `ServiceURL` is a region specific URL rather than the URL to your Space dire
 
 Other services might use the `AmazonS3Config` differently, but as long as the `AmazonS3Client` is configured correctly for the service you are using, the `S3VirtualFiles` can be used the same way.
 
-## [REST Files](http://awsapps.servicestack.net/restfiles/)
+## REST Files
 
-[![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/aws/apps/screenshots/restfiles.png)](http://awsapps.servicestack.net/restfiles/)
+![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/aws/apps/screenshots/restfiles.png)
 
 REST Files GitHub-like explorer is another example that was 
 [rewritten to use ServiceStack's Virtual File System](https://github.com/ServiceStackApps/AwsApps/blob/master/src/AwsApps/restfiles/FilesService.cs)
 and now provides remote file management of an S3 Bucket behind a REST-ful API.
 
-## [AWS Email Contacts](http://awsapps.servicestack.net/emailcontacts/)
+## AWS Email Contacts
 
-[![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/aws/apps/screenshots/emailcontacts.png)](http://awsapps.servicestack.net/emailcontacts/)
+![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/aws/apps/screenshots/emailcontacts.png)
 
 ### SqsMqServer
 
-The [AWS Email Contacts](http://awsapps.servicestack.net/emailcontacts/) example shows the same long-running 
+The AWS Email Contacts example shows the same long-running 
 [EmailContact Service](https://github.com/ServiceStackApps/AwsApps/blob/4817f5c6ad69defd74d528403bfdb03e5958b0b3/src/AwsApps/emailcontacts/EmailContactServices.cs#L81)
 being executed from both HTTP and MQ Server by just 
 [changing which url the HTML Form is posted to](https://github.com/ServiceStackApps/AwsApps/blob/4817f5c6ad69defd74d528403bfdb03e5958b0b3/src/AwsApps/emailcontacts/default.cshtml#L203):
@@ -324,14 +324,13 @@ mqServer.Start();
 
 When an MQ Server is registered, ServiceStack automatically publishes Requests accepted on the "One Way" [pre-defined route](/routing#pre-defined-routes) to the registered MQ broker. The message is later picked up and executed by a Message Handler on a background Thread.
 
-## [AWS Auth](http://awsapps.servicestack.net/awsauth/)
+## AWS Auth
 
-[![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/aws/apps/screenshots/awsauth.png)](http://awsapps.servicestack.net/awsauth/)
+![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/aws/apps/screenshots/awsauth.png)
 
 ### DynamoDbAuthRepository
 
-[AWS Auth](http://awsapps.servicestack.net/awsauth/) 
-is an example showing how easy it is to enable multiple Auth Providers within the same App which allows Sign-Ins from 
+AWS Auth is an example showing how easy it is to enable multiple Auth Providers within the same App which allows Sign-Ins from 
 Twitter, Facebook, GitHub, Google, Yahoo and LinkedIn OAuth providers, as well as HTTP Basic and Digest Auth and 
 normal Registered User logins and Custom User Roles validation, all managed in DynamoDB Tables using 
 the registered `DynamoDbAuthRepository` below: 
@@ -400,9 +399,9 @@ foreach (var config in fileSettings.GetAll())
 
 ![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/release-notes/aws-configsettings.png)
 
-## [AWS Todos](http://awsapps.servicestack.net/todo/)
+## AWS Todos
 
-[![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/aws/apps/screenshots/todos.png)](http://awsapps.servicestack.net/todo/)
+![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/aws/apps/screenshots/todos.png)
 
 The [Backbone TODO App](http://todomvc.com/examples/backbone/) is a famous minimal example used as a "Hello, World" 
 example to showcase and compare JavaScript client frameworks. The example also serves as a good illustration of the 

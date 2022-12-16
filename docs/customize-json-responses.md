@@ -95,10 +95,6 @@ Camel Humps also works with Enum Values so both these two configurations are the
 [AutoQuery Viewer](https://github.com/ServiceStack/Admin) makes use of this feature in order to return human readable dates using the new 
 `ISO8601DateOnly` DateHandler Enum Value as well as appending `ExcludeDefaultValues` when specifying custom 
 fields so that any unpopulated value type properties with default values are excluded from the JSON Response. 
-Here's a live example of this comparing the default Response with the customized JSON Response:
-
- - [github.servicestack.net/repos.json?fields=Name,Homepage,Language,Updated_At](http://github.servicestack.net/repos.json?fields=Name,Homepage,Language,Updated_At)
- - [github.servicestack.net/repos.json?fields=Name,Homepage,Language,Updated_At&jsconfig=edv,dh:iso8601do](http://github.servicestack.net/repos.json?fields=Name,Homepage,Language,Updated_At&jsconfig=edv,dh:iso8601do)
 
 ### Custom JSON Settings
 

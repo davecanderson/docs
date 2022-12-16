@@ -188,7 +188,7 @@ it doesn't always include the additional limitations imposed when hosted on AWS.
 
 To illustrate how PocoDynamo simplifies working with DynamoDB, we'll walk-through creating and retrieving the Simple 
 [Todo model](https://github.com/ServiceStackApps/AwsApps/blob/04dea6472fd73ea2e55f1aa748fff6e8784b339c/src/AwsApps/todo/TodoService.cs#L9)
-used in the [DynamoDB-powered AWS Todo Example](http://awsapps.servicestack.net/todo/) and compare it against the code
+used in the DynamoDB-powered AWS Todo Example and compare it against the code
 required when using AWSSDK's `IAmazonDynamoDB` client directly.
 
 The simple `Todo` POCO is the same data model used to store TODO's in every major RDBMS's with 
@@ -1554,18 +1554,18 @@ where it was able to reuse the existing `UserAuth` and `UserAuthDetails` data mo
 Despite its young age we've added a comprehensive test suite behind PocoDynamo which has become our exclusive client
 for developing DynamoDB-powered Apps.
 
-### [AWS Apps](http://awsapps.servicestack.net/)
+### AWS Apps
 
 The [Live Demos](https://github.com/ServiceStackApps/LiveDemos) below were rewritten from their original RDBMS and OrmLite
 backends to utilize a completely managed AWS Stack that now uses PocoDynamo and a DynamoDB-backend:
 
-[![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/aws/pocodynamo/examples-razor-rockstars.png)](http://awsrazor.netcore.io/)
+![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/aws/pocodynamo/examples-razor-rockstars.png)
 
-[![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/aws/pocodynamo/examples-email-contacts.png)](http://awsapps.servicestack.net/emailcontacts/)
+![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/aws/pocodynamo/examples-email-contacts.png)
 
-[![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/aws/pocodynamo/examples-todos.png)](http://awsapps.servicestack.net/todo/)
+![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/aws/pocodynamo/examples-todos.png)
 
-[![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/aws/pocodynamo/examples-awsauth.png)](http://awsapps.servicestack.net/awsauth/)
+![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/aws/pocodynamo/examples-awsauth.png)
 
 ## IPocoClient API
 
