@@ -2,6 +2,10 @@
 title: Blazor Diffusion
 ---
 
+<script setup>
+import { Icon } from "@iconify/vue"
+</script>
+
 The goal of our increasing Blazor investments is to enable a highly productive and capable platform for rapidly developing a majority of internal Apps CRUD functionality as well as enabling a hybrid development model where the management of Back office supporting tables can be quickly implemented using custom AutoQueryGrid components freeing up developers to be able to focus a majority of their efforts where they add the most value - in the bespoke Blazor UI's optimized customer-facing UX.
 
 To best demonstrate its potential we've embarked on development of a new project we're excited to announce that does exactly this!
