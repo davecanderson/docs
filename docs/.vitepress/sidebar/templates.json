@@ -15,6 +15,10 @@
             "link": "/templates-blazor-tailwind"
           },
           {
+            "text": "Blazor Server Tailwind",
+            "link": "/templates-blazor-server"
+          },
+              {
             "text": "Blazor WASM Bootstrap",
             "link": "/templates-blazor"
           },

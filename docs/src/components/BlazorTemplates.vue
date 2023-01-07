@@ -11,7 +11,24 @@
       </div>
    </div>
 </section>
-<section class="w-full flex flex-col justify-center text-center">
+<section class="w-full flex justify-center text-center">
+   <div class="mb-2">
+      <div class="flex justify-center text-center">
+         <a class="archive-url hover:no-underline netcoretemplates_empty" :href="zipUrl('NetCoreTemplates/blazor-server')">
+            <div class="bg-white dark:bg-gray-800 px-4 py-4 mr-4 mb-4 rounded-lg shadow-lg text-center items-center justify-center hover:shadow-2xl dark:border-2 dark:border-pink-600 dark:hover:border-blue-600 dark:border-2 dark:border-pink-600 dark:hover:border-blue-600" style="min-width:150px">
+               <div class="text-center font-extrabold flex items-center justify-center mb-2">
+                  <div class="text-4xl text-blue-400 my-3">
+                     <Icon icon="simple-icons:blazor" class="w-14 h-14 text-purple-500" />
+                  </div>
+               </div>
+               <div class="text-xl font-medium text-gray-700">Blazor Server</div>
+               <div class="flex justify-center h-8"></div>
+               <span class="archive-name px-4 pb-2 text-blue-600 dark:text-indigo-400">{{ projectZip }}</span>
+               <div class="count mt-1 text-gray-400 text-sm"></div>
+            </div>
+         </a>
+      </div>
+   </div>
    <div class="mb-2">
       <div class="flex justify-center text-center">
          <a class="archive-url hover:no-underline netcoretemplates_empty" :href="zipUrl('NetCoreTemplates/blazor-wasm')">
@@ -29,7 +46,7 @@
          </a>
       </div>
    </div>
-</section>   
+</section>
 </div>
 </template>
 <script setup lang="ts">

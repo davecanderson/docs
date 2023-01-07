@@ -26,7 +26,7 @@ Customize and Download a new Blazor WASM Bootstrap project with your preferred p
 Alternatively you can create & download a new Blazor Project with the [x dotnet tool](/dotnet-new):
 
 :::sh
-x new blazor-tailwind ProjectName
+x new blazor-wasm ProjectName
 :::
 
 ## Optimal Development Workflow

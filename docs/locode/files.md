@@ -564,3 +564,68 @@ TypeFilter = (type, req) =>
 The result of this is converting the Northwind Database from using the `Photo` blob column to persist image bit maps
 and instead uses the `PhotoPath` column to maintain an external file reference to their Profile Photo which is
 managed by the `FilesUploadFeature` to persist images to its configured `FileSystemVirtualFiles` virtual file source.
+
+## Files Upload Transformer
+
+[Blazor Diffusion](/blazor-diffusion) uses the Managed Files Upload Feature configured in [Configure.AppHost.cs](https://github.com/NetCoreApps/BlazorDiffusion/blob/main/BlazorDiffusion/Configure.AppHost.cs) for all its website File Uploads:
+
+```csharp
+var appFs = VirtualFiles = new R2VirtualFiles(s3Client, appConfig.ArtifactBucket);
+Plugins.Add(new FilesUploadFeature(
+    new UploadLocation("artifacts", appFs,
+        readAccessRole: RoleNames.AllowAnon,
+        maxFileBytes: AppData.MaxArtifactSize),
+    new UploadLocation("avatars", appFs, allowExtensions: FileExt.WebImages, 
+        // Use unique URL to invalidate CDN caches
+        resolvePath: ctx => X.Map((CustomUserSession)ctx.Session, x => $"/avatars/{x.RefIdStr[..2]}/{x.RefIdStr}/{ctx.FileName}")!,
+        maxFileBytes: AppData.MaxAvatarSize,
+        transformFile: ImageDetails.TransformAvatarAsync)
+    ));
+```
+
+It utilizes the new **transformFile:** option to transform an uploaded file and save a reference to the transformed file instead. This is used to only save a reference to the **128x128** resized avatar used by the App, whilst still persisting the original uploaded image in a [Background MQ](/background-mq) task in case a higher resolution of their avatar is needed later.
+
+```csharp
+public class ImageDetails
+{
+    public static async Task<IHttpFile?> TransformAvatarAsync(FilesUploadContext ctx)
+    {
+        var originalMs = await ctx.File.InputStream.CopyToNewMemoryStreamAsync();
+
+        // Offload persistance of original image to background task
+        using var mqClient = HostContext.AppHost.GetMessageProducer(ctx.Request);
+        mqClient.Publish(new DiskTasks {
+            SaveFile = new() {
+                FilePath = ctx.Location.ResolvePath(ctx),
+                Stream = originalMs,
+            }
+        });
+
+        var resizedMs = await CropAndResizeAsync(originalMs, 128, 128, PngFormat.Instance);
+
+        return new HttpFile(ctx.File)
+        {
+            FileName = $"{ctx.FileName.LastLeftPart('.')}_128.{ctx.File.FileName.LastRightPart('.')}",
+            ContentLength = resizedMs.Length,
+            InputStream = resizedMs,
+        };
+    }
+
+    public static async Task<MemoryStream> CropAndResizeAsync(Stream inStream, int width, int height, IImageFormat format)
+    {
+        var outStream = new MemoryStream();
+        var image = await Image.LoadAsync(inStream);
+        using (image)
+        {
+            var clone = image.Clone(context => context
+                .Resize(new ResizeOptions {
+                    Mode = ResizeMode.Crop,
+                    Size = new Size(width, height),
+                }));
+            await clone.SaveAsync(outStream, format);
+        }
+        outStream.Position = 0;
+        return outStream;
+    }
+}
+```

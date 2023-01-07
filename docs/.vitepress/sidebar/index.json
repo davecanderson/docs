@@ -777,6 +777,35 @@
     ]
   },
   {
+    "text": "Blazor",
+    "children": [
+      {
+        "text": "Blazor WASM Tailwind",
+        "link": "/templates-blazor-tailwind"
+      },
+      {
+        "text": "Blazor Server Tailwind",
+        "link": "/templates-blazor-server"
+      },
+      {
+        "text": "Blazor WASM Bootstrap",
+        "link": "/templates-blazor"
+      },
+      {
+        "text": "Blazor Components",
+        "link": "/templates-blazor-components"
+      },
+      {
+        "text": "Blazor Diffusion",
+        "link": "/blazor-diffusion"
+      },
+      {
+        "text": "File Blazor Demo",
+        "link": "/locode/files-blazor"
+      }
+    ]
+  },
+  {
     "text": "Java",
     "children": [
       {
