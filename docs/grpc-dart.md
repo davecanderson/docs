@@ -5,9 +5,8 @@ title: gRPC protoc Dart Client
 
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/grpc/dart.png)](https://youtu.be/fDARSMNlt50)
 
-::: info YouTube
-[youtu.be/fDARSMNlt50](https://youtu.be/fDARSMNlt50)
-:::
+
+<iframe class="video-hd" src="https://www.youtube.com/embed/UQlYodNS1xc" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 ## Dart protoc generated GrpcServiceClient TodoWorld Example
 

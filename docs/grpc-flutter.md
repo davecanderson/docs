@@ -5,9 +5,7 @@ title: gRPC protoc Flutter Dart Client
 
 [![](https://raw.githubusercontent.com/NetCoreApps/todo-world/master/src/TodoWorld/wwwroot/assets/img/flutter/flutter-grpc-ssl.png)](https://youtu.be/t83gDzEGpac)
 
-::: info YouTube
-[youtu.be/t83gDzEGpac](https://youtu.be/t83gDzEGpac)
-:::
+<iframe class="video-hd" src="https://www.youtube.com/embed/UQlYodNS1xc" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 ## Flutter protoc generated GrpcServiceClient Example
 
