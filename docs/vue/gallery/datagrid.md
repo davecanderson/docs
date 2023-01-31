@@ -204,6 +204,42 @@ function rowSelected(row:string) {
 
 <DataGrid :items="tracks" :tableStyle="['uppercaseHeadings', 'fullWidth', 'verticalLines']" />
 
+<h2 id="formatters" class="mt-8 mb-4 text-2xl font-semibold text-gray-900 dark:text-gray-100">
+    Using Formatters
+</h2>
+
+Your custom templates can also utilize @servicestack/vue's built-in formatting functions:
+
+```js
+import { useFormatters } from '@servicestack/vue'
+
+const {
+    formatValue,         // Format any value or object graph
+    currency,            // Format number as Currency
+    bytes,               // Format number in human readable disk size
+    link,                // Format URL as <a> link
+    linkTel,             // Format Phone Number as <a> tel: link
+    linkMailTo,          // Format email as <a> mailto: link
+    icon,                // Format Image URL as an Icon
+    iconRounded,         // Format Image URL as a full rounded Icon
+    attachment,          // Format File attachment URL as an Attachment
+    hidden,              // Format as empty string
+    time,                // Format duration in time format
+    relativeTime,        // Format Date as Relative Time from now
+    relativeTimeFromMs,  // Format time in ms as Relative Time from now
+    formatDate,          // Format as Date
+    formatNumber,        // Format as Number
+} = useFormatters()
+```
+
+Many of these formatting functions will return rich HTML markup which will need to be rendered using Vue's **v-html** directive:
+
+```html
+<span v-html="formatValue(value)"></span>
+```
+
+See <TextLink href="/vue/use-formatters">useFormatters docs</TextLink> for more info.
+
 <h2 id="app-metadata" class="mt-8 mb-4 text-2xl font-semibold text-gray-900 dark:text-gray-100">
     Using App Metadata
 </h2>
@@ -253,9 +289,9 @@ public class Booking
 <p class="my-4 text-lg">
     Declaratively annotating your DTOs with preferred formatting hints makes this rich metadata information available to clients where
     it's used to enhance ServiceStack's Auto components available in ServiceStack's
-    <a class="font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="/api-explorer">API Explorer</a>, 
-    <a class="font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="/locode/">Locode</a> and 
-    <a class="font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="/templates-blazor-components">Blazor Tailwind Components</a>.
+    <TextLink href="/api-explorer">API Explorer</TextLink>, 
+    <TextLink href="/locode/">Locode</TextLink> and 
+    <TextLink href="/templates-blazor-components">Blazor Tailwind Components</TextLink>.
 </p>
 
 </div>
