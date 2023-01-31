@@ -105,3 +105,54 @@
 .archive-url {
   text-decoration: none !important;
 }
+
+.not-prose h2, .not-prose h3 {
+  border-width: 0;
+}
+.not-prose table {
+  display: table;
+  margin: 0;
+  text-indent: 0; /* 1 */
+  border-color: inherit; /* 2 */
+  border-collapse: collapse; /* 3 */
+}
+.not-prose td {
+  border-width: 0px;
+}
+.not-prose .border-gray-200 li {
+  --tw-border-opacity: 1;
+  border-color: rgb(229 231 235 / var(--tw-border-opacity));
+}
+.not-prose .divide-y li {
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+}
+.not-prose .divide-y > li {
+  border-top-width: 0;
+  border-bottom-width: 0;
+}
+.not-prose .border-t {
+  border-top-style: solid;
+  border-top-width: 1px;
+}
+.not-prose .border-b {
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+}
+.not-prose h1, .not-prose h2, .not-prose h3, .not-prose h4, .not-prose h5, .not-prose p, .not-prose li {
+  margin:0;
+}
+.not-prose a:not(.text-gray-400,.text-gray-500), .not-prose a:hover {
+  text-decoration: none;
+  color: unset
+}
+.not-prose ol, .not-prose ul {
+  list-style: none;
+  margin:0;
+  padding-left:0;
+}
+.not-prose audio, .not-prose canvas, .not-prose embed, .not-prose iframe, .not-prose img, .not-prose object, .not-prose svg, .not-prose video {
+  display: block;
+}

@@ -5,7 +5,8 @@ module.exports = {
     './docs/.vitepress/**/*.ts',
     './docs/src/**/*.vue',
     './docs/src/**/*.html',
-    './docs/**/*.md'
+    './docs/**/*.md',
+    './node_modules/@servicestack/vue/dist/servicestack-vue.min.mjs'
   ],
   theme: {
     extend: {

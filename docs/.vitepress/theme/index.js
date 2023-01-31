@@ -12,6 +12,10 @@ import ServerLoginUis from '../../src/components/ServerLoginUis.vue'
 import ServerContactUis from '../../src/components/ServerContactsUis.vue'
 import HelloApi from "../../src/components/HelloApi.vue";
 
+import { JsonApiClient } from '@servicestack/client'
+import ServiceStackVue, { useConfig } from '@servicestack/vue'
+
+
 import './custom.css'
 
 import Layout from './Layout.vue';
@@ -36,6 +40,18 @@ export default {
                 el.focus()
             }
         })
+
+        const BaseUrl = 'https://blazor-gallery-api.jamstacks.net'
+        app.provide('client', JsonApiClient.create(BaseUrl))
+        app.use(ServiceStackVue)
+        
+        const { setConfig } = useConfig()
+        setConfig({
+            assetsPathResolver(src) {
+                return src.startsWith('/') ? BaseUrl + src : src
+            }
+        })
+
 
         // Only run this on the client. Not during build.
         if (typeof window !== 'undefined' && window.ga) {
