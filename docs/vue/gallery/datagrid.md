@@ -241,13 +241,21 @@ public class Booking
 ```
 
 <p class="my-4 text-lg">
-    Which can be enabled by specifying the <code>MetadataType</code> for the results:
+    Which can be enabled by specifying the <code>MetadataType</code> for the DataGrid's results:
 </p>
+
+```html
+<DataGrid :items="bookings" type="Booking" />
+```
 
 <DataGrid :items="bookings" type="Booking" />
 
 <p class="my-4 text-lg">
-    This approach has many benefits
+    Declaratively annotating your DTOs with preferred formatting hints makes this rich metadata information available to clients where
+    it's used to enhance ServiceStack's Auto components available in ServiceStack's
+    <a class="font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="/api-explorer">API Explorer</a>, 
+    <a class="font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="/locode/">Locode</a> and 
+    <a class="font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="/templates-blazor-components">Blazor Tailwind Components</a>.
 </p>
 
 </div>
