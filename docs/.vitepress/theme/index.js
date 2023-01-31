@@ -13,7 +13,7 @@ import ServerContactUis from '../../src/components/ServerContactsUis.vue'
 import HelloApi from "../../src/components/HelloApi.vue";
 
 import { JsonApiClient } from '@servicestack/client'
-import ServiceStackVue, { useConfig } from '@servicestack/vue'
+import ServiceStackVue, { RouterLink, useConfig } from '@servicestack/vue'
 
 
 import './custom.css'
@@ -43,6 +43,7 @@ export default {
 
         const BaseUrl = 'https://blazor-gallery-api.jamstacks.net'
         app.provide('client', JsonApiClient.create(BaseUrl))
+        app.component('RouterLink', RouterLink)
         app.use(ServiceStackVue)
         
         const { setConfig } = useConfig()

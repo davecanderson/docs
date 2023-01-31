@@ -5,7 +5,7 @@
   "license": "MIT",
   "devDependencies": {
     "@iconify/vue": "^4.0.0",
-    "@servicestack/client": "^2.0.2",
+    "@servicestack/client": "^2.0.5",
     "autoprefixer": "^10.4.12",
     "gray-matter": "^4.0.3",
     "markdown-it-container": "^3.0.0",
@@ -16,7 +16,7 @@
   },
   "scripts": {
     "postinstall": "node postinstall.js",
-    "docs:dev": "vitepress dev docs",
+    "docs:dev": "vitepress dev docs --port 3000",
     "docs:build": "vitepress build docs",
     "docs:build-mpa": "vitepress build --mpa docs #gens static .html with no js, but broken now",
     "docs:serve": "vitepress serve docs"
@@ -28,7 +28,7 @@
     }
   },
   "dependencies": {
-    "@servicestack/vue": "^3.0.23",
+    "@servicestack/vue": "^3.0.26",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/typography": "^0.5.9",
     "glob": "^8.0.3",

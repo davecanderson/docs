@@ -35,6 +35,7 @@ let copy = ({cls,box,icon,txt}) => ({
 module.exports = {
     title: 'Documentation',
     description: 'ServiceStack Docs',
+    cleanUrls: true,
     themeConfig: {
         repo: 'ServiceStack/docs',
         docsDir: 'docs',

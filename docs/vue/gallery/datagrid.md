@@ -6,7 +6,6 @@ title: DataGrid Component
 
 <script setup>
 import { Icon } from "@iconify/vue"
-import VueComponentGallery from "../../src/components/VueComponentGallery.vue"
 import ApiReference from "../../src/components/ApiReference.vue"
 import Default from "../../src/gallery/datagrid/Default.vue"
 import Custom from "../../src/gallery/datagrid/Custom.vue"
@@ -20,10 +19,6 @@ const { load } = useAppMetadata()
 load(metadata)
 </script>
 
-<style>
-b { font-weight:600 !important }
-</style>
-
 <div>
 
 <Breadcrumbs class="mt-4" home-href="/vue/">
@@ -31,7 +26,7 @@ b { font-weight:600 !important }
   <Breadcrumb>DataGrid Examples</Breadcrumb>
 </Breadcrumbs>
 
-<ApiReference class="pt-16" Component="DataGrid<Model>">Default</ApiReference>
+<ApiReference class="pt-8" Component="DataGrid<Model>">Default</ApiReference>
 
 <p class="mb-4 text-lg">
     In its most simple usage the DataGrid component can be used to render typed collections:
@@ -87,7 +82,7 @@ const tracks = [
 <Custom />
 
 <p class="my-4 text-lg">
-    Column names can be changed with a <b>header-titles</b> object, or dynamically with a custom <b>header-title</b> mapping function.
+    Column names can be changed with a <b>header-titles</b> alias mapping, or dynamically with a <b>header-title</b> mapping function.
 </p>
 
 <p class="my-4 text-lg">
@@ -96,8 +91,9 @@ const tracks = [
 </p>
 
 <p class="my-4 text-lg">
-    If any custom column or header definitions are provided, only those columns will be displayed. Alternatively the 
-    <code>selected-columns</code> array of column names can be used to control the number and order columns are displayed.
+    If any custom column or header definitions are provided, only those columns will be displayed. 
+    Alternatively specify an explicit array of column names in <b>selected-columns</b> 
+    to control the number and order or columns displayed.
 </p>
 
 
@@ -152,7 +148,7 @@ const { currency } = useFormatters()
 function headerSelected(column:string) {
     console.log('headerSelected',column)
 }
-function rowSelected(row:string) {
+function rowSelected(row:any) {
     console.log('rowSelected',row)
 }
 </script>
@@ -208,7 +204,7 @@ function rowSelected(row:string) {
     Using Formatters
 </h2>
 
-Your custom templates can also utilize @servicestack/vue's built-in formatting functions:
+Your custom templates can also utilize @servicestack/vue's built-in formatting functions from:
 
 ```js
 import { useFormatters } from '@servicestack/vue'
@@ -277,7 +273,7 @@ public class Booking
 ```
 
 <p class="my-4 text-lg">
-    Which can be enabled by specifying the <code>MetadataType</code> for the DataGrid's results:
+    Which can be enabled by specifying the <code>MetadataType</code> for the DataGrid's results in <b>type</b>:
 </p>
 
 ```html
@@ -288,7 +284,7 @@ public class Booking
 
 <p class="my-4 text-lg">
     Declaratively annotating your DTOs with preferred formatting hints makes this rich metadata information available to clients where
-    it's used to enhance ServiceStack's Auto components available in ServiceStack's
+    it's used to enhance ServiceStack's built-in UI's and Components like
     <TextLink href="/api-explorer">API Explorer</TextLink>, 
     <TextLink href="/locode/">Locode</TextLink> and 
     <TextLink href="/templates-blazor-components">Blazor Tailwind Components</TextLink>.
