@@ -9,7 +9,7 @@ import VueComponentGallery from "../src/components/VueComponentGallery.vue"
 </script>
 
 
-@serviceStack/vue is a component library for Vue.js and Tailwind CSS offering a wide range of beautifully designed, highly productive components that can be easily customized to fit into Tailwind's expert design system whose deep integration 
+**@servicestack/vue** is a component library for Vue.js and Tailwind CSS offering a wide range of beautifully designed, highly productive components that can be easily customized to fit into Tailwind's expert design system whose deep integration 
 with your ServiceStack APIs unlocks unprecedented productivity. With a focus on performance, accessibility and modern design, this library is the perfect choice for developers looking to rapidly develop fast, beautiful modern Vue.js Web Apps.
 
 <div class="mt-16 mx-auto flex justify-center">
