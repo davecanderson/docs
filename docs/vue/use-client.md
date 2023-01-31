@@ -71,7 +71,7 @@ as done above.
 
 #### Explicit Error Handling
 
-This populated `ResponseStatus` DTO can either be manually passed into each component's **status** property as done in [/Todos](/TodoMvc):
+This populated `ResponseStatus` DTO can either be manually passed into each component's **status** property as done in [/Todos](https://vue-mjs.web-templates.io/TodoMvc):
 
 ```html
 <template id="TodoMvc-template">
@@ -113,7 +113,7 @@ let store = {
 #### Implicit Error Handling
 
 More often you'll want to take advantage of the implicit validation support in `useClient()` which makes its state available to child
-components, alleviating the need to explicitly pass it in each component as seen in the [/Contacts](/Contacts) `Edit` component
+components, alleviating the need to explicitly pass it in each component as seen in the [/Contacts](https://vue-mjs.web-templates.io/Contacts) `Edit` component
 which doesn't do any manual error handling:
 
 ```js
