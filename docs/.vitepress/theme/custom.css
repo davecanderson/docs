@@ -109,6 +109,9 @@
 .not-prose h2, .not-prose h3 {
   border-width: 0;
 }
+.not-prose a:hover {
+  text-decoration: none;
+}
 .not-prose table {
   display: table;
   margin: 0;

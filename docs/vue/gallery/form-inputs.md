@@ -27,7 +27,7 @@ load(metadata)
   <Breadcrumb>Form Input Examples</Breadcrumb>
 </Breadcrumbs>
 
-<ApiReference Component="TextInput">Bookings Form</ApiReference>
+<ApiReference component="TextInput">Bookings Form</ApiReference>
 
 <p class="mb-4 text-lg">
     The <code>TextInput</code>, <code>SelectInput</code>, <code>CheckboxInput</code> and <code>TextAreaInput</code> contains the most popular
@@ -138,7 +138,7 @@ const close = () => emit('done')
     to populate select drop downs from C# enums.
 </p>
 
-<ApiReference Component="Autocomplete">Autocomplete</ApiReference>
+<ApiReference component="Autocomplete">Autocomplete</ApiReference>
 
 <p class="mb-4 text-lg">
     The <code>Autocomplete</code> component provides a user friendly Input for being able to search and quickly select items
@@ -232,7 +232,7 @@ const contacts = ref<any[]>([])
 
 <AutocompleteExamples class="max-w-prose" />
 
-<ApiReference Component="TagInput">TagInput</ApiReference>
+<ApiReference component="TagInput">TagInput</ApiReference>
 
 <p class="mb-4 text-lg">
     The <code>TagInput</code> component provides a user friendly control for managing a free-form <code>List&lt;string&gt;</code> tags or symbols
@@ -290,7 +290,7 @@ public class UpdateContact : IPatchDb<Contact>, IReturn<Contact>
     Or you can use the <code>&lt;TagInput/&gt;</code> Input component directly in Custom Forms, e.g:
 </p>
 
-<ApiReference Component="TagInput">Custom Form</ApiReference>
+<ApiReference component="TagInput">Custom Form</ApiReference>
 
 <TagInputExamples class="max-w-screen-md" />
 
@@ -302,22 +302,17 @@ public class UpdateContact : IPatchDb<Contact>, IReturn<Contact>
                 <legend class="text-base font-medium text-gray-900 dark:text-gray-100 text-center mb-4">
                     TagInput Examples
                 </legend>
-
                 <ErrorSummary :except="visibleFields" />
-
                 <div class="grid grid-cols-12 gap-6">
                     <div class="col-span-6">
                         <TextInput v-model="request.firstName" />
                     </div>
-
                     <div class="col-span-6">
                         <TextInput v-model="request.lastName" />
                     </div>
-
                     <div class="col-span-12">
                         <TagInput v-model="request.skills" label="Technology Skills" />
                     </div>
-
                 </div>
             </fieldset>
         </div>

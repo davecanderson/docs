@@ -56,7 +56,7 @@ const show = ref(false)
     <AutoCreateForm class="mx-auto max-w-3xl" type="CreateBooking" formStyle="card" />
 </div>
 
-<ApiReference Component="AutoEditForm">Edit Form</ApiReference>
+<ApiReference component="AutoEditForm">Edit Form</ApiReference>
 
 <p class="mb-4 text-lg">
     <code>AutoEditForm</code> can be used to render an automated form based on update and delete
@@ -134,7 +134,7 @@ Where they can be used to customize Auto Form's appearance from annotations on C
 
 <AutoEditForm class="mx-auto max-w-3xl" v-model="booking" formStyle="card" type="UpdateBooking" deleteType="DeleteBooking" />
 
-<ApiReference Component="AutoFormFields">Form Fields</ApiReference>
+<ApiReference component="AutoFormFields">Form Fields</ApiReference>
 
 <p class="mb-4 text-lg">
     For more advanced customization of a Forms appearance and behavior, <code>AutoFormFields</code> can be used to just render the Form's fields (with validation binding) inside a custom Form which can submit the data-bound populated Request DTO to invoke the API, e.g:
