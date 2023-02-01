@@ -12,7 +12,7 @@ export const Icons = {
 }
 
 export let allContacts = [   
-    [ "Alexis Kirlin", "/profiles/profile.jpg" ],
+    [ "Alexis Kirlin", "/profiles/1.jpg" ],
     [ "Alize Glover", "/profiles/2.jpg" ],
     [ "Damon Jakubowski", "/profiles/3.jpg" ],
     [ "Max O'Hara", "/profiles/4.jpg" ],
@@ -40,7 +40,15 @@ export let allContacts = [
     [ "Buster Block", "/profiles/reza-biazar-eSjmZW97cH8-unsplash.jpg" ],
     [ "Maggie Trantow", "/profiles/roman-holoschchuk-O-98kcPe0P8-unsplash.jpg" ],
     [ "Rogers Watsica", "/profiles/takashi-miyazaki-93-nUbomATA-unsplash.jpg" ],
-].map(c => ({ displayName:c[0], profileUrl:'https://blazor-gallery.servicestack.net' + c[1] }))
+].map(c => {
+
+    const displayName = c[0]
+    const firstName = displayName.split(' ')[0]
+    const lastName = displayName.split(' ')[1]
+    const email = `${firstName.toLowerCase()}@${lastName.toLowerCase()}@email.com`
+    const profileUrl = 'https://blazor-gallery.servicestack.net' + c[1]
+    return ({ displayName, firstName, lastName, email, profileUrl, skills:['servicestack','vue','c#'] })
+})
 
 export enum RoomType
 {
