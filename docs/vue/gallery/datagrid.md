@@ -13,6 +13,7 @@ import Responsive from "../../src/gallery/datagrid/Responsive.vue"
 import { tracks } from "../../src/gallery/data.ts"
 import metadata from "../../src/gallery/metadata.json"
 import bookings from "../../src/gallery/bookings.json"
+import Formatters from '../../.vitepress/includes/vue/formatters.md'
 
 import { useAppMetadata } from '@servicestack/vue'
 const { load } = useAppMetadata()
@@ -162,6 +163,10 @@ function rowSelected(row:any) {
     when a row is selected.
 </p>
 
+<Formatters />
+
+The <TextLink href="/vue/gallery/formats">PreviewFormat</TextLink> component also offers a variety of flexible formatting options.
+
 <h2 id="table-styles" class="mt-8 mb-4 text-2xl font-semibold text-gray-900 dark:text-gray-100">
     Table Styles
 </h2>
@@ -228,41 +233,8 @@ function rowSelected(row:any) {
 
 <DataGrid :items="tracks" :tableStyle="['uppercaseHeadings', 'fullWidth', 'verticalLines']" />
 
-<h2 id="formatters" class="mt-8 mb-4 text-2xl font-semibold text-gray-900 dark:text-gray-100">
-    Using Formatters
-</h2>
 
-Your custom templates can also utilize @servicestack/vue's built-in formatting functions from:
 
-```js
-import { useFormatters } from '@servicestack/vue'
-
-const {
-    formatValue,         // Format any value or object graph
-    currency,            // Format number as Currency
-    bytes,               // Format number in human readable disk size
-    link,                // Format URL as <a> link
-    linkTel,             // Format Phone Number as <a> tel: link
-    linkMailTo,          // Format email as <a> mailto: link
-    icon,                // Format Image URL as an Icon
-    iconRounded,         // Format Image URL as a full rounded Icon
-    attachment,          // Format File attachment URL as an Attachment
-    hidden,              // Format as empty string
-    time,                // Format duration in time format
-    relativeTime,        // Format Date as Relative Time from now
-    relativeTimeFromMs,  // Format time in ms as Relative Time from now
-    formatDate,          // Format as Date
-    formatNumber,        // Format as Number
-} = useFormatters()
-```
-
-Many of these formatting functions will return rich HTML markup which will need to be rendered using Vue's **v-html** directive:
-
-```html
-<span v-html="formatValue(value)"></span>
-```
-
-See <TextLink href="/vue/use-formatters">useFormatters docs</TextLink> for more info.
 
 <h2 id="app-metadata" class="mt-8 mb-4 text-2xl font-semibold text-gray-900 dark:text-gray-100">
     Using App Metadata

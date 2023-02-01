@@ -12,4 +12,6 @@ title: AutoQueryGrid Component
   <Breadcrumb>AutoQueryGrid Examples</Breadcrumb>
 </Breadcrumbs>
 
-<h3 class="my-16 text-3xl text-green-700">Watch this space, coming in ServiceStack v6.7!</h3>
+<h3 class="py-16 mt-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl">
+    Coming in ServiceStack v6.7 - Watch this space!
+</h3>
