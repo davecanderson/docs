@@ -21,7 +21,7 @@
                 <NavListItem title="Auto Forms" href="/vue/gallery/autoform" :iconSvg="Icons.AutoForms">
                     Render Auto Form UIs from a Request DTO class
                 </NavListItem>
-                <NavListItem title="Form Inputs" href="/vue/gallery/inputs" :iconSvg="Icons.FormInputs">
+                <NavListItem title="Form Inputs" href="/vue/gallery/form-inputs" :iconSvg="Icons.FormInputs">
                     Tailwind UI Input Components
                 </NavListItem>
                 <NavListItem title="Navigation" href="/vue/gallery/navigation" :iconSvg="Icons.Navigation">

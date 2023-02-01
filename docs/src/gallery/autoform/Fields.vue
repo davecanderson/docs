@@ -27,9 +27,10 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import { ApiResponse } from '@servicestack/client'
-import { useClient } from '@servicestack/vue'
+import { useClient, useAppMetadata } from '@servicestack/vue'
 import { QueryBookings, UpdateBooking } from '../dtos'
 
+const { toFormValues } = useAppMetadata()
 const client = useClient()
 
 let api = ref<ApiResponse>()
@@ -42,8 +43,7 @@ async function submit(e:Event) {
 onMounted(async () => {
     let api = await client.api(new QueryBookings({ id: 1 }))
     if (api.succeeded) {
-        const booking = api.response!.results[0]
-        request.value = new UpdateBooking(booking)
+        request.value = new UpdateBooking(toFormValues(api.response!.results[0]))
     }
 })
 </script>

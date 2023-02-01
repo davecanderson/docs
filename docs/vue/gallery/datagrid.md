@@ -174,29 +174,57 @@ function rowSelected(row:any) {
 
 <h3 class="my-4 text-lg font-semibold">Default (Striped Rows)</h3>
 
+```html
+<DataGrid :items="tracks" />
+```
+
 <DataGrid :items="tracks" />
 
 <h3 class="my-4 text-lg font-semibold">Simple</h3>
+
+```html
+<DataGrid :items="tracks" tableStyle="simple" />
+```
 
 <DataGrid :items="tracks" tableStyle="simple" />
 
 <h3 class="my-4 text-lg font-semibold">Uppercase Headings</h3>
 
+```html
+<DataGrid :items="tracks" tableStyle="uppercaseHeadings" />
+```
+
 <DataGrid :items="tracks" tableStyle="uppercaseHeadings" />
 
 <h3 class="my-4 text-lg font-semibold">Vertical Lines</h3>
+
+```html
+<DataGrid :items="tracks" tableStyle="verticalLines" />
+```
 
 <DataGrid :items="tracks" tableStyle="verticalLines" />
 
 <h3 class="my-4 text-lg font-semibold">White Background</h3>
 
+```html
+<DataGrid :items="tracks" tableStyle="whiteBackground" />
+```
+
 <DataGrid :items="tracks" tableStyle="whiteBackground" />
 
 <h3 class="my-4 text-lg font-semibold">Full Width</h3>
 
+```html
+<DataGrid :items="tracks" tableStyle="fullWidth" />
+```
+
 <DataGrid :items="tracks" tableStyle="fullWidth" />
 
 <h3 class="my-4 text-lg font-semibold">Full Width, Uppercase with Vertical Lines</h3>
+
+```html
+<DataGrid :items="tracks" :tableStyle="['uppercaseHeadings', 'fullWidth', 'verticalLines']" />
+```
 
 <DataGrid :items="tracks" :tableStyle="['uppercaseHeadings', 'fullWidth', 'verticalLines']" />
 
