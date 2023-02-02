@@ -18,8 +18,8 @@ import { useAppMetadata } from '@servicestack/vue'
 
 const contact = allContacts[0]
 
-const { load } = useAppMetadata()
-load(metadata)
+const { setMetadata } = useAppMetadata()
+setMetadata(metadata)
 </script>
 
 <Breadcrumbs class="mt-4" home-href="/vue/">

@@ -13,9 +13,8 @@ import metadata from "../../src/gallery/metadata.json"
 import { bookings } from "../../src/gallery/data.ts"
 
 import { useAppMetadata, useUtils } from '@servicestack/vue'
-const { load } = useAppMetadata()
-const { sanitizeForUi } = useUtils()
-load(metadata)
+const { setMetadata } = useAppMetadata()
+setMetadata(metadata)
 
 const booking = bookings[0]
 const show = ref(false)

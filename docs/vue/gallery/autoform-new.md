@@ -9,8 +9,8 @@ import ApiReference from "../../src/components/ApiReference.vue"
 import metadata from "../../src/gallery/metadata.json"
 
 import { useAppMetadata } from '@servicestack/vue'
-const { load } = useAppMetadata()
-load(metadata)
+const { setMetadata } = useAppMetadata()
+setMetadata(metadata)
 
 const show = ref(true)
 </script>
