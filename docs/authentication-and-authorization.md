@@ -220,6 +220,16 @@ Plugins.Add(new AuthFeature(() => new AuthUserSession(), new IAuthProvider[] {
 The Callback URL in each Application should match the CallbackUrl for your application which is typically: http://yourhostname.com/auth/{Provider}, e.g. http://yourhostname.com/auth/twitter for Twitter.
 :::
 
+### Allowing External Redirects
+
+External Redirects used in the `?continue` params of `/auth` requests are disabled by default, they can be re-enabled with:
+
+```csharp
+new AuthFeature(...) {
+    ValidateRedirectLinks = AuthFeature.AllowAllRedirects 
+}
+```
+
 ### Auth Repository
 
 ServiceStack supports managing Users in multiple data stores via its [Auth Repository](/auth-repository) abstraction and built-in providers.
