@@ -20,18 +20,14 @@ const { setMetadata } = useAppMetadata()
 setMetadata(metadata)
 </script>
 
-<div>
-
-<Breadcrumbs class="mt-4" home-href="/vue/">
+<Breadcrumbs class="not-prose mt-4" home-href="/vue/">
   <Breadcrumb href="/vue/gallery/">gallery</Breadcrumb>
   <Breadcrumb>DataGrid Examples</Breadcrumb>
 </Breadcrumbs>
 
-<ApiReference class="pt-8" Component="DataGrid<Model>">Default</ApiReference>
+<ApiReference Component="DataGrid<Model>">Default</ApiReference>
 
-<p class="mb-4 text-lg">
-    In its most simple usage the DataGrid component can be used to render typed collections:
-</p>
+In its most simple usage the DataGrid component can be used to render typed collections:
 
 ```html
 <DataGrid :items="tracks" />
@@ -46,15 +42,11 @@ const tracks = [
 </script>
 ```
 
-<p class="mb-4 text-lg">
-    Which by default will display all object properties:
-</p>
+Which by default will display all object properties:
 
-<DataGrid :items="tracks" />
+<DataGrid :items="tracks" class="mb-4" />
 
-<p class="my-4 text-lg">
-    Use <b>selected-columns</b> to control which columns to display and <b>header-titles</b> to use different column names:
-</p>
+Use **selected-columns** to control which columns to display and **header-titles** to use different column names:
 
 ```html
 <DataGrid :items="tracks" :selected-columns="['year','album','name','artist']" :header-titles="{ name:'Track' }" />
@@ -65,9 +57,7 @@ const tracks = [
   Simple Customizations
 </h2>
 
-<p class="mb-4 text-lg">
-  Which columns are shown and how they're rendered is customizable with custom <code>&lt;template #column&gt;</code> definitions:
-</p>
+Which columns are shown and how they're rendered is customizable with custom `<template #column>` definitions:
 
 ```html
 <DataGrid :items="forecasts" class="max-w-screen-md" ::tableStyle="['stripedRows','uppercaseHeadings']"
@@ -89,34 +79,25 @@ const tracks = [
 
 ```
 
-<Custom />
+<Custom class="mb-4" />
 
-<p class="my-4 text-lg">
-    Column names can be changed with a <b>header-titles</b> alias mapping, or dynamically with a <b>header-title</b> mapping function.
-</p>
+Column names can be changed with a **header-titles** alias mapping, or dynamically with a **header-title** mapping function.
 
-<p class="my-4 text-lg">
-    Alternatively for more advanced customizations, custom <code>&lt;template #column-header&gt;</code> definitions can be used 
-    to control how column headers are rendered.
-</p>
+Alternatively for more advanced customizations, custom `<template #column-header>` definitions can be used 
+to control how column headers are rendered.
 
-<p class="my-4 text-lg">
-    If any custom column or header definitions are provided, only those columns will be displayed. 
-    Alternatively specify an explicit array of column names in <b>selected-columns</b> 
-    to control the number and order or columns displayed.
-</p>
+If any custom column or header definitions are provided, only those columns will be displayed. 
+Alternatively specify an explicit array of column names in **selected-columns**
+to control the number and order or columns displayed.
 
-
-<h2 class="pt-8 mb-4 text-2xl font-semibold text-gray-900 dark:text-gray-100">
+<h2 class="pt-4 mb-4 text-2xl font-semibold text-gray-900 dark:text-gray-100">
     Responsive
 </h2>
 
-<p class="mb-4 text-lg">
-    A more advanced example showing how to implement a responsive datagrid defining what columns and Headers
-    are visible at different screen sizes using <b>visible-from</b> to specify which columns to show 
-    from different Tailwind responsive breakpoints and <code>&lt;template #column-header&gt;</code> definitions to 
-    collapse column names at small screen sizes:
-</p>
+A more advanced example showing how to implement a responsive datagrid defining what columns and Headers
+are visible at different screen sizes using **visible-from** to specify which columns to show 
+from different Tailwind responsive breakpoints and `<template #column-header>` definitions to 
+collapse column names at small screen sizes:
 
 ```html
 <template>
@@ -172,27 +153,22 @@ function rowSelected(row:Booking) {
 </script>
 ```
 
-<Responsive />
+<Responsive class="mb-4" />
 
-<p class="my-4 text-lg">
-    Behavior of the DataGrid can be customized with the <code>@header-selected</code> event to handle when column headers are selected to 
-    apply custom filtering to the <b>items</b> data source whilst the <code>@row-selected</code> event can be used to apply custom behavior 
-    when a row is selected.
-</p>
+Behavior of the DataGrid can be customized with the `@header-selected` event to handle when column headers are selected to 
+apply custom filtering to the **items** data source whilst the `@row-selected` event can be used to apply custom behavior 
+when a row is selected.
 
 <Formatters />
 
-The <TextLink href="/vue/gallery/formats">PreviewFormat</TextLink> component also offers a variety of flexible formatting options.
+The [PreviewFormat](/vue/gallery/formats) component also offers a variety of flexible formatting options.
 
 <h2 id="table-styles" class="mt-8 mb-4 text-2xl font-semibold text-gray-900 dark:text-gray-100">
     Table Styles
 </h2>
 
-<p class="mb-4 text-lg">
-    The appearance of DataGrids can use <b>tableStyles</b> to change to different
-    <TextLink href="https://tailwindui.com/components/application-ui/lists/tables">Tailwind Table Styles</TextLink>, e.g:
-</p>
-
+The appearance of DataGrids can use **tableStyles** to change to different
+[Tailwind Table Styles](https://tailwindui.com/components/application-ui/lists/tables), e.g:
 
 <h3 class="my-4 text-lg font-semibold">Default (Striped Rows)</h3>
 
@@ -252,22 +228,20 @@ The <TextLink href="/vue/gallery/formats">PreviewFormat</TextLink> component als
 
 
 
-
 <h2 id="app-metadata" class="mt-8 mb-4 text-2xl font-semibold text-gray-900 dark:text-gray-100">
     Using App Metadata
 </h2>
 
-<p class="my-4 text-lg">
-    By default DataGrid will render values using its default configured formatters, so results with strings, numbers and defaults
-    will display a stock standard resultset:
-</p>
+By default DataGrid will render values using its default configured formatters, so results with strings, numbers and defaults
+will display a stock standard resultset:
 
+```html
 <DataGrid :items="bookings" />
+```
+<DataGrid :items="bookings" class="mb-4" />
 
-<p class="my-4 text-lg">
-    Another option for formatting this dataset is to use the rich <a href="/locode/formatters">format functions</a> in ServiceStack
-    to annotate the DTOs with how each field should be formatted, e.g:
-</p>
+Another option for formatting this dataset is to use the rich [format functions](/locode/formatters) in ServiceStack
+to annotate the DTOs with how each field should be formatted, e.g:
 
 ```csharp
 public class Booking
@@ -289,22 +263,18 @@ public class Booking
 }
 ```
 
-<p class="my-4 text-lg">
-    Which can be enabled by specifying the <code>MetadataType</code> for the DataGrid's results in <b>type</b>:
-</p>
+Which can be enabled by specifying the `MetadataType` for the DataGrid's results in **type**:
 
 ```html
 <DataGrid :items="bookings" type="Booking" />
 ```
 
-<DataGrid :items="bookings" type="Booking" />
+<DataGrid :items="bookings" type="Booking" class="mb-4" />
 
-<p class="my-4 text-lg">
-    Declaratively annotating your DTOs with preferred formatting hints makes this rich metadata information available to clients where
-    it's used to enhance ServiceStack's built-in UI's and Components like
-    <TextLink href="/api-explorer">API Explorer</TextLink>, 
-    <TextLink href="/locode/">Locode</TextLink> and 
-    <TextLink href="/templates-blazor-components">Blazor Tailwind Components</TextLink>.
-</p>
+Declaratively annotating your DTOs with preferred formatting hints makes this rich metadata information available to clients where
+it's used to enhance ServiceStack's built-in UI's and Components like:
 
-</div>
+ - [API Explorer](/api-explorer)
+ - [Locode](/locode/)
+ - [Blazor Tailwind Components](/templates-blazor-components)
+

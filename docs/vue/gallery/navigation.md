@@ -12,16 +12,14 @@ import NavListExamples from "../../src/gallery/navigation/NavListExamples.vue"
 const say = msg => alert(msg)
 </script>
 
-<Breadcrumbs class="mt-4" home-href="/vue/">
+<Breadcrumbs class="not-prose mt-4" home-href="/vue/">
   <Breadcrumb href="/vue/gallery/">gallery</Breadcrumb>
   <Breadcrumb>Navigation Examples</Breadcrumb>
 </Breadcrumbs>
 
 <ApiReference component="Breadcrumbs">Breadcrumbs</ApiReference>
 
-<p class="mb-4 text-lg">
-    Breadcrumb example:
-</p>
+Breadcrumb example:
 
 ```html
 <Breadcrumbs home-href="/vue/">
@@ -30,16 +28,14 @@ const say = msg => alert(msg)
 </Breadcrumbs>
 ```
 
-<Breadcrumbs class="my-8" home-href="/vue/">
+<Breadcrumbs class="not-prose my-8" home-href="/vue/">
   <Breadcrumb href="/vue/gallery/">gallery</Breadcrumb>
   <Breadcrumb>Navigation Examples</Breadcrumb>
 </Breadcrumbs>
 
 <ApiReference component="NavList">NavList</ApiReference>
 
-<p class="mb-4 text-lg">
-    Use <code>NavList</code> for rendering a vertical navigation list with Icons:
-</p>
+Use `NavList` for rendering a vertical navigation list with Icons:
 
 ```html
 <NavList title="Explore Vue Tailwind Components">
@@ -58,9 +54,7 @@ const say = msg => alert(msg)
 
 <ApiReference component="PrimaryButton">Link Buttons</ApiReference>
 
-<p class="mb-4 text-lg">
-    Using <code>href</code> with Button components will style hyper links to behave like buttons:
-</p>
+Using `href` with Button components will style hyper links to behave like buttons:
 
 ```html
 <PrimaryButton href="https://vue-mjs.web-templates.io/" class="mr-2">
@@ -77,9 +71,7 @@ const say = msg => alert(msg)
     <SecondaryButton href="/vue/">Vue Component Docs</SecondaryButton>
 </div>
 
-<p class="my-4 text-lg">
-    That can use <b>color</b> to render it in different colors:
-</p>
+That can use **color** to render it in different colors:
 
 ```html
 <PrimaryButton>Default</PrimaryButton>
@@ -105,9 +97,7 @@ const say = msg => alert(msg)
 
 <ApiReference component="TextLink">TextLink</ApiReference>
 
-<p class="mb-4 text-lg">
-    Tailwind <code>&lt;a&gt;</code> hyper links, e.g:
-</p>
+Tailwind `<a>` hyper links, e.g:
 
 ```html
 <TextLink href="https://docs.servicestack.net/vue/" class="text-xl">
@@ -117,9 +107,7 @@ const say = msg => alert(msg)
 
 <TextLink href="https://docs.servicestack.net/vue/" class="text-xl">docs.servicestack.net/vue</TextLink>
 
-<p class="my-4 text-lg">
-    That can also use <b>color</b> to render it in different colors:
-</p>
+That can also use **color** to render it in different colors:
 
 ```html
 <TextLink @click="say('Hi!')" title="Greetings">Default <b>Link</b></TextLink>
@@ -131,7 +119,7 @@ const say = msg => alert(msg)
 <TextLink color="indigo" href="https://google.com" target="_blank" title="Google Link">Indigo <b>Link</b></TextLink>
 ```
 
-<div class="flex space-x-4">
+<div class="not-prose flex space-x-4">
   <TextLink @click="say('Hi!')" title="Greetings">Default <b>Link</b></TextLink>
   <TextLink color="purple" href="https://google.com" target="_blank" title="Google Link">Purple <b>Link</b></TextLink>
   <TextLink color="red"    href="https://google.com" target="_blank" title="Google Link">Red <b>Link</b></TextLink>
@@ -140,4 +128,3 @@ const say = msg => alert(msg)
   <TextLink color="cyan"   href="https://google.com" target="_blank" title="Google Link">Cyan <b>Link</b></TextLink>
   <TextLink color="indigo" href="https://google.com" target="_blank" title="Google Link">Indigo <b>Link</b></TextLink>
 </div>
-

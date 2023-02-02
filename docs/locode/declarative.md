@@ -3,12 +3,19 @@ title: Declarative Dev Model using Attributes
 ---
 
 A significant amount of behavior, functionality and customization of APIs and DTOs can be achieved declaratively
-through C# Attributes which is used extensively by Locode App Demos to achieve its customized behavior by annotating its
-C# API Types and Data Models with the extensive functionality available in ServiceStack's Attributes.
+through C# Attributes by annotating C# API Types and Data Models with the extensive functionality available in ServiceStack's Attributes.
+
+This declarative expressiveness also extends to [UI Attributes](#ui-metadata-attributes) that can customize the behavior and appearance of 
+Form UIs and formatted tabular resultsets, whose customizations are reused across all ServiceStack Auto UIs and Component libraries, including:
+
+ - [Locode](https://www.locode.dev)
+ - [API Explorer](/api-explorer)
+ - [Vue Tailwind Components](/vue/)
+ - [Blazor Tailwind Components](/templates-blazor-components)
 
 A great way to get a quick overview of what annotated DTOs looks like in practice is to browse the DTOs of Locode's
-Demos where you'll be able to see & test the cause & effect of different attributes against their Live Demos or
-by downloading and running a locally modified copy. 
+Demos which uses declarative attributes extensively to achieve its customized behavior where you'll be able to 
+test the cause & effect of different attributes against their Live Demos or by downloading and running a locally modified copy. 
 
 ### Talent Blazor - [talent.locode.dev](https://talent.locode.dev) - [download.zip](https://github.com/NetCoreApps/TalentBlazor/archive/refs/heads/main.zip)
 

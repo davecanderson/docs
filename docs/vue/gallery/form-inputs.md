@@ -22,18 +22,16 @@ const { setMetadata } = useAppMetadata()
 setMetadata(metadata)
 </script>
 
-<Breadcrumbs class="mt-4" home-href="/vue/">
+<Breadcrumbs class="not-prose mt-4" home-href="/vue/">
   <Breadcrumb href="/vue/gallery/">gallery</Breadcrumb>
   <Breadcrumb>Form Input Examples</Breadcrumb>
 </Breadcrumbs>
 
 <ApiReference component="TextInput">Bookings Form</ApiReference>
 
-<p class="mb-4 text-lg">
-    The <code>TextInput</code>, <code>SelectInput</code>, <code>CheckboxInput</code> and <code>TextAreaInput</code> contains the most popular
-    Input controls used by C# POCOs which can be bound directly to Request DTOs and includes support for
-    <TextLink href="/declarative-validation">declarative</TextLink> and <TextLink href="/validation">Fluent Validation</TextLink> binding.
-</p>
+The `TextInput`, `SelectInput`, `CheckboxInput` and `TextAreaInput` contains the most popular
+Input controls used by C# POCOs which can be bound directly to Request DTOs and includes support for
+[declarative](/declarative-validation) and [Fluent Validation](/validation) binding.
 
 ```html
 <form @submit.prevent="submit">
@@ -85,11 +83,9 @@ setMetadata(metadata)
 </form>
 ```
 
-<BookingsForm :id="1" />
+<BookingsForm :id="1" class="mb-4" />
 
-<p class="my-8 text-lg">
-    Which can be wired up to handle querying, updating and deleting including limiting functionality to authorized users with:
-</p>
+Which can be wired up to handle querying, updating and deleting including limiting functionality to authorized users with:
 
 ```html
 <script setup lang="ts">
@@ -133,17 +129,12 @@ const close = () => emit('done')
 </script>
 ```
 
-<p class="my-4 text-lg">
-    This also shows how we can utilize <code>enumOptions</code> from our <TextLink href="/vue/use-appmetadata">App Metadata</TextLink> 
-    to populate select drop downs from C# enums.
-</p>
+This also shows how we can utilize `enumOptions` from our [App Metadata](/vue/use-appmetadata) to populate select drop downs from C# enums.
 
 <ApiReference component="Autocomplete">Autocomplete</ApiReference>
 
-<p class="mb-4 text-lg">
-    The <code>Autocomplete</code> component provides a user friendly Input for being able to search and quickly select items
-    with support for partial items view and infinite scrolling.
-</p>
+The `Autocomplete` component provides a user friendly Input for being able to search and quickly select items
+with support for partial items view and infinite scrolling.
 
 ```html
 <template>
@@ -234,20 +225,16 @@ const contacts = ref<any[]>([])
 
 <ApiReference component="TagInput">TagInput</ApiReference>
 
-<p class="mb-4 text-lg">
-    The <code>TagInput</code> component provides a user friendly control for managing a free-form <code>List&lt;string&gt;</code> tags or symbols
-    which is also supported in declarative Auto Forms using the <code>[Input(Type="tag")]</code> attribute:
-</p>
+The `TagInput` component provides a user friendly control for managing a free-form `List<string>` tags or symbols
+which is also supported in declarative Auto Forms using the `[Input(Type="tag")]` attribute:
 
 ```html
 <AutoEditForm formStyle="card" type="UpdateContact" v-model="contact" />
 ```
 
-<AutoEditForm formStyle="card" type="UpdateContact" v-model="contact" />
+<AutoEditForm formStyle="card" type="UpdateContact" v-model="contact" class="mb-4" />
 
-<p class="my-4 text-lg">
-    Which uses the UpdateContact DTO below to render the <code>AutoEditForm</code> and perform the API Update:
-</p>
+Which uses the UpdateContact DTO below to render the `AutoEditForm` and perform the API Update:
 
 ```csharp
 // Customize Edit Forms with [Input] and [FieldCss] attributes 
@@ -286,9 +273,7 @@ public class UpdateContact : IPatchDb<Contact>, IReturn<Contact>
 }
 ```
 
-<p class="mt-8 mb-4 text-lg">
-    Or you can use the <code>&lt;TagInput/&gt;</code> Input component directly in Custom Forms, e.g:
-</p>
+Or you can use the `<TagInput>` Input component directly in Custom Forms, e.g:
 
 <ApiReference component="TagInput">Custom Form</ApiReference>
 

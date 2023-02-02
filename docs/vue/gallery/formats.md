@@ -36,16 +36,14 @@ tr:nth-child(2n).bg-yellow-50 {
 }
 </style>
 
-<Breadcrumbs class="mt-4" home-href="/vue/">
+<Breadcrumbs class="not-prose mt-4" home-href="/vue/">
   <Breadcrumb href="/vue/gallery/">gallery</Breadcrumb>
   <Breadcrumb>Alert Examples</Breadcrumb>
 </Breadcrumbs>
 
 <ApiReference component="PreviewFormat" />
 
-<p class="mb-4 text-lg">
-    Useful for rendering Table Cell data into different customizable formats, e.g:
-</p>
+Useful for rendering Table Cell data into different customizable formats, e.g:
 
 <h3 class="my-4 text-lg font-semibold">Currency</h3>
 
@@ -139,9 +137,7 @@ tr:nth-child(2n).bg-yellow-50 {
 
 <ApiReference component="HtmlFormat" />
 
-<p class="mb-4 text-lg">
-    <code>HtmlFormat</code> can be used to render any Serializable object into a human-friendly HTML Format:
-</p>
+`HtmlFormat` can be used to render any Serializable object into a human-friendly HTML Format:
 
 <h3 class="my-4 text-lg font-semibold">Single Model</h3>
 
@@ -169,13 +165,11 @@ tr:nth-child(2n).bg-yellow-50 {
 <HtmlFormat :value="players" />
 
 
-<h3 class="my-4 text-lg font-semibold">Nested Complex Types with custom classes</h3>
+<h3 class="mt-4 text-lg font-semibold">Nested Complex Types with custom classes</h3>
 
-<p class="mb-4 text-lg">
-    When needed most default classes can be overridden with a custom <b>classes</b> function that can inspect the
-    type, tag, depth, and row index to return a custom class. The TypeScript function shows an example of checking
-    these different parameters to render a custom HTML resultset:
-</p>
+When needed most default classes can be overridden with a custom **classes** function that can inspect the
+type, tag, depth, and row index to return a custom class. The TypeScript function shows an example of checking
+these different parameters to render a custom HTML resultset:
 
 ```html
 <HtmlFormat :value="players" :classes="classes" />

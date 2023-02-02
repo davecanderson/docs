@@ -20,32 +20,26 @@ const booking = bookings[0]
 const show = ref(false)
 </script>
 
-<Breadcrumbs class="mt-4" home-href="/vue/">
+<Breadcrumbs class="not-prose mt-4" home-href="/vue/">
   <Breadcrumb href="/vue/gallery/">gallery</Breadcrumb>
   <Breadcrumb>Auto Form Examples</Breadcrumb>
 </Breadcrumbs>
 
-<ApiReference class="pt-8" Component="AutoCreateForm">Create Form</ApiReference>
+<ApiReference Component="AutoCreateForm">Create Form</ApiReference>
 
-<p class="mb-4 text-lg">
-    <code>AutoCreateForm</code> can be used to create an automated form based on a Request DTO definition:
-</p>
+`AutoCreateForm` can be used to create an automated form based on a Request DTO definition:
 
 ```html
 <AutoCreateForm type="CreateBooking" />
 ```
 
-<iframe src="/gallery/autoform/new.html" class="w-full border-none h-[44em] w-[1330px] -ml-40"></iframe>
+<iframe src="/gallery/autoform/new.html" class="w-full border-none h-[44em] w-[1330px] -ml-40 mb-4"></iframe>
 
-<p class="my-4 text-lg">
-    These Auto Forms are powered by the rich <TextLink href="/vue/use-metadata">App Metadata</TextLink> surrounding your APIs,
-    which contain all the necessary metadata to invoke the API and bind any contextual validation errors adjacent to the invalid field inputs.
-</p>
+These Auto Forms are powered by the rich [App Metadata](/vue/use-metadata) surrounding your APIs,
+which contain all the necessary metadata to invoke the API and bind any contextual validation errors adjacent to the invalid field inputs.
 
-<p class="my-4 text-lg">
-    By default Auto Forms are rendered in a <code>SlideOver</code> dialog, alternatively they can be rendered in a traditional inline Form with 
-    <code>card</code> formStyle option, e.g:
-</p>
+By default Auto Forms are rendered in a `SlideOver` dialog, alternatively they can be rendered in a traditional inline Form with 
+**card** formStyle option, e.g:
 
 ```html
 <AutoCreateForm type="CreateBooking" formStyle="card" />
@@ -57,23 +51,18 @@ const show = ref(false)
 
 <ApiReference component="AutoEditForm">Edit Form</ApiReference>
 
-<p class="mb-4 text-lg">
-    <code>AutoEditForm</code> can be used to render an automated form based on update and delete
-    <TextLink href="/autoquery-crud">AutoQuery CRUD</TextLink> APIs
-    which also makes use of <b>heading</b> and <b>sub-heading</b> customization options:
-</p>
+`AutoEditForm` can be used to render an automated form based on update and delete
+[AutoQuery CRUD](/autoquery-crud) APIs which also makes use of **heading** and **sub-heading** customization options:
 
 ```html
 <AutoEditForm v-model="booking" type="UpdateBooking" deleteType="DeleteBooking" 
     heading="Change an existing Room Booking" sub-heading="Manage reservations for MyApp hotels." />
 ```
 
-<iframe src="/gallery/autoform/edit.html" class="w-full border-none h-[44em] w-[1330px] -ml-40"></iframe>
+<iframe src="/gallery/autoform/edit.html" class="w-full border-none h-[44em] w-[1330px] -ml-40 mb-4"></iframe>
 
-<p class="my-4 text-lg">
-    The same form rendered in a traditional inline form with a <b>card</b> formStyle with some more advanced
-    customization examples using rich markup in custom <code>&lt;template #heading&gt;</code> and <code>&lt;template #sub-heading&gt;</code> slots:
-</p>
+The same form rendered in a traditional inline form with a **card** formStyle with some more advanced
+customization examples using rich markup in custom `<template #heading>` and `<template #sub-heading>` slots:
 
 ```html
 <AutoEditForm v-model="booking" formStyle="card" type="UpdateBooking" deleteType="DeleteBooking">
@@ -91,16 +80,11 @@ const show = ref(false)
 </AutoEditForm>
 ```
 
-<AutoEditForm class="mx-auto max-w-3xl" v-model="booking" formStyle="card" type="UpdateBooking" deleteType="DeleteBooking"><template #heading><h3 class="text-xl font-semibold text-green-600">Change an existing Room Booking</h3></template><template #sub-heading><p>Here are some <TextLink href="https://youtu.be/rSFiikDjGos">good tips on making room reservations <Icon class='inline-block' icon="lucide:external-link" /></TextLink></p></template></AutoEditForm>
+<AutoEditForm class="mx-auto max-w-3xl mb-4" v-model="booking" formStyle="card" type="UpdateBooking" deleteType="DeleteBooking"><template #heading><h3 class="text-xl font-semibold text-green-600">Change an existing Room Booking</h3></template><template #sub-heading><p>Here are some <TextLink href="https://youtu.be/rSFiikDjGos">good tips on making room reservations <Icon class='inline-block' icon="lucide:external-link" /></TextLink></p></template></AutoEditForm>
 
-<p class="my-8 text-lg">
-    The forms behavior and appearance is further customizable with the
-    <TextLink href="/locode/declarative#annotate-apis">API annotation</TextLink>,
-    declarative <TextLink href="/locode/declarative#type-validation-attributes">validation</TextLink>
-    and the custom
-    <TextLink href="/locode/declarative#custom-fields-and-inputs">Field and Input</TextLink>
-    attributes, e.g:
-</p>
+The forms behavior and appearance is further customizable with the
+[API annotation](/locode/declarative#annotate-apis), declarative [validation](/locode/declarative#type-validation-attributes)
+and the custom [Field and Input](/locode/declarative#custom-fields-and-inputs) attributes, e.g:
 
 ```csharp
 [Description("Update an existing Booking")]
@@ -135,9 +119,7 @@ Where they can be used to customize Auto Form's appearance from annotations on C
 
 <ApiReference component="AutoFormFields">Form Fields</ApiReference>
 
-<p class="mb-4 text-lg">
-    For more advanced customization of a Forms appearance and behavior, <code>AutoFormFields</code> can be used to just render the Form's fields (with validation binding) inside a custom Form which can submit the data-bound populated Request DTO to invoke the API, e.g:
-</p>
+For more advanced customization of a Forms appearance and behavior, `AutoFormFields` can be used to just render the Form's fields (with validation binding) inside a custom Form which can submit the data-bound populated Request DTO to invoke the API, e.g:
 
 ```html
 <template>
@@ -192,5 +174,5 @@ onMounted(async () => {
 ```
 
 <div>
-    <Fields class="mx-auto max-w-screen-md" />
+    <Fields class="mt-4 mx-auto max-w-screen-md" />
 </div>
