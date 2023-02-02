@@ -52,6 +52,15 @@ const tracks = [
 
 <DataGrid :items="tracks" />
 
+<p class="my-4 text-lg">
+    Use <b>selected-columns</b> to control which columns to display and <b>header-titles</b> to use different column names:
+</p>
+
+```html
+<DataGrid :items="tracks" :selected-columns="['year','album','name','artist']" :header-titles="{ name:'Track' }" />
+```
+<DataGrid :items="tracks" :selected-columns="['year','album','name','artist']" :header-titles="{ name:'Track' }" />
+
 <h2 class="pt-8 mb-4 text-2xl font-semibold text-gray-900 dark:text-gray-100">
   Simple Customizations
 </h2>
