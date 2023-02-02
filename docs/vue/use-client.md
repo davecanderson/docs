@@ -2,6 +2,17 @@
 title: useClient
 ---
 
+<link rel="stylesheet" href="/css/tailwind-components.css">
+
+<script setup>
+import { Icon } from "@iconify/vue"
+import ApiReference from "../src/components/ApiReference.vue"
+</script>
+
+<Breadcrumbs class="not-prose my-4 mb-8" home-href="/vue/">
+  <Breadcrumb href="/vue/gallery/">gallery</Breadcrumb>
+  <Breadcrumb>useClient</Breadcrumb>
+</Breadcrumbs>
 
 [useClient()](https://github.com/ServiceStack/servicestack-vue/blob/main/src/api.ts) provides managed APIs around the `JsonServiceClient` 
 instance registered in Vue App's with:

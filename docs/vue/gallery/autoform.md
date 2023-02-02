@@ -35,7 +35,7 @@ const show = ref(false)
 
 <iframe src="/gallery/autoform/new.html" class="w-full border-none h-[44em] w-[1330px] -ml-40 mb-4"></iframe>
 
-These Auto Forms are powered by the rich [App Metadata](/vue/use-metadata) surrounding your APIs,
+These Auto Forms are powered by the rich [App Metadata](/vue/use-appmetadata) surrounding your APIs,
 which contain all the necessary metadata to invoke the API and bind any contextual validation errors adjacent to the invalid field inputs.
 
 By default Auto Forms are rendered in a `SlideOver` dialog, alternatively they can be rendered in a traditional inline Form with 
