@@ -7,7 +7,7 @@ title: AutoQueryGrid Component
 <script setup>
 </script>
 
-<Breadcrumbs class="mt-4" home-href="/vue/">
+<Breadcrumbs class="not-prose mt-4" home-href="/vue/">
   <Breadcrumb href="/vue/gallery/">gallery</Breadcrumb>
   <Breadcrumb>AutoQueryGrid Examples</Breadcrumb>
 </Breadcrumbs>

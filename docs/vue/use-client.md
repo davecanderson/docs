@@ -26,10 +26,15 @@ enable its auto validation binding. Other functionality in this provider include
 
 ```js
 let { 
-    api, apiVoid, apiForm, apiFormVoid, // Managed Typed ServiceClient APIs
-    loading, error,                     // Maintains 'loading' and 'error' states
-    setError, addFieldError,            // Add custom errors in client
-    unRefs                              // Returns a dto with all Refs unwrapped
+    api,            // Send a typed API request and return results in an ApiResult<TResponse>
+    apiVoid,        // Send a typed API request and return empty response in a void ApiResult
+    apiForm,        // Send a FormData API request and return results in an ApiResult<TResponse>
+    apiFormVoid,    // Send a FormData API request and return empty response in a void ApiResult
+    loading,        // Maintain loading state whilst API Request is in transit
+    error,          // Maintain API Error response in reactive Ref<ResponseStatus>
+    setError,       // Set API error state with summary or field validation error
+    addFieldError,  // Add field error to API error state
+    unRefs          // Returns a dto with all Refs unwrapped
 } = useClient()
 ```
 
@@ -40,7 +45,7 @@ let client = new JsonServiceClient()
 let api = await client.api(new Hello({ name:name.value }))
 ```
 
-#### useClient - api
+<h3 class="my-4 text-lg font-semibold">api</h3>
 
 This is unnecessary in useClient `api*` methods which automatically unwraps ref values, allowing for the more pleasant API call:
 
@@ -48,7 +53,7 @@ This is unnecessary in useClient `api*` methods which automatically unwraps ref 
 let api = await client.api(new Hello({ name }))
 ```
 
-#### useClient - unRefs
+<h3 class="my-4 text-lg font-semibold">unRefs</h3>
 
 But as DTOs are typed, passing reference values will report a type annotation warning in IDEs with type-checking enabled, 
 which can be avoided by explicitly unwrapping DTO ref values with `unRefs`:
@@ -57,7 +62,7 @@ which can be avoided by explicitly unwrapping DTO ref values with `unRefs`:
 let api = await client.api(new Hello(unRefs({ name })))
 ```
 
-#### useClient - setError
+<h3 class="my-4 text-lg font-semibold">setError</h3>
 
 `setError` can be used to populate client-side validation errors which the 
 [SignUp.mjs](https://github.com/NetCoreTemplates/vue-mjs/blob/main/MyApp/wwwroot/Pages/SignUp.mjs)
@@ -74,13 +79,15 @@ async function onSubmit() {
 }
 ```
 
-### Form Validation
+<h2 id="form-validation" class="mt-8 mb-4 text-2xl font-semibold text-gray-900 dark:text-gray-100">
+    Form Validation
+</h2>
 
 All `@servicestack/vue` Input Components support contextual validation binding that's typically populated from API
 [Error Response DTOs](https://docs.servicestack.net/error-handling) but can also be populated from client-side validation
 as done above.
 
-#### Explicit Error Handling
+<h3 class="my-4 text-lg font-semibold">Explicit Error Handling</h3>
 
 This populated `ResponseStatus` DTO can either be manually passed into each component's **status** property as done in [/Todos](https://vue-mjs.web-templates.io/TodoMvc):
 
@@ -121,7 +128,7 @@ let store = {
 }
 ```
 
-#### Implicit Error Handling
+<h3 class="my-4 text-lg font-semibold">Implicit Error Handling</h3>
 
 More often you'll want to take advantage of the implicit validation support in `useClient()` which makes its state available to child
 components, alleviating the need to explicitly pass it in each component as seen in the [/Contacts](https://vue-mjs.web-templates.io/Contacts) `Edit` component
@@ -188,3 +195,33 @@ This effectively makes form validation binding a transparent detail where all `@
 Input Components are able to automatically apply contextual validation errors next to the fields they apply to: 
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/scripts/edit-contact-validation.png)
+
+<ApiReference component="TypeScript Definition" />
+
+The TypeScript definition below contains the API surface area type information on correct usage for `useClient()`:
+
+```ts
+/** Maintain loading state whilst API Request is in transit */
+const loading: Ref<boolean>
+
+/** Maintain API Error in reactive Ref<ResponseStatus> */
+const error: Ref<ResponseStatus>
+
+/** Set error state with summary or field validation error */
+function setError({ message, errorCode, fieldName, errors }: IResponseStatus);
+
+/** Add field error to API error state */
+function addFieldError({ fieldName, message, errorCode }: IResponseError);
+
+/** Send a typed API request and return results in an ApiResult<TResponse> */
+async function api<TResponse>(request:IReturn<TResponse> | ApiRequest, args?:any, method?:string);
+
+/** Send a typed API request and return empty response in a void ApiResult */
+async function apiVoid(request:IReturnVoid | ApiRequest, args?:any, method?:string);
+
+/** Send a FormData API request and return results in an ApiResult<TResponse> */
+async function apiForm<TResponse>(request:IReturn<TResponse> | ApiRequest, body:FormData, args?:any, method?:string);
+
+/** Send a FormData API request and return empty response in a void ApiResult */
+async function apiFormVoid(request: IReturnVoid | ApiRequest, body: FormData, args?: any, method?: string);
+```
