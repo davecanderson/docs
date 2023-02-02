@@ -8,6 +8,7 @@ Your App and custom templates can also utilize @servicestack/vue's <TextLink hre
 import { useFormatters } from '@servicestack/vue'
 
 const {
+    Formats,             // Available format methods to use in <PreviewFormat />
     formatValue,         // Format any value or object graph
     currency,            // Format number as Currency
     bytes,               // Format number in human readable disk size
