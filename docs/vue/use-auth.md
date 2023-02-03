@@ -16,7 +16,7 @@ import ApiReference from "../src/components/ApiReference.vue"
 
 Vue.js Apps can access Authenticated Users using [useAuth()](https://docs.servicestack.net/vue/use-auth)
 which can also be populated without the overhead of an Ajax request by embedding the response of the built-in
-[Authenticate API](/ui/Authenticate?tab=details) inside `_Layout.cshtml` with:
+[Authenticate API](https://vue-mjs.web-templates.io/ui/Authenticate?tab=details) inside `_Layout.cshtml` with:
 
 ```html
 <script type="module">

@@ -44,8 +44,8 @@
             </NavList>
             
             <NavList class="mt-8" title="Explore API Library Features">
-                <NavListItem title="useMetaadata" href="/vue/use-appmetadata" :iconSvg="Icons.Code">
-                    Reflective functionality and features around your APIs AppMetadata
+                <NavListItem title="useMetadata" href="/vue/use-appmetadata" :iconSvg="Icons.Code">
+                    Reflective utils for inspecting API AppMetadata
                 </NavListItem>
                 <NavListItem title="useClient" href="/vue/use-client" :iconSvg="Icons.Code">
                     Utilize JSON Api Client features in Components
@@ -54,13 +54,13 @@
                     Inspect Authenticated Users Info, Roles &amp; Permissions
                 </NavListItem>
                 <NavListItem title="useFormatters" href="/vue/use-formatters" :iconSvg="Icons.Code">
-                    Utilize formatting functions in your components
+                    Built-in Formats and formatting functions
                 </NavListItem>
                 <NavListItem title="useFiles" href="/vue/use-files" :iconSvg="Icons.Code">
-                    Access file icons, extensions and mimetypes
+                    File utils for resolving SVG icons, extensions and MIME types
                 </NavListItem>
                 <NavListItem title="useConfig" href="/vue/use-config" :iconSvg="Icons.Code">
-                    Manage Component Library global configuration &amp; defaults
+                    Manage global configuration &amp; defaults
                 </NavListItem>
                 <NavListItem title="useUtils" href="/vue/use-utils" :iconSvg="Icons.Code">
                     General functionality and utils
