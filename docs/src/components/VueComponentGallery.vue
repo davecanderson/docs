@@ -62,8 +62,11 @@
                 <NavListItem title="useConfig" href="/vue/use-config" :iconSvg="Icons.Code">
                     Manage Component Library global configuration &amp; defaults
                 </NavListItem>
+                <NavListItem title="useUtils" href="/vue/use-utils" :iconSvg="Icons.Code">
+                    General functionality and utils
+                </NavListItem>
             </NavList>
-            
+
         </div>
     </div>
 </div>
