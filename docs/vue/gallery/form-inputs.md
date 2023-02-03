@@ -13,7 +13,7 @@ import TagInputExamples from "../../src/gallery/inputs/TagInputExamples.vue"
 import { tracks } from "../../src/gallery/data.ts"
 import metadata from "../../src/gallery/metadata.json"
 import bookings from "../../src/gallery/bookings.json"
-import { allContacts } from "../../src/gallery/data.ts"
+import { allContacts, files } from "../../src/gallery/data.ts"
 import { useMetadata } from '@servicestack/vue'
 
 const contact = allContacts[0]
@@ -130,6 +130,80 @@ const close = () => emit('done')
 ```
 
 This also shows how we can utilize `enumOptions` from our [App Metadata](/vue/use-metadata) to populate select drop downs from C# enums.
+
+<ApiReference component="FileInput" />
+
+The `<FileInput>` component beautifies the browsers default HTML file Input, supporting Single: 
+
+```html
+<FileInput id="profileUrl" label="Single File Upload" v-model="contact.profileUrl" />
+```
+<FileInput id="profileUrl" label="Single File Upload" v-model="contact.profileUrl" class="max-w-lg mb-4" />
+
+and Multiple File Uploads:
+
+```html
+<FileInput id="profileUrls" label="Multiple File Uploads" multiple :files="contact.files" />
+```
+<FileInput id="profileUrls" label="Multiple File Uploads" multiple :files="files" class="max-w-lg not-prose mb-4" />
+
+Use **files** when your binding to a `UploadedFile` complex type or **values** when binding to a `string[]` of file paths.
+When binding to relative paths, absolute URLs are resolved using [assetsPathResolver](/vue/use-config).
+
+<h3 class="my-4 text-lg font-semibold">Invoking APIs containing uploaded files</h3>
+
+When uploading files, you'll need to submit API requests using the `apiForm` or `apiFormVoid` methods to send
+a populated `FormData` instead of a Request DTO, e.g:
+
+```html
+<form @submit.prevent="submit">
+    <FileInput id="profileUrls" label="Multiple File Uploads" multiple :files="files" />
+    <PrimaryButton>Save</PrimaryButton>
+</form>
+
+<script setup lang="ts">
+import { useClient } from "@servicestack/vue"
+
+const client = useClient()
+function submit(e:Event) {
+    let form = e.target as HTMLFormElement
+    let formData = new FormData(form)
+    const api = client.api(new CreateContact(), formData)
+    if (api.succeeded) {
+        //...
+    }
+}
+</script>
+```
+
+<h3 class="my-4 text-lg font-semibold">Integrates with Managed File Uploads</h3>
+
+Using [Managed File Uploads](/locode/files) is a productive solution for easily managing file uploads where you can declaratively specify
+which location uploaded files should be written to, e.g:
+
+```csharp
+public class CreateContact : ICreateDb<Contact>, IReturn<Contact>
+{
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    [Input(Type = "file"), UploadTo("profiles")]
+    public string? ProfileUrl { get; set; }
+    public int? SalaryExpectation { get; set; }
+    public string JobType { get; set; }
+    public int AvailabilityWeeks { get; set; }
+    public EmploymentType PreferredWorkType { get; set; }
+    public string PreferredLocation { get; set; }
+    public string Email { get; set; }
+    public string? Phone { get; set; }
+}
+```
+
+This metadata information is also supported by [AutoForm components](/vue/gallery/autoform) that can handle invoking APIs with uploaded files:
+
+```html
+<AutoCreateForm type="CreateContact" formStyle="card" />
+```
+<AutoCreateForm type="CreateContact" formStyle="card" class="max-w-3xl" />
 
 <ApiReference component="Autocomplete">Autocomplete</ApiReference>
 

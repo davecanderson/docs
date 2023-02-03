@@ -1,3 +1,7 @@
+import { lastRightPart } from "@servicestack/client"
+import { useFiles } from "@servicestack/vue"
+const { getMimeType } = useFiles()
+
 export const Icons = {
     Padlock:       "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='#B1B4B5' d='M376.749 349.097c-13.531 0-24.5-10.969-24.5-24.5V181.932c0-48.083-39.119-87.203-87.203-87.203-48.083 0-87.203 39.119-87.203 87.203v82.977c0 13.531-10.969 24.5-24.5 24.5s-24.5-10.969-24.5-24.5v-82.977c0-75.103 61.1-136.203 136.203-136.203s136.203 61.1 136.203 136.203v142.665c0 13.531-10.969 24.5-24.5 24.5z'/><path fill='#FFB636' d='M414.115 497.459H115.977c-27.835 0-50.4-22.565-50.4-50.4V274.691c0-27.835 22.565-50.4 50.4-50.4h298.138c27.835 0 50.4 22.565 50.4 50.4v172.367c0 27.836-22.565 50.401-50.4 50.401z'/><path fill='#FFD469' d='M109.311 456.841h-2.525c-7.953 0-14.4-6.447-14.4-14.4V279.309c0-7.953 6.447-14.4 14.4-14.4h2.525c7.953 0 14.4 6.447 14.4 14.4v163.132c0 7.953-6.447 14.4-14.4 14.4z'/></svg>",
     Booking:       "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='currentColor' d='M16 10H8c-.55 0-1 .45-1 1s.45 1 1 1h8c.55 0 1-.45 1-1s-.45-1-1-1zm3-7h-1V2c0-.55-.45-1-1-1s-1 .45-1 1v1H8V2c0-.55-.45-1-1-1s-1 .45-1 1v1H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 16H6c-.55 0-1-.45-1-1V8h14v10c0 .55-.45 1-1 1zm-5-5H8c-.55 0-1 .45-1 1s.45 1 1 1h5c.55 0 1-.45 1-1s-.45-1-1-1z'/></svg>",
@@ -49,6 +53,15 @@ export let allContacts = [
     const profileUrl = 'https://blazor-gallery.servicestack.net' + c[1]
     return ({ displayName, firstName, lastName, email, profileUrl, skills:['servicestack','vue','c#'] })
 })
+
+const toFile = (filePath) => ({ 
+    filePath,
+    fileName: lastRightPart(filePath,'/'),
+    contentType: getMimeType(filePath),
+    contentLength: Math.floor(Math.random() * (800000 - 400000) + 400000),
+})
+
+export const files = allContacts.splice(0,4).map(c => toFile(c.profileUrl))
 
 export enum RoomType
 {
