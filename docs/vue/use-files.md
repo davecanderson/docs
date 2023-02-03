@@ -18,7 +18,7 @@ import ApiReference from "../src/components/ApiReference.vue"
     File Utils
 </h2>
 
-The file utils are utilized by the `<FileInput>` [Input component](/gallery/form-inputs) and 
+The file utils are utilized by the `<FileInput>` [Input component](/vue/gallery/form-inputs) and 
 `icon`, `iconRounded` and `attachment` [formatters](/vue/use-formatters) for resolving file SVG Icons 
 and MIME Types that Apps can also utilize in `useFiles()`
 
