@@ -91,7 +91,7 @@ const client = new JsonServiceClient()
 ### Not using Vue Router
 
 Non SPA Vue Apps that don't use [Vue Router](https://router.vuejs.org) should register a replacement `<router-link>` component 
-that uses the browser's native navigation for navigation in components:
+that uses the browser's native navigation in [navigational components](/vue/gallery/navigation):
 
 ```js
 app.component('RouterLink', ServiceStackVue.component('RouterLink'))
