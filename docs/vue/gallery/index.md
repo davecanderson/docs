@@ -11,4 +11,6 @@ import { Icon } from "@iconify/vue"
 import VueComponentGallery from "../../src/components/VueComponentGallery.vue"
 </script>
 
-<VueComponentGallery class="my-16" />
+<VueComponentGallery class="my-8" />
+
+**[< back to Vue docs](/vue/)**
