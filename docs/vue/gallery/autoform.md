@@ -12,8 +12,8 @@ import Fields from "../../src/gallery/autoform/Fields.vue"
 import metadata from "../../src/gallery/metadata.json"
 import { bookings } from "../../src/gallery/data.ts"
 
-import { useAppMetadata, useUtils } from '@servicestack/vue'
-const { setMetadata } = useAppMetadata()
+import { useMetadata, useUtils } from '@servicestack/vue'
+const { setMetadata } = useMetadata()
 setMetadata(metadata)
 
 const booking = bookings[0]
@@ -151,10 +151,10 @@ For more advanced customization of a Forms appearance and behavior, `AutoFormFie
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import { ApiResponse } from '@servicestack/client'
-import { useClient, useAppMetadata } from '@servicestack/vue'
+import { useClient, useMetadata } from '@servicestack/vue'
 import { QueryBookings, UpdateBooking } from '../dtos'
 
-const { toFormValues } = useAppMetadata()
+const { toFormValues } = useMetadata()
 const client = useClient()
 
 let api = ref<ApiResponse>()

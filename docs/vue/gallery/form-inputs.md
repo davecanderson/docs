@@ -14,11 +14,11 @@ import { tracks } from "../../src/gallery/data.ts"
 import metadata from "../../src/gallery/metadata.json"
 import bookings from "../../src/gallery/bookings.json"
 import { allContacts } from "../../src/gallery/data.ts"
-import { useAppMetadata } from '@servicestack/vue'
+import { useMetadata } from '@servicestack/vue'
 
 const contact = allContacts[0]
 
-const { setMetadata } = useAppMetadata()
+const { setMetadata } = useMetadata()
 setMetadata(metadata)
 </script>
 
@@ -90,7 +90,7 @@ Which can be wired up to handle querying, updating and deleting including limiti
 ```html
 <script setup lang="ts">
 import { computed, ref, watchEffect } from 'vue'
-import { useAppMetadata, useAuth, useClient } from '@servicestack/vue'
+import { useMetadata, useAuth, useClient } from '@servicestack/vue'
 import { DeleteBooking, QueryBookings, UpdateBooking } from '../dtos'
 
 const props = defineProps<{
@@ -100,7 +100,7 @@ const emit = defineEmits<{
     (e: 'done'): void
 }>()
 
-const { enumOptions, toFormValues } = useAppMetadata()
+const { enumOptions, toFormValues } = useMetadata()
 
 const visibleFields = "name,roomType,roomNumber,bookingStartDate,bookingEndDate,cost,notes"
 

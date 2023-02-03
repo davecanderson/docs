@@ -27,10 +27,10 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import { ApiResponse } from '@servicestack/client'
-import { useClient, useAppMetadata } from '@servicestack/vue'
+import { useClient, useMetadata } from '@servicestack/vue'
 import { QueryBookings, UpdateBooking } from '../dtos'
 
-const { toFormValues } = useAppMetadata()
+const { toFormValues } = useMetadata()
 const client = useClient()
 
 let api = ref<ApiResponse>()

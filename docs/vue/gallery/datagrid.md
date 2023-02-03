@@ -15,8 +15,8 @@ import metadata from "../../src/gallery/metadata.json"
 import bookings from "../../src/gallery/bookings.json"
 import Formatters from '../../.vitepress/includes/vue/formatters.md'
 
-import { useAppMetadata } from '@servicestack/vue'
-const { setMetadata } = useAppMetadata()
+import { useMetadata } from '@servicestack/vue'
+const { setMetadata } = useMetadata()
 setMetadata(metadata)
 </script>
 

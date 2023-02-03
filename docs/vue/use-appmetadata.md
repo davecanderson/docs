@@ -9,14 +9,14 @@ import { Icon } from "@iconify/vue"
 import ApiReference from "../src/components/ApiReference.vue"
 
 // import metadata from "../src/gallery/metadata.json"
-// import { useAppMetadata, useUtils } from '@servicestack/vue'
-// const { setMetadata } = useAppMetadata()
+// import { useMetadata, useUtils } from '@servicestack/vue'
+// const { setMetadata } = useMetadata()
 // setMetadata(metadata)
 </script>
 
 <Breadcrumbs class="not-prose my-4 mb-8" home-href="/vue/">
   <Breadcrumb href="/vue/gallery/">gallery</Breadcrumb>
-  <Breadcrumb>useAppMetadata</Breadcrumb>
+  <Breadcrumb>useMetadata</Breadcrumb>
 </Breadcrumbs>
 
 The rich server metadata about your APIs that's used to generate your App's DTOs in 
@@ -31,9 +31,9 @@ var dev = HostContext.AppHost.IsDevelopmentEnvironment();
 }
 
 <script type="module">
-import { useAppMetadata } from "@@servicestack/vue"
+import { useMetadata } from "@@servicestack/vue"
 
-const { loadMetadata } = useAppMetadata()
+const { loadMetadata } = useMetadata()
 loadMetadata({
     olderThan: window.Server ? null : location.hash === '#clear' ? 0 : 24 * 60 * 60 * 1000 //1 day 
 })
@@ -44,10 +44,10 @@ Where during development it always embeds the AppMetadata in each page but as th
 otherwise it will use a local copy cached in `localStorage` at `/metadata/app.json`, which Apps needing more 
 fine-grained cache invalidation strategies can manage themselves.
 
-Once loaded the AppMetadata features can be access with the helper functions in [useAppMetadata](/vue/use-appmetadata).
+Once loaded the AppMetadata features can be access with the helper functions in [useMetadata](/vue/use-appmetadata).
 
 ```js
-import { useAppMetadata } from "@servicestack/vue"
+import { useMetadata } from "@servicestack/vue"
 
 const { 
     loadMetadata,      // Load {AppMetadata} if needed 
@@ -69,13 +69,13 @@ const {
     createDto,         // Create a Request DTO instance for Request DTO name
     toFormValues,      // Convert Request DTO values to supported HTML Input values
     formValues,        // Convert HTML Input values to supported DTO values
-} = useAppMetadata()
+} = useMetadata()
 ```
 
 For example you can use this to print out all the C# property names and their Types for the `Contact` C# DTO with:
 
 ```js
-const { typeOf } = useAppMetadata()
+const { typeOf } = useMetadata()
 
 typeOf('Contact').properties.forEach(prop => console.log(`${prop.name}: ${prop.type}`))
 ```
@@ -115,7 +115,7 @@ Whilst the `colorOptions` gets its values from the available options on the `Cre
 const Edit = {
     //...
     setup(props) {
-        const { property, propertyOptions, enumOptions } = useAppMetadata()
+        const { property, propertyOptions, enumOptions } = useMetadata()
         const colorOptions = propertyOptions(property('CreateContact','Color'))
         return { enumOptions, colorOptions }
         //..
@@ -165,7 +165,7 @@ See [Auto Form Components](/vue/gallery/autoform) docs for examples of easy to u
 
 <ApiReference component="TypeScript Definition" />
 
-TypeScript definition of the API surface area and type information for correct usage of `useAppMetadata()`
+TypeScript definition of the API surface area and type information for correct usage of `useMetadata()`
 
 ```ts
 import type { 

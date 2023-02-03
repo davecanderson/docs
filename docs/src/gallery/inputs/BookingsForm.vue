@@ -50,7 +50,7 @@
 
 <script setup lang="ts">
 import { computed, ref, watchEffect } from 'vue'
-import { useAppMetadata, useAuth, useClient } from '@servicestack/vue'
+import { useMetadata, useAuth, useClient } from '@servicestack/vue'
 import { DeleteBooking, QueryBookings, UpdateBooking } from '../dtos'
 
 const props = defineProps<{
@@ -60,7 +60,7 @@ const emit = defineEmits<{
     (e: 'done'): void
 }>()
 
-const { enumOptions, toFormValues } = useAppMetadata()
+const { enumOptions, toFormValues } = useMetadata()
 
 const visibleFields = "name,roomType,roomNumber,bookingStartDate,bookingEndDate,cost,notes"
 
