@@ -76,7 +76,6 @@ Which columns are shown and how they're rendered is customizable with custom `<t
     </template>
     <template #summary="{ summary }">{{ summary }}</template>
 </DataGrid>
-
 ```
 
 <Custom class="mb-4" />
