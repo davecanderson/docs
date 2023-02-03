@@ -44,7 +44,7 @@ Where during development it always embeds the AppMetadata in each page but as th
 otherwise it will use a local copy cached in `localStorage` at `/metadata/app.json`, which Apps needing more 
 fine-grained cache invalidation strategies can manage themselves.
 
-Once loaded the AppMetadata features can be access with the helper functions in [useMetadata](/vue/use-appmetadata).
+Once loaded the AppMetadata features can be access with the helper functions in [useMetadata](/vue/use-metadata).
 
 ```js
 import { useMetadata } from "@servicestack/vue"

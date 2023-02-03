@@ -44,7 +44,7 @@
             </NavList>
             
             <NavList class="mt-8" title="Explore API Library Features">
-                <NavListItem title="useMetadata" href="/vue/use-appmetadata" :iconSvg="Icons.Code">
+                <NavListItem title="useMetadata" href="/vue/use-metadata" :iconSvg="Icons.Code">
                     Reflective utils for inspecting API AppMetadata
                 </NavListItem>
                 <NavListItem title="useClient" href="/vue/use-client" :iconSvg="Icons.Code">

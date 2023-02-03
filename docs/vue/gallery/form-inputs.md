@@ -129,7 +129,7 @@ const close = () => emit('done')
 </script>
 ```
 
-This also shows how we can utilize `enumOptions` from our [App Metadata](/vue/use-appmetadata) to populate select drop downs from C# enums.
+This also shows how we can utilize `enumOptions` from our [App Metadata](/vue/use-metadata) to populate select drop downs from C# enums.
 
 <ApiReference component="Autocomplete">Autocomplete</ApiReference>
 

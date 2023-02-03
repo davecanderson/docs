@@ -94,9 +94,5 @@ Non SPA Vue Apps that don't use [Vue Router](https://router.vuejs.org) should re
 that uses the browser's native navigation for navigation in components:
 
 ```js
-import ServiceStackVue, { RouterLink } from "@servicestack/vue"
-
-app.component('RouterLink', RouterLink)
+app.component('RouterLink', ServiceStackVue.component('RouterLink'))
 ```
-
-
