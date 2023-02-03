@@ -53,6 +53,4 @@ Use `<SlideOver>` to show contents inside an animated slide over:
 <SlideOver v-if="showSlide" title="The Title" @done="showSlide=false" class="not-prose" content-class="relative flex-1"><template #subtitle>a <b>subtitle</b></template><Alert type="error">Authentication Required</Alert><div class="md:p-4"><SecondaryButton>Sign In</SecondaryButton></div></SlideOver>
 
 As seen in this example we can use **content-class** to customize the inner body contents and the `<template #subtitle>` slot
-to include a rich HTML subtitle.
-
-<ApiReference component="SlideOver" />
+to include an optional rich HTML subtitle, with all other inner contents is displayed in the SlideOver's body.
