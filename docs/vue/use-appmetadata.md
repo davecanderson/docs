@@ -161,11 +161,11 @@ public class AppData
 
 <ApiReference component="AutoForm Components" />
 
-Easy to use, high productivity AppMetadata powered components are available in [Auto Form Components](/vue/gallery/autoform).
+See [Auto Form Components](/vue/gallery/autoform) docs for examples of easy to use, high productivity `AppMetadata` powered components.
 
 <ApiReference component="TypeScript Definition" />
 
-The TypeScript definition below contains the API surface area type information on correct usage for `useAppMetadata()`:
+TypeScript definition of the API surface area and type information for correct usage of `useAppMetadata()`
 
 ```ts
 import type { 

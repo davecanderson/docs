@@ -7,6 +7,11 @@ title: useClient
 <script setup>
 import { Icon } from "@iconify/vue"
 import ApiReference from "../src/components/ApiReference.vue"
+import metadata from "../src/gallery/metadata.json"
+
+import { useAppMetadata } from '@servicestack/vue'
+const { setMetadata } = useAppMetadata()
+setMetadata(metadata)
 </script>
 
 <Breadcrumbs class="not-prose my-4 mb-8" home-href="/vue/">
@@ -84,7 +89,7 @@ async function onSubmit() {
 </h2>
 
 All `@servicestack/vue` Input Components support contextual validation binding that's typically populated from API
-[Error Response DTOs](https://docs.servicestack.net/error-handling) but can also be populated from client-side validation
+[Error Response DTOs](/error-handling) but can also be populated from client-side validation
 as done above.
 
 <h3 class="my-4 text-lg font-semibold">Explicit Error Handling</h3>
@@ -196,9 +201,26 @@ Input Components are able to automatically apply contextual validation errors ne
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/scripts/edit-contact-validation.png)
 
+<h2 id="form-validation" class="mt-8 mb-4 text-2xl font-semibold text-gray-900 dark:text-gray-100">
+    AutoForm Components
+</h2>
+
+We can elevate our productivity even further with [Auto Form Components](/vue/gallery/autoform) that can automatically generate an
+instant API-enabled form with validation binding by just specifying the Request DTO to create the form for, e.g:
+
+```html
+<AutoCreateForm type="CreateBooking" formStyle="card" />
+```
+
+<AutoCreateForm type="CreateBooking" formStyle="card" class="mb-4 not-prose" />
+
+The AutoForm components are powered by your [App Metadata](/vue/use-appmetadata) which allows creating 
+highly customized UIs from [declarative C# attributes](/locode/declarative) whose customizations are
+reused across all ServiceStack Auto UIs.
+
 <ApiReference component="TypeScript Definition" />
 
-The TypeScript definition below contains the API surface area type information on correct usage for `useClient()`:
+TypeScript definition of the API surface area and type information for correct usage of `useClient()`
 
 ```ts
 /** Maintain loading state whilst API Request is in transit */
