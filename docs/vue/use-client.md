@@ -1,5 +1,5 @@
 ---
-title: useClient
+title: JSON API Client Features
 ---
 
 <link rel="stylesheet" href="/css/tailwind-components.css">
