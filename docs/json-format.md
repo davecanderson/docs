@@ -586,8 +586,9 @@ popular Data Types, DTOs and Request DTOs with the default configuration below:
 // Allow deserializing types with [DataContract] or [RuntimeSerializable] attributes
 JsConfig.AllowRuntimeTypeWithAttributesNamed = new HashSet<string>
 {
+    nameof(SerializableAttribute),
     nameof(DataContractAttribute),
-    nameof(RuntimeSerializableAttribute), // new in ServiceStack.Text
+    nameof(RuntimeSerializableAttribute), // in ServiceStack.Text
 };
  
 // Allow deserializing types implementing any of the interfaces below
@@ -595,7 +596,7 @@ JsConfig.AllowRuntimeTypeWithInterfacesNamed = new HashSet<string>
 {
     "IConvertible",
     "ISerializable",
-    "IRuntimeSerializable", // new in ServiceStack.Text
+    "IRuntimeSerializable", // in ServiceStack.Text
     "IMeta",
     "IReturn`1",
     "IReturnVoid",
@@ -604,7 +605,15 @@ JsConfig.AllowRuntimeTypeWithInterfacesNamed = new HashSet<string>
 // Allow object property in ServiceStack.Messaging MQ classes
 JsConfig.AllowRuntimeTypeInTypesWithNamespaces = new HashSet<string>
 {
+    "ServiceStack.Auth",
     "ServiceStack.Messaging",
+};
+ 
+// Allow object in ServiceStack.Messaging MQ and Request Logging payloads
+JsConfig.AllowRuntimeTypeInTypesWithNamespaces = new HashSet<string>
+{
+    "ServiceStack.Messaging.Message",
+    "ServiceStack.RequestLogEntry",
 };
 ```
 
