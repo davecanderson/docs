@@ -63,6 +63,21 @@ For intranet Web Apps that need to work without internet access, save and refere
 </script>
 ```
 
+### @Html.ImportMap
+
+Razor Pages or MVC Apps can use the `Html.ImportMaps()` to use local debug builds during development and optimal CDN hosted minified production builds in production:
+
+```csharp
+@Html.ImportMap(new()
+{
+    ["vue"]                  = ("/lib/mjs/vue.mjs",                 "https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js"),
+    ["@servicestack/client"] = ("/lib/mjs/servicestack-client.mjs", "https://unpkg.com/@servicestack/client@2/dist/servicestack-client.min.mjs"),
+    ["@servicestack/vue"]    = ("/lib/mjs/servicestack-vue.mjs",    "https://unpkg.com/@servicestack/vue@3/dist/servicestack-vue.min.mjs")
+})
+```
+
+> It's recommended to use exact versions so they match the local version your App was developed with and eliminate redirect latency
+
 ### Registration
 
 Then register the `@servicestack/vue` component library with your Vue app with:
