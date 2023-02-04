@@ -29,7 +29,6 @@ const {
     setRef,           // Double set reactive Ref<T> to force triggering updates
     unRefs,           // Returns a dto with all Refs unwrapped
     transition,       // Update reactive `transition` class based on Tailwind animation transition rule-set
-    parseHtml,        // Parse HTML fragment into tagName, innerHTML and attrs segments
     focusNextElement, // Set focus to the next element inside a HTML Form
     getTypeName,      // Resolve Request DTO name from a Request DTO instance
     htmlTag,          // HTML Tag builder
@@ -60,9 +59,6 @@ declare function unRefs(o: any): any;
 
 /** Update reactive `transition` class based on Tailwind animation transition rule-set */
 declare function transition(rule: TransitionRules, transition: Ref<string>, show: boolean): void;
-
-/** Parse HTML fragment into tagName, innerHTML and attrs segments */
-declare function parseHtml(html: string): ParsedHtml | null;
 
 /** Set focus to the next element inside a HTML Form */
 declare function focusNextElement(): void;

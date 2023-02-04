@@ -27,18 +27,7 @@ const show = ref(false)
 
 <ApiReference Component="AutoCreateForm">Create Form</ApiReference>
 
-`AutoCreateForm` can be used to create an automated form based on a Request DTO definition:
-
-```html
-<AutoCreateForm type="CreateBooking" />
-```
-
-<iframe src="/gallery/autoform/new.html" class="w-full border-none h-[44em] w-[1330px] -ml-40 mb-4"></iframe>
-
-These Auto Forms are powered by the rich [App Metadata](/vue/use-metadata) surrounding your APIs,
-which contain all the necessary metadata to invoke the API and bind any contextual validation errors adjacent to the invalid field inputs.
-
-By default Auto Forms are rendered in a `SlideOver` dialog, alternatively they can be rendered in a traditional inline Form with 
+`AutoCreateForm` can be used to create an automated form based on a Request DTO definition which can be rendered in a traditional inline Form with 
 **card** formStyle option, e.g:
 
 ```html
@@ -48,6 +37,18 @@ By default Auto Forms are rendered in a `SlideOver` dialog, alternatively they c
 <div class="py-8">
     <AutoCreateForm class="mx-auto max-w-3xl" type="CreateBooking" formStyle="card" />
 </div>
+
+
+By default Auto Forms are rendered in a `SlideOver` dialog:
+
+```html
+<AutoCreateForm type="CreateBooking" />
+```
+
+<iframe src="/gallery/autoform/new.html" class="w-full border-none h-[44em] w-[1330px] -ml-40 mb-4"></iframe>
+
+These Auto Forms are powered by the rich [App Metadata](/vue/use-metadata) surrounding your APIs,
+which contain all the necessary metadata to invoke the API and bind any contextual validation errors adjacent to the invalid field inputs.
 
 <ApiReference component="AutoEditForm">Edit Form</ApiReference>
 
@@ -174,5 +175,7 @@ onMounted(async () => {
 ```
 
 <div>
-    <Fields class="mt-4 mx-auto max-w-screen-md" />
+    <Fields class="my-4 mx-auto max-w-screen-md" />
 </div>
+
+`toFormValues` is used when updating the data bound `request` DTO to convert API response values into the required format that HTML Inputs expect.
