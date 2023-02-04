@@ -192,7 +192,7 @@ const Edit = {
 
         const close = () => emit('done')
         
-        return { request, enumOptions, colorOptions, submit, close }
+        return { request, enumOptions, colorOptions, submit, onDelete, close }
     }
 }
 ```
