@@ -583,7 +583,7 @@ ServiceStack only allows you to serialize "known safe Types" in late-bound prope
 popular Data Types, DTOs and Request DTOs with the default configuration below:
 
 ```csharp
-// Allow deserializing types with [DataContract] or [RuntimeSerializable] attributes
+// Allow deserializing types with [Serializable], [DataContract] or [RuntimeSerializable] attributes
 JsConfig.AllowRuntimeTypeWithAttributesNamed = new HashSet<string>
 {
     nameof(SerializableAttribute),
