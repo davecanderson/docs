@@ -610,7 +610,7 @@ JsConfig.AllowRuntimeTypeInTypesWithNamespaces = new HashSet<string>
 };
  
 // Allow object in ServiceStack.Messaging MQ and Request Logging payloads
-JsConfig.AllowRuntimeTypeInTypesWithNamespaces = new HashSet<string>
+JsConfig.AllowRuntimeTypeInTypes = new HashSet<string>
 {
     "ServiceStack.Messaging.Message",
     "ServiceStack.RequestLogEntry",
