@@ -262,7 +262,7 @@ public class Booking
 }
 ```
 
-Which can be enabled by specifying the `MetadataType` for the DataGrid's results in **type**:
+Which can be enabled when using [useMetadata](/vue/use-metadata.md) by specifying the `MetadataType` for the DataGrid's results in **type**:
 
 ```html
 <DataGrid :items="bookings" type="Booking" />

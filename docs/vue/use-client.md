@@ -136,8 +136,9 @@ let store = {
 <h3 class="my-4 text-lg font-semibold">Implicit Error Handling</h3>
 
 More often you'll want to take advantage of the implicit validation support in `useClient()` which makes its state available to child
-components, alleviating the need to explicitly pass it in each component as seen in the [/Contacts](https://vue-mjs.web-templates.io/Contacts) `Edit` component
-which doesn't do any manual error handling:
+components, alleviating the need to explicitly pass it in each component as seen in razor-tailwind's 
+[Contacts.mjs](https://github.com/NetCoreTemplates/razor-tailwind/blob/main/MyApp/wwwroot/Pages/Contacts.mjs) `Edit` component for its 
+[/Contacts](https://vue-mjs.web-templates.io/Contacts) page which doesn't do any manual error handling:
 
 ```js
 const Edit = {
@@ -145,7 +146,7 @@ const Edit = {
     <form @submit.prevent="submit">
       <input type="submit" class="hidden">
       <fieldset>
-        <ErrorSummary :except="visibleFields" class="mb-4" />
+        <ErrorSummary except="title,name,color,filmGenres,age,agree" class="mb-4" />
         <div class="grid grid-cols-6 gap-6">
           <div class="col-span-6 sm:col-span-3">
             <SelectInput id="title" v-model="request.title" :options="enumOptions('Title')" />
@@ -175,23 +176,23 @@ const Edit = {
     props:['contact'],
     emits:['done'],
     setup(props, { emit }) {
-        const visibleFields = "title,name,color,filmGenres,age,agree"
         const client = useClient()
-
         const request = ref(new UpdateContact(props.contact))
-        const colorOptions = propertyOptions(getProperty('CreateContact','Color'))
+        const colorOptions = propertyOptions(getProperty('UpdateContact','Color'))
 
-        /** @param {Event} e */
-        const submit = async (e) => {
+        async function submit() {
             const api = await client.api(request.value)
             if (api.succeeded) close()
         }
-        const onDelete = async () => {
-            const api = await client.apiVoid(new DeleteContact({id: props.id}))
+        
+        async function onDelete () {
+            const api = await client.apiVoid(new DeleteContact({ id:props.id }))
             if (api.succeeded) close()
         }
+
         const close = () => emit('done')
-        return { visibleFields, submit, close, enumOptions, colorOptions, request }
+        
+        return { request, enumOptions, colorOptions, submit, close }
     }
 }
 ```
@@ -199,7 +200,83 @@ const Edit = {
 This effectively makes form validation binding a transparent detail where all `@servicestack/vue` 
 Input Components are able to automatically apply contextual validation errors next to the fields they apply to: 
 
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/scripts/edit-contact-validation.png)
+<div class="my-8">
+  <img class="mx-auto max-w-2xl" src="https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/scripts/edit-contact-validation.png">
+</div>
+
+<h2 id="form-validation" class="pt-8 mb-4 text-2xl font-semibold text-gray-900 dark:text-gray-100">
+    Example using apiForm
+</h2>
+
+An alternative method of invoking APIs is to submit a HTML Form Post which can be achieved with Ajax by sending a populated `FormData` 
+with `client.apiForm()` as done in vue-mjs's 
+[SignUp.mjs](https://github.com/NetCoreTemplates/vue-mjs/blob/main/MyApp/wwwroot/Pages/SignUp.mjs) for its 
+[/signup](https://vue-mjs.web-templates.io/signup) page:
+
+```js
+import { ref } from "vue"
+import { leftPart, rightPart, toPascalCase } from "@servicestack/client"
+import { useClient } from "@servicestack/vue"
+import { Register } from "../mjs/dtos.mjs"
+
+export default {
+    template:/*html*/`    
+    <form @submit.prevent="submit">
+      <div class="shadow overflow-hidden sm:rounded-md">
+        <ErrorSummary except="displayName,userName,password,confirmPassword,autoLogin" />
+        <div class="px-4 py-5 bg-white dark:bg-black space-y-6 sm:p-6">
+          <div class="flex flex-col gap-y-4">
+            <TextInput id="displayName" help="Your first and last name" v-model="request.displayName" />
+            <TextInput id="userName" label="Email" placeholder="Email" help="" v-model="request.userName" />
+            <TextInput id="password" type="password" help="6 characters or more" v-model="request.password" />
+            <TextInput id="confirmPassword" type="password" v-model="request.confirmPassword" />
+            <CheckboxInput id="autoLogin" v-model="request.autoLogin" />
+          </div>
+        </div>
+        <div class="pt-5 px-4 py-3 bg-gray-50 dark:bg-gray-900 text-right sm:px-6">
+          <div class="flex justify-end">
+            <FormLoading v-if="loading" class="flex-1" />
+            <PrimaryButton :disabled="loading" class="ml-3">Sign Up</PrimaryButton>
+          </div>
+        </div>
+      </div>
+    </form>`,
+    props: { returnUrl:String },
+    setup(props) {
+        const client = useClient()
+        const { setError, loading } = client
+        const request = ref(new Register({ autoLogin:true }))
+
+        /** @param email {string} */
+        function setUser(email) {
+            let first = leftPart(email, '@')
+            let last = rightPart(leftPart(email, '.'), '@')
+            const dto = request.value
+            dto.displayName = toPascalCase(first) + ' ' + toPascalCase(last)
+            dto.userName = email
+            dto.confirmPassword = dto.password = 'p@55wOrd'
+        }
+        
+        /** @param {Event} e */
+        async function submit(e) {
+            if (request.value.password !== request.value.confirmPassword) {
+                setError({ fieldName: 'confirmPassword', message: 'Passwords do not match' })
+                return
+            }
+            
+            // Example using client.apiForm()
+            const api = await client.apiForm(new Register(), new FormData(e.target))
+            if (api.succeeded) {
+                location.href = props.returnUrl || '/signin'
+            }
+        }
+        
+        return { loading, request, setUser, submit }
+    }
+}
+```
+
+Which method to use is largely a matter of preference except if your form needs to upload a file in which case using `apiForm` is required.
 
 <h2 id="form-validation" class="mt-8 mb-4 text-2xl font-semibold text-gray-900 dark:text-gray-100">
     AutoForm Components

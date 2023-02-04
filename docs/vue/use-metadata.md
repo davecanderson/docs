@@ -8,10 +8,10 @@ title: App Metadata
 import { Icon } from "@iconify/vue"
 import ApiReference from "../src/components/ApiReference.vue"
 
-// import metadata from "../src/gallery/metadata.json"
-// import { useMetadata, useUtils } from '@servicestack/vue'
-// const { setMetadata } = useMetadata()
-// setMetadata(metadata)
+import metadata from "../src/gallery/metadata.json"
+import { useMetadata, useUtils } from '@servicestack/vue'
+const { setMetadata, typeOf } = useMetadata()
+setMetadata(metadata)
 </script>
 
 <Breadcrumbs class="not-prose my-4 mb-8" home-href="/vue/">
@@ -72,13 +72,12 @@ const {
 } = useMetadata()
 ```
 
-For example you can use this to print out all the C# property names and their Types for the `Contact` C# DTO with:
+For example you can use this to view all C# property names and Type info for the `Contact` C# DTO with:
 
-```js
-const { typeOf } = useMetadata()
-
-typeOf('Contact').properties.forEach(prop => console.log(`${prop.name}: ${prop.type}`))
+```html
+<HtmlFormat :value="typeOf('Contact').properties.map(({ name, type, namespace }) => ({ name, type, namespace }))" />
 ```
+<HtmlFormat :value="typeOf('Contact').properties.map(({ name, type, namespace }) => ({ name, type, namespace }))" />
 
 <h2 class="pt-8 mb-4 text-2xl font-semibold text-gray-900 dark:text-gray-100">
     Enum Values and Property Options
