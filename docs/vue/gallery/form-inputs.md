@@ -133,7 +133,7 @@ This also shows how we can utilize `enumOptions` from our [App Metadata](/vue/us
 
 <ApiReference component="FileInput" />
 
-The `<FileInput>` component beautifies the browsers default HTML file Input, supporting Single: 
+The `<FileInput>` component beautifies the browsers default HTML file Input, supporting both Single file uploads: 
 
 ```html
 <FileInput id="profileUrl" label="Single File Upload" v-model="contact.profileUrl" />
