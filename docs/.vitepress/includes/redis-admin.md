@@ -4,9 +4,7 @@
 
 <div class="mx-auto max-w-md p-4 text-center sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8"><p class="mt-2 text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">Video feature tour</p></div>
 
-<div class="mb-16 flex justify-center">
-<iframe class="video-hd" src="https://www.youtube.com/embed/AACZtTOcQbg?start=217" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
+<div class="mb-16 flex justify-center"><iframe class="video-hd" src="https://www.youtube.com/embed/AACZtTOcQbg?start=217" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
 
 Launch as a stand-alone Desktop App by [Installing .NET SDK](https://dotnet.microsoft.com/en-us/download) and the 
 [Windows Desktop App tool](/netcore-windows-desktop):
@@ -41,4 +39,3 @@ x open redis
 :::
 
 Where you can view it with your preferred browser at `http://localhost:5000`
-
