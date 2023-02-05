@@ -28,7 +28,7 @@ To help choosing which template to start with we've created an overview covering
 <iframe class="video-hd" src="https://www.youtube.com/embed/Sb1hsy4S9v4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 All Razor Pages and MVC templates utilize the JS Modules support in modern browsers to avoid any needing any npm build system, 
-for access to more advanced npm library features and learn about Jamstack CDN and SSG benefits checkout [Jamstack Templates docs](/templates-jamstack).
+for access to more advanced npm library features and to learn about Jamstack CDN and SSG benefits checkout [Jamstack Templates docs](/templates-jamstack).
 
 ### Manual Installation
 

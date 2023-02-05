@@ -2,7 +2,11 @@
 
 <a href="/admin-ui-redis"><div class="mx-auto max-w-screen-lg block flex justify-center shadow hover:shadow-lg rounded py-1"><img class="p-4" src="/images/admin-ui/redis-desktop.png"></div></a>
 
+<!-- fixes rendering? -->
+
 <div class="mx-auto max-w-md p-4 text-center sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8"><p class="mt-2 text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">Video feature tour</p></div>
+
+<!-- fixes rendering? -->
 
 <div class="mb-16 flex justify-center"><iframe class="video-hd" src="https://www.youtube.com/embed/AACZtTOcQbg?start=217" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
 
