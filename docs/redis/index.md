@@ -30,7 +30,6 @@ With each client providing different layers of abstraction:
 
 ## API Overview
 
-
 <a href="https://reference.servicestack.net/api/ServiceStack.Redis/"><div class="mx-auto max-w-screen-lg block flex justify-center shadow hover:shadow-lg rounded py-1"><img class="p-4" src="/images/redis/redis-reference.png"></div></a>
 
 ### Birds-eye view
