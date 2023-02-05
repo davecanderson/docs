@@ -2,6 +2,11 @@
 title: Install Redis on Windows
 ---
 
+<script setup>
+import RedisAdmin from './.vitepress/includes/redis-admin.md'
+</script>
+
+
 The [ServiceStack/redis-windows](https://github.com/ServiceStack/redis-windows) project contains the binary releases of MS Open Tech redis port of windows as well as a vagrant configuration for redis letting you run the native version of Redis in a Virtual Box VM.
 
 Whilst it's recommended to use [Redis](https://redis.io) on Linux in production, it is often useful for developers on Windows platforms to have their own local version of redis running to develop with. 
@@ -242,44 +247,9 @@ $ redis-server --service-install –service-name redisService3 –port 10003
 $ redis-server --service-start –service-name redisService3
 ```
 
-## [Redis Admin](/admin-ui-redis)
+## Redis Admin Desktop App
 
-The [Redis Admin UI](/admin-ui-redis) lets you manage your App's configured Redis Server with a user-friendly UX for managing core Redis data types, simple search functionality to quickly find Redis values, quick navigation between related values, first class support for JSON values and a flexible command interface and command history to inspect all previously run redis commands that's easily editable & rerun.
-
-<iframe class="video-hd" src="https://www.youtube.com/embed/AACZtTOcQbg?start=217" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-To launch as a stand-alone Desktop App, [Install .NET SDK](https://dotnet.microsoft.com/en-us/download) and the 
-[Windows Desktop App tool](/netcore-windows-desktop):
-
-:::sh
-dotnet tool install -g app
-:::
-
-After install, open the Redis Admin Desktop from the command-line with:
-
-:::sh
-app open redis
-:::
-
-Or from your browser at:
-
-<h3 class="text-3xl text-center"><a href="app://redis">app://redis</a></h3>
-
-### Run headless on macOS, Linux and Windows
-
-Non Windows OS can install the cross-platform [x dotnet tool](/dotnet-tool):
-
-:::sh
-dotnet tool install -g x
-:::
-
-Then launch from Command Line with:
-
-:::sh
-x open redis
-:::
-
-Where you can view it with your preferred browser at `http://localhost:5000`
+<RedisAdmin />
 
 ## [Redis Vue](https://sharpscript.net/sharp-apps/redis#redis-vue)
 
@@ -288,23 +258,26 @@ Redis Vue is a simple, lightweight, versatile Redis Admin UI developed using [Vu
 ![](https://sharpscript.net/assets/img/screenshots/redis.png)
 
 
-Open the Redis Vue Desktop from the command-line with:
-
-:::sh
-app open redis-vue
-:::
-
-Or from your browser at:
+After [app](/netcore-windows-desktop) install, open the Redis Vue Desktop App from your browser at:
 
 <h3 class="text-3xl text-center"><a href="app://redis-vue">app://redis-vue</a></h3>
 
+Or from the command-line with:
+
+:::sh
+app open redis
+:::
+
+
 ### Run headless on macOS, Linux and Windows
 
-Launch from Command Line with:
+Non Windows OS can install the cross-platform [x dotnet tool](/dotnet-tool) then launch from Command Line with:
 
 :::sh
 x open redis-vue
 :::
+
+Where you can view it with your preferred browser at `http://localhost:5000`
 
 ## [Configure Redis Sentinel Servers](https://github.com/ServiceStack/redis-config)
 
