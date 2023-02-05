@@ -15,20 +15,55 @@ The 3 most popular ways of running redis on windows is to use the binary release
 
 Thanks to [Vagrant](https://www.vagrantup.com/) you can choose to run the latest linux version inside a Virtual Box Linux VM where you'll be able to run the official native version of redis.
 
-Or if you have the latest version of **Windows 10** you can install [Bash on Ubuntu on Windows](https://msdn.microsoft.com/en-us/commandline/wsl/about) which will let you run the official version of Redis on Ubuntu on Windows :) This is our preferred approach as it lets you run native Ubuntu binaries on Windows more efficiently than running Linux in a VM:
+Or from **Windows 10** you can install [Bash on Ubuntu on Windows](https://msdn.microsoft.com/en-us/commandline/wsl/about) which will let you run the official version of Redis on Ubuntu on Windows :) This is our preferred approach as it lets you run native Ubuntu binaries on Windows more efficiently than a VM of Linux.
 
 ## Option 1) Install Redis on Ubuntu on Windows
 
-#### [Install Windows Subsystem for Linux (WSL)](https://msdn.microsoft.com/en-us/commandline/wsl/install_guide)
+#### [Install Windows Subsystem for Linux (WSL)](https://learn.microsoft.com/en-us/windows/wsl/install)
+
+From Command Line:
+
+:::sh
+wsl --install
+:::
+
+From GUI:
 
  1) From Start, search for **Turn Windows features on or off** (type `turn`)
- 2) **Select Windows Subsystem for Linux (beta)**
+ 2) Select **Windows Subsystem for Linux**
 
 ![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/redis/install-wsl.png)
 
-Once installed you can run bash on Ubuntu by typing **bash** from a Windows 
-Command Prompt. To install the latest version of Redis we first need to install 
-some prerequisites:
+Once installed you can run bash on Ubuntu by typing **bash** from a Windows Command Prompt, then you can install recent stable versions of Redis from the official `packages.redis.io` APT repository with:
+
+```bash
+curl -fsSL https://packages.redis.io/gpg | sudo gpg --dearmor -o /usr/share/keyrings/redis-archive-keyring.gpg
+
+echo "deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg] https://packages.redis.io/deb $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/redis.list
+
+sudo apt-get update
+sudo apt-get install redis
+```
+
+After install, start the Redis server with:
+
+:::sh
+sudo service redis-server start
+:::
+
+Then test that it's running with:
+
+```bash
+$ redis-cli
+$ 127.0.0.1:6379> SET foo bar
+OK
+$ 127.0.0.1:6379> GET foo
+"bar"
+```
+
+### Install latest from source
+
+To install the latest version of Redis we first need to install some prerequisites:
 
 ```bash
 $ sudo apt-get update
