@@ -112,10 +112,9 @@ Useful for rendering Table Cell data into different customizable formats, e.g:
 <h3 class="my-4 text-lg font-semibold">Link with class</h3>
 
 ```html
-<PreviewFormat value="https://servicestack.net/blazor" :format="Formats.link" 
-    class="text-xl text-green-700 font-semibold" />
+<PreviewFormat value="https://servicestack.net/blazor" :format="Formats.link" class="text-xl font-semibold" />
 ```
-<PreviewFormat value="https://servicestack.net/blazor" :format="Formats.link" class="text-xl text-green-700 font-semibold" />
+<PreviewFormat value="https://servicestack.net/blazor" :format="Formats.link" class="text-xl font-semibold" />
 
 <h3 class="my-4 text-lg font-semibold">Link Email</h3>
 

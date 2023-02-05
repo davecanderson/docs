@@ -295,7 +295,7 @@ const contacts = ref<any[]>([])
 </script>
 ```
 
-<AutocompleteExamples class="max-w-prose" />
+<AutocompleteExamples class="max-w-prose not-prose" />
 
 <ApiReference component="TagInput">TagInput</ApiReference>
 

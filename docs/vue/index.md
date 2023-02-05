@@ -14,13 +14,21 @@ with your ServiceStack APIs unlocks end-to-end productivity. With a focus on per
 
 <VueComponentGallery />
 
-
 ## Getting Started
 
 Starting with one of ServiceStack's Vue + Tailwind Project templates below is the easiest way to get started which are pre-configured with 
 **@servicestack/client** and **@servicestack/vue** libraries:
 
-<VueTailwindTemplates />
+<VueTailwindTemplates class="mb-8" />
+
+### JS Modules Templates Overview
+
+To help choosing which template to start with we've created an overview covering the differences between Razor Pages & MVC templates:
+
+<iframe class="video-hd" src="https://www.youtube.com/embed/Sb1hsy4S9v4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+All Razor Pages and MVC templates utilize the JS Modules support in modern browsers to avoid any needing any npm build system, 
+for access to more advanced npm library features and learn about Jamstack CDN and SSG benefits checkout [Jamstack Templates docs](/templates-jamstack).
 
 ### Manual Installation
 
@@ -30,7 +38,7 @@ Alternatively it can be added to existing Vue SPA Apps by installing via npm:
 $ npm install @servicestack/vue
 ```
 
-This libraries only dependencies **vue** and **@servicestack/client** also needs to be installed.
+Where it will also install its **vue** and **@servicestack/client** dependencies.
 
 ### Installation-less option
 
@@ -76,7 +84,7 @@ Razor Pages or MVC Apps can use the `Html.ImportMaps()` to use local debug build
 })
 ```
 
-> It's recommended to use exact versions so they match the local version your App was developed with and eliminate redirect latency
+> It's recommended to use exact versions to eliminate redirect latencies and to match the local version your App was developed against
 
 ### Registration
 
