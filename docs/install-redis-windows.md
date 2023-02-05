@@ -133,25 +133,25 @@ service (Run -> services.msc -> Redis -> Restart).
 
 During installation of the MSI you can either use the installer’s user interface to update the port that Redis listens to and the firewall exception or run it silently without a UI. The following examples show how to install from the command line:
 
-#### default install (port 6379 and firewall exception ON):
+**default install (port 6379 and firewall exception ON):**
 
 :::sh
 msiexec /i Redis-Windows-x64.msi 
 :::
 
-#### set port and turn OFF firewall exception:
+**set port and turn OFF firewall exception:**
 
 :::sh
 msiexec /i Redis-Windows-x64.msi PORT=1234 ADD_FIREWALL_RULE=""
 :::
 
-#### set port and turn ON firewall exception:
+**set port and turn ON firewall exception:**
 
 :::sh
 msiexec /i Redis-Windows-x64.msi PORT=1234 ADD_FIREWALL_RULE =1
 :::
 
-#### install with no user interface:
+**install with no user interface:**
 
 :::sh
 msiexec /quiet /i Redis-Windows-x64.msi
@@ -242,26 +242,69 @@ $ redis-server --service-install –service-name redisService3 –port 10003
 $ redis-server --service-start –service-name redisService3
 ```
 
-## [Redis Vue](https://templates.servicestack.net/docs/web-apps#redis-vue)
+## [Redis Admin](/admin-ui-redis)
 
-Redis Vue is a simple, lightweight, versatile Redis Admin UI developed using [Vue](https://vuejs.org/v2/guide/) and [ServiceStack .NET Core Web Apps](https://templates.servicestack.net/docs/web-apps). It supports Redis's core **Strings**, **Lists**, **Sets**, **Sorted Sets** and **Hash** data structures and custom Redis commands with its entire functionality contained in a single [/app/index.html](https://github.com/NetCoreWebApps/Redis/blob/master/app/index.html) using the dynamic [ServiceStack Templates](https://templates.servicestack.net/) language, making it easy to customize and further enhance.
+The [Redis Admin UI](/admin-ui-redis) lets you manage your App's configured Redis Server with a user-friendly UX for managing core Redis data types, simple search functionality to quickly find Redis values, quick navigation between related values, first class support for JSON values and a flexible command interface and command history to inspect all previously run redis commands that's easily editable & rerun.
 
-### [Live Demo](https://redis.web-app.io) - https://redis.web-app.io
+<iframe class="video-hd" src="https://www.youtube.com/embed/AACZtTOcQbg?start=217" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-[![](https://sharpscript.net/assets/img/screenshots/redis.png)](https://redis.web-app.io)
+To launch as a stand-alone Desktop App, [Install .NET SDK](https://dotnet.microsoft.com/en-us/download) and the 
+[Windows Desktop App tool](/netcore-windows-desktop):
 
-#### Download for Windows, OSX and Linux https://github.com/NetCoreWebApps/Redis
+:::sh
+dotnet tool install -g app
+:::
 
-## [Redis React Browser](https://servicestack.net/redis-react)
+After install, open the Redis Admin Desktop from the command-line with:
 
-Redis React is a simple user-friendly UI for browsing data in Redis servers which takes advantages of the complex
-type conventions built in the ServiceStack.Redis Client to provide a rich, human-friendly UI for navigating related datasets, enabling a fast and fluid browsing experience for your Redis servers.
+:::sh
+app open redis
+:::
 
-#### [Live Demo](https://redisreact.servicestack.net/#/)
+Or from your browser at:
 
-[![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/livedemos/redis-react/home.png)](https://redisreact.servicestack.net/#/)
+<h3 class="text-3xl text-center"><a href="app://redis">app://redis</a></h3>
 
-#### Windows, OSX and Linux downloads available from [Redis React Home Page](https://github.com/ServiceStackApps/RedisReact#download)
+### Run headless on macOS, Linux and Windows
+
+Non Windows OS can install the cross-platform [x dotnet tool](/dotnet-tool):
+
+:::sh
+dotnet tool install -g x
+:::
+
+Then launch from Command Line with:
+
+:::sh
+x open redis
+:::
+
+Where you can view it with your preferred browser at `http://localhost:5000`
+
+## [Redis Vue](https://sharpscript.net/sharp-apps/redis#redis-vue)
+
+Redis Vue is a simple, lightweight, versatile Redis Admin UI developed using [Vue](https://vuejs.org/v2/guide/) and ServiceStack [Sharp Apps](https://sharpscript.net/sharp-apps/). It supports Redis's core **Strings**, **Lists**, **Sets**, **Sorted Sets** and **Hash** data structures and custom Redis commands with its entire functionality contained in a single [/index.html](https://gist.github.com/gistlyn/6de7993333b457445793f51f6f520ea8#file-index-html) using the dynamic [#Script](https://sharpscript.net) language, making it easy to customize and further enhance.
+
+![](https://sharpscript.net/assets/img/screenshots/redis.png)
+
+
+Open the Redis Vue Desktop from the command-line with:
+
+:::sh
+app open redis-vue
+:::
+
+Or from your browser at:
+
+<h3 class="text-3xl text-center"><a href="app://redis-vue">app://redis-vue</a></h3>
+
+### Run headless on macOS, Linux and Windows
+
+Launch from Command Line with:
+
+:::sh
+x open redis-vue
+:::
 
 ## [Configure Redis Sentinel Servers](https://github.com/ServiceStack/redis-config)
 
