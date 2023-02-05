@@ -32,7 +32,9 @@ From GUI:
  1) From Start, search for **Turn Windows features on or off** (type `turn`)
  2) Select **Windows Subsystem for Linux**
 
-![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/redis/install-wsl.png)
+<div class="my-8 flex justify-center">
+  <a class="max-w-xl" href="https://learn.microsoft.com/en-us/windows/wsl/install"><img src="/images/redis/install-wsl.png"></a>
+</div>
 
 Once installed you can run bash on Ubuntu by typing **bash** from a Windows Command Prompt, then you can install recent stable versions of Redis from the official `packages.redis.io` APT repository with:
 

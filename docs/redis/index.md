@@ -28,6 +28,13 @@ With each client providing different layers of abstraction:
 * The RedisClient assumes `string` values and simply converts strings to UTF8 bytes before sending to Redis
 * The RedisTypedClient provides a generic interface allowing you to add POCO values. POCOs are serialized using [ServiceStack.Text](https://github.com/ServiceStack/ServiceStack.Text) which is then converted to UTF8 bytes and sent to Redis.
 
-### API Overview
+## API Overview
 
-[![Redis Client API](https://servicestack.net/images/redis-annotated-preview.png)](https://servicestack.net/images/redis-annotated.png)
+
+<a href="https://reference.servicestack.net/api/ServiceStack.Redis/"><div class="mx-auto max-w-screen-lg block flex justify-center shadow hover:shadow-lg rounded py-1"><img class="p-4" src="/images/redis/redis-reference.png"></div></a>
+
+### Birds-eye view
+
+<div class="my-8 flex justify-center">
+  <a class="max-w-4xl" href="https://servicestack.net/images/redis-annotated.png"><img src="https://servicestack.net/images/redis-annotated.png"></a>
+</div>
