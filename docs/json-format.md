@@ -597,9 +597,12 @@ JsConfig.AllowRuntimeTypeWithInterfacesNamed = new HashSet<string>
     "IConvertible",
     "ISerializable",
     "IRuntimeSerializable", // in ServiceStack.Text
-    "IMeta",
     "IReturn`1",
     "IReturnVoid",
+    "IVerb",                // IGet, IPost, IPut, IPatch, etc
+    "ICrud",                // ICreateDb<T>, IUpdateDb<T>, etc
+    "IMeta",
+    "IAuthTokens",
 };
  
 // Allow object property in ServiceStack.Messaging MQ classes
