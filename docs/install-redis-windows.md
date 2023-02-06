@@ -303,7 +303,7 @@ After [app](/netcore-windows-desktop) install, open the Redis Vue Desktop App fr
 Or from the command-line with:
 
 :::sh
-app open redis
+app open redis-vue
 :::
 
 

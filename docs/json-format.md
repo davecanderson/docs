@@ -608,14 +608,6 @@ JsConfig.AllowRuntimeTypeInTypesWithNamespaces = new HashSet<string>
     "ServiceStack.Auth",
     "ServiceStack.Messaging",
 };
- 
-// Allow object in ServiceStack.Messaging MQ and Request Logging payloads
-JsConfig.AllowRuntimeTypeInTypes = new HashSet<string>
-{
-    "ServiceStack.Messaging.Message",
-    "ServiceStack.RequestLogEntry",
-};
-```
 
 The above rules can be extended to allow your own conventions. If you just need to allow a specific Type you can instead just implement:
 
