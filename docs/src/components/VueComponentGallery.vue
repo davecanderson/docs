@@ -7,7 +7,6 @@
             <Icon icon="vscode-icons:file-type-tailwind" class="w-44 h-44" />
         </div>
     </div>
-
     <div class="text-center">
         <h1 class="mt-2 text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-100 sm:text-5xl">
             Component Gallery
@@ -45,7 +44,6 @@
                     HTML Value Formatters
                 </NavListItem>
             </NavList>
-            
             <NavList class="mt-8" title="Explore API Library Features">
                 <NavListItem title="useMetadata" href="/vue/use-metadata" :iconSvg="Icons.Code">
                     Reflective utils for inspecting API AppMetadata
@@ -69,7 +67,6 @@
                     General functionality and utils
                 </NavListItem>
             </NavList>
-
         </div>
     </div>
 </div>
