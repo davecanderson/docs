@@ -300,6 +300,10 @@
         "link": "/typescript-add-servicestack-reference"
       },
       {
+        "text": "JavaScript Add Reference",
+        "link": "/javascript-add-servicestack-reference"
+      },
+      {
         "text": "Python Add Reference",
         "link": "/python-add-servicestack-reference"
       },
