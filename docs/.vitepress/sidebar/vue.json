@@ -1,0 +1,77 @@
+[
+  {
+    "text": "Introduction",
+    "children": [
+      {
+        "text": "Getting Started",
+        "link": "/vue/"
+      }
+    ]
+  },
+  {
+    "text": "Component Gallery",
+    "children": [
+      {
+        "text": "DataGrid",
+        "link": "/vue/gallery/datagrid"
+      },
+      {
+        "text": "Auto Forms",
+        "link": "/vue/gallery/autoform"
+      },
+      {
+        "text": "Form Inputs",
+        "link": "/vue/gallery/form-inputs"
+      },
+      {
+        "text": "Modals",
+        "link": "/vue/gallery/modals"
+      },
+      {
+        "text": "Navigation",
+        "link": "/vue/gallery/navigation"
+      },
+      {
+        "text": "Alerts",
+        "link": "/vue/gallery/alerts"
+      },
+      {
+        "text": "Formats",
+        "link": "/vue/gallery/formats"
+      }
+    ]
+  },
+  {
+    "text": "Library",
+    "children": [
+      {
+        "text": "useMetadata",
+        "link": "/vue/use-metadata"
+      },
+      {
+        "text": "useClient",
+        "link": "/vue/use-client"
+      },
+      {
+        "text": "useAuth",
+        "link": "/vue/use-auth"
+      },
+      {
+        "text": "useFormatters",
+        "link": "/vue/use-formatters"
+      },
+      {
+        "text": "useFiles",
+        "link": "/vue/use-files"
+      },
+      {
+        "text": "useConfig",
+        "link": "/vue/use-config"
+      },
+      {
+        "text": "useUtils",
+        "link": "/vue/use-utils"
+      }
+    ]
+  }
+]

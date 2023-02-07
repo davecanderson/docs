@@ -2,8 +2,9 @@ let container = require('markdown-it-container')
 
 let navIndex = require('./sidebar/index.json'), 
     navTemplates = require('./sidebar/templates.json'),
-    navLocode = require('./sidebar/locode.json'),
     navAutoQuery = require('./sidebar/autoquery.json'),
+    navVue = require('./sidebar/vue.json'),
+    navLocode = require('./sidebar/locode.json'),
     navAuth = require('./sidebar/auth.json'),
     navGrpc = require('./sidebar/grpc.json'),
     navRedis = require('./sidebar/redis.json'),
@@ -45,6 +46,7 @@ module.exports = {
         //lastUpdated: false,
         nav: [
             { text: 'Project Templates', link: '/templates-overview', activeMatch: '^/(templates|dotnet-new)'},
+            { text: 'Vue', link: '/vue/', activeMatch: '^/vue'},
             { text: 'AutoQuery', link: '/autoquery', activeMatch: '^/(autoquery|why-not-odata)'},
             { text: 'Locode', link: '/locode/', activeMatch: '^/locode'},
             { text: 'Security', link: '/auth', activeMatch: '(auth|sessions)' },
@@ -57,8 +59,9 @@ module.exports = {
             '/ormlite': navOrmLite,
             '/templates': navTemplates,
             '/dotnet-new': navTemplates,
-            '/locode': navLocode,
+            '/vue': navVue,
             '/autoquery': navAutoQuery,
+            '/locode': navLocode,
             '/why-not-odata': navAutoQuery,
             '/auth': navAuth,
             '/sessions': navAuth,
@@ -70,6 +73,7 @@ module.exports = {
     },
     head: [
         ['script', { src: '/custom.js' }],
+        ['script', { type:'module', src: '/custom.mjs' }],
     ],
     markdown: {
         config: md => {
