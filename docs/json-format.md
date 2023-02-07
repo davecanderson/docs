@@ -603,6 +603,7 @@ JsConfig.AllowRuntimeTypeWithInterfacesNamed = new HashSet<string>
     "ICrud",                // ICreateDb<T>, IUpdateDb<T>, etc
     "IMeta",
     "IAuthTokens",
+    "IHasResponseStatus",
 };
  
 // Allow object property in ServiceStack.Messaging MQ classes
