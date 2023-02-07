@@ -5,7 +5,7 @@
   "license": "MIT",
   "devDependencies": {
     "@iconify/vue": "^4.0.0",
-    "@servicestack/client": "^2.0.5",
+    "@servicestack/client": "^2.0.6",
     "autoprefixer": "^10.4.12",
     "gray-matter": "^4.0.3",
     "markdown-it-container": "^3.0.0",
@@ -28,7 +28,7 @@
     }
   },
   "dependencies": {
-    "@servicestack/vue": "^3.0.42",
+    "@servicestack/vue": "^3.0.45",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/typography": "^0.5.9",
     "glob": "^8.0.3",
