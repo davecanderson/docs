@@ -25,7 +25,7 @@ Starting with one of ServiceStack's Vue + Tailwind Project templates below is th
 
 To help choosing which template to start with we've created an overview covering the differences between Razor Pages & MVC templates:
 
-<iframe class="video-hd" src="https://www.youtube.com/embed/Sb1hsy4S9v4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe class="video-hd" src="https://www.youtube.com/embed/YIa0w6whe2U" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 All Razor Pages and MVC templates utilize the JS Modules support in modern browsers to avoid any needing any npm build system, 
 for access to more advanced npm library features and to learn about Jamstack CDN and SSG benefits checkout [Jamstack Templates docs](/templates-jamstack).
