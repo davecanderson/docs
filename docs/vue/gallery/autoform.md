@@ -12,7 +12,7 @@ import Fields from "../../src/gallery/autoform/Fields.vue"
 import metadata from "../../src/gallery/metadata.json"
 import { bookings } from "../../src/gallery/data.ts"
 
-import { useMetadata, useUtils } from '@servicestack/vue'
+import { useMetadata } from '@servicestack/vue'
 const { setMetadata } = useMetadata()
 setMetadata(metadata)
 

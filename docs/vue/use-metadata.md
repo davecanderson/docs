@@ -9,7 +9,7 @@ import { Icon } from "@iconify/vue"
 import ApiReference from "../src/components/ApiReference.vue"
 
 import metadata from "../src/gallery/metadata.json"
-import { useMetadata, useUtils } from '@servicestack/vue'
+import { useMetadata } from '@servicestack/vue'
 const { setMetadata, typeOf } = useMetadata()
 setMetadata(metadata)
 </script>
