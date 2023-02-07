@@ -45,7 +45,7 @@
 
             <div class="mb-3">
                 <Autocomplete id="contacts" :options="allContacts" v-model="contacts" multiple
-                    label="Single Contact with Icon"
+                    label="Multiple Contacts with Icon"
                     :match="(x: any, value: string) => x!.displayName.toLowerCase().includes(value.toLowerCase())"
                     placeholder="Select Contact">
                     <template #item="{ displayName, profileUrl }">

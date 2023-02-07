@@ -131,7 +131,7 @@ const close = () => emit('done')
 
 This also shows how we can utilize `enumOptions` from our [App Metadata](/vue/use-metadata) to populate select drop downs from C# enums.
 
-<ApiReference component="FileInput" />
+<ApiReference id="fileinput" component="FileInput" />
 
 The `<FileInput>` component beautifies the browsers default HTML file Input, supporting both Single file uploads: 
 
@@ -163,12 +163,13 @@ a populated `FormData` instead of a Request DTO, e.g:
 
 <script setup lang="ts">
 import { useClient } from "@servicestack/vue"
+import { CreateContact } from "/mjs/dtos.mjs"
 
 const client = useClient()
 function submit(e:Event) {
     let form = e.target as HTMLFormElement
     let formData = new FormData(form)
-    const api = client.api(new CreateContact(), formData)
+    const api = client.apiForm(new CreateContact(), formData)
     if (api.succeeded) {
         //...
     }
@@ -182,176 +183,49 @@ Using [Managed File Uploads](/locode/files) is a productive solution for easily 
 which location uploaded files should be written to, e.g:
 
 ```csharp
-public class CreateContact : ICreateDb<Contact>, IReturn<Contact>
-{
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
-    [Input(Type = "file"), UploadTo("profiles")]
-    public string? ProfileUrl { get; set; }
-    public int? SalaryExpectation { get; set; }
-    public string JobType { get; set; }
-    public int AvailabilityWeeks { get; set; }
-    public EmploymentType PreferredWorkType { get; set; }
-    public string PreferredLocation { get; set; }
-    public string Email { get; set; }
-    public string? Phone { get; set; }
-}
-```
-
-This metadata information is also supported by [AutoForm components](/vue/gallery/autoform) that can handle invoking APIs with uploaded files:
-
-```html
-<AutoCreateForm type="CreateContact" formStyle="card" />
-```
-<AutoCreateForm type="CreateContact" formStyle="card" class="max-w-3xl" />
-
-<ApiReference component="Autocomplete">Autocomplete</ApiReference>
-
-The `Autocomplete` component provides a user friendly Input for being able to search and quickly select items
-with support for partial items view and infinite scrolling.
-
-```html
-<template>
-<div class="p-4 shadow sm:rounded-md">
-    <div class="max-w-xl grid grid-cols-6 gap-6">
-        <form class="col-span-12">
-            <div class="mb-3">
-                <Autocomplete id="simple" :options="allContacts" v-model="simple" label="Single Contact"
-                    :match="(x: any, value: string) => x!.displayName.toLowerCase().includes(value.toLowerCase())"
-                    placeholder="Select Contact">
-                    <template #item="{ displayName }">
-                        <span class="block truncate">{{ displayName }}</span>
-                    </template>
-                </Autocomplete>
-                <div class="mt-2 flex justify-end">
-                    <p>
-                        <b class="text-gray-500">Single:</b>
-                    <div v-if="simple" class="flex">
-                        <img :src="simple.profileUrl" class="w-8 h-8 rounded-full mr-2">
-                        <b class="text-lg">{{ simple.displayName }}</b>
-                    </div>
-                    </p>
-                </div>
-            </div>
-
-            <div class="mb-3">
-                <Autocomplete id="contact" :options="allContacts" v-model="contact" label="Single Contact with Icon"
-                    :match="(x: any, value: string) => x!.displayName.toLowerCase().includes(value.toLowerCase())"
-                    placeholder="Select Contact">
-                    <template #item="{ displayName, profileUrl }">
-                        <div class="flex items-center">
-                            <Icon class="h-6 w-6 flex-shrink-0 rounded-full" :src="profileUrl" loading="lazy" />
-                            <span class="ml-3 truncate">{{ displayName }}</span>
-                        </div>
-                    </template>
-                </Autocomplete>
-                <div class="mt-2 flex justify-end">
-                    <p>
-                        <b class="text-gray-500">Single with Icon:</b>
-                    <div v-if="contact" class="flex">
-                        <img :src="contact.profileUrl" class="w-8 h-8 rounded-full mr-2">
-                        <b class="text-lg">{{ contact.displayName }}</b>
-                    </div>
-                    </p>
-                </div>
-            </div>
-
-            <div class="mb-3">
-                <Autocomplete id="contacts" :options="allContacts" v-model="contacts" multiple
-                    label="Single Contact with Icon"
-                    :match="(x: any, value: string) => x!.displayName.toLowerCase().includes(value.toLowerCase())"
-                    placeholder="Select Contact">
-                    <template #item="{ displayName, profileUrl }">
-                        <div class="flex items-center">
-                            <Icon class="h-6 w-6 flex-shrink-0 rounded-full" :src="profileUrl" loading="lazy" />
-                            <span class="ml-3 truncate">{{ displayName }}</span>
-                        </div>
-                    </template>
-                </Autocomplete>
-                <div class="mt-2">
-                    <div class="text-right"><b class="text-gray-500">Multiple with Icon:</b></div>
-                    <p>
-                    <div v-if="contacts.length" class="flex flex-wrap">
-                        <div v-for="contact in contacts" class="flex ml-4 mb-2">
-                            <img :src="contact.profileUrl" class="w-6 h-6 rounded-full mr-2">
-                            <span>{{ contact.displayName }}</span>
-                        </div>
-                    </div>
-                    </p>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-</template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-import { allContacts } from '../data'
-
-const simple = ref<any>(null)
-const contact = ref<any>(null)
-const contacts = ref<any[]>([])
-</script>
-```
-
-<AutocompleteExamples class="max-w-prose not-prose" />
-
-<ApiReference component="TagInput">TagInput</ApiReference>
-
-The `TagInput` component provides a user friendly control for managing a free-form `List<string>` tags or symbols
-which is also supported in declarative Auto Forms using the `[Input(Type="tag")]` attribute:
-
-```html
-<AutoEditForm formStyle="card" type="UpdateContact" v-model="contact" />
-```
-
-<AutoEditForm formStyle="card" type="UpdateContact" v-model="contact" class="mb-4" />
-
-Which uses the UpdateContact DTO below to render the `AutoEditForm` and perform the API Update:
-
-```csharp
-// Customize Edit Forms with [Input] and [FieldCss] attributes 
 public class UpdateContact : IPatchDb<Contact>, IReturn<Contact>
 {
     public int Id { get; set; }
-
     [ValidateNotEmpty]
     public string? FirstName { get; set; }
-
     [ValidateNotEmpty]
     public string? LastName { get; set; }
-
     [Input(Type = "file"), UploadTo("profiles")]
     public string? ProfileUrl { get; set; }
-    
     public int? SalaryExpectation { get; set; }
-
     [ValidateNotEmpty]
     public string? JobType { get; set; }
-
     public int? AvailabilityWeeks { get; set; }
     public EmploymentType? PreferredWorkType { get; set; }
     public string? PreferredLocation { get; set; }
-
     [ValidateNotEmpty]
     public string? Email { get; set; }
     public string? Phone { get; set; }
-    
     [Input(Type = "tag"), FieldCss(Field = "col-span-12")]
-    public List<string>? Skills { get; set; }}
- 
-    [Input(Type="textarea")]
-    [FieldCss(Field="col-span-12 text-center", Input="h-48", Label="text-xl text-indigo-700")]
+    public List<string>? Skills { get; set; }
+    [Input(Type = "textarea")]
+    [FieldCss(Field = "col-span-12 text-center", Input = "h-48", Label= "text-xl text-indigo-700")]
     public string? About { get; set; }
 }
 ```
 
-Or you can use the `<TagInput>` Input component directly in Custom Forms, e.g:
+This metadata information is also available to [AutoForm components](/vue/gallery/autoform) which supports invoking APIs with uploaded files:
+
+```html
+<AutoEditForm type="UpdateContact" v-model="contact" formStyle="card" />
+```
+<AutoEditForm id="updatecontact" data-id="UpdateContact" type="UpdateContact" v-model="contact" formStyle="card" class="not-prose max-w-3xl" />
+
+
+<ApiReference id="taginput" component="TagInput">TagInput</ApiReference>
+
+The `TagInput` component provides a user friendly control for managing a free-form `List<string>` tags or symbols
+which is also supported in declarative Auto Forms using the `[Input(Type="tag")]` attribute as seen in the 
+**UpdateContact** example above using the [AutoForm components](/vue/gallery/autoform).
+
+Alternatively `<TagInput>` can be used in Custom Forms directly by binding to a `List<string>` or `string[]` model:
 
 <ApiReference component="TagInput">Custom Form</ApiReference>
-
-<TagInputExamples class="max-w-screen-md" />
 
 ```html
 <form @submit.prevent="submit">
@@ -385,3 +259,84 @@ Or you can use the `<TagInput>` Input component directly in Custom Forms, e.g:
     </div>
 </form>
 ```
+
+<TagInputExamples class="max-w-screen-md" />
+
+
+<ApiReference id="autocomplete" component="Autocomplete">Autocomplete</ApiReference>
+
+The `Autocomplete` component provides a user friendly Input for being able to search and quickly select items
+with support for partial items view and infinite scrolling.
+
+```html
+<form class="col-span-12">
+    <div class="mb-3">
+        <Autocomplete id="simple" :options="allContacts" v-model="simple" label="Single Contact"
+            :match="(x: any, value: string) => x!.displayName.toLowerCase().includes(value.toLowerCase())"
+            placeholder="Select Contact">
+            <template #item="{ displayName }">
+                <span class="block truncate">{{ displayName }}</span>
+            </template>
+        </Autocomplete>
+        <div class="mt-2 flex justify-end">
+            <p>
+                <b class="text-gray-500">Single:</b>
+            <div v-if="simple" class="flex">
+                <img :src="simple.profileUrl" class="w-8 h-8 rounded-full mr-2">
+                <b class="text-lg">{{ simple.displayName }}</b>
+            </div>
+            </p>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <Autocomplete id="contact" :options="allContacts" v-model="contact" label="Single Contact with Icon"
+            :match="(x: any, value: string) => x!.displayName.toLowerCase().includes(value.toLowerCase())"
+            placeholder="Select Contact">
+            <template #item="{ displayName, profileUrl }">
+                <div class="flex items-center">
+                    <Icon class="h-6 w-6 flex-shrink-0 rounded-full" :src="profileUrl" loading="lazy" />
+                    <span class="ml-3 truncate">{{ displayName }}</span>
+                </div>
+            </template>
+        </Autocomplete>
+        <div class="mt-2 flex justify-end">
+            <p>
+                <b class="text-gray-500">Single with Icon:</b>
+            <div v-if="contact" class="flex">
+                <img :src="contact.profileUrl" class="w-8 h-8 rounded-full mr-2">
+                <b class="text-lg">{{ contact.displayName }}</b>
+            </div>
+            </p>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <Autocomplete id="contacts" :options="allContacts" v-model="contacts" multiple
+            label="Multiple Contacts with Icon"
+            :match="(x: any, value: string) => x!.displayName.toLowerCase().includes(value.toLowerCase())"
+            placeholder="Select Contact">
+            <template #item="{ displayName, profileUrl }">
+                <div class="flex items-center">
+                    <Icon class="h-6 w-6 flex-shrink-0 rounded-full" :src="profileUrl" loading="lazy" />
+                    <span class="ml-3 truncate">{{ displayName }}</span>
+                </div>
+            </template>
+        </Autocomplete>
+        <div class="mt-2">
+            <div class="text-right"><b class="text-gray-500">Multiple with Icon:</b></div>
+            <p>
+            <div v-if="contacts.length" class="flex flex-wrap">
+                <div v-for="contact in contacts" class="flex ml-4 mb-2">
+                    <img :src="contact.profileUrl" class="w-6 h-6 rounded-full mr-2">
+                    <span>{{ contact.displayName }}</span>
+                </div>
+            </div>
+            </p>
+        </div>
+    </div>
+</form>
+```
+
+<AutocompleteExamples class="max-w-prose not-prose" />
+
