@@ -14,6 +14,10 @@ with your ServiceStack APIs unlocks end-to-end productivity. With a focus on per
 
 <VueComponentGallery />
 
+<div class="flex justify-center">
+<iframe class="video-hd" src="https://www.youtube.com/embed/YIa0w6whe2U" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+</div>
+
 ## Getting Started
 
 Starting with one of ServiceStack's Vue + Tailwind Project templates below is the easiest way to get started which are pre-configured with 
@@ -21,14 +25,25 @@ Starting with one of ServiceStack's Vue + Tailwind Project templates below is th
 
 <VueTailwindTemplates class="mb-8" />
 
-### JS Modules Templates Overview
-
-To help choosing which template to start with we've created an overview covering the differences between Razor Pages & MVC templates:
-
-<iframe class="video-hd" src="https://www.youtube.com/embed/YIa0w6whe2U" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-
 All Razor Pages and MVC templates utilize the JS Modules support in modern browsers to avoid any needing any npm build system, 
 for access to more advanced npm library features and to learn about Jamstack CDN and SSG benefits checkout [Jamstack Templates docs](/templates-jamstack).
+
+### Vue.js Razor Pages & MVC Templates Overview
+
+To help choosing which template to start with, here's a quick summary of their differences:
+
+ - **vue-mjs** - Flagship Vue.mjs template complete with [OrmLite](/ormlite/), [AutoQuery](/autoquery), [boosted htmx](https://htmx.org/attributes/hx-boost/) links & [static pre-rendered blogs](https://vue-mjs.web-templates.io/blog/prerendering)
+ - **razor-tailwind** - Simpler Razor Pages Template without a configured DB or static pre-rendered blogs
+ - **mvc-tailwind** - Want to use MVC Identity Auth and Entity Framework
+ - **web-tailwind** - Empty tailwind template who don't want to use Razor Pages or MVC
+ - **vue-vite** - Want to use TypeScript in a simpler JAMStack Vite SPA App
+ - **vue-ssg** - Want to use TypeScript in an advanced JAMStack SSG App
+
+ For a more in-depth look we've created an overview covering the differences between the Razor Pages & MVC templates:
+
+<div class="flex justify-center">
+<iframe class="video-hd" src="https://www.youtube.com/embed/SyppvQB7IPs" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+</div>
 
 ### Manual Installation
 
