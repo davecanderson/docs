@@ -71,6 +71,8 @@ Using `href` with Button components will style hyper links to behave like button
     <SecondaryButton href="/vue/">Vue Component Docs</SecondaryButton>
 </div>
 
+<ApiReference id="primarybutton" component="PrimaryButton" />
+
 That can use **color** to render it in different colors:
 
 ```html
