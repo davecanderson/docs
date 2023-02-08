@@ -2,9 +2,9 @@
 <div>
     <div class="mt-16 mx-auto flex justify-center">
         <div class="flex items-center">
-            <Icon icon="la:servicestack" class="w-44 h-44" />
-            <Icon icon="vscode-icons:file-type-vue" class="w-44 h-44" />
-            <Icon icon="vscode-icons:file-type-tailwind" class="w-44 h-44" />
+            <Icon icon="la:servicestack" class="w-28 h-28 sm:w-44 sm:h-44" />
+            <Icon icon="vscode-icons:file-type-vue" class="w-28 h-28 sm:w-44 sm:h-44" />
+            <Icon icon="vscode-icons:file-type-tailwind" class="w-28 h-28 sm:w-44 sm:h-44" />
         </div>
     </div>
     <div class="text-center">

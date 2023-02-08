@@ -79,7 +79,7 @@ the implementations of which can later be substituted without any changes to exi
 The JavaScript Expressions support in ServiceStack follows the [syntax tree used by Esprima](https://esprima.readthedocs.io/en/latest/syntax-tree-format.html), JavaScript's leading lexical language parser for JavaScript, but adapted to suit C# conventions using PascalCase properties and each AST Type prefixed 
 with `Js*` to avoid naming collisions with C#'s LINQ Expression Types which often has the same name. 
 
-So Esprima's [MemberExpression](https://esprima.readthedocs.io/en/latest/syntax-tree-format.html#member-expression) maps to [JsMemberExpression](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Common/Script/JsMemberExpression.cs) in Templates. 
+So Esprima's [MemberExpression](https://esprima.readthedocs.io/en/latest/syntax-tree-format.html#member-expression) maps to [JsMemberExpression](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Common/Script/JsMemberExpression.cs) in #Script. 
 
 In addition to adopting Esprima's AST data structures, #Script can also [emit the same serialized Syntax Tree](https://sharpscript.net/docs/expression-viewer#expression=1%20-%202%20%2B%203%20*%204%20%2F%205) that Esprima generates from any AST Expression, e.g:
 
@@ -184,8 +184,8 @@ All JavaScript Bitwise operators are also supported:
 
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/sharpscript/syntax/bitwise-operators.png)](https://sharpscript.net/docs/expression-viewer#expression=%5B3%251%2C%203%261%2C%203%7C1%2C%203%5E1%2C%203%3C%3C1%2C%203%20%3E%3E%201%2C%20~1%5D&e=2)
 
-Essentially Templates supports most JavaScript Expressions, not statements which are covered with 
-[Templates Blocks support](https://sharpscript.net/docs/blocks) 
+Essentially #Script supports most JavaScript Expressions, not statements which are covered with 
+[Blocks support](https://sharpscript.net/docs/blocks) 
 or mutations using Assignment Expressions and Operators. All assignments still need to be explicitly performed through an 
 [Assignment Filter](https://sharpscript.net/docs/default-scripts#assignment).
 
