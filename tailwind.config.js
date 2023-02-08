@@ -1,4 +1,5 @@
 module.exports = {
+  darkMode: 'class',
   content: [
     './docs/.vitepress/**/*.js',
     './docs/.vitepress/**/*.vue',
