@@ -433,6 +433,11 @@ JsConfig<TimeSpan>.SerializeFn = time =>
     (time.Ticks < 0 ? "-" : "") + time.ToString("hh':'mm':'ss'.'fffffff");
 ```
 
+For more advanced custom JSON serializations, see:
+
+ - [CustomSerializerTests.cs](https://github.com/ServiceStack/ServiceStack/blob/main/ServiceStack.Text/tests/ServiceStack.Text.Tests/JsonTests/CustomSerializerTests.cs)
+ - [CustomRawSerializerTests.cs](https://github.com/ServiceStack/ServiceStack/blob/main/ServiceStack.Text/tests/ServiceStack.Text.Tests/JsonTests/CustomRawSerializerTests.cs)
+
 ## Strict Parsing
 
 By default ServiceStack Serializers will try to deserialize as much as possible without error, if you prefer you can opt-in to stricter parsing with:
