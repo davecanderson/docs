@@ -168,8 +168,7 @@ import { CreateContact } from "/mjs/dtos.mjs"
 const client = useClient()
 async function submit(e:Event) {
     const form = e.target as HTMLFormElement
-    const formData = new FormData(form)
-    const api = await client.apiForm(new CreateContact(), formData)
+    const api = await client.apiForm(new CreateContact(), new FormData(form))
     if (api.succeeded) {
         //...
     }
