@@ -3,6 +3,10 @@ title: Release Notes History
 slug: release-notes-history
 ---
 
+### 2023
+
+- [v6.6](/releases/v6_6)
+
 ### 2022
 
 - [v6.5](/releases/v6_5)
