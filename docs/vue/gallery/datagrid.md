@@ -51,7 +51,13 @@ Use **selected-columns** to control which columns to display and **header-titles
 ```html
 <DataGrid :items="tracks" :selected-columns="['year','album','name','artist']" :header-titles="{ name:'Track' }" />
 ```
-<DataGrid :items="tracks" :selected-columns="['year','album','name','artist']" :header-titles="{ name:'Track' }" />
+<DataGrid :items="tracks" :selected-columns="['year','album','name','artist']" :header-titles="{ name:'Track' }" class="mb-4" />
+
+Which for a wrist-friendly alternative also supports a string of comma delimited column names, e.g:
+
+```html
+<DataGrid :items="tracks" selected-columns="year,album,name,artist" />
+```
 
 <h2 class="pt-8 mb-4 text-2xl font-semibold text-gray-900 dark:text-gray-100">
   Simple Customizations
