@@ -37,7 +37,7 @@ To help choosing which template to start with, here's a quick summary of their d
  - **mvc-tailwind** - Want to use MVC Identity Auth and Entity Framework
  - **web-tailwind** - Empty tailwind template who don't want to use Razor Pages or MVC
  - **vue-vite** - Want to use TypeScript in a simpler JAMStack Vite SPA App
- - **vue-ssg** - Want to use TypeScript in an advanced JAMStack SSG App
+ - **vue-ssg** - Want to use TypeScript in an advanced JAMStack Vite SSG App
 
  For a more in-depth look we've created an overview covering the differences between the Razor Pages & MVC templates:
 
