@@ -17,6 +17,29 @@ List<int> results = db.SqlList<int>(
 int result = db.SqlScalar<int>("SELECT 10");
 ```
 
+## SqlList with Out Params
+
+```csharp
+IDbDataParameter pTotal = null;
+var results = await db.SqlListAsync<LetterFrequency>("spSearchLetters",
+    cmd => {
+        cmd.CommandType = CommandType.StoredProcedure;
+        cmd.AddParam("pLetter", "C");
+        pTotal = cmd.AddParam("pTotal", direction: ParameterDirection.Output);
+    });
+```
+
+## Custom Results with SqlProc
+
+`ConvertToList` should be used to read the results into the matching resultset, e.g. tabular or a single column of values:
+
+```csharp
+using var cmd = db.SqlProc("spSearchLetters", new { pLetter = "C" }));
+
+var rows = await cmd.ConvertToList<LetterFrequency>();
+var ints = await cmd.ConvertToList<int>();
+```
+
 ## Stored Procedures with output params
 
 The `SqlProc` API provides even greater customization by letting you modify the underlying
@@ -24,14 +47,12 @@ ADO.NET Stored Procedure call by returning a prepared `IDbCommand` allowing for
 advanced customization like setting and retrieving OUT parameters, e.g:
 
 ```csharp
-string spSql = @"DROP PROCEDURE IF EXISTS spSearchLetters;
+db.ExecuteSql(@"DROP PROCEDURE IF EXISTS spSearchLetters;
     CREATE PROCEDURE spSearchLetters (IN pLetter varchar(10), OUT pTotal int)
     BEGIN
         SELECT COUNT(*) FROM LetterFrequency WHERE Letter = pLetter INTO pTotal;
         SELECT * FROM LetterFrequency WHERE Letter = pLetter;
-    END";
-
-db.ExecuteSql(spSql);
+    END");
 
 using var cmd = db.SqlProc("spSearchLetters", new { pLetter = "C" });
 var pTotal = cmd.AddParam("pTotal", direction: ParameterDirection.Output);
@@ -53,4 +74,7 @@ var results = db.SqlList<LetterFrequency>("spSearchLetters", cmd => {
 var total = pTotal.Value;
 ```
 
-More examples can be found in [SqlServerProviderTests](https://github.com/ServiceStack/ServiceStack.OrmLite/blob/master/tests/ServiceStack.OrmLite.Tests/SqlServerProviderTests.cs).
+More examples can be found in:
+
+ - [CustomSqlTests.cs](https://github.com/ServiceStack/ServiceStack/blob/main/ServiceStack.OrmLite/tests/ServiceStack.OrmLite.SqlServer.Tests/CustomSqlTests.cs)
+ - [CustomSqlTestsAsync.cs](https://github.com/ServiceStack/ServiceStack/blob/main/ServiceStack.OrmLite/tests/ServiceStack.OrmLite.Tests/Async/CustomSqlTestsAsync.cs)
