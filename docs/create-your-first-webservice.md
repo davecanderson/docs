@@ -142,45 +142,73 @@ $('#Name').keyup(function () {
 
 ### Dependency-free JsonServiceClient & Typed DTOs in Web Pages
 
-A **dep-free alternative** to jQuery that works in all modern browsers is to use the 
-[UMD @servicestack/client](https://github.com/ServiceStack/servicestack-client) built into `ServiceStack.dll` along with the transpiled 
-[TypeScript Generated DTOs](/typescript-add-servicestack-reference) to enable an optimal typed modern async API:
+The recommended modern alternative to jQuery that works in all modern browsers is to use the [@servicestack/client](/javascript-client)
+library with the built-in [/types/mjs](/types/mjs) which returns your APIs in annotated typed ES6 class DTOs where it can be 
+referenced directly from a [JavaScript Module](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules).
+
+We recommend using an [importmap](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap) 
+to specify where to load **@servicestack/client** from, e.g:
 
 ```html
-<h2><a href="/ui/Hello">Hello</a> API</h2>
-<input type="text" id="txtName" onkeyup="callHello(this.value)">
-<div id="result"></div>
-
-<script src="/js/require.js"></script>
-<script src="/js/servicestack-client.js"></script>
-<script src="/types/js"></script>
-<script>
-var { JsonServiceClient, Hello } = exports
-
-var client = new JsonServiceClient();
-function callHello(name) {
-    client.get(new Hello({ name }))
-        .then(function(r) {
-            document.getElementById('result').innerHTML = r.result;
-        });
+<script async src="https://ga.jspm.io/npm:es-module-shims@1.6.3/dist/es-module-shims.js"></script><!--safari-->
+<script type="importmap">
+{
+    "imports": {
+        "@servicestack/client":"https://unpkg.com/@servicestack/client@2/dist/servicestack-client.mjs"
+    }
 }
 </script>
 ```
 
-Where you can update your App's server DTOs by transpiling them to JavaScript & moving to `/wwwroot`:
-
-```bash
-$ npm run dtos
+This lets us reference the **@servicestack/client** package name in our source code instead of its physical location:
+    
+```html
+<input type="text" id="txtName">
+<div id="result"></div>
 ```
 
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/mix/init.png)
+```html
+<script type="module">
+import { JsonApiClient, $1, on } from '@servicestack/client'
+import { Hello } from '/types/mjs'
+
+const client = JsonApiClient.create()
+on('#txtName', {
+    async keyup(el) {
+        const api = await client.api(new Hello({ name:el.target.value }))
+        $1('#result').innerHTML = api.response.result
+    }
+})
+</script>
+```
+
+### Enable static analysis and intelli-sense 
+
+For better IDE intelli-sense during development, save the annotated Typed DTOs to disk with the [x dotnet tool](https://docs.servicestack.net/dotnet-tool):
+
+```bash
+$ x mjs
+```
+
+Then reference it instead to enable IDE static analysis when calling Typed APIs from JavaScript:
+
+```js
+import { Hello } from '/js/dtos.mjs'
+client.api(new Hello({ name }))
+```
+    
+To also enable static analysis for **@servicestack/client**, install the dependency-free library as a dev dependency:
+    
+```bash
+$ npm install -D @servicestack/client
+```
+
+Where only its TypeScript definitions are used by the IDE during development to enable its type-checking and intelli-sense.
 
 ### Rich intelli-sense support
 
-Even pure HTML/JS Apps that don't use TypeScript or any external dependencies will still benefit from the Server 
-generated `dtos.ts` and `servicestack-client.d.ts` definitions as Smart IDEs like 
-[Rider](https://www.jetbrains.com/rider/) can make use of them to provide a rich productive development UX
-on both the built-in `/js/servicestack-client.js` library:
+Where you'll be able to benefit from rich intelli-sense support in smart IDEs like [Rider](https://www.jetbrains.com/rider/) for 
+both the client library:
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/mix/init-rider-ts-client.png)
 
