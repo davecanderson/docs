@@ -101,6 +101,18 @@ Razor Pages or MVC Apps can use the `Html.ImportMaps()` to use local debug build
 
 > It's recommended to use exact versions to eliminate redirect latencies and to match the local version your App was developed against
 
+#### Polyfill for Safari
+
+Unfortunately Safari is the last modern browser to [support import maps](https://caniuse.com/import-maps) which is only now in
+Technical Preview. Luckily this feature can be polyfilled with the pre-configured [ES Module Shims](https://github.com/guybedford/es-module-shims):
+
+```html
+@if (Context.Request.Headers.UserAgent.Any(x => x.Contains("Safari") && !x.Contains("Chrome")))
+{
+    <script async src="https://ga.jspm.io/npm:es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+}
+```
+
 ### Registration
 
 Then register the `@servicestack/vue` component library with your Vue app with:
