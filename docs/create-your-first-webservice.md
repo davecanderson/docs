@@ -19,7 +19,7 @@ dotnet tool install --global x
 The [dotnet tools](/dotnet-tool) are ServiceStack's versatile companion giving you quick access to a lot of its high-level features including 
 generating mobile, web & desktop DTOs with [Add ServiceStack Reference](/add-servicestack-reference) generating [gRPC Clients and proto messages](/grpc),
 quickly [apply gists](/mix-tool) to your project enabled by ServiceStack's effortless [no-touch Modular features](/modular-startup), 
-[command-line API access](/post-command), it even includes a [lisp REPL](https://sharpscript.net/lisp/) should you need to explore your [remote .NET Core App in real-time](https://sharpscript.net/lisp/#techstacks-tcp-lisp-repl-demo).
+[command-line API access](/post-command), it even includes a [lisp REPL](https://sharpscript.net/lisp/) should you need to explore your [remote .NET Apps in real-time](https://sharpscript.net/lisp/#techstacks-tcp-lisp-repl-demo).
 
 ## Step 2: Selecting a template
 
@@ -38,7 +38,7 @@ Press `Ctrl+F5` to run your project!
 You should see an already working API integration using [@servicestack/client](/javascript-client) library to call your App's 
 [JavaScript DTOs](/javascript-add-servicestack-reference) and links to calling your API from [API Explorer](/api-explorer):
 
-<a href="https://web.web-templates.io"><img class="max-w-prose" src="/images/overview/web-hello.png"></a>
+<a href="https://web.web-templates.io"><img class="max-w-lg" src="/images/overview/web-hello.png"></a>
 
 #### Watched builds
 
@@ -69,13 +69,13 @@ public class HelloResponse
 
 The `Route` attribute is specifying what path `/hello/{Name}` where `{Name}` binds its value to the public string property of **Name**.
 
-Let's access the route to see what comes back. Go to the following URL in your address bar, where <root_path> is your server address.
+Let's access the route to see what comes back. Go to the following URL in your address bar:
 
-    http://{BaseUrl}/hello/world
+    /hello/world
 
-You will see a snapshot of the Result in a HTML response format. To change the return format to Json, simply add `?format=json` to the end of the URL. You'll learn more about formats, endpoints (URLs, etc) when you continue reading the documentation.
+You will see a snapshot of the Result in a HTML response format. To change the return format to Json, simply add `?format=json` to the end of the URL. You'll learn more about [formats](/formats), endpoints (URLs, etc) when you continue reading the documentation.
 
-If we go back to the solution and find the WebApplication1.ServiceInterface and open the `MyServices.cs` file, we can have a look at the code that is responding to the browser, giving us the `Result` back.
+If we go back to the solution and find the WebApplication1.ServiceInterface and open the **MyServices.cs** file, we can have a look at the code that is responding to the browser, giving us the **Result** back.
 
 ```csharp
 public class MyServices : Service
@@ -138,7 +138,7 @@ $('#Name').keyup(function () {
 ### Rich JsonApiClient & Typed DTOs
 
 The modern recommended alternative to jQuery that works in all modern browsers is to use the [@servicestack/client](/javascript-client)
-library with the built-in [/types/mjs](/javascript-add-servicestack-reference) which returns your APIs in annotated typed ES6 class DTOs where it can be referenced directly from a [JavaScript Module](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules).
+library with the built-in [JavaScript DTOs](/javascript-add-servicestack-reference) which returns your APIs in annotated ES6 class DTOs where it can be referenced directly from a [JavaScript Module](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules).
 
 We recommend using an [importmap](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap) 
 to specify where to load **@servicestack/client** from, e.g:

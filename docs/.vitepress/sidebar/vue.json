@@ -24,6 +24,18 @@
         "link": "/vue/gallery/form-inputs"
       },
       {
+        "text": "FileInput",
+        "link": "/vue/gallery/fileinput"
+      },
+      {
+        "text": "TagInput",
+        "link": "/vue/gallery/taginput"
+      },
+      {
+        "text": "Autocomplete",
+        "link": "/vue/gallery/autocomplete"
+      },
+      {
         "text": "Modals",
         "link": "/vue/gallery/modals"
       },
