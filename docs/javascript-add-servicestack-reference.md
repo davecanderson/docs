@@ -1,43 +1,118 @@
 ---
-slug: javascript-add-servicestack-reference
-title: JavaScript Add ServiceStack Reference
+title: ES6 Class Add ServiceStack Reference
 ---
 
-In addition to [TypeScript](/typescript-add-servicestack-reference) support for generating typed Data Transfer Objects (DTOs), JavaScript is now supported.
+In addition to [TypeScript](/typescript-add-servicestack-reference) support for generating typed Data Transfer Objects (DTOs), JavaScript is now supported in the form of [JSDoc](https://jsdoc.app) annotated typed ES6 classes that can be referenced natively from [JavaScript Modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules).
 
-Unlike TypeScript, JavaScript generated DTOs can be used directly from the browser, removing the need to keep your DTOs in sync with extra tooling by including a direct reference in your HTML Page:
+### Reference directly in JavaScript Modules
+
+Unlike TypeScript, the JavaScript ES6 class DTOs can be referenced directly in a browser as-is, removing the need to keep your DTOs in sync with extra tooling by direct referencing them in a JavaScript Module:
 
 ```html
-<script src="/types/js"></script>
+<script type="module">
+import { Hello } from '/js/dtos.mjs'
+</script>
 ```
 
-To make typed API Requests from web pages, you need only include: 
-
-  - **/js/require.js** - containing a simple `require()` to load **CommonJS** libraries
-  - **/js/servicestack-client.js** - production build of [@servicestack/client](https://github.com/ServiceStack/servicestack-client)
-  - **/types/js** - containing your APIs typed JS DTOs - all built-in ServiceStack
-
-After which you'll have access to the generic `JsonServiceClient` with your APIs Typed Request DTOs, e.g:
+Then to make typed API Requests from web pages, you need only need to add an ES Module (.mjs) build of [@servicestack/client](https://github.com/ServiceStack/servicestack-client) which can be sourced directly from a npm CDN:
 
 ```html
-<script src="/js/require.js"></script>
-<script src="/js/servicestack-client.js"></script>
-<script src="/types/js"></script>
+<script type="module">
+import { JsonApiClient } from 'https://unpkg.com/@servicestack/client@2/dist/servicestack-client.min.mjs'
+import { Hello } from '/js/dtos.mjs'
 
-<script>
-var { JsonServiceClient, Hello } = exports
+const client = JsonApiClient.create()
 
-var client = new JsonServiceClient()
+const api = client.api(new Hello({ name:'World' }))
+if (api.succeeded) {
+    console.log(api.response)
+}
+</script>
+```
+
+### Import Maps
+
+Although we recommend using an [importmap](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap) 
+to specify where to load **@servicestack/client** from, e.g:
+
+```html
+<script async src="https://ga.jspm.io/npm:es-module-shims@1.6.3/dist/es-module-shims.js"></script><!--safari-->
+<script type="importmap">
+{
+    "imports": {
+        "@servicestack/client":"https://unpkg.com/@servicestack/client@2/dist/servicestack-client.min.mjs"
+    }
+}
+</script>
+```
+
+### Usage
+
+This lets us reference the **@servicestack/client** package name in our source code instead of its physical location:
+    
+```html
+<input type="text" id="txtName">
+<div id="result"></div>
+```
+
+```html
+<script type="module">
+import { JsonApiClient, $1, on } from '@servicestack/client'
+import { Hello } from '/types/mjs'
+
+const client = JsonApiClient.create()
+on('#txtName', {
+    async keyup(el) {
+        const api = await client.api(new Hello({ name:el.target.value }))
+        $1('#result').innerHTML = api.response.result
+    }
+})
+</script>
+```
+
+### Enable static analysis and intelli-sense 
+
+For better IDE intelli-sense during development, save the annotated Typed DTOs to disk with the [x dotnet tool](https://docs.servicestack.net/dotnet-tool):
+
+:::sh
+x mjs
+:::
+
+Then reference it instead to enable IDE static analysis when calling Typed APIs from JavaScript:
+
+```js
+import { Hello } from '/js/dtos.mjs'
 client.api(new Hello({ name }))
-    .then(api => console.log(api.response))
-</script>    
 ```
+    
+To also enable static analysis for **@servicestack/client**, install the dependency-free library as a dev dependency:
+    
+:::sh
+npm install -D @servicestack/client
+:::
 
-Using **/types/js** has the same behavior as using `dtos.js` generated from `$ tsc dtos.ts` whose outputs are identical, i.e. both containing your API DTOs generated in CommonJS format. It's feasible to simulate the TypeScript compiler's output in this instance as ServiceStack only needs to generate DTO Types and Enums to enable its end-to-end API, and not any other of TypeScript's vast feature set.
+Where only its TypeScript definitions are used by the IDE during development to enable its type-checking and intelli-sense.
 
-### Enhanced Dev Time productivity with TypeScript
+### Rich intelli-sense support
 
-Even when no longer using TypeScript DTOs in your Apps, it's still useful to have TypeScript's `dtos.ts` included in your project (inc. Vanilla JS projects) to serve as optional type annotations enabling rich intelli-sense and static analysis in IDEs that support it, but as it's no longer used at runtime you're free to generate it at optimal times that don't interrupt your dev workflow.
+Where you'll be able to benefit from rich intelli-sense support in smart IDEs like [Rider](https://www.jetbrains.com/rider/) for 
+both the client library:
+
+![](/images/mix/init-rider-ts-client.png)
+
+As well as your App's server generated DTOs:
+
+![](/images/release-notes/v6.6/mjs-intellisense.png)
+
+So even simple Apps without complex bundling solutions or external dependencies can still benefit from a rich typed authoring 
+experience without any additional build time or tooling complexity.
+
+## Add ServiceStack Reference
+
+:::sh
+x mjs
+:::
+
 
 ### Change Default Server Configuration
 
@@ -66,12 +141,13 @@ to override any server defaults.
 
 ```js
 /* Options:
-Date: 2022-01-28 02:10:26
-Version: 6.00
+Date: 2023-02-08 13:13:28
+Version: 6.60
 Tip: To override a DTO option, remove "//" prefix before updating
-BaseUrl: https://blazor-wasm-api.jamstacks.net
+BaseUrl: https://blazor-server.jamstacks.net
 
 //AddServiceStackTypes: True
+//AddDocAnnotations: True
 //AddDescriptionAsComments: True
 //IncludeTypes: 
 //ExcludeTypes: 
@@ -83,8 +159,7 @@ We'll go through and cover each of the above options to see how they affect the 
 
 ### Change Default Server Configuration
 
-The above defaults are also overridable on the ServiceStack Server by modifying the default config on the
-`NativeTypesFeature` Plugin, e.g:
+The above defaults are also overridable on the ServiceStack Server by modifying the `NativeTypesFeature` Plugin, e.g:
 
 ```csharp
 //Server example in CSharp
@@ -107,14 +182,24 @@ IncludeTypes: Hello, HelloResponse
 Will only generate `Hello` and `HelloResponse` DTOs:
 
 ```csharp
-var HelloResponse = /** @class */ (function () {
-    ...
-}());
-exports.HelloResponse = HelloResponse;
-var Hello = /** @class */ (function () {
-    ...
-}());
-exports.Hello = Hello;
+export class Hello {
+    /** @param {{name?:string}} [init] */
+    constructor(init) { Object.assign(this, init) }
+    /** @type {string} */
+    name;
+    getTypeName() { return 'Hello' }
+    getMethod() { return 'POST' }
+    createResponse() { return new HelloResponse() }
+}
+
+export class HelloResponse {
+    /** @param {{result?:string,responseStatus?:ResponseStatus}} [init] */
+    constructor(init) { Object.assign(this, init) }
+    /** @type {string} */
+    result;
+    /** @type {ResponseStatus} */
+    responseStatus;
+}
 ```
 
 #### Include Generic Types
@@ -175,7 +260,7 @@ Will exclude `GetTechnology` and `GetTechnologyResponse` DTOs from being generat
 
 ### Cache
 
-When using `/types/js` directly from a `script` tag, the server will cache the result by default when not running in `HostContext.DebugMode`.
+When using `/types/mjs` directly from a `script` tag, the server will cache the result by default when not running in [DebugMode](/debugging#debugmode).
 
-This caching process can be disabled if required by using `?cache=false`.
+This caching process can be disabled if required by using **?cache=false**.
 

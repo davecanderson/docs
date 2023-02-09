@@ -18,13 +18,13 @@ dotnet tool install --global x
 
 The [dotnet tools](/dotnet-tool) are ServiceStack's versatile companion giving you quick access to a lot of its high-level features including 
 generating mobile, web & desktop DTOs with [Add ServiceStack Reference](/add-servicestack-reference) generating [gRPC Clients and proto messages](/grpc),
-quickly [apply gists](/mix-tool) to your project enabled by ServiceStack's effortless [no-touch Modular features](/modular-startup), it even
-includes a [lisp REPL](https://sharpscript.net/lisp/) should you need to explore your [remote .NET Core App in real-time](https://sharpscript.net/lisp/#techstacks-tcp-lisp-repl-demo). 
+quickly [apply gists](/mix-tool) to your project enabled by ServiceStack's effortless [no-touch Modular features](/modular-startup), 
+[command-line API access](/post-command), it even includes a [lisp REPL](https://sharpscript.net/lisp/) should you need to explore your [remote .NET Core App in real-time](https://sharpscript.net/lisp/#techstacks-tcp-lisp-repl-demo).
 
 ## Step 2: Selecting a template
 
-Importantly, the dotnet tools lets you create [.NET Core, .NET Framework](/dotnet-new) and [ASP.NET Core on .NET Framework](/templates-corefx) projects.
-Unless you're restricted to working with .NET Framework you'll want to start with a [.NET Core project template](/dotnet-new#usage), for this example
+Importantly, the dotnet tools lets you create [.NET 6, .NET Framework](/dotnet-new) and [ASP.NET Core on .NET Framework](/templates-corefx) projects.
+Unless you're restricted to working with .NET Framework you'll want to start with a [.NET 6 project template](/dotnet-new#usage), for this example
 we'll start with the Empty [web](https://github.com/NetCoreTemplates/web) template which implicitly uses the folder name for the Project Name:
 
 :::sh
@@ -35,14 +35,17 @@ x new web WebApp
 
 Press `Ctrl+F5` to run your project!
 
-[![](https://raw.githubusercontent.com/ServiceStack/ServiceStackVS/master/Images/empty_project_run.png)](https://raw.githubusercontent.com/ServiceStack/ServiceStackVS/master/Images/empty_project_run.png)
+You should see an already working API integration using [@servicestack/client](/javascript-client) library to call your App's 
+[JavaScript DTOs](/javascript-add-servicestack-reference) and links to calling your API from [API Explorer](/api-explorer):
+
+<a href="https://web.web-templates.io"><img class="max-w-prose" src="/images/overview/web-hello.png"></a>
 
 #### Watched builds
 
-An alternative to running your project in your IDE is to run a watched build using the `dotnet` tool on the command-line:
+A recommended alternative to running your project from your IDE is to run a watched build using `dotnet watch` from a terminal:
 
 :::sh
-dotnet watch run
+dotnet watch
 :::
 
 Where it will automatically rebuild & restart your App when it detects any changes to your App's source files.
@@ -114,37 +117,28 @@ The Unit Test project contains all your Unit and Integration tests. It's also a 
 
 ### ServiceStack Integration
 
-### jQuery
+### jQuery Ajax
 
 ServiceStack's clean Web Services design makes it simple and intuitive to be able to call ServiceStack Services from any ajax client, e.g. from a [simple Bootstrap Website using jQuery](https://github.com/ServiceStack/Templates/blob/master/src/ServiceStackVS/BootstrapWebApp/BootstrapWebApp/default.cshtml):
 
 ```html
-<div>
-    <div>
-        <input class="form-control" id="Name" type="text" placeholder="Type your name">
-        <p id="result"></p>
-    </div>
-</div>
+<input class="form-control" id="Name" type="text" placeholder="Type your name">
+<p id="result"></p>
 <script>
 $('#Name').keyup(function () {
-    let name = $(this).val();
-    if (name) {
-        $.getJSON('/hello/' + name)
-            .success(function (response) {
-                $('#result').html(response.Result);
-            });
-    } else {
-        $('#result').html('');
-    }
-});
+    let name = $(this).val()
+    $.getJSON('/hello/' + name)
+        .success(function (response) {
+            $('#result').html(response.Result)
+        })
+})
 </script>
 ```
 
-### Dependency-free JsonServiceClient & Typed DTOs in Web Pages
+### Rich JsonApiClient & Typed DTOs
 
-The recommended modern alternative to jQuery that works in all modern browsers is to use the [@servicestack/client](/javascript-client)
-library with the built-in [/types/mjs](/types/mjs) which returns your APIs in annotated typed ES6 class DTOs where it can be 
-referenced directly from a [JavaScript Module](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules).
+The modern recommended alternative to jQuery that works in all modern browsers is to use the [@servicestack/client](/javascript-client)
+library with the built-in [/types/mjs](/javascript-add-servicestack-reference) which returns your APIs in annotated typed ES6 class DTOs where it can be referenced directly from a [JavaScript Module](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules).
 
 We recommend using an [importmap](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap) 
 to specify where to load **@servicestack/client** from, e.g:
@@ -186,9 +180,9 @@ on('#txtName', {
 
 For better IDE intelli-sense during development, save the annotated Typed DTOs to disk with the [x dotnet tool](https://docs.servicestack.net/dotnet-tool):
 
-```bash
-$ x mjs
-```
+:::sh
+x mjs
+:::
 
 Then reference it instead to enable IDE static analysis when calling Typed APIs from JavaScript:
 
@@ -199,9 +193,9 @@ client.api(new Hello({ name }))
     
 To also enable static analysis for **@servicestack/client**, install the dependency-free library as a dev dependency:
     
-```bash
-$ npm install -D @servicestack/client
-```
+:::sh
+npm install -D @servicestack/client
+:::
 
 Where only its TypeScript definitions are used by the IDE during development to enable its type-checking and intelli-sense.
 
@@ -210,15 +204,11 @@ Where only its TypeScript definitions are used by the IDE during development to 
 Where you'll be able to benefit from rich intelli-sense support in smart IDEs like [Rider](https://www.jetbrains.com/rider/) for 
 both the client library:
 
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/mix/init-rider-ts-client.png)
+![](/images/mix/init-rider-ts-client.png)
 
 As well as your App's server generated DTOs:
 
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/mix/init-rider-ts-dto.png)
-
-Including their typed partial constructors:
-
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/mix/init-rider-ts-dto-props.png)
+![](/images/release-notes/v6.6/mjs-intellisense.png)
 
 So even simple Apps without complex bundling solutions or external dependencies can still benefit from a rich typed authoring 
 experience without any additional build time or tooling complexity.
@@ -227,7 +217,7 @@ experience without any additional build time or tooling complexity.
 
 <EmptyProjects />
 
-### TypeScript or JavaScript SPA Apps
+### TypeScript or JavaScript Apps
 
 The same [TypeScript JsonServiceClient](/typescript-add-servicestack-reference#typescript-serviceclient) is also used in more sophisticated 
 JavaScript Apps like [React Native](/typescript-add-servicestack-reference#react-native-jsonserviceclient) to 
@@ -279,7 +269,29 @@ Compare and contrast with other major SPA JavaScript Frameworks:
 
 The above `init` projects allow you to create a minimal web app, to create a more complete ServiceStack App with the recommended project structure, start with one of our C# project templates instead:
 
-#### [C# Project Templates](/dotnet-new)
+### [C# Project Templates Overview](/templates-overview)
+
+## Simple, Modern Razor Pages & MVC Vue 3 Tailwind Templates
+
+The new Tailwind Razor Pages & MVC Templates enable rapid development of Modern Tailwind Apps without the [pitfalls plaguing SPAs](https://vue-mjs.web-templates.io/posts/javascript):
+
+<iframe class="video-hd" src="https://www.youtube.com/embed/SyppvQB7IPs" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+All Vue Tailwind templates are pre-configured with our comprehensive [Vue 3 Tailwind Components](/vue/) for maximum productivity:
+
+<iframe class="video-hd" src="https://www.youtube.com/embed/YIa0w6whe2U" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+## Advanced JAMStack Templates
+
+For more sophisticated Apps that need the best web tooling that npm can offer checkout our JAMStack Vite Vue & SSG templates:
+
+<iframe class="video-hd" src="https://www.youtube.com/embed/D-rU0lU_B4I" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+Or if you prefer Modern React Apps checkout the Next.js template:
+
+<iframe class="video-hd" src="https://www.youtube.com/embed/3pPLRyPsO5A" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+For Blazor WASM and Server checkout our comprehensive [Blazor projects & Tailwind components](/templates-blazor-tailwind).
 
 ### Integrated in Major IDEs and popular Mobile & Desktop platforms
 

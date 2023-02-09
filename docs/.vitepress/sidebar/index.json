@@ -330,6 +330,10 @@
       {
         "text": "VB.NET Add Reference",
         "link": "/vbnet-add-servicestack-reference"
+      },
+      {
+        "text": "ES3 Common.js Add Reference",
+        "link": "/commonjs-add-servicestack-reference"
       }
     ]
   },
