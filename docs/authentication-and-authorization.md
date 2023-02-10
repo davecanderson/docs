@@ -1110,6 +1110,7 @@ Otherwise you can use the `IRequest req` parameter to check against a white list
 
 # Community Resources
 
+  - [Simple Web Service Authentication with ServiceStack](https://steveellwoodnlc.medium.com/simple-web-service-authentication-with-servicestack-7294fe5493a2) by [@steveellwood](https://steveellwoodnlc.medium.com)
   - [Using IdentityServer 4 with ServiceStack and Angular](http://estynedwards.com/blog/2016/01/30/ServiceStack-IdentityServer-Angular/) by [@estynedwards](https://twitter.com/estynedwards)
   - [Adding Facebook Authentication using ServiceStack](http://buildclassifieds.com/2016/01/14/facebookauth/) by [@markholdt](https://twitter.com/markholdt)
   - [How to return JSV formatted collection types from SQL Server in OrmLite](http://blog.falafel.com/Blogs/adam-anderson/2013/10/28/how-to-return-jsv-formatted-collection-types-from-sql-server-to-servicestack.ormlite) by [AdamAnderson](http://blog.falafel.com/blogs/AdamAnderson)

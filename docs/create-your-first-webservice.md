@@ -115,11 +115,11 @@ The ServiceModel Project contains all your Application's DTOs which is what defi
 
 The Unit Test project contains all your Unit and Integration tests. It's also a Host project that typically references all other non-Host projects in the solution and contains a combination of concrete and mock dependencies depending on what's being tested. See the [Testing Docs](/testing) for more information on testing ServiceStack projects.
 
-### ServiceStack Integration
+## API Client Examples
 
 ### jQuery Ajax
 
-ServiceStack's clean Web Services design makes it simple and intuitive to be able to call ServiceStack Services from any ajax client, e.g. from a [simple Bootstrap Website using jQuery](https://github.com/ServiceStack/Templates/blob/master/src/ServiceStackVS/BootstrapWebApp/BootstrapWebApp/default.cshtml):
+ServiceStack's clean Web Services makes it simple and intuitive to be able to call ServiceStack Services from any ajax client, e.g. from a traditional [Bootstrap Website using jQuery](https://github.com/ServiceStack/Templates/blob/master/src/ServiceStackVS/BootstrapWebApp/BootstrapWebApp/default.cshtml):
 
 ```html
 <input class="form-control" id="Name" type="text" placeholder="Type your name">
@@ -137,8 +137,8 @@ $('#Name').keyup(function () {
 
 ### Rich JsonApiClient & Typed DTOs
 
-The modern recommended alternative to jQuery that works in all modern browsers is to use the [@servicestack/client](/javascript-client)
-library with the built-in [JavaScript DTOs](/javascript-add-servicestack-reference) which returns your APIs in annotated ES6 class DTOs where it can be referenced directly from a [JavaScript Module](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules).
+The modern recommended alternative to jQuery that works in all modern browsers is using your APIs built-in [JavaScript typed DTOs](/javascript-add-servicestack-reference) with the [@servicestack/client](/javascript-client) library 
+from a [JavaScript Module](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules).
 
 We recommend using an [importmap](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap) 
 to specify where to load **@servicestack/client** from, e.g:
@@ -217,53 +217,42 @@ experience without any additional build time or tooling complexity.
 
 <EmptyProjects />
 
-### TypeScript or JavaScript Apps
+### Any TypeScript or JavaScript Web, Node.js or React Native App
 
-The same [TypeScript JsonServiceClient](/typescript-add-servicestack-reference#typescript-serviceclient) is also used in more sophisticated 
-JavaScript Apps like [React Native](/typescript-add-servicestack-reference#react-native-jsonserviceclient) to 
-[node.js Server Apps](https://github.com/ServiceStackApps/typescript-server-events) as well as all TypeScript SPA Project Templates, 
-such as this [example using React](https://github.com/ServiceStack/Templates/blob/master/src/SinglePageApps/ReactApp1/ReactApp1/src/home/Hello.tsx):
+The same TypeScript [JsonServiceClient](/javascript-client) can also be used in more sophisticated JavaScript Apps like 
+[React Native](/typescript-add-servicestack-reference#react-native-jsonserviceclient) to [Node.js Server Apps](https://github.com/ServiceStackApps/typescript-server-events) such as this example using TypeScript & [Vue Single-File Components](https://vuejs.org/guide/scaling-up/sfc.html):
 
-```tsx
-import './hello.css';
+```html
+<template>
+  <div v-if="api.error" class="ml-2 text-red-500">{{ error.message }}</div>
+  <div v-else class="ml-3 mt-2 text-2xl">{{ api.loading ? 'Loading...' : api.response.result }}</div>
+</template>
 
-import * as React from 'react';
-import { Input } from '@servicestack/react';
-import { client } from '../../shared';
-import { Hello } from '../../shared/dtos';
+<script setup lang="ts">
+import { JsonApiClient } from "@servicestack/client"
+import { Hello } from "@/dtos"
 
-export interface HelloApiProps {
-    name: string;
-}
+const props = defineProps<{ name: string }>()
+const client = JsonApiClient.create()
 
-export const HelloApi: React.FC<any> = (props:HelloApiProps) => {
-    const [name, setName] = React.useState(props.name);
-    const [result, setResult] = React.useState('');
-
-    React.useEffect(() => {
-        (async () => {
-            setResult(!name ? '' : (await client.get(new Hello({ name }) )).result)
-        })();
-    }, [name]); // fires when name changes
-
-    return (<div>
-        <div className="form-group">
-            <Input value={name} onChange={setName} placeholder="Your name" />
-            <h3 className="result pt-2">{ result }</h3>
-        </div>
-    </div>);
-}
+const api = client.api(new Hello({ name: props.name }))
+</script>
 ```
 
 Compare and contrast with other major SPA JavaScript Frameworks:
 
- - [Vue.js HelloApi.vue](https://github.com/NetCoreTemplates/vue-spa/blob/master/MyApp/src/components/Home/HelloApi.vue)
+ - [Vue 3 HelloApi.mjs](https://github.com/NetCoreTemplates/vue-mjs/blob/main/MyApp/wwwroot/mjs/components/HelloApi.mjs)
+ - [Vue SSG using swrClient](https://github.com/NetCoreTemplates/vue-ssg/blob/main/ui/src/components/HelloApi.vue)
+ - [Next.js with swrClient](https://github.com/NetCoreTemplates/nextjs/blob/main/ui/components/intro.tsx)
  - [React HelloApi.tsx](https://github.com/NetCoreTemplates/react-spa/blob/master/MyApp/src/components/Home/HelloApi.tsx)
  - [Angular HelloApi.ts](https://github.com/NetCoreTemplates/angular-spa/blob/master/MyApp/src/app/home/HelloApi.ts)
  - [Svelte Home.svelte](https://github.com/NetCoreTemplates/svelte-spa/blob/master/MyApp/src/components/Home.svelte)
  - [Aurelia hello.ts](https://github.com/NetCoreTemplates/aurelia-spa/blob/master/MyApp/src/resources/elements/hello.ts)
  - [Angular v4 hello.ts](https://github.com/NetCoreTemplates/angular-lite-spa/blob/master/MyApp/src/modules/app/home/hello.ts)
- - [Angular.js v1.5 using $http](https://github.com/ServiceStack/Templates/blob/master/src/ServiceStackVS/AngularJSApp/AngularJSApp/js/hello/controllers.js)
+
+### Web, Mobile and Desktop Apps
+
+Use [Add ServiceStack Reference](/add-servicestack-reference) to enable typed integrations for the most popular languages to develop Web, Mobile & Desktop Apps.
 
 ### Full .NET Project Templates
 
