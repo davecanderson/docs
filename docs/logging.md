@@ -1,5 +1,5 @@
 ---
-title: An implementation-free logging API for .Net
+title: An implementation-free logging API for .NET
 ---
 
 **ServiceStack.Logging** is an implementation and dependency-free logging API with adapters for all of .NET's popular logging providers. It allows your business logic to bind to an easily-mockable and testable dependency-free interface whilst providing the flexibility to switch logging providers at runtime.
@@ -8,37 +8,37 @@ title: An implementation-free logging API for .Net
 
 Currently there are 5 different .NET logging providers available on NuGet:
 
-#### [NLog](https://nuget.org/packages/ServiceStack.Logging.NLog)
+**[NLog](https://nuget.org/packages/ServiceStack.Logging.NLog)**
 
 ::: nuget
 `<PackageReference Include="ServiceStack.Logging.NLog" Version="6.*" />`
 :::
 
-#### [Elmah](https://nuget.org/packages/ServiceStack.Logging.Elmah)
+**[Elmah](https://nuget.org/packages/ServiceStack.Logging.Elmah)**
 
 ::: nuget
 `<PackageReference Include="ServiceStack.Logging.Elmah" Version="6.*" />`
 :::
 
-#### [Log4Net](https://nuget.org/packages/ServiceStack.Logging.Log4Net)
+**[Log4Net](https://nuget.org/packages/ServiceStack.Logging.Log4Net)**
 
 ::: nuget
 `<PackageReference Include="ServiceStack.Logging.Log4Net" Version="6.*" />`
 :::
 
-#### [EventLog](https://nuget.org/packages/ServiceStack.Logging.EventLog)
+**[EventLog](https://nuget.org/packages/ServiceStack.Logging.EventLog)**
 
 ::: nuget
 `<PackageReference Include="ServiceStack.Logging.EventLog" Version="6.*" />`
 :::
 
-#### [SlackLog](https://www.nuget.org/packages/ServiceStack.Logging.Slack/)
+**[SlackLog](https://www.nuget.org/packages/ServiceStack.Logging.Slack/)**
 
 ::: nuget
 `<PackageReference Include="ServiceStack.Logging.Slack" Version="6.*" />`
 :::
 
-#### [SerilogLogger](https://www.nuget.org/packages/ServiceStack.Logging.Serilog/)
+**[SerilogLogger](https://www.nuget.org/packages/ServiceStack.Logging.Serilog/)**
 
 ::: nuget
 `<PackageReference Include="ServiceStack.Logging.Serilog" Version="6.*" />`
