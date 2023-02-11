@@ -430,6 +430,10 @@
       {
         "text": "Overview",
         "link": "/github-action-templates"
+      },      
+      {
+        "text": "GitHub GHR & SSH Docker Compose",
+        "link": "/ssh-github-action-deployment"
       },
       {
         "text": "GitHub GHR & Digital Ocean",
