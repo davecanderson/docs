@@ -4,13 +4,13 @@
 | [empty](https://github.com/NetCoreTemplates/empty)                         | .NET 6 Empty Single Project Website                                        |
 | [web-tailwind](https://github.com/NetCoreTemplates/web-tailwind)           | .NET 6 Empty Website + Tailwind                                            |
 | [aws-lambda](https://github.com/NetCoreTemplates/aws-lambda)               | .NET 6 Website configured for AWS Lambda Containers                        |
-| [blazor-tailwind](https://github.com/NetCoreTemplates/blazor-tailwind)     | .NET 6 Blazor WASM + Tailwind Template                                     |
-| [blazor-server](https://github.com/NetCoreTemplates/blazor-server)         | .NET 6 Blazor Server + Tailwind Template                                   |
-| [blazor-wasm](https://github.com/NetCoreTemplates/blazor-wasm)             | .NET 6 Blazor WASM + Bootstrap Template                                    |
+| [blazor-tailwind](https://github.com/NetCoreTemplates/blazor-tailwind)     | .NET 6 Blazor WASM + Tailwind Web App                                      |
+| [blazor-server](https://github.com/NetCoreTemplates/blazor-server)         | .NET 6 Blazor Server + Tailwind Web App                                    |
+| [blazor-wasm](https://github.com/NetCoreTemplates/blazor-wasm)             | .NET 6 Blazor WASM + Bootstrap Web App                                     |
 | [angular-spa](https://github.com/NetCoreTemplates/angular-spa)             | .NET 6 Angular 9 CLI Bootstrap App                                         |
 | [aurelia-spa](https://github.com/NetCoreTemplates/aurelia-spa)             | .NET 6 Aurelia CLI Bootstrap App                                           |
 | [grpc](https://github.com/NetCoreTemplates/grpc)                           | .NET 6 gRPC Services                                                       |
-| [mvc-tailwind](https://github.com/NetCoreTemplates/mvc-tailwind)           | .NET 6 MVC + Tailwind Website                                              |
+| [mvc-tailwind](https://github.com/NetCoreTemplates/mvc-tailwind)           | .NET 6 MVC EF and Identity Auth Website + Tailwind                         |
 | [mvc](https://github.com/NetCoreTemplates/mvc)                             | .NET 6 MVC Website                                                         |
 | [mvcauth](https://github.com/NetCoreTemplates/mvcauth)                     | .NET 6 MVC Website integrated with ServiceStack Auth                       |
 | [mvcidentity](https://github.com/NetCoreTemplates/mvcidentity)             | .NET 6 MVC Website integrated with ServiceStack using MVC Identity Auth    |
@@ -25,7 +25,7 @@
 | [selfhost](https://github.com/NetCoreTemplates/selfhost)                   | .NET 6 self-hosting Console App                                            |
 | [script](https://github.com/NetCoreTemplates/sharp)                        | .NET 6 #Script Pages Bootstrap Website                                     |
 | [svelte-spa](https://github.com/NetCoreTemplates/svelte-spa)               | .NET 6 Svelte v3 Rollup Bootstrap App                                      |
-| [vue-mjs](https://github.com/NetCoreTemplates/vue-mjs)                     | .NET 6 Simple, modern Vue 3 App using JS modules                                      |
+| [vue-mjs](https://github.com/NetCoreTemplates/vue-mjs)                     | .NET 6 Simple, modern Vue 3 App using JS modules                           |
 | [vue-vite](https://github.com/NetCoreTemplates/vue-vite)                   | .NET 6 Jamstack Vue Vite Tailwind App                                      |
 | [vue-ssg](https://github.com/NetCoreTemplates/vue-ssg)                     | .NET 6 Jamstack Vue SSG App                                                |
 | [vue-lite](https://github.com/NetCoreTemplates/vue-lite)                   | .NET 6 simple + lite (npm-free) Vue SPA using TypeScript                   |
