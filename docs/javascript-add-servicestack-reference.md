@@ -10,16 +10,16 @@ Unlike TypeScript, the JavaScript ES6 class DTOs can be referenced directly in a
 
 ```html
 <script type="module">
-import { Hello } from '/js/dtos.mjs'
+import { Hello } from '/types/mjs'
 </script>
 ```
 
-Then to make typed API Requests from web pages, you need only need to add an ES Module (.mjs) build of [@servicestack/client](https://github.com/ServiceStack/servicestack-client) which can be sourced directly from a npm CDN:
+Then to make typed API Requests from web pages, you need only need to reference an ES Module (.mjs) build of the dependency-free [@servicestack/client](https://github.com/ServiceStack/servicestack-client) library which can be sourced directly from a npm CDN:
 
 ```html
 <script type="module">
 import { JsonApiClient } from 'https://unpkg.com/@servicestack/client@2/dist/servicestack-client.min.mjs'
-import { Hello } from '/js/dtos.mjs'
+import { Hello } from '/types/mjs'
 
 const client = JsonApiClient.create()
 
@@ -109,20 +109,20 @@ experience without any additional build time or tooling complexity.
 
 ## Add ServiceStack Reference
 
+A new ServiceStack reference containing the APIs typed DTOs can be added using the **BaseUrl** of the ServiceStack App, e.g:
+
+:::sh
+`x mjs https://localhost:5001`
+:::
+
+### Update ServiceStack References
+
+All existing ServiceStack References can later be updated with:
+
 :::sh
 x mjs
 :::
 
-
-### Change Default Server Configuration
-
-The above defaults are also overridable on the ServiceStack Server by modifying the default config on the `NativeTypesFeature` Plugin, e.g:
-
-```csharp
-var nativeTypes = this.GetPlugin<NativeTypesFeature>();
-nativeTypes.MetadataTypesConfig.MakeVirtual = false;
-...
-```
 
 ## DTO Customization Options
 
@@ -164,7 +164,7 @@ The above defaults are also overridable on the ServiceStack Server by modifying 
 ```csharp
 //Server example in CSharp
 var nativeTypes = this.GetPlugin<NativeTypesFeature>();
-nativeTypes.MetadataTypesConfig.IgnoreTypesInNamespaces = "test";
+nativeTypes.MetadataTypesConfig.AddDescriptionAsComments = false;
 ...
 ```
 
