@@ -40,7 +40,7 @@ To let your server handle multiple ServiceStack applications and automate the ge
 
 For example, once copied to remote `~/nginx-proxy-compose.yml`, the following command can be run on the remote server.
 
-```
+```bash
 docker-compose -f ~/nginx-proxy-compose.yml up -d
 ```
 
@@ -82,7 +82,7 @@ These secrets are used to populate variables within GitHub Actions and other con
 
 A published version of your .NET App created with the standard dotnet publish tool:
 
-```yaml
+```bash
 dotnet publish -c Release
 ```
 
@@ -92,7 +92,7 @@ Additional custom deployment tasks can be added to your project's package.json *
 
 If preferred additional MS Build tasks can be run by passing in custom parameters in the publish command, e.g:
 
-```yaml
+```bash
 dotnet publish -c Release /p:APP_TASKS=prerender
 ```
 
