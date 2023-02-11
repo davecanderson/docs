@@ -141,7 +141,7 @@ The modern recommended alternative to jQuery that works in all modern browsers i
 from a [JavaScript Module](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules).
 
 We recommend using an [importmap](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap) 
-to specify where to load **@servicestack/client** from, e.g:
+to specify where **@servicestack/client** should be loaded from, e.g:
 
 ```html
 <script async src="https://ga.jspm.io/npm:es-module-shims@1.6.3/dist/es-module-shims.js"></script><!--safari-->
@@ -266,7 +266,7 @@ The new Tailwind Razor Pages & MVC Templates enable rapid development of Modern 
 
 <iframe class="video-hd" src="https://www.youtube.com/embed/SyppvQB7IPs" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-All Vue Tailwind templates are pre-configured with our comprehensive [Vue 3 Tailwind Components](/vue/) for maximum productivity:
+All Vue Tailwind templates are pre-configured with our rich [Vue 3 Tailwind Components](/vue/) library for maximum productivity:
 
 <iframe class="video-hd" src="https://www.youtube.com/embed/YIa0w6whe2U" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
