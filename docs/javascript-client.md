@@ -1,84 +1,173 @@
 ---
 slug: javascript-client
-title: JavaScript Client
+title: JsonServiceClient
 ---
 
-<script setup>
-import RefServiceClient from './.vitepress/includes/ref-servicestack-client.md';
-</script>
+The **@servicestack/client** library enables the best end-to-end typed developer experience for calling ServiceStack APIs in
+any TypeScript or JavaScript project.
 
-Whilst you can use any of the multitude of Ajax libraries to consume ServiceStack's pure JSON REST APIs, leveraging
-the [integrated TypeScript](/typescript-add-servicestack-reference) support still offers the best development UX 
-for calling ServiceStack's JSON APIs in JavaScript where you can use the TypeScript `JsonServiceClient` with 
-[TypeScript Add ServiceStack Reference](/typescript-add-servicestack-reference#typescript-serviceclient)
-DTO's to get the same productive end-to-end Typed APIs available in ServiceStack's Typed .NET Clients, e.g:
+## Usage in TypeScript or npm projects
+
+Projects using TypeScript or any npm build system can install the dependency-free library with:
+
+::: sh
+npm install @servicestack/client
+:::
+
+Which can be used with your APIs typed DTOs that TypeScript projects can generate using 
+[TypeScript Add ServiceStack Reference](/typescript-add-servicestack-reference#typescript-serviceclient) with:
+
+::: sh
+`x ts https://localhost:5001`
+:::
+
+Which will save your API DTOs to **dtos.ts** that can be referenced in your code with:
 
 ```ts
-let client = new JsonServiceClient(baseUrl)
-
-client.get(new Hello({ Name: 'World' }))
-  .then(r => console.log(r.Result))
+import { Hello } from "./dtos"
 ```
 
-## Instant Typed JavaScript DTOs 🚀
+### JavaScript npm projects
 
-Ultimately the key to maximizing productivity is avoiding things that interrupt your dev workflow. Since we use `JsonServiceClient` for all API requests one area that still interrupts us is regenerating TypeScript `dtos.ts` after adding new APIs, as it was the only way to generate typed DTOs for use in the generic `JsonServiceClient` in both Vanilla JS and TypeScript Apps.
+Non-TypeScript npm projects can choose to either have TypeScript generate the DTOs into the preferred JavaScript target:
 
-For Vanilla JS Apps typically this means running the [x dotnet tool](/typescript-add-servicestack-reference#simple-command-line-utilities-for-typescript) to update `dtos.ts`, then using TypeScript to compile it to JavaScript:
-
-```bash
-$ x ts && tsc dtos.ts 
-```
-
-While not a great hindrance, it can frequently interrupt our workflow when developing new APIs. 
-
-Although thanks to the **native JavaScript Language** support this can be avoided by referencing Typed JavaScript DTOs directly from **/types/js**
-
-Since importing JavaScript doesn't require any tooling or build steps, it greatly simplifies calling ServiceStack APIs from **Vanilla JS** Apps which all our [.NET 6 Empty Project Templates](https://servicestack.net/start) take advantage of for its now optimal friction-less dev model.
-
-Using **/types/js** has the same behavior as using `dtos.js` generated from `$ tsc dtos.ts` whose outputs are identical, i.e. both containing your API DTOs generated in CommonJS format. It's feasible to simulate the TypeScript compiler's output in this instance as ServiceStack only needs to generate DTO Types and Enums to enable its end-to-end API, and not any other of TypeScript's vast featureset.
-
-## Using JavaScript Typed DTOs in Web Apps
-
-To get started quickly you can use the `init` [mix gist](/mix-tool) to create an empty .NET project:
-
-:::sh
-mkdir ProjectName && cd ProjectName
+::: sh
+tsc dtos.ts 
 :::
 
-:::sh
-x mix init
+Alternatively they can generate ES6 annotated DTOs using [JavaScript Add ServiceStack Reference](/javascript-add-servicestack-reference) with:
+
+::: sh
+`x mjs https://localhost:5001`
 :::
 
-That uses the built-in `@servicestack/client` library's `JsonServiceClient` in a dependency-free Web Page:
+Which will save your API DTOs to **dtos.mjs** where they can be referenced in your code with:
 
-To make typed API Requests from web pages, you need only include `/js/require.js` containing a simple `require()` to load **CommonJS** libraries, `/js/servicestack-client.js` (production build of [@servicestack/client](https://github.com/ServiceStack/servicestack-client)) and `/types/js` containing your APIs typed JS DTOs - all built-in ServiceStack. 
-
-After which you'll have access to full feature-set of the generic `JsonServiceClient` with your APIs Typed Request DTOs, e.g:
-
-```html
-<script src="/js/require.js"></script>
-<script src="/js/servicestack-client.js"></script>
-<script src="/types/js"></script>
+```ts
+import { Hello } from "./dtos.mjs"
 ```
 
-Which utilizes the [JavaScript Add ServiceStack Reference](/javascript-add-servicestack-reference) **/types/js** to instantly generate JavaScript Types for all your APIs DTOs which can immediately be used with the [TypeScript JsonServiceClient](/typescript-add-servicestack-reference#typescript-serviceclient) to make Typed API requests:
+### Example Usage
+
+Either solution gives you the same productive end-to-end Typed API access, e.g:
+
+```ts
+import { JsonApiClient } from "@servicestack/client"
+
+const client = JsonApiClient.create(baseUrl)
+
+const api = await client.api(new Hello({ Name: 'World' }))
+if (api.succeeded) {
+    console.log(api.response.result)
+} else {
+    console.log(api.error)
+}
+```
+
+## Usage in .NET Apps without npm
+
+Modern JavaScript Apps not using an npm build system like the [Razor Vue Tailwind templates](/vue/#getting-started) can download 
+**@servicestack/client** from:
+
+ - https://unpkg.com/@servicestack/client@2/dist/servicestack-client.mjs
+ - https://unpkg.com/@servicestack/client@2/dist/servicestack-client.min.mjs (minified)
+
+Then use an [importmap](https://docs.servicestack.net/javascript-add-servicestack-reference#import-maps) to specify where to load **@servicestack/client** from, e.g:
 
 ```html
-<script>
-var { JsonServiceClient, Hello } = exports
-
-var client = new JsonServiceClient();
-function callHello(name) {
-    client.get(new Hello({ name }))
-        .then(function(r) {
-            document.getElementById('result').innerHTML = r.result;
-        });
+<script async src="https://ga.jspm.io/npm:es-module-shims@1.6.3/dist/es-module-shims.js"></script><!--safari-->
+<script type="importmap">
+{
+    "imports": {
+        "@servicestack/client": "/js/servicestack-client.mjs"
+    }
 }
 </script>
 ```
 
+### ImportMap in Razor Pages or MVC
+
+Razor Pages or MVC projects can use `@Html.ImportMap()` in **_Layout.cshtml** to use different builds for development and production, e.g:
+
+```csharp
+@if (Context.Request.Headers.UserAgent.Any(x => x.Contains("Safari") && !x.Contains("Chrome")))
+{
+    <script async src="https://ga.jspm.io/npm:es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+}
+@Html.ImportMap(new()
+{
+    ["@servicestack/client"] = ("/js/servicestack-client.mjs", "/js/servicestack-client.min.mjs"),
+})
+```
+
+This lets your source code reference the library by package name to enable using the same source code in a 
+[JavaScript Module](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules), e.g:
+
+```html
+<script type="module">
+import { JsonApiClient } from "@servicestack/client"
+
+const client = JsonApiClient.create(baseUrl)
+
+const api = await client.api(new Hello({ Name: 'World' }))
+</script>
+```
+
+### JavaScript API DTOs
+
+Your [JavaScript API DTOs](/javascript-add-servicestack-reference) can either directly reference the **/types/mjs** endpoint:
+
+```js
+import { Hello } from '/types/mjs'
+```
+
+### Enable static analysis and intelli-sense 
+
+Or for better IDE intelli-sense during development, save the annotated Typed DTOs to disk with the [x dotnet tool](https://docs.servicestack.net/dotnet-tool):
+
+:::sh
+x mjs
+:::
+
+Then reference it instead to enable IDE static analysis when calling Typed APIs from JavaScript:
+
+```js
+import { Hello } from '/js/dtos.mjs'
+client.api(new Hello({ name }))
+```
+    
+To also enable static analysis for **@servicestack/client**, install the dependency-free library as a dev dependency:
+    
+:::sh
+npm install -D @servicestack/client
+:::
+
+Where only its TypeScript definitions are used by the IDE during development to enable its type-checking and intelli-sense.
+
+#### Support Legacy Browsers
+
+JavaScript Projects needing to support legacy browsers can use [ES3 Common.js DTOs](/commonjs-add-servicestack-reference) to 
+enable access using old-style `<script>` includes.
+
 ## JsonServiceClient
+
+To create `JsonServiceClient` instances in v6+ projects using the [JSON /api route](/routing#json-api-pre-defined-route) use:
+
+```js
+const client = JsonApiClient.create(baseUrl)
+```
+
+Where it's configured to not use any JSON HTTP Headers to enable more efficient CORS requests without preflight requests.
+
+Alternatively all other projects can use the default constructor:
+
+```js
+const client = new JsonServiceClient(baseUrl)
+```
+
+### API Reference
+
+<a href="https://api.locode.dev/classes/client.JsonServiceClient.html"><div class="my-8 mx-auto max-w-xl block flex justify-center shadow hover:shadow-lg rounded py-1"><img class="p-4" src="/images/clients/JsonServiceClient-ui-reference.png"></div></a>
 
 ### API method
 
@@ -397,108 +486,14 @@ When publishing a DTO Type for your Server Events message, your clients will be 
 ## Rich intelli-sense support
 
 Even pure HTML/JS Apps that don't use TypeScript or any external dependencies will still benefit from the Server 
-generated `dtos.ts` and `servicestack-client.d.ts` definitions as Smart IDEs like 
-[Rider](https://www.jetbrains.com/rider/) can make use of them to provide a rich productive development UX
-on both the built-in `/js/servicestack-client.js` library:
+generated `dtos.ts` and TypeScript definitions where you'll be able to benefit from rich intelli-sense support 
+in smart IDEs like [Rider](https://www.jetbrains.com/rider/) for both the client library:
 
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/mix/init-rider-ts-client.png)
+![](/images/mix/init-rider-ts-client.png)
 
 As well as your App's server generated DTOs:
 
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/mix/init-rider-ts-dto.png)
-
-Including their typed partial constructors:
-
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/mix/init-rider-ts-dto-props.png)
+![](/images/release-notes/v6.6/mjs-intellisense.png)
 
 So even simple Apps without complex bundling solutions or external dependencies can still benefit from a rich typed authoring 
 experience without any additional build time or tooling complexity.
-
-### CDN Resources
-
-An CDN alternative to using the `@servicestack/client` built into `ServiceStack.dll` is to reference it from unpkg.com:
-
- - [https://unpkg.com/@servicestack/client](https://unpkg.com/@servicestack/client)
- - [servicestack-client.min.js](https://unpkg.com/@servicestack/client/dist/servicestack-client.min.js) (minified)
-
-If needed for IDE intelli-sense, the TypeScript definition for the `@servicestack/client` is available from:
-
- - [https://unpkg.com/@servicestack/client/dist/index.d.ts](https://unpkg.com/@servicestack/client/dist/index.d.ts)
-
-The npm-free [Vue and React lite Templates](/templates-lite) are some examples that makes use of the stand-alone `@servicestack/client` libraries.
-
-### Using TypeScript JsonServiceClient in npm projects
-
-The [/@servicestack/client](https://www.npmjs.com/package/@servicestack/client) follows the recommended guidance for TypeScript modules which doesn't 
-bundle any TypeScript `.ts` source files, just the generated [index.js](https://unpkg.com/@servicestack/client) and 
-[index.d.ts](https://unpkg.com/@servicestack/client@1.0.31/dist/index.d.ts) Type definitions which can be imported the same way in both JavaScript and TypeScript npm projects as any other module, e.g:
-
-```js
-import { JsonServiceClient } from "@servicestack/client"
-```
-
-Which can then be used with the generated DTOs from your API at [/types/typescript](https://techstacks.io/types/typescript) that can either be downloaded and saved to a local file e.g. `dtos.ts` or preferably downloaded using the [x dotnet tool](/dotnet-tool)
-to download the DTOs of a remote ServiceStack API with:
-
-:::sh
-dotnet tool install --global x 
-:::
-
-Then generate DTOs with:
-
-:::sh
-`x typescript http://yourdomain.org`
-:::
-
-For JavaScript projects that haven't configured transpilation of TypeScript, you'll need to use TypeScript to generate the `dtos.js` JavaScript version
-which can be used instead:
-
-:::sh
-tsc dtos.ts 
-:::
-
-Use the [--module compiler flag](https://www.typescriptlang.org/docs/handbook/compiler-options.html) if needing to generate a specific module version, e.g:
-
-:::sh
-tsc -m ES6 dtos.ts
-:::
-
-The generated `dtos.js` can then be used with the `JsonServiceClient` to provide a succinct Typed API:
-
-```js
-import { GetConfig } from './dtos';
-
-let client = new JsonServiceClient('/');
-
-let response = await client.get(new GetConfig());
-```
-
-#### Updating DTOs
-
-To update your generated DTOs when your server API changes, run `x typescript` or its shorter `x ts` alias without any arguments:
-
-:::sh
-x ts
-:::
-
-Which will update to the latest version of `dtos.ts`. This can be easily automated with an [npm script][5], e.g:
-
-```json
-{
-  "scripts": {
-    "dtos": "cd path/to/dtos && x ts && tsc -m ES6 dtos.ts",
-    }
-}
-```
-
-Which will let you update and compile the dtos with:
-
-:::sh
-npm run dtos
-:::
-
-The [TechStacks][6] (Vue/Nuxt) and [React Native Mobile App][7] (React) are examples of JavaScript-only projects using the TypeScript `JsonServiceClient` in this way.
-
-## Install
-
-<RefServiceClient/>

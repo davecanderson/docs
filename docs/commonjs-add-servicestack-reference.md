@@ -13,7 +13,7 @@ Unlike TypeScript, JavaScript generated DTOs can be used directly from the brows
 To make typed API Requests from web pages, you need only include: 
 
   - **/js/require.js** - containing a simple `require()` to load **CommonJS** libraries
-  - **/js/servicestack-client.js** - production build of [@servicestack/client](https://github.com/ServiceStack/servicestack-client)
+  - **/js/servicestack-client.js** - [built-in UMD @servicestack/client](/servicestack-client-umd) in **ServiceStack.dll**
   - **/types/js** - containing your APIs typed JS DTOs - all built-in ServiceStack
 
 After which you'll have access to the generic `JsonServiceClient` with your APIs Typed Request DTOs, e.g:
@@ -38,15 +38,6 @@ Using **/types/js** has the same behavior as using `dtos.js` generated from `$ t
 
 Even when no longer using TypeScript DTOs in your Apps, it's still useful to have TypeScript's `dtos.ts` included in your project (inc. Vanilla JS projects) to serve as optional type annotations enabling rich intelli-sense and static analysis in IDEs that support it, but as it's no longer used at runtime you're free to generate it at optimal times that don't interrupt your dev workflow.
 
-### Change Default Server Configuration
-
-The above defaults are also overridable on the ServiceStack Server by modifying the default config on the `NativeTypesFeature` Plugin, e.g:
-
-```csharp
-var nativeTypes = this.GetPlugin<NativeTypesFeature>();
-nativeTypes.MetadataTypesConfig.MakeVirtual = false;
-...
-```
 
 ## DTO Customization Options
 
@@ -82,8 +73,7 @@ We'll go through and cover each of the above options to see how they affect the 
 
 ### Change Default Server Configuration
 
-The above defaults are also overridable on the ServiceStack Server by modifying the default config on the
-`NativeTypesFeature` Plugin, e.g:
+Above defaults are also overridable on the ServiceStack Server by modifying the default config on the `NativeTypesFeature` Plugin, e.g:
 
 ```csharp
 //Server example in CSharp

@@ -46,6 +46,21 @@ to specify where to load **@servicestack/client** from, e.g:
 </script>
 ```
 
+### ImportMap in Razor Pages or MVC
+
+Razor Pages or MVC projects can use `@Html.ImportMap()` in **_Layout.cshtml** to use different builds for development and production, e.g:
+
+```csharp
+@if (Context.Request.Headers.UserAgent.Any(x => x.Contains("Safari") && !x.Contains("Chrome")))
+{
+    <script async src="https://ga.jspm.io/npm:es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+}
+@Html.ImportMap(new()
+{
+    ["@servicestack/client"] = ("/js/servicestack-client.mjs", "/js/servicestack-client.min.mjs"),
+})
+```
+
 ### Usage
 
 This lets us reference the **@servicestack/client** package name in our source code instead of its physical location:
