@@ -166,6 +166,11 @@ This will make the following utilities available from your command-line which wi
     <td>TypeScript</td>
 </tr>
 <tr>
+    <td>x mjs</td>
+    <td></td>
+    <td>JavaScript</td>
+</tr>
+<tr>
     <td>x python</td>
     <td>x py</td>
     <td>Python</td>
