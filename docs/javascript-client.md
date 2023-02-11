@@ -234,7 +234,7 @@ to handle errors with `try/catch`.
 ### Ideal Typed Message-based API
 
 The TypeScript `JsonServiceClient` enables the same productive, typed API development experience available 
-in ServiceStack's other [1st-class supported client platforms](http://docs.servicestack.net/typescript-add-servicestack-reference). 
+in ServiceStack's other [1st-class supported client platforms](/typescript-add-servicestack-reference). 
 
 The `JsonServiceClient` leverages the additional type hints ServiceStack embeds in each TypeScript Request DTO 
 to achieve the ideal typed, message-based API - so all API requests benefit from a succinct, boilerplate-free 
@@ -242,7 +242,7 @@ Typed API.
 
 Here's a quick look at what it looks like. The example below shows how to create a 
 [C# Gist in Gistlyn](https://github.com/ServiceStack/Gistlyn) 
-after adding a [TypeScript ServiceStack Reference](http://docs.servicestack.net/typescript-add-servicestack-reference)
+after adding a [TypeScript ServiceStack Reference](/typescript-add-servicestack-reference)
 to `gistlyn.com` and installing the [@servicestack/client](https://www.npmjs.com/package/@servicestack/client) 
 npm package: 
 
@@ -274,8 +274,7 @@ Where the `response` param is typed to `StoreGistResponse` DTO Type.
 
 ### Sending additional arguments with Typed API Requests
 
-Many AutoQuery Services utilize 
-[implicit conventions](http://docs.servicestack.net/autoquery-rdbms#implicit-conventions) 
+Many AutoQuery Services utilize [implicit conventions](/autoquery-rdbms#implicit-conventions) 
 to query fields that aren't explicitly defined on AutoQuery Request DTOs, these can now be queried by specifying additional arguments with the typed Request DTO, e.g:
 
 ```ts
@@ -343,7 +342,7 @@ Or use `client.setCredentials()` to have them set both together.
 ### Authenticating using Credentials
 
 Alternatively you can authenticate using userName/password credentials by 
-[adding a TypeScript Reference](http://docs.servicestack.net/typescript-add-servicestack-reference#add-typescript-reference) 
+[adding a TypeScript Reference](/typescript-add-servicestack-reference#add-typescript-reference) 
 to your remote ServiceStack Instance and sending a populated `Authenticate` Request DTO, e.g:
 
 ```ts
@@ -352,18 +351,18 @@ const response = await client.post(new Authenticate({
 ```
 
 This will populate the `JsonServiceClient` with 
-[Session Cookies](http://docs.servicestack.net/sessions#cookie-session-ids) 
+[Session Cookies](/sessions#cookie-session-ids) 
 which will transparently be sent on subsequent requests to make authenticated requests.
 
 ### Authenticating using JWT
 
-Use the `bearerToken` property to Authenticate with a [ServiceStack JWT Provider](http://docs.servicestack.net/jwt-authprovider) using a JWT Token:
+Use the `bearerToken` property to Authenticate with a [ServiceStack JWT Provider](/jwt-authprovider) using a JWT Token:
 
 ```ts
 client.bearerToken = jwtToken;
 ```
 
-Alternatively you can use a [Refresh Token](http://docs.servicestack.net/jwt-authprovider#refresh-tokens) instead:
+Alternatively you can use a [Refresh Token](/jwt-authprovider#refresh-tokens) instead:
 
 ```ts
 client.refreshToken = refreshToken;
@@ -371,7 +370,7 @@ client.refreshToken = refreshToken;
 
 ### Authenticating using an API Key
 
-Use the `bearerToken` property to Authenticate with an [API Key](http://docs.servicestack.net/api-key-authprovider):
+Use the `bearerToken` property to Authenticate with an [API Key](/api-key-authprovider):
 
 ```ts
 client.bearerToken = apiKey;
@@ -398,7 +397,7 @@ var response = await client.get(new Secured());
 
 ### Automatically refresh Access Tokens
 
-With the [Refresh Token support in JWT](http://docs.servicestack.net/jwt-authprovider#refresh-tokens) 
+With the [Refresh Token support in JWT](/jwt-authprovider#refresh-tokens) 
 you can use the `refreshToken` property to instruct the Service Client to automatically fetch new 
 JWT Tokens behind the scenes before automatically retrying failed requests due to invalid or expired JWTs, e.g:
 
@@ -423,13 +422,13 @@ client.refreshToken = refreshToken;
 client.refreshTokenUri = authBaseUrl + "/access-token";
 ```
 
-### [ServerEvents Client](http://docs.servicestack.net/typescript-server-events-client)
+### [ServerEvents Client](/typescript-server-events-client)
 
-The [TypeScript ServerEventClient](http://docs.servicestack.net/typescript-server-events-client) 
+The [TypeScript ServerEventClient](/typescript-server-events-client) 
 is an idiomatic port of ServiceStack's 
-[C# Server Events Client](http://docs.servicestack.net/csharp-server-events-client) 
+[C# Server Events Client](/csharp-server-events-client) 
 in native TypeScript providing a productive client to consume ServiceStack's 
-[real-time Server Events](http://docs.servicestack.net/server-events) that can be used in TypeScript 
+[real-time Server Events](/server-events) that can be used in TypeScript 
 [Web, Node.js Server and React Native iOS and Android Mobile Apps](https://github.com/ServiceStackApps/typescript-server-events).
 
 ```ts
@@ -481,7 +480,7 @@ const client = new ServerEventsClient("/", channels, {
 .start();                                             // Start listening for Server Events!
 ```
 
-When publishing a DTO Type for your Server Events message, your clients will be able to benefit from the generated DTOs in [TypeScript ServiceStack References](http://docs.servicestack.net/typescript-add-servicestack-reference).
+When publishing a DTO Type for your Server Events message, your clients will be able to benefit from the generated DTOs in [TypeScript ServiceStack References](/typescript-add-servicestack-reference).
 
 ## Rich intelli-sense support
 
