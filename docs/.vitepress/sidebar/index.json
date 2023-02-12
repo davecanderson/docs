@@ -69,10 +69,6 @@
         "link": "/modular-startup"
       },
       {
-        "text": "Unified Navigation",
-        "link": "/navigation"
-      },
-      {
         "text": "dotnet tool - Win/Mac/Linux Utility Belt",
         "link": "/dotnet-tool"
       },
@@ -514,6 +510,14 @@
         "link": "/html-css-and-javascript-minification"
       },
       {
+        "text": "Unified Navigation",
+        "link": "/navigation"
+      },
+      {
+        "text": "App Tasks",
+        "link": "/app-tasks"
+      },
+      {
         "text": "MVC Integration",
         "link": "/mvc-integration"
       },
@@ -544,10 +548,6 @@
       {
         "text": "Create a WebService from scratch",
         "link": "/create-webservice-from-scratch"
-      },
-      {
-        "text": "App Tasks",
-        "link": "/app-tasks"
       }
     ]
   },
