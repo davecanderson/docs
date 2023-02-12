@@ -24,6 +24,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHttpsRedirection();
 }
 
+app.UseServiceStack(new AppHost())
 app.Run();
 ```
 
@@ -44,11 +45,6 @@ public class AppHost : AppHostBase, IHostingStartup
     public void Configure(IWebHostBuilder builder) => builder
         .ConfigureServices(services => {
             // Configure ASP .NET Core IOC Dependencies
-        })
-        .Configure(app => {
-            // Configure ASP .NET Core App
-            if (!HasInit)
-                app.UseServiceStack(new AppHost());
         });
 
     public AppHost() : base("MyApp", typeof(MyServices).Assembly) {}
@@ -57,7 +53,7 @@ public class AppHost : AppHostBase, IHostingStartup
     {
         // Configure ServiceStack only IOC, Config & Plugins
         SetConfig(new HostConfig {
-            UseSameSiteCookies = true,
+            UseSameSiteCookies = true
         });
     }
 }
@@ -65,24 +61,22 @@ public class AppHost : AppHostBase, IHostingStartup
 
 The use of Modular Startup does not change the AppHost declaration, but enables the modular grouping of configuration concerns.
 Different features are encapsulated together allowing them to be more easily updated or replaced,
-e.g. each feature could be temporarily disabled by commenting out its assembly HostingStartup's attribute, including ServiceStack itself:
+e.g. each feature could be temporarily disabled by commenting out its assembly HostingStartup's attribute:
 
 ```csharp
 //[assembly: HostingStartup(typeof(MyApp.AppHost))]
 ```
 
-::: info
-Reason for only conditionally registering ServiceStack with `if (!HasInit)` is to allow other plugins (like Auth) the opportunity
-to precisely control where ServiceStack is registered within its preferred ASP .NET Core's pipeline
-:::
-
 ## Module composition using `mix`
 
-This has enabled ServiceStack Apps to be easily composed with the features developers need in mind. Either at project creation with servicestack.net/start page or after
-a project's creation where features can easily be added and removed using the command-line [mix tool](/mix-tool).
+This has enabled ServiceStack Apps to be easily composed with the features developers need in mind. Either at project creation with servicestack.net/start page or after a project's creation where features can easily be added and removed using the command-line [mix tool](/mix-tool) where
+you can view all available mix gists that can be added to projects with:
 
-.NET 6's idiom is incorporated into the [mix gist config files](https://gist.github.com/gistlyn/9b32b03f207a191099137429051ebde8) to adopt its `HostingStartup` which is better able to load modular Startup configuration
-without assembly scanning.
+:::sh
+x mix
+:::
+
+.NET 6's idiom is incorporated into the [mix gist config files](https://gist.github.com/gistlyn/9b32b03f207a191099137429051ebde8) to adopt its `HostingStartup` which is better able to load modular Startup configuration without assembly scanning.
 
 This is a standard ASP .NET Core feature that we can use to configure Mongo DB in any ASP .NET Core App with:
 
@@ -99,18 +93,17 @@ using MongoDB.Driver;
 
 [assembly: HostingStartup(typeof(MyApp.ConfigureMongoDb))]
 
-namespace MyApp
+namespace MyApp;
+
+public class ConfigureMongoDb : IHostingStartup
 {
-    public class ConfigureMongoDb : IHostingStartup
-    {
-        public void Configure(IWebHostBuilder builder) => builder
-            .ConfigureServices((context, services) => {
-                var mongoClient = new MongoClient();
-                IMongoDatabase mongoDatabase = mongoClient.GetDatabase("MyApp");
-                services.AddSingleton(mongoDatabase);
-            });
-    }    
-}
+    public void Configure(IWebHostBuilder builder) => builder
+        .ConfigureServices((context, services) => {
+            var mongoClient = new MongoClient();
+            IMongoDatabase mongoDatabase = mongoClient.GetDatabase("MyApp");
+            services.AddSingleton(mongoDatabase);
+        });
+}    
 ```
 
 As it's not a ServiceStack feature it can be used to configure ASP .NET Core Apps with any feature,
@@ -141,48 +134,47 @@ Looking deeper, we can see where we're plugins are able to configure ServiceStac
 ```csharp
 [assembly: HostingStartup(typeof(MyApp.ConfigureAuth))]
 
-namespace MyApp
+namespace MyApp;
+
+// Add any additional metadata properties you want to store in the Users Typed Session
+public class CustomUserSession : AuthUserSession
 {
-    // Add any additional metadata properties you want to store in the Users Typed Session
-    public class CustomUserSession : AuthUserSession
+}
+
+// Custom Validator to add custom validators to built-in /register Service requiring DisplayName and ConfirmPassword
+public class CustomRegistrationValidator : RegistrationValidator
+{
+    public CustomRegistrationValidator()
     {
-    }
-    
-    // Custom Validator to add custom validators to built-in /register Service requiring DisplayName and ConfirmPassword
-    public class CustomRegistrationValidator : RegistrationValidator
-    {
-        public CustomRegistrationValidator()
+        RuleSet(ApplyTo.Post, () =>
         {
-            RuleSet(ApplyTo.Post, () =>
-            {
-                RuleFor(x => x.DisplayName).NotEmpty();
-                RuleFor(x => x.ConfirmPassword).NotEmpty();
-            });
-        }
+            RuleFor(x => x.DisplayName).NotEmpty();
+            RuleFor(x => x.ConfirmPassword).NotEmpty();
+        });
     }
+}
 
-    public class ConfigureAuth : IHostingStartup
-    {
-        public void Configure(IWebHostBuilder builder) => builder
-            .ConfigureServices(services => {
-                //services.AddSingleton<ICacheClient>(new MemoryCacheClient()); //Store User Sessions in Memory Cache (default)
-            })
-            .ConfigureAppHost(appHost => {
-                var appSettings = appHost.AppSettings;
-                appHost.Plugins.Add(new AuthFeature(() => new CustomUserSession(),
-                    new IAuthProvider[] {
-                        new CredentialsAuthProvider(appSettings),     /* Sign In with Username / Password credentials */
-                        new FacebookAuthProvider(appSettings),        /* Create App https://developers.facebook.com/apps */
-                        new GoogleAuthProvider(appSettings),          /* Create App https://console.developers.google.com/apis/credentials */
-                        new MicrosoftGraphAuthProvider(appSettings),  /* Create App https://apps.dev.microsoft.com */
-                    }));
+public class ConfigureAuth : IHostingStartup
+{
+    public void Configure(IWebHostBuilder builder) => builder
+        .ConfigureServices(services => {
+            //services.AddSingleton<ICacheClient>(new MemoryCacheClient()); //Store User Sessions in Memory Cache (default)
+        })
+        .ConfigureAppHost(appHost => {
+            var appSettings = appHost.AppSettings;
+            appHost.Plugins.Add(new AuthFeature(() => new CustomUserSession(),
+                new IAuthProvider[] {
+                    new CredentialsAuthProvider(appSettings),     /* Sign In with Username / Password credentials */
+                    new FacebookAuthProvider(appSettings),        /* Create App https://developers.facebook.com/apps */
+                    new GoogleAuthProvider(appSettings),          /* Create App https://console.developers.google.com/apis/credentials */
+                    new MicrosoftGraphAuthProvider(appSettings),  /* Create App https://apps.dev.microsoft.com */
+                }));
 
-                appHost.Plugins.Add(new RegistrationFeature()); //Enable /register Service
+            appHost.Plugins.Add(new RegistrationFeature()); //Enable /register Service
 
-                //override the default registration validation with your own custom implementation
-                appHost.RegisterAs<CustomRegistrationValidator, IValidator<Register>>();
-            });
-    }
+            //override the default registration validation with your own custom implementation
+            appHost.RegisterAs<CustomRegistrationValidator, IValidator<Register>>();
+        });
 }
 ```
 
@@ -191,56 +183,55 @@ By default, any AppHost configuration is called before `AppHost.Configure()` is 
 ```csharp
 [assembly: HostingStartup(typeof(MyApp.ConfigureAuthRepository))]
 
-namespace MyApp
-{
-    // Custom User Table with extended Metadata properties
-    public class AppUser : UserAuth
-    {
-        public string ProfileUrl { get; set; }
-        public string LastLoginIp { get; set; }
-        public DateTime? LastLoginDate { get; set; }
-    }
+namespace MyApp;
 
-    public class AppUserAuthEvents : AuthEvents
+// Custom User Table with extended Metadata properties
+public class AppUser : UserAuth
+{
+    public string ProfileUrl { get; set; }
+    public string LastLoginIp { get; set; }
+    public DateTime? LastLoginDate { get; set; }
+}
+
+public class AppUserAuthEvents : AuthEvents
+{
+    public override void OnAuthenticated(IRequest req, IAuthSession session, IServiceBase authService, 
+        IAuthTokens tokens, Dictionary<string, string> authInfo)
     {
-        public override void OnAuthenticated(IRequest req, IAuthSession session, IServiceBase authService, 
-            IAuthTokens tokens, Dictionary<string, string> authInfo)
+        var authRepo = HostContext.AppHost.GetAuthRepository(req);
+        using (authRepo as IDisposable)
         {
-            var authRepo = HostContext.AppHost.GetAuthRepository(req);
-            using (authRepo as IDisposable)
-            {
-                var userAuth = (AppUser)authRepo.GetUserAuth(session.UserAuthId);
-                userAuth.ProfileUrl = session.GetProfileUrl();
-                userAuth.LastLoginIp = req.UserHostAddress;
-                userAuth.LastLoginDate = DateTime.UtcNow;
-                authRepo.SaveUserAuth(userAuth);
-            }
+            var userAuth = (AppUser)authRepo.GetUserAuth(session.UserAuthId);
+            userAuth.ProfileUrl = session.GetProfileUrl();
+            userAuth.LastLoginIp = req.UserHostAddress;
+            userAuth.LastLoginDate = DateTime.UtcNow;
+            authRepo.SaveUserAuth(userAuth);
         }
     }
+}
 
-    public class ConfigureAuthRepository : IHostingStartup
+public class ConfigureAuthRepository : IHostingStartup
+{
+    public void Configure(IWebHostBuilder builder) => builder
+        .ConfigureServices(services => services.AddSingleton<IAuthRepository>(c =>
+            new OrmLiteAuthRepository<AppUser, UserAuthDetails>(c.Resolve<IDbConnectionFactory>()) {
+                UseDistinctRoleTables = true
+            }))
+        .ConfigureAppHost(appHost => {
+            var authRepo = appHost.Resolve<IAuthRepository>();
+            authRepo.InitSchema();
+            // CreateUser(authRepo, "admin@email.com", "Admin User", "p@55wOrd", roles:new[]{ RoleNames.Admin });
+        }, afterConfigure: appHost => 
+            appHost.AssertPlugin<AuthFeature>().AuthEvents.Add(new AppUserAuthEvents()));
+
+    // Add initial Users to the configured Auth Repository
+    public void CreateUser(IAuthRepository authRepo, string email, string name, string password, string[] roles)
     {
-        public void Configure(IWebHostBuilder builder) => builder
-            .ConfigureServices(services => services.AddSingleton<IAuthRepository>(c =>
-                new OrmLiteAuthRepository<AppUser, UserAuthDetails>(c.Resolve<IDbConnectionFactory>()) {
-                    UseDistinctRoleTables = true
-                }))
-            .ConfigureAppHost(appHost => {
-                var authRepo = appHost.Resolve<IAuthRepository>();
-                authRepo.InitSchema();
-                // CreateUser(authRepo, "admin@email.com", "Admin User", "p@55wOrd", roles:new[]{ RoleNames.Admin });
-            }, afterConfigure: appHost => 
-                appHost.AssertPlugin<AuthFeature>().AuthEvents.Add(new AppUserAuthEvents()));
-
-        // Add initial Users to the configured Auth Repository
-        public void CreateUser(IAuthRepository authRepo, string email, string name, string password, string[] roles)
+        if (authRepo.GetUserAuthByUserName(email) == null)
         {
-            if (authRepo.GetUserAuthByUserName(email) == null)
-            {
-                var newAdmin = new AppUser { Email = email, DisplayName = name };
-                var user = authRepo.CreateUserAuth(newAdmin, password);
-                authRepo.AssignRoles(user, roles);
-            }
+            var newAdmin = new AppUser { Email = email, DisplayName = name };
+            var user = authRepo.CreateUserAuth(newAdmin, password);
+            authRepo.AssignRoles(user, roles);
         }
     }
 }
@@ -325,13 +316,8 @@ Implement `IHostingStartup` on your AppHost with automatic initialization. Eg:
 public void Configure(IWebHostBuilder builder)
 {
     builder.ConfigureServices(services => {
-            // Configure ASP.NET Core IOC Dependencies
-        })
-        .Configure(app => {
-            // Configure ASP.NET Core App
-            if (!HasInit)
-                app.UseServiceStack(new AppHost());
-        });
+        // Configure ASP.NET Core IOC Dependencies
+    });
 }
 ```
 
@@ -351,17 +337,16 @@ Migrate each existing modular startup class that implements `IConfgiureServices`
 // net5.0 modular startup
 using ServiceStack;
 
-namespace Chinook
+namespace Chinook;
+
+public class ConfigureAutoQuery : IConfigureAppHost
 {
-    public class ConfigureAutoQuery : IConfigureAppHost
+    public void Configure(IAppHost appHost)
     {
-        public void Configure(IAppHost appHost)
-        {
-            appHost.Plugins.Add(new AutoQueryFeature {
-                MaxLimit = 1000,
-                IncludeTotal = true
-            });
-        }
+        appHost.Plugins.Add(new AutoQueryFeature {
+            MaxLimit = 1000,
+            IncludeTotal = true
+        });
     }
 }
 ```
@@ -373,20 +358,19 @@ using ServiceStack;
 
 [assembly: HostingStartup(typeof(Chinook.ConfigureAutoQuery))]
 
-namespace Chinook
+namespace Chinook;
+
+public class ConfigureAutoQuery : IHostingStartup
 {
-    public class ConfigureAutoQuery : IHostingStartup
+    public void Configure(IWebHostBuilder builder)
     {
-        public void Configure(IWebHostBuilder builder)
+        builder.ConfigureAppHost(appHost =>
         {
-            builder.ConfigureAppHost(appHost =>
-            {
-                appHost.Plugins.Add(new AutoQueryFeature {
-                    MaxLimit = 1000,
-                    IncludeTotal = true
-                });
+            appHost.Plugins.Add(new AutoQueryFeature {
+                MaxLimit = 1000,
+                IncludeTotal = true
             });
-        }
+        });
     }
 }
 ```
