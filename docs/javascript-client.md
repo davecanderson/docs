@@ -493,6 +493,3 @@ in smart IDEs like [Rider](https://www.jetbrains.com/rider/) for both the client
 As well as your App's server generated DTOs:
 
 ![](/images/release-notes/v6.6/mjs-intellisense.png)
-
-So even simple Apps without complex bundling solutions or external dependencies can still benefit from a rich typed authoring 
-experience without any additional build time or tooling complexity.

@@ -119,9 +119,6 @@ As well as your App's server generated DTOs:
 
 ![](/images/release-notes/v6.6/mjs-intellisense.png)
 
-So even simple Apps without complex bundling solutions or external dependencies can still benefit from a rich typed authoring 
-experience without any additional build time or tooling complexity.
-
 ## Add ServiceStack Reference
 
 A new ServiceStack reference containing the APIs typed DTOs can be added using the **BaseUrl** of the ServiceStack App, e.g:
