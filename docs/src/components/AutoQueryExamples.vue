@@ -300,7 +300,7 @@
                             We’ve created 
                             <a href="https://blazordiffusion.com">blazordiffusion.com</a>
                             to best illustrate this potential
-                             - a new ServiceStack.Blazor App front-end for 
+                             - a new ServiceStack Blazor Tailwind App for 
                             <a href="https://stability.ai/blog/stable-diffusion-public-release">Stable Diffusion</a> - a deep learning text-to-image model 
                             that can generate quality images from a text prompt. It’s a great example of Hybrid Development where its entire user-facing UI 
                             is a bespoke Blazor App optimized for creating and discovering Stable Diffusion generated images, whilst all its 
