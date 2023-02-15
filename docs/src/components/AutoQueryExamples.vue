@@ -271,6 +271,7 @@
 <h3>More AutoQuery Source Code Examples</h3>
 <ul>
     <li><a href="https://github.com/NetCoreApps/BookingsCrud">NetCoreApps/BookingsCrud</a></li>
+    <li><a href="https://github.com/NetCoreApps/BlazorDiffusion">NetCoreApps/BlazorDiffusion</a></li>
     <li><a href="https://github.com/NetCoreApps/TechStacks">NetCoreApps/TechStacks</a></li>
     <li><a href="https://github.com/NetCoreApps/StackApis">NetCoreApps/StackApis</a></li>
     <li><a href="https://github.com/NetCoreApps/BookingsCrud">NetCoreApps/BookingsCrud</a></li>
