@@ -315,7 +315,7 @@ Walk through configuring your ServiceStack Application's `AppHost`:
   - [ServiceStack Quick Start](https://debuggers.domains/post/servicestack-quick-start/) by [@aarondandy](https://github.com/aarondandy) 
   - [Getting Started with ASP.NET MVC, ServiceStack and Bootstrap](https://www.pluralsight.com/courses/getting-started-aspdotnet-mvcservice-stack-bootstrap) by [@pluralsight](http://twitter.com/pluralsight)
   - [Building Web Applications with Open-Source Software on Windows](https://www.pluralsight.com/courses/building-web-application-open-source-software-on-windows) by [@pluralsight](http://twitter.com/pluralsight)
-  - [ServiceStack the way I like it](https://tonyonsoftware.blogspot.com/2012/09/lessons-learned-whilst-using.html)
+  - [ServiceStack the way I like it](https://www.antonydenyer.co.uk/2012-09-20-servicestack-the-way-i-like-it/) by [@tonydenyer](https://twitter.com/tonydenyer)
   - [Generating a RESTful Api and UI from a database with LLBLGen](https://www.mattjcowan.com/funcoding/2013/03/10/rest-api-with-llblgen-and-servicestack/) by [@mattjcowan](https://twitter.com/mattjcowan)
   - [ServiceStack: Reusing DTOs](https://korneliuk.blogspot.com/2012/08/servicestack-reusing-dtos.html) by [@korneliuk](https://twitter.com/korneliuk)
   - [ServiceStack, Rest Service and EasyHttp](https://blogs.lessthandot.com/index.php/WebDev/ServerProgramming/servicestack-restservice-and-easyhttp) by [@chrissie1](https://twitter.com/chrissie1)
