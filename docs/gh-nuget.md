@@ -18,18 +18,27 @@ Once your GitHub Personal Access Token (PAT) is created, you will need to add a 
 <configuration>
   <packageSources>
     <add key="nuget.org" value="https://api.nuget.org/v3/index.json" protocolVersion="3" />
-    <add key="servicestack-github" value="https://nuget.pkg.github.com/ServiceStack/index.json" />
+    <add key="github-servicestack" value="https://nuget.pkg.github.com/ServiceStack/index.json" />
   </packageSources>
   <packageSourceCredentials>
-        <servicestack-github>
+        <github-servicestack>
             <add key="Username" value="GITHUB_USERNAME" />
             <add key="ClearTextPassword" value="TOKEN" />
-        </servicestack-github>
+        </github-servicestack>
     </packageSourceCredentials>
 </configuration>
 ```
 
 Your `packageSources` `key` needs to match the `packageSourceCredentials` element name
+
+### Add using Mix
+
+If you have the [dotnet x tool](/dotnet-tool) installed, you can configure your projects by downloading `NuGet.Config` in the same folder as your **.sln**
+
+:::sh
+x mix gh-nuget
+:::
+
 
 ### Add using VS .NET
 
@@ -64,13 +73,13 @@ If you're not using or don't have VS .NET installed, you can add the GitHub feed
 <configuration>
   <packageSources>
     <add key="nuget.org" value="https://api.nuget.org/v3/index.json" protocolVersion="3" />
-    <add key="servicestack-github" value="https://nuget.pkg.github.com/ServiceStack/index.json" />
+    <add key="github-servicestack" value="https://nuget.pkg.github.com/ServiceStack/index.json" />
   </packageSources>
   <packageSourceCredentials>
-        <servicestack-github>
+        <github-servicestack>
             <add key="Username" value="GITHUB_USERNAME" />
             <add key="ClearTextPassword" value="TOKEN" />
-        </servicestack-github>
+        </github-servicestack>
     </packageSourceCredentials>
 </configuration>
 ```
