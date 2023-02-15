@@ -395,9 +395,8 @@
 <ul>
     <li><a href="https://github.com/NetCoreApps/BookingsCrud">NetCoreApps/BookingsCrud</a></li>
     <li><a href="https://github.com/NetCoreApps/TechStacks">NetCoreApps/TechStacks</a></li>
-    <li><a href="https://github.com/NetCoreApps/StackApis">NetCoreApps/StackApis</a></li>
-    <li><a href="https://github.com/NetCoreApps/BookingsCrud">NetCoreApps/BookingsCrud</a></li>
-    <li><a href="https://github.com/ServiceStackApps/GitHubAutoQuery">ServiceStackApps/GitHubAutoQuery</a></li>
+    <li><a href="https://github.com/NetCoreApps/StackApis/tree/master/src/StackApis.ServiceModel">NetCoreApps/StackApis</a></li>
+    <li><a href="https://github.com/ServiceStackApps/GitHubAutoQuery/blob/master/src/GitHubAutoQuery/GitHubAutoQuery.ServiceModel/GitHubAutoQueries.cs">ServiceStackApps/GitHubAutoQuery</a></li>
 </ul>
 </template>
 
