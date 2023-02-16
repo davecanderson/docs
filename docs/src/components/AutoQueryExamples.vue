@@ -275,9 +275,9 @@
         </p>
         <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500"> 
           AutoQuery enables a highly productive platform capable of rapidly developing a majority of App's CRUD functionality 
-          to enable a hybrid development model which can benefit from management of Back office supporting tables that can be 
-          effortlessly implemented using customized 
-          <a href="https://blazor-gallery.jamstacks.net/grid">AutoQueryGrid components</a>, 
+          to enable a hybrid development model which can benefit from using customized
+          <a href="https://blazor-gallery.jamstacks.net/grid">AutoQueryGrid components</a>
+          to effortlessly implement the CRUD functionality to manage the Back office supporting tables, 
           freeing up developers to focus a majority of their efforts where they 
           add the most value - in the optimized customer-facing UI.
         </p>
