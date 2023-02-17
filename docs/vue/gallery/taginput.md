@@ -32,6 +32,35 @@ which is also supported in declarative Auto Forms using the `[Input(Type="tag")]
 ```
 <AutoEditForm id="updatecontact" data-id="UpdateContact" type="UpdateContact" v-model="contact" formStyle="card" class="not-prose max-w-3xl mb-4" />
 
+Generated from the **UpdateContact** C# Request DTO:
+
+```csharp
+public class UpdateContact : IPatchDb<Contact>, IReturn<Contact>
+{
+    public int Id { get; set; }
+    [ValidateNotEmpty]
+    public string? FirstName { get; set; }
+    [ValidateNotEmpty]
+    public string? LastName { get; set; }
+    [Input(Type = "file"), UploadTo("profiles")]
+    public string? ProfileUrl { get; set; }
+    public int? SalaryExpectation { get; set; }
+    [ValidateNotEmpty]
+    public string? JobType { get; set; }
+    public int? AvailabilityWeeks { get; set; }
+    public EmploymentType? PreferredWorkType { get; set; }
+    public string? PreferredLocation { get; set; }
+    [ValidateNotEmpty]
+    public string? Email { get; set; }
+    public string? Phone { get; set; }
+    [Input(Type = "tag"), FieldCss(Field = "col-span-12")]
+    public List<string>? Skills { get; set; }
+    [Input(Type = "textarea")]
+    [FieldCss(Field = "col-span-12 text-center", Input = "h-48", Label= "text-xl text-indigo-700")]
+    public string? About { get; set; }
+}
+```
+
 Alternatively `<TagInput>` can be used in Custom Forms directly by binding to a `List<string>` or `string[]` model:
 
 <ApiReference component="TagInput">Custom Form</ApiReference>
@@ -69,4 +98,4 @@ Alternatively `<TagInput>` can be used in Custom Forms directly by binding to a 
 </form>
 ```
 
-<TagInputExamples class="max-w-screen-md" />
+<TagInputExamples data-id="TagInputExamples" class="max-w-screen-md" />
