@@ -66,6 +66,39 @@ access to your Repo's secrets. This will need to be added before building or pub
     dotnet publish -c Release
 ```
 
+#### Adding nuget source in Dockerfile
+
+If restoring and building your project from inside your `Dockerfile` you can use [Docker secrets](https://docs.docker.com/engine/reference/commandline/buildx_build/#secret) to pass these credentials from your GitHub Action to your Dockerfile:
+
+**release.yml**
+
+```yml
+- name: Build and push API Docker image
+  uses: docker/build-push-action@v4
+  if: ${{ github.event.inputs.version == '' || github.event.inputs.version == 'latest' }}
+  with:
+    file: Dockerfile
+    context: .
+    push: true
+    tags: ghcr.io/${{ env.image_repository_name }}:${{ env.TAG_NAME }}
+    secrets: |
+      github_actor=${{ github.actor }}
+      github_token=${{ secrets.GITHUB_TOKEN }}
+```
+
+**Dockerfile**
+
+These can be accessed to add a nuget source in the same **RUN** command as **dotnet restore** with:
+
+```dockerfile
+RUN --mount=type=secret,id=github_actor \
+    --mount=type=secret,id=github_token \
+    export github_actor=$(cat /run/secrets/github_actor) && \
+    export github_token=$(cat /run/secrets/github_token) && \
+    dotnet nuget add source "https://nuget.pkg.github.com/ServiceStack/index.json" --username $github_actor --password $github_token --store-password-in-clear-text --name github && \
+    dotnet restore
+```
+
 
 ### Add using VS .NET
 
