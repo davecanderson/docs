@@ -40,6 +40,33 @@ x mix gh-nuget
 :::
 
 
+### Using GitHub Packages in GitHub Actions
+
+To avoid checking in Tokens into your repositories, the GitHub Packages Registry should instead be added as a nuget source from the command-line where it has
+access to your Repo's secrets. This will need to be added before building or publishing your .NET project, e.g:
+
+**build.yml**
+
+```yml
+- name: Add pre-release packages source
+  run: | 
+    dotnet nuget add source "https://nuget.pkg.github.com/ServiceStack/index.json" --username ${{ github.actor }} --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github
+- name: Build
+  run: dotnet build
+```
+
+**release.yml**
+
+```yml
+# Publish .NET Project
+- name: Publish dotnet project
+  working-directory: ./MyApp
+  run: | 
+    dotnet nuget add source "https://nuget.pkg.github.com/ServiceStack/index.json" --username ${{ github.actor }} --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github
+    dotnet publish -c Release
+```
+
+
 ### Add using VS .NET
 
 Instructions to add ServiceStack's GitHub feed to VS .NET are:
