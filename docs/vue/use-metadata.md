@@ -35,12 +35,12 @@ import { useMetadata } from "@@servicestack/vue"
 
 const { loadMetadata } = useMetadata()
 loadMetadata({
-    olderThan: window.Server ? null : location.hash === '#clear' ? 0 : 24 * 60 * 60 * 1000 //1 day 
+    olderThan: window.Server ? null : location.search.includes('clear=metadata') ? 0 : 60 * 60 * 1000 //1hr 
 })
 </script>
 ```
 
-Where during development it always embeds the AppMetadata in each page but as this metadata can become quite large for systems with a lot of APIs, the above optimization clears and reloads the AppMetadata after **1 day** or if the page was explicitly loaded with `#clear`, 
+Where during development it always embeds the AppMetadata in each page but as this metadata can become quite large for systems with a lot of APIs, the above optimization clears and reloads the AppMetadata after **1 hr** or if the page was explicitly loaded with `?clear=metadata`, 
 otherwise it will use a local copy cached in `localStorage` at `/metadata/app.json`, which Apps needing more 
 fine-grained cache invalidation strategies can manage themselves.
 
