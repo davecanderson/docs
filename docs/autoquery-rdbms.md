@@ -42,7 +42,7 @@ The above config registers an In Memory Sqlite database although as the AutoQuer
 The `MaxLimit` option ensures each query returns a maximum limit of **100** rows.
 
 ::: tip
-It is recommended `MaxLimit` is set based on your own requirements, not setting the `MaxLimit` option will return **all rows** for a query
+It's recommended `MaxLimit` is set based on your own requirements as not setting a `MaxLimit` will return **all rows** for a query
 :::
 
 Now that everything's configured we can create our first service. To implement the ideal API for [OData's movie ratings query](/why-not-odata) we just need to define the Request DTO for our service, i.e:

@@ -115,6 +115,11 @@ The ServiceModel Project contains all your Application's DTOs which is what defi
 
 The Unit Test project contains all your Unit and Integration tests. It's also a Host project that typically references all other non-Host projects in the solution and contains a combination of concrete and mock dependencies depending on what's being tested. See the [Testing Docs](/testing) for more information on testing ServiceStack projects.
 
+## Learn ServiceStack Guide
+
+If you're new to ServiceStack we recommend stepping through [ServiceStack's Getting Started Guide](https://servicestack.net/start/project-overview)
+to get familiar with the basics.
+
 ## API Client Examples
 
 ### jQuery Ajax
@@ -300,35 +305,26 @@ Walk through configuring your ServiceStack Application's `AppHost`:
 
 <iframe class="video-hd" src="https://www.youtube.com/embed/mOpx5mUGoqI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-## Explore ServiceStack
-
-When you're ready to dive in further checkout our [Explore ServiceStack Guide](/explore-servicestack).
-
 ## Community Resources
 
-  - [Creating A Simple Service Using ServiceStack](http://shashijeevan.net/2015/09/20/creating-a-simple-service-using-servicestack/) by [Shashi Jeevan](http://shashijeevan.net/author/shashijeevan/)
-  - [Introducing ServiceStack](http://www.dotnetcurry.com/showarticle.aspx?ID=1056) by [@dotnetcurry](https://twitter.com/DotNetCurry)
-  - [Create web services in .NET in a snap with ServiceStack](http://www.techrepublic.com/article/create-web-services-in-net-in-a-snap-with-servicestack/) by [@techrepublic](https://twitter.com/techrepublic)
-  - [How to build web services in MS.Net using ServiceStack](http://kborra.wordpress.com/2014/07/29/how-to-build-web-services-in-ms-net-using-service-stack/) by [@kishoreborra](http://kborra.wordpress.com/about/)
-  - [Creating a Web API using ServiceStack](http://blogs.askcts.com/2014/05/15/getting-started-with-servicestack-part-3/) by [Lydon Bergin](http://blogs.askcts.com/)
-  - [Getting Started with ServiceStack: Part 1](http://blogs.askcts.com/2014/04/23/getting-started-with-servicestack-part-one/) by [Lydon Bergin](http://blogs.askcts.com/)
-  - [Getting started with ServiceStack – Creating a service](http://dilanperera.wordpress.com/2014/02/22/getting-started-with-servicestack-creating-a-service/)
-  - [ServiceStack Quick Start](http://mediocresoft.com/things/servicestack-quick-start) by [@aarondandy](https://github.com/aarondandy)
-  - [Fantastic Step-by-step walk-thru into ServiceStack with Screenshots!](http://nilsnaegele.com/codeedge/servicestack.html) by [@nilsnagele](https://twitter.com/nilsnagele)
-  - [Your first REST service with ServiceStack](http://tech.pro/tutorial/1148/your-first-rest-service-with-servicestack) by [@cyberzeddk](https://twitter.com/cyberzeddk)
-  - [New course: Using ServiceStack to Build APIs](http://blog.pluralsight.com/2012/11/29/new-course-using-servicestack-to-build-apis/) by [@pluralsight](http://twitter.com/pluralsight)
-  - [ServiceStack the way I like it](http://tonyonsoftware.blogspot.co.uk/2012/09/lessons-learned-whilst-using.html) by [@tonydenyer](https://twitter.com/tonydenyer)
-  - [Generating a RESTful Api and UI from a database with LLBLGen](http://www.mattjcowan.com/funcoding/2013/03/10/rest-api-with-llblgen-and-servicestack/) by [@mattjcowan](https://twitter.com/mattjcowan)
-  - [ServiceStack: Reusing DTOs](http://korneliuk.blogspot.com/2012/08/servicestack-reusing-dtos.html) by [@korneliuk](https://twitter.com/korneliuk)
-  - [Using ServiceStack with CodeFluent Entities](http://blog.codefluententities.com/2013/03/06/using-servicestack-with-codefluent-entities/) by [@SoftFluent](https://twitter.com/SoftFluent)
-  - [ServiceStack, Rest Service and EasyHttp](http://blogs.lessthandot.com/index.php/WebDev/ServerProgramming/servicestack-restservice-and-easyhttp) by [@chrissie1](https://twitter.com/chrissie1)
-  - [Building a Web API in SharePoint 2010 with ServiceStack](http://www.mattjcowan.com/funcoding/2012/05/04/building-a-web-api-in-sharepoint-2010-with-servicestack)
-  - [REST Raiding. ServiceStack](http://dgondotnet.blogspot.de/2012/04/rest-raiding-servicestack.html) by [Daniel Gonzalez](http://www.blogger.com/profile/13468563783321963413)
-  - [JQueryMobile and ServiceStack: EventsManager tutorial](http://kylehodgson.com/2012/04/21/jquerymobile-and-service-stack-eventsmanager-tutorial-post-2/) / [Part 3](http://kylehodgson.com/2012/04/23/jquerymobile-and-service-stack-eventsmanager-tutorial-post-3/) by Kyle Hodgson
-  - [Like WCF: Only cleaner!](http://kylehodgson.com/2012/04/18/like-wcf-only-cleaner-9/) by Kyle Hodgson
-  - [ServiceStack I heart you. My conversion from WCF to SS](http://www.philliphaydon.com/2012/02/service-stack-i-heart-you-my-conversion-from-wcf-to-ss/) by [@philliphaydon](https://twitter.com/philliphaydon)
-  - [ServiceStack vs WCF Data Services](http://codealoc.wordpress.com/2012/03/24/service-stack-vs-wcf-data-services/)
-  - [Creating a basic catalogue endpoint with ServiceStack](http://blogs.7digital.com/dev/2011/10/17/creating-a-basic-catalogue-endpoint-with-servicestack/) by [7digital](http://blogs.7digital.com)
-  - [Buildiing a Tridion WebService with jQuery and ServiceStack](http://www.curlette.com/?p=161) by [@robrtc](https://twitter.com/#!/robrtc)
-  - [Anonymous type + Dynamic + ServiceStack == Consuming cloud has never been easier](http://www.ienablemuch.com/2012/05/anonymous-type-dynamic-servicestack.html) by [@ienablemuch](https://twitter.com/ienablemuch)
+  - [Creating A Simple Service Using ServiceStack](https://www.c-sharpcorner.com/UploadFile/shashijeevan/creating-a-simple-service-using-servicestack779/) by [Shashi Jeevan](http://shashijeevan.net/author/shashijeevan/)
+  - [Introducing ServiceStack](https://www.dotnetcurry.com/aspnet/1056/introducing-service-stack-tutorial) by [@dotnetcurry](https://twitter.com/DotNetCurry)
+  - [Create web services in .NET in a snap with ServiceStack](https://www.techrepublic.com/article/create-web-services-in-net-in-a-snap-with-servicestack/) by [@techrepublic](https://twitter.com/techrepublic)
+  - [How to build web services in MS.Net using ServiceStack](https://kborra.wordpress.com/2014/07/29/how-to-build-web-services-in-ms-net-using-service-stack/) by [@kishoreborra](http://kborra.wordpress.com/about/)
+  - [Getting started with ServiceStack – Creating a service](https://dilanperera.wordpress.com/2014/02/22/getting-started-with-servicestack-creating-a-service/)
+  - [ServiceStack Quick Start](https://debuggers.domains/post/servicestack-quick-start/) by [@aarondandy](https://github.com/aarondandy) 
+  - [Getting Started with ASP.NET MVC, ServiceStack and Bootstrap](https://www.pluralsight.com/courses/getting-started-aspdotnet-mvcservice-stack-bootstrap) by [@pluralsight](http://twitter.com/pluralsight)
+  - [Building Web Applications with Open-Source Software on Windows](https://www.pluralsight.com/courses/building-web-application-open-source-software-on-windows) by [@pluralsight](http://twitter.com/pluralsight)
+  - [ServiceStack the way I like it](https://www.antonydenyer.co.uk/2012-09-20-servicestack-the-way-i-like-it/) by [@tonydenyer](https://twitter.com/tonydenyer)
+  - [Generating a RESTful Api and UI from a database with LLBLGen](https://www.mattjcowan.com/funcoding/2013/03/10/rest-api-with-llblgen-and-servicestack/) by [@mattjcowan](https://twitter.com/mattjcowan)
+  - [ServiceStack: Reusing DTOs](https://korneliuk.blogspot.com/2012/08/servicestack-reusing-dtos.html) by [@korneliuk](https://twitter.com/korneliuk)
+  - [ServiceStack, Rest Service and EasyHttp](https://blogs.lessthandot.com/index.php/WebDev/ServerProgramming/servicestack-restservice-and-easyhttp) by [@chrissie1](https://twitter.com/chrissie1)
+  - [Building a Web API in SharePoint 2010 with ServiceStack](https://www.mattjcowan.com/funcoding/2012/05/04/building-a-web-api-in-sharepoint-2010-with-servicestack/)
+  - [REST Raiding. ServiceStack](https://dgondotnet.blogspot.com/2012/04/rest-raiding-servicestack.html) by [Daniel Gonzalez](http://www.blogger.com/profile/13468563783321963413)
+  - [JQueryMobile and ServiceStack: EventsManager tutorial](https://kylehodgson.com/2012/04/21/jquerymobile-and-service-stack-eventsmanager-tutorial-post-2/) / [Part 3](https://kylehodgson.com/2012/04/23/jquerymobile-and-service-stack-eventsmanager-tutorial-post-3/) by Kyle Hodgson
+  - [Like WCF: Only cleaner!](https://kylehodgson.com/2012/04/18/like-wcf-only-cleaner-9/) by Kyle Hodgson
+  - [ServiceStack I heart you. My conversion from WCF to SS](https://www.philliphaydon.com/2012/02/21/service-stack-i-heart-you-my-conversion-from-wcf-to-ss/) by [@philliphaydon](https://twitter.com/philliphaydon)
+  - [ServiceStack vs WCF Data Services](https://codealoc.wordpress.com/2012/03/24/service-stack-vs-wcf-data-services/)
+  - [Buildiing a Tridion WebService with jQuery and ServiceStack](https://www.curlette.com/?p=161) by [@robrtc](https://twitter.com/#!/robrtc)
+  - [Anonymous type + Dynamic + ServiceStack == Consuming cloud has never been easier](https://www.ienablemuch.com/2012/05/anonymous-type-dynamic-servicestack.html) by [@ienablemuch](https://twitter.com/ienablemuch)
   - [Handful of examples of using ServiceStack based on the ServiceStack.Hello Tutorial](https://github.com/jfoshee/TryServiceStack) by [@82unpluggd](https://twitter.com/82unpluggd)

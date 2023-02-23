@@ -6,6 +6,9 @@ title: MyGet
 
 Our interim pre-release NuGet packages in between major releases on NuGet are published to [MyGet](https://www.myget.org/).
 
+::: tip
+If preferred, the pre-release packages are also available in our [GitHub Packages Registry](/gh-nuget)
+:::
 
 ### Add using Mix
 
