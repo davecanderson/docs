@@ -259,10 +259,9 @@ git push
 - Commit and push changes to GitHub
 
 ### Create secrets
-The `x mix` templates needs **6 pieces of information** to perform the deployment, this information is added to the GitHub repository as the following *secrets*.
+The `x mix` templates needs **the following information** to perform the deployment, this information is added to the GitHub repository as the following *secrets*.
 
 - DEPLOY_HOST - hostname used to SSH to, this should be a domain or subdomain with A record pointing to the server's IP adddress.
-- DEPLOY_PORT - SSH port, usually 22
 - DEPLOY_USERNAME - the username being logged into via SSH. Eg, `ubuntu`, `ec2-user`, `root` etc.
 - DEPLOY_KEY - SSH private key used to remotely access deploy server/app host.
 - LETSENCRYPT_EMAIL - Email address for your TLS certificate generation
@@ -271,7 +270,6 @@ These secrets can use the [GitHub CLI](https://cli.github.com/manual/gh_secret_s
 
 ```bash
 gh secret set DEPLOY_HOST -b"<DEPLOY_HOST, domain or subdomain for your application and server host.>"
-gh secret set DEPLOY_PORT -b"<DEPLOY_PORT, eg SSH port, usually 22>"
 gh secret set DEPLOY_USERNAME -b"<DEPLOY_USERNAME, the username being logged into via SSH. Eg, `ubuntu`, `ec2-user`, `root` etc.>"
 gh secret set DEPLOY_KEY < [path to ssh key]
 gh secret set LETSENCRYPT_EMAIL -b"<LETSENCRYPT_EMAIL, Email address for your TLS certificate generation, eg me@example.com>"
@@ -304,10 +302,6 @@ If you're already have a Pro or Team plan, you get free allowances to using the 
 - Additional transfer out $0.50 per GB (GitHub Actions are free)
 
 With Docker images though, they can get large pretty quickly. While GitHub Container Registry is still in beta, it is free to use but additional storage and transfer costs are something to keep in mind. Hopefully use of retention policies and other features can help manage to keep these prices down.
-
-::: info
-Once GitHub Container Registry is released the standard `secrets.GITHUB_TOKEN` built into GitHub Actions should be able to be used and is recommended to [avoid higher data transfer charges](https://docs.github.com/en/github/setting-up-and-managing-billing-and-payments-on-github/about-billing-for-github-packages#about-billing-for-github-packages).
-:::
 
 ### Wrapping up
 Having a CI process from the very start of a project/prototype is something that pays off quickly, even as a solo developer. The `release-ghr-vanilla` template is designed to help get that process started by providing a "no fuss" pattern for prototyping ideas and keeping costs down while giving a dockerized path forward as your hosting requirements change. GitHub Actions provide a great way to build and maintain your CI process right where your code lives, and even though GitHub Container Repository is in the early stage, we think it provides a simplified workflow that works well for the indie/solo developer as well as teams. We intend to put together more of these templates and patterns for different use cases, feel free to give us feedback and let us know what you'd like to see!
