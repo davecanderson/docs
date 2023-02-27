@@ -52,6 +52,8 @@ Plugins.Add(new AutoQueryFeature {
 
 After restarting your App with AutoGen's `GenerateCrudServices` enabled you can export the auto-generated APIs and Data Models into code-first C# classes
 
+<iframe class="video-hd" src="https://www.youtube.com/embed/mFyMgg7c3vg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
 ### Generating AutoQuery APIs and Data Models
 
 The development experience is essentially the same as [Add ServiceStack Reference](/add-servicestack-reference) where you'll need to run the .NET Core App in 1 terminal:
@@ -394,6 +396,7 @@ The existing code-generation already infers a lot from your RDBMS schema which y
  - `TypeFilter` - called with every DTO Type
  - `IncludeService` - a predicate to return whether the **Service** should be included
  - `IncludeType` - a predicate to return whether the **Type** should be included
+ - `TableSchemasFilter` - an action to modify the `List<TableSchema>` that AutoGen uses to generate data models
 
 For an illustration of this in action, here's a typical scenario of how the Northwind AutoQuery Services could be customized:
 
@@ -466,6 +469,24 @@ Plugins.Add(new AutoQueryFeature {
 Plugins.Add(new ValidationFeature()); // Enable Validation
 ```
 
+Additionally, the `TableSchemasFilter` can be used to modify the schema used by AutoGen to generate the types associated with your AutoQuery APIs. 
+This gives you the opportunity to filter or modify the schema after they are pulled from the database.
+For example, we could `Remove` tables based on naming, or alter column definitions to assist with any schema issues.
+
+```csharp
+GenerateCrudServices = new GenerateCrudServices {
+    AutoRegister = true,
+    AddDataContractAttributes = false,
+    TableSchemasFilter = tableSchemas =>
+    {
+        // Don't include tables starting with an underscore
+        tableSchemas.RemoveAll(tableSchema => tableSchema.Name.StartsWith("_"));
+        // Don't include columns of "geometry" type.
+        tableSchema.Columns.ToList().RemoveAll(x => x.DataTypeName == "geometry");
+    }
+}
+```
+
 To assist in code-generation a number of high-level APIs are available to help with identifying Services, e.g:
 
  - `operation.IsCrud()` - Is read-only AutoQuery or AutoCrud write Service
@@ -474,6 +495,7 @@ To assist in code-generation a number of high-level APIs are available to help w
  - `operation.ReferencesAny()` - The DTO Type is referenced anywhere in the Service (e.g. Request/Response DTOs, Inheritance, Generic Args, etc)
  - `type.InheritsAny()` - The DTO inherits any of the specified type names
  - `type.ImplementsAny()` - The DTO implements any of the specified interface type names
+
 
 ### Mixing generated AutoQuery Services & existing code-first Services
 
