@@ -1,0 +1,1 @@
+<template><h3 class="text-center text-2xl">C Tab Body</h3></template>

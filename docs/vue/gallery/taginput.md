@@ -89,7 +89,8 @@ Alternatively `<TagInput>` can be used in Custom Forms directly by binding to a 
                         <TextInput v-model="request.lastName" />
                     </div>
                     <div class="col-span-12">
-                        <TagInput v-model="request.skills" label="Technology Skills" />
+                        <TagInput v-model="request.skills" label="Technology Skills" 
+                            :allowableValues="['c#','servicestack','vue','.net','typescript']" />
                     </div>
                 </div>
             </fieldset>
@@ -105,7 +106,7 @@ Alternatively `<TagInput>` can be used in Custom Forms directly by binding to a 
 </form>
 ```
 
-<form data-id="TagInputExamples" class="max-w-screen-md" @submit.prevent="submit">
+<form data-id="TagInputExamples" class="max-w-screen-md not-prose" @submit.prevent="submit">
     <div class="shadow sm:rounded-md bg-white dark:bg-black">
         <div class="relative px-4 py-5 sm:p-6">
             <fieldset>
@@ -121,7 +122,8 @@ Alternatively `<TagInput>` can be used in Custom Forms directly by binding to a 
                         <TextInput v-model="request.lastName" />
                     </div>
                     <div class="col-span-12">
-                        <TagInput v-model="request.skills" label="Technology Skills" />
+                        <TagInput v-model="request.skills" label="Technology Skills"
+                            :allowableValues="['c#','servicestack','vue','.net','typescript']" />
                     </div>
                 </div>
             </fieldset>
@@ -135,3 +137,44 @@ Alternatively `<TagInput>` can be used in Custom Forms directly by binding to a 
         </div>
     </div>
 </form>
+
+
+<ApiReference component="TagInput">Allowable Values</ApiReference>
+
+The list of allowable values can also be populated on C# Request DTO from a JavaScript expression:
+
+```csharp
+public class MyRequest
+{
+    [Input(Type = "tag", Options="{ allowableValues: ['c#','servicestack','vue'] }")]
+    public List<string>? Skills { get; set; }
+}
+```
+
+Or from a [#Script Expression](https://sharpscript.net) in `EvalEvalAllowableValues` where it can be populated from a static list, e.g:
+
+```csharp
+public class MyRequest
+{
+    [Input(Type = "tag", EvalEvalAllowableValues="['c#','servicestack','vue']")]
+    public List<string>? Skills { get; set; }
+}
+```
+
+Or sourced from a C# Expression, e.g:
+
+```csharp
+public class MyRequest
+{
+    [Input(Type = "tag", EvalEvalAllowableValues="AppData.Tags")]
+    public List<string>? Skills { get; set; }
+}
+```
+
+Where it can be populated from a dynamic data source like from an RDBMS populated in your AppHost on Startup, e.g:
+
+```csharp
+ScriptContext.Args[nameof(AppData)] = new AppData {
+    Tags = db.Select<Tag>().Select(x => x.Name).ToList()
+};
+```

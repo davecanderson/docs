@@ -11,6 +11,7 @@ import ApiReference from "../../src/components/ApiReference.vue"
 import Fields from "../../src/gallery/autoform/Fields.vue"
 import metadata from "../../src/gallery/metadata.json"
 import { bookings } from "../../src/gallery/data.ts"
+import { QueryBookings } from "../../src/gallery/dtos.ts"
 
 import { useMetadata } from '@servicestack/vue'
 const { setMetadata } = useMetadata()
@@ -18,6 +19,11 @@ setMetadata(metadata)
 
 const booking = bookings[0]
 const show = ref(false)
+
+const results = ref()
+const onSuccess = response => results.value = response.results
+
+const request = ref(new QueryBookings({ skip:1, take:2, orderBy:'Name' }))
 </script>
 
 <Breadcrumbs class="not-prose mt-4" home-href="/vue/">
@@ -25,10 +31,91 @@ const show = ref(false)
   <Breadcrumb>Auto Form Examples</Breadcrumb>
 </Breadcrumbs>
 
+
+<ApiReference Component="AutoForm">AutoForm</ApiReference>
+
+The `AutoForm` component is a generic form component that can be used to create and wire a traditional Form for any Request DTO definition
+where successful responses can be handled the `@success` event, e.g:
+
+```html
+<AutoForm type="QueryBookings" @success="onSuccess" />
+<div v-if="results">
+    <h3 class="py-4 text-2xl">Results</h3>
+    <HtmlFormat :value="results" />
+</div>
+
+<script setup>
+const results = ref([])
+const onSuccess = response => results.value = response.results
+</script>
+```
+
+<div class="py-8 not-prose">
+    <AutoForm class="mx-auto max-w-3xl" type="QueryBookings" @success="onSuccess" />
+    <div v-if="results">
+        <h3 class="py-4 text-2xl">Results</h3>
+        <HtmlFormat :value="results" />
+    </div>
+</div>
+
+These Auto Form components are customizable with the [declarative C# UI Attributes](/locode/declarative#ui-metadata-attributes) where you can 
+override the form's **heading** with `[Description]` and include a **subHeading** with `[Notes]` which supports rich HTML markup.
+
+**AutoForm Properties**
+
+Alternatively they can be specified in the components properties:
+
+```ts
+defineProps<{
+    type: string|InstanceType<any>|Function
+    modelValue?: ApiRequest|any
+    heading?: string
+    subHeading?: string
+    showLoading?: boolean
+    jsconfig?: string         //= eccn,edv
+    configureField?: (field:InputProp) => void
+
+    /* Default Styles */
+    formClass?: string        //= shadow sm:rounded-md
+    innerFormClass?: string
+    bodyClass?: string
+    headerClass?: string      //= p-6
+    buttonsClass?: string     //= mt-4 px-4 py-3 bg-gray-50 dark:bg-gray-900 sm:px-6 flex flex-wrap justify-between
+    headingClass?: string     //= text-lg font-medium leading-6 text-gray-900 dark:text-gray-100
+    subHeadingClass?: string
+    submitLabel?: string      //= Submit
+}>()
+```
+
+Both `@success` and `@error` events are fired after each API call, although built-in validation binding means it's typically unnecessary to manually 
+handle error responses.
+
+```ts
+defineEmits<{
+    (e:'success', response:any): void
+    (e:'error', error:ResponseStatus): void
+    (e:'update:modelValue', model:any): void
+}>()
+```
+
+**Model Binding**
+
+Forms can be bound to a Request DTO model where it can be used to pre-populate the Forms default values and Request DTO whereby specifying a **type** 
+is no longer necessary:
+
+```ts
+<AutoForm v-model="request" />
+
+<script setup>
+const request = ref(new QueryBookings({ skip:1, take:2, orderBy:'Name' }))
+</script>
+```
+
+<AutoForm class="mx-auto max-w-3xl not-prose" v-model="request" type="QueryBookings" />
+
 <ApiReference Component="AutoCreateForm">Create Form</ApiReference>
 
-`AutoCreateForm` can be used to create an automated form based on a Request DTO definition which can be rendered in a traditional inline Form with 
-**card** formStyle option, e.g:
+`AutoCreateForm` can be used to create an automated form based on a [AutoQuery CRUD](/autoquery-crud) Create Request DTO definition which can be rendered in a traditional inline Form with **card** formStyle option, e.g:
 
 ```html
 <AutoCreateForm type="CreateBooking" formStyle="card" />
@@ -45,14 +132,14 @@ By default Auto Forms are rendered in a `SlideOver` dialog:
 <AutoCreateForm type="CreateBooking" />
 ```
 
-<iframe src="/gallery/autoform/new.html" class="w-full border-none h-[44em] w-[1330px] -ml-40 mb-4"></iframe>
+<iframe src="/gallery/autoform/new.html" class="w-full border-none h-[45em] w-[1330px] -ml-40 mb-4"></iframe>
 
 These Auto Forms are powered by the rich [App Metadata](/vue/use-metadata) surrounding your APIs,
 which contain all the necessary metadata to invoke the API and bind any contextual validation errors adjacent to the invalid field inputs.
 
 <ApiReference component="AutoEditForm">Edit Form</ApiReference>
 
-`AutoEditForm` can be used to render an automated form based on update and delete
+`AutoEditForm` can be used to render an automated form based on Update and Delete
 [AutoQuery CRUD](/autoquery-crud) APIs which also makes use of **heading** and **sub-heading** customization options:
 
 ```html
@@ -60,7 +147,7 @@ which contain all the necessary metadata to invoke the API and bind any contextu
     heading="Change an existing Room Booking" sub-heading="Manage reservations for MyApp hotels." />
 ```
 
-<iframe src="/gallery/autoform/edit.html" class="w-full border-none h-[44em] w-[1330px] -ml-40 mb-4"></iframe>
+<iframe src="/gallery/autoform/edit.html" class="w-full border-none h-[46em] w-[1330px] -ml-40 mb-4"></iframe>
 
 The same form rendered in a traditional inline form with a **card** formStyle with some more advanced
 customization examples using rich markup in custom `<template #heading>` and `<template #sub-heading>` slots:

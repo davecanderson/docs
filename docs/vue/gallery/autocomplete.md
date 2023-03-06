@@ -1,5 +1,5 @@
 ---
-title: Form Inputs Components
+title: Autocomplete Component
 ---
 
 <link rel="stylesheet" href="/css/tailwind-components.css">

@@ -36,6 +36,10 @@
         "link": "/vue/gallery/taginput"
       },
       {
+        "text": "Combobox",
+        "link": "/vue/gallery/combobox"
+      },
+      {
         "text": "Autocomplete",
         "link": "/vue/gallery/autocomplete"
       },

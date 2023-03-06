@@ -10,12 +10,52 @@ import ApiReference from "../../src/components/ApiReference.vue"
 import NavListExamples from "../../src/gallery/navigation/NavListExamples.vue"
 
 const say = msg => alert(msg)
+
+import A from "../../src/gallery/tabs/A.vue"
+import B from "../../src/gallery/tabs/B.vue"
+import C from "../../src/gallery/tabs/C.vue"
+const tabs = { A, B, C }
 </script>
 
 <Breadcrumbs class="not-prose mt-4" home-href="/vue/">
   <Breadcrumb href="/vue/gallery/">gallery</Breadcrumb>
   <Breadcrumb>Navigation Examples</Breadcrumb>
 </Breadcrumbs>
+
+<ApiReference component="Tabs">Tabs</ApiReference>
+
+The `<Tabs>` component lets you switch between different Vue components from a object component dictionary where the **Key** is used for the Tab's label and URL param and the **Value** component for the tab body. 
+
+```html
+<script setup>
+import A from "./A.vue"
+import B from "./B.vue"
+import C from "./C.vue"
+const tabs = { A, B, C }
+</script>
+```
+
+The Tab's Label can alternatively be overridden with a custom **label** function, e.g:
+
+```html
+<Tabs :tabs="tabs" :label="tab => `${tab} Tab Label`" />
+```
+<Tabs :tabs="tabs" :label="tab => `${tab} Tab Label`" class="not-prose mb-8" />
+
+**Tabs properties**
+
+```ts
+defineProps<{
+    tabs: {[name:string]:Component }
+    id?: string                      //= tabs
+    param?: string                   //= tab - URL param to use
+    label?: (tab:string) => string   // - Custom function to resolve Tab Label
+    selected?: string                // - The selected tab
+    tabClass?: string                // - Additional classes for Tab Label
+    bodyClass?: string               // - Classes for Tab Body
+    url?:boolean                     //= true - Whether to maintain active tab in history.pushState()
+}>()
+```
 
 <ApiReference component="Breadcrumbs">Breadcrumbs</ApiReference>
 

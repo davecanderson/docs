@@ -24,10 +24,12 @@ import ApiReference from "../src/components/ApiReference.vue"
 import { useConfig } from "@servicestack/vue"
 
 const {
-    config,               // Resolve configuration in a reactive Ref<UiConfig>
-    setConfig,            // Set global configuration
-    assetsPathResolver,   // Resolve Absolute URL to use for relative paths
-    fallbackPathResolver, // Resolve fallback URL to use if primary URL fails
+    config,                   // Resolve configuration in a reactive Ref<UiConfig>
+    setConfig,                // Set global configuration
+    assetsPathResolver,       // Resolve Absolute URL to use for relative paths
+    fallbackPathResolver,     // Resolve fallback URL to use if primary URL fails
+    autoQueryGridDefaults,    // Resolve AutoQueryGrid default configuration
+    setAutoQueryGridDefaults, // Set AutoQueryGrid default configuration
 } = useConfig()
 ```
 
@@ -41,6 +43,40 @@ setConfig({
     assetsPathResolver:   src => src,
     fallbackPathResolver: src => src,
 })
+```
+
+<ApiReference component="AutoQueryGrid Defaults" />
+
+Use `setAutoQueryGridDefaults` to change the default configuration for all [AutoQueryGrid](/vue/gallery/autoquerygrid) components:
+
+```ts
+const { setAutoQueryGridDefaults } = useConfig()
+
+setAutoQueryGridDefaults({
+    deny: [],
+    hide: [],
+    toolbarButtonClass: undefined,
+    tableStyle: "stripedRows",
+    take: 25,
+    maxFieldLength: 150,
+})
+```
+
+TypeScript Definitions for available AutoQueryGridDefaults:
+
+```ts
+type AutoQueryGridDefaults = {
+    deny?:GridAllowOptions[]
+    hide?:GridShowOptions[]
+    toolbarButtonClass?: string
+    tableStyle?: TableStyleOptions
+    take?:number
+    maxFieldLength?: number
+}
+
+export type GridAllowOptions = "filtering" | "queryString" | "queryFilters"
+export type GridShowOptions = "toolbar" | "preferences" | "pagingNav" | "pagingInfo" | "downloadCsv" | "refresh" 
+    | "copyApiUrl" | "resetPreferences" | "filtersView" | "newItem"
 ```
 
 <ApiReference component="TypeScript Definition" />

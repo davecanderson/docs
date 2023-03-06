@@ -108,8 +108,8 @@ Features that can be hidden and disabled include:
 ```ts
 defineProps<{
     deny: "filtering" | "queryString" | "queryFilters"
-    hide: "toolbar"   | "preferences" | "pagingNav" | "pagingInfo" | "downloadCsv" | "refresh" | "copyApiUrl" | 
-          "resetPreferences" | "filtersView" | "newItem"
+    hide: "toolbar"   | "preferences" | "pagingNav" | "pagingInfo" | "downloadCsv" | "refresh" 
+       | "copyApiUrl" | "filtersView" | "newItem"   | "resetPreferences" 
 }>()
 ```
 
@@ -326,7 +326,7 @@ Edit Form for Authorized Users, implemented with:
 Which loads the [AuditEvents.mjs](https://github.com/ServiceStack/ServiceStack/blob/main/ServiceStack/src/ServiceStack/modules/locode/components/AuditEvents.mjs)
 component at the bottom of **Edit** forms, allowing Admin Users to inspect the Audit History of each record:
 
-![](/images/locode/audit-history-job.png)
+[![](/images/locode/audit-history-job.png)](/locode/auditing)
 
 Alternatively you can replace the entire Create and Edit Forms used with the `createform` and `editforms` slots:
 

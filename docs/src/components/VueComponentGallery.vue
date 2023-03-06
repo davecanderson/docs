@@ -35,10 +35,10 @@
                     Tailwind UI Input Components
                 </NavListItem>
                 <NavListItem title="Modals" href="/vue/gallery/modals" :iconSvg="Icons.Modals">
-                    Modal Dialogs and Slide Overs
+                    Modal Dialogs, Slide Overs & SignIn forms
                 </NavListItem>
                 <NavListItem title="Navigation" href="/vue/gallery/navigation" :iconSvg="Icons.Navigation">
-                    Breadcrumbs and Link navigation components
+                    Tabs, Breadcrumbs and Link navigation components
                 </NavListItem>
                 <NavListItem title="Alerts" href="/vue/gallery/alerts" :iconSvg="Icons.Alerts">
                     Tailwind Alert and Notification components
