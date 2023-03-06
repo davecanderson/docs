@@ -1,6 +1,6 @@
 /* Options:
-Date: 2023-01-28 19:11:25
-Version: 6.51
+Date: 2023-03-05 09:08:49
+Version: 6.61
 Tip: To override a DTO option, remove "//" prefix before updating
 BaseUrl: https://localhost:5001
 
@@ -64,11 +64,11 @@ export interface IDelete
 {
 }
 
-export interface IDeleteDb<Table>
+export interface IUpdateDb<Table>
 {
 }
 
-export interface IUpdateDb<Table>
+export interface IDeleteDb<Table>
 {
 }
 
@@ -118,7 +118,6 @@ export enum Department
     HumanResources = 'HumanResources',
 }
 
-// @Icon(Svg="<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path fill='currentColor' d='M10.277 2.084a.5.5 0 0 0-.554 0a15.05 15.05 0 0 1-6.294 2.421A.5.5 0 0 0 3 5v4.5c0 3.891 2.307 6.73 6.82 8.467a.5.5 0 0 0 .36 0C14.693 16.23 17 13.39 17 9.5V5a.5.5 0 0 0-.43-.495a15.05 15.05 0 0 1-6.293-2.421ZM10 9.5a2 2 0 1 1 0-4a2 2 0 0 1 0 4Zm0 5c-2.5 0-3.5-1.25-3.5-2.5A1.5 1.5 0 0 1 8 10.5h4a1.5 1.5 0 0 1 1.5 1.5c0 1.245-1 2.5-3.5 2.5Z'/></svg>")
 export class AppUser
 {
     public id: number;
@@ -174,7 +173,6 @@ export class AppUser
     public constructor(init?: Partial<AppUser>) { (Object as any).assign(this, init); }
 }
 
-// @Icon(Svg="<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='currentColor' d='M22 3H2C.9 3 0 3.9 0 5v14c0 1.1.9 2 2 2h20c1.1 0 1.99-.9 1.99-2L24 5c0-1.1-.9-2-2-2zM8 6c1.66 0 3 1.34 3 3s-1.34 3-3 3s-3-1.34-3-3s1.34-3 3-3zm6 12H2v-1c0-2 4-3.1 6-3.1s6 1.1 6 3.1v1zm3.85-4h1.64L21 16l-1.99 1.99A7.512 7.512 0 0 1 16.28 14c-.18-.64-.28-1.31-.28-2s.1-1.36.28-2a7.474 7.474 0 0 1 2.73-3.99L21 8l-1.51 2h-1.64c-.22.63-.35 1.3-.35 2s.13 1.37.35 2z'/></svg>")
 export class PhoneScreen extends AuditBase
 {
     public id: number;
@@ -186,20 +184,15 @@ export class PhoneScreen extends AuditBase
     public jobApplicationId: number;
 
     public applicationStatus?: JobApplicationStatus;
-    // @Input(Type="textarea")
-    // @FieldCss(Field="col-span-12 text-center")
     public notes: string;
 
     public constructor(init?: Partial<PhoneScreen>) { super(init); (Object as any).assign(this, init); }
 }
 
-// @Icon(Svg="<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path fill='currentColor' d='M5.8 12.2V6H2C.9 6 0 6.9 0 8v6c0 1.1.9 2 2 2h1v3l3-3h5c1.1 0 2-.9 2-2v-1.82a.943.943 0 0 1-.2.021h-7V12.2zM18 1H9c-1.1 0-2 .9-2 2v8h7l3 3v-3h1c1.1 0 2-.899 2-2V3c0-1.1-.9-2-2-2z'/></svg>")
 export class Interview extends AuditBase
 {
     public id: number;
-    // @IntlRelativeTime()
     public bookingTime: string;
-
     // @References("typeof(TalentBlazor.ServiceModel.JobApplication)")
     public jobApplicationId: number;
 
@@ -208,20 +201,15 @@ export class Interview extends AuditBase
 
     public appUser: AppUser;
     public applicationStatus?: JobApplicationStatus;
-    // @Input(Type="textarea")
-    // @FieldCss(Field="col-span-12 text-center")
     public notes: string;
 
     public constructor(init?: Partial<Interview>) { super(init); (Object as any).assign(this, init); }
 }
 
-// @Icon(Svg="<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'><path fill='currentColor' d='M18 2a16 16 0 1 0 16 16A16 16 0 0 0 18 2Zm7.65 21.59c-1 3-3.61 3.84-5.9 4v2a1.25 1.25 0 0 1-2.5 0v-2A11.47 11.47 0 0 1 11 25a1.25 1.25 0 1 1 1.71-1.83a9.11 9.11 0 0 0 4.55 1.94v-6.28a9.63 9.63 0 0 1-3.73-1.41a4.8 4.8 0 0 1-1.91-5.84c.59-1.51 2.42-3.23 5.64-3.51V6.25a1.25 1.25 0 0 1 2.5 0v1.86a9.67 9.67 0 0 1 4.9 2A1.25 1.25 0 0 1 23 11.95a7.14 7.14 0 0 0-3.24-1.31v6.13c.6.13 1.24.27 1.91.48a5.85 5.85 0 0 1 3.69 2.82a4.64 4.64 0 0 1 .29 3.52Z' class='clr-i-solid clr-i-solid-path-1'/><path fill='currentColor' d='M20.92 19.64c-.4-.12-.79-.22-1.17-.3v5.76c2-.2 3.07-.9 3.53-2.3a2.15 2.15 0 0 0-.15-1.58a3.49 3.49 0 0 0-2.21-1.58Z' class='clr-i-solid clr-i-solid-path-2'/><path fill='currentColor' d='M13.94 12.48a2.31 2.31 0 0 0 1 2.87a6.53 6.53 0 0 0 2.32.92v-5.72c-2.1.25-3.07 1.29-3.32 1.93Z' class='clr-i-solid clr-i-solid-path-3'/><path fill='none' d='M0 0h36v36H0z'/></svg>")
 export class JobOffer extends AuditBase
 {
     public id: number;
-    // @IntlNumber(Currency="USD")
     public salaryOffer: number;
-
     // @References("typeof(TalentBlazor.ServiceModel.JobApplication)")
     public jobApplicationId: number;
 
@@ -229,8 +217,6 @@ export class JobOffer extends AuditBase
     public appUserId: number;
 
     public appUser: AppUser;
-    // @Input(Type="textarea")
-    // @FieldCss(Field="col-span-12 text-center")
     public notes: string;
 
     public constructor(init?: Partial<JobOffer>) { super(init); (Object as any).assign(this, init); }
@@ -310,6 +296,23 @@ export class QueryData<T> extends QueryBase
     public constructor(init?: Partial<QueryData<T>>) { super(init); (Object as any).assign(this, init); }
 }
 
+export class Tracks
+{
+    public trackId: number;
+    // @Required()
+    public name: string;
+
+    public albumId?: number;
+    public mediaTypeId: number;
+    public genreId?: number;
+    public composer: string;
+    public milliseconds: number;
+    public bytes?: number;
+    public unitPrice: number;
+
+    public constructor(init?: Partial<Tracks>) { (Object as any).assign(this, init); }
+}
+
 export enum EmploymentType
 {
     FullTime = 'FullTime',
@@ -318,7 +321,6 @@ export enum EmploymentType
     Contract = 'Contract',
 }
 
-// @Icon(Svg="<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'><path fill='currentColor' d='M13.11 2.293a1.5 1.5 0 0 1 1.78 0l9.497 7.005c1.124.83.598 2.578-.74 2.7H4.353c-1.338-.122-1.863-1.87-.74-2.7l9.498-7.005ZM14 8.999a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3Zm5.5 4h2.499v6h-2.5v-6Zm-2 6v-6H15v6h2.5ZM13 19v-6h-2.5v6H13Zm-4.499 0v-6h-2.5v6h2.5Zm-2.25 1a3.25 3.25 0 0 0-3.25 3.25v.5a.752.752 0 0 0 .75.751h20.497a.75.75 0 0 0 .75-.75v-.5a3.25 3.25 0 0 0-3.25-3.25H6.252Z'/></svg>")
 export class Job extends AuditBase
 {
     public id: number;
@@ -326,12 +328,8 @@ export class Job extends AuditBase
     public employmentType: EmploymentType;
     public company: string;
     public location: string;
-    // @IntlNumber(Currency="USD")
     public salaryRangeLower: number;
-
-    // @IntlNumber(Currency="USD")
     public salaryRangeUpper: number;
-
     public description: string;
     public applications: JobApplication[];
     public closing: string;
@@ -339,7 +337,6 @@ export class Job extends AuditBase
     public constructor(init?: Partial<Job>) { super(init); (Object as any).assign(this, init); }
 }
 
-// @Icon(Svg="<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='currentColor' d='M5 3a3 3 0 1 1 6 0a3 3 0 0 1-6 0zm7.001 4h-.553l-3.111 6.316L9.5 7.5L8 6L6.5 7.5l1.163 5.816L4.552 7h-.554c-1.999 0-1.999 1.344-1.999 3v5h12v-5c0-1.656 0-3-1.999-3z'/></svg>")
 export class Contact extends AuditBase
 {
     public id: number;
@@ -362,7 +359,6 @@ export class Contact extends AuditBase
     public constructor(init?: Partial<Contact>) { super(init); (Object as any).assign(this, init); }
 }
 
-// @Icon(Svg="<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='currentColor' d='M256 32C114.6 32 0 125.1 0 240c0 49.6 21.4 95 57 130.7C44.5 421.1 2.7 466 2.2 466.5c-2.2 2.3-2.8 5.7-1.5 8.7S4.8 480 8 480c66.3 0 116-31.8 140.6-51.4c32.7 12.3 69 19.4 107.4 19.4c141.4 0 256-93.1 256-208S397.4 32 256 32zM128 272c-17.7 0-32-14.3-32-32s14.3-32 32-32s32 14.3 32 32s-14.3 32-32 32zm128 0c-17.7 0-32-14.3-32-32s14.3-32 32-32s32 14.3 32 32s-14.3 32-32 32zm128 0c-17.7 0-32-14.3-32-32s14.3-32 32-32s32 14.3 32 32s-14.3 32-32 32z'/></svg>")
 export class JobApplicationComment extends AuditBase
 {
     public id: number;
@@ -378,7 +374,6 @@ export class JobApplicationComment extends AuditBase
     public constructor(init?: Partial<JobApplicationComment>) { super(init); (Object as any).assign(this, init); }
 }
 
-// @Icon(Svg="<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 15 15'><path fill='currentColor' d='M0 4.5V0h1v4.5a1.5 1.5 0 1 0 3 0v-3a.5.5 0 0 0-1 0V5H2V1.5a1.5 1.5 0 1 1 3 0v3a2.5 2.5 0 0 1-5 0Z'/><path fill='currentColor' fill-rule='evenodd' d='M12.5 0H6v4.5A3.5 3.5 0 0 1 2.5 8H1v5.5A1.5 1.5 0 0 0 2.5 15h10a1.5 1.5 0 0 0 1.5-1.5v-12A1.5 1.5 0 0 0 12.5 0ZM11 4H7v1h4V4Zm0 3H7v1h4V7Zm-7 3h7v1H4v-1Z' clip-rule='evenodd'/></svg>")
 export class JobApplicationAttachment
 {
     public id: number;
@@ -393,7 +388,6 @@ export class JobApplicationAttachment
     public constructor(init?: Partial<JobApplicationAttachment>) { (Object as any).assign(this, init); }
 }
 
-// @Icon(Svg="<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='currentColor' d='M18 11c1.49 0 2.87.47 4 1.26V8c0-1.11-.89-2-2-2h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h7.68A6.995 6.995 0 0 1 18 11zm-8-7h4v2h-4V4z'/><path fill='currentColor' d='M18 13c-2.76 0-5 2.24-5 5s2.24 5 5 5s5-2.24 5-5s-2.24-5-5-5zm1.65 7.35L17.5 18.2V15h1v2.79l1.85 1.85l-.7.71z'/></svg>")
 export class JobApplicationEvent extends AuditBase
 {
     public id: number;
@@ -411,7 +405,6 @@ export class JobApplicationEvent extends AuditBase
     public constructor(init?: Partial<JobApplicationEvent>) { super(init); (Object as any).assign(this, init); }
 }
 
-// @Icon(Svg="<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='currentColor' d='M18 19H6v-1.4c0-2 4-3.1 6-3.1s6 1.1 6 3.1M12 7a3 3 0 0 1 3 3a3 3 0 0 1-3 3a3 3 0 0 1-3-3a3 3 0 0 1 3-3m0-4a1 1 0 0 1 1 1a1 1 0 0 1-1 1a1 1 0 0 1-1-1a1 1 0 0 1 1-1m7 0h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2Z'/></svg>")
 export class JobApplication extends AuditBase
 {
     public id: number;
@@ -444,28 +437,33 @@ export enum RoomType
     Suite = 'Suite',
 }
 
+/** @description Discount Coupons */
+export class Coupon
+{
+    public id: string;
+    public description: string;
+    public discount: number;
+    public expiryDate: string;
+
+    public constructor(init?: Partial<Coupon>) { (Object as any).assign(this, init); }
+}
+
 /** @description Booking Details */
-// @Icon(Svg="<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='currentColor' fill-rule='evenodd' d='M8 4h8V2h2v2h1a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1V2h2v2ZM5 8v12h14V8H5Zm2 3h2v2H7v-2Zm4 0h2v2h-2v-2Zm4 0h2v2h-2v-2Zm0 4h2v2h-2v-2Zm-4 0h2v2h-2v-2Zm-4 0h2v2H7v-2Z'/></svg>")
 export class Booking extends AuditBase
 {
     public id: number;
     public name: string;
     public roomType: RoomType;
     public roomNumber: number;
-    // @IntlDateTime(DateStyle.Long, TimeStyle.Undefined)
     public bookingStartDate: string;
-
-    // @IntlRelativeTime()
     public bookingEndDate?: string;
-
-    // @IntlNumber(Currency="USD")
     public cost: number;
+    // @References("typeof(MyApp.ServiceModel.Coupon)")
+    public couponId?: string;
 
+    public discount: Coupon;
     public notes?: string;
     public cancelled?: boolean;
-    // @Computed()
-    // @IntlRelativeTime()
-    public timeAgo: string;
 
     public constructor(init?: Partial<Booking>) { super(init); (Object as any).assign(this, init); }
 }
@@ -549,7 +547,6 @@ export enum PlayerRegion
     Europe = 5,
 }
 
-// @Icon(Svg="<svg xmlns='http://www.w3.org/2000/svg' aria-hidden='true' role='img' width='1em' height='1em' preserveAspectRatio='xMidYMid meet' viewBox='0 0 16 16'><path fill='currentColor' d='M13.5 0h-12C.675 0 0 .675 0 1.5v13c0 .825.675 1.5 1.5 1.5h12c.825 0 1.5-.675 1.5-1.5v-13c0-.825-.675-1.5-1.5-1.5zM13 14H2V2h11v12zM4 9h7v1H4zm0 2h7v1H4zm1-6.5a1.5 1.5 0 1 1 3.001.001A1.5 1.5 0 0 1 5 4.5zM7.5 6h-2C4.675 6 4 6.45 4 7v1h5V7c0-.55-.675-1-1.5-1z'/></svg>")
 export class Profile extends AuditBase
 {
     public id: number;
@@ -566,7 +563,6 @@ export class Profile extends AuditBase
     public constructor(init?: Partial<Profile>) { super(init); (Object as any).assign(this, init); }
 }
 
-// @Icon(Svg="<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='currentColor' d='M6 9h2v2h2v2H8v2H6v-2H4v-2h2V9m12.5 0a1.5 1.5 0 0 1 1.5 1.5a1.5 1.5 0 0 1-1.5 1.5a1.5 1.5 0 0 1-1.5-1.5A1.5 1.5 0 0 1 18.5 9m-3 3a1.5 1.5 0 0 1 1.5 1.5a1.5 1.5 0 0 1-1.5 1.5a1.5 1.5 0 0 1-1.5-1.5a1.5 1.5 0 0 1 1.5-1.5M17 5a7 7 0 0 1 7 7a7 7 0 0 1-7 7c-1.96 0-3.73-.8-5-2.1A6.96 6.96 0 0 1 7 19a7 7 0 0 1-7-7a7 7 0 0 1 7-7h10M7 7a5 5 0 0 0-5 5a5 5 0 0 0 5 5c1.64 0 3.09-.79 4-2h2c.91 1.21 2.36 2 4 2a5 5 0 0 0 5-5a5 5 0 0 0-5-5H7Z'/></svg>")
 export class Player extends AuditBase
 {
     public id: number;
@@ -586,7 +582,6 @@ export class Player extends AuditBase
     public constructor(init?: Partial<Player>) { super(init); (Object as any).assign(this, init); }
 }
 
-// @Icon(Svg="<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='currentColor' d='m6.816 15.126l4.703 2.715v-5.433L6.814 9.695v5.432zm-2.025 1.168l6.73 3.882v3.82l-10.04-5.79V6.616l3.31 1.91v7.769zM12 6.145L7.298 8.863L12 11.579l4.704-2.717L12 6.146zm0-2.332l5.659 3.274l3.31-1.91L12 0L1.975 5.79L5.28 7.695zm7.207 12.48v-3.947l-2.023 1.167v1.614l-4.703 2.715v.005v-5.436L22.518 6.62v11.587L12.48 24v-3.817l6.727-3.887z'/></svg>")
 export class GameItem extends AuditBase
 {
     // @StringLength(50)
@@ -599,6 +594,30 @@ export class GameItem extends AuditBase
     public dateAdded: string;
 
     public constructor(init?: Partial<GameItem>) { super(init); (Object as any).assign(this, init); }
+}
+
+// @DataContract
+export class OrderDetail
+{
+    // @DataMember(Order=1)
+    public id: string;
+
+    // @DataMember(Order=2)
+    public orderId: number;
+
+    // @DataMember(Order=3)
+    public productId: number;
+
+    // @DataMember(Order=4)
+    public unitPrice: number;
+
+    // @DataMember(Order=5)
+    public quantity: number;
+
+    // @DataMember(Order=6)
+    public discount: number;
+
+    public constructor(init?: Partial<OrderDetail>) { (Object as any).assign(this, init); }
 }
 
 // @DataContract
@@ -984,30 +1003,6 @@ export class Order
     public constructor(init?: Partial<Order>) { (Object as any).assign(this, init); }
 }
 
-// @DataContract
-export class OrderDetail
-{
-    // @DataMember(Order=1)
-    public id: string;
-
-    // @DataMember(Order=2)
-    public orderId: number;
-
-    // @DataMember(Order=3)
-    public productId: number;
-
-    // @DataMember(Order=4)
-    public unitPrice: number;
-
-    // @DataMember(Order=5)
-    public quantity: number;
-
-    // @DataMember(Order=6)
-    public discount: number;
-
-    public constructor(init?: Partial<OrderDetail>) { (Object as any).assign(this, init); }
-}
-
 export class Albums
 {
     public albumId: number;
@@ -1127,23 +1122,6 @@ export class Playlists
     public constructor(init?: Partial<Playlists>) { (Object as any).assign(this, init); }
 }
 
-export class Tracks
-{
-    public trackId: number;
-    // @Required()
-    public name: string;
-
-    public albumId?: number;
-    public mediaTypeId: number;
-    public genreId?: number;
-    public composer: string;
-    public milliseconds: number;
-    public bytes?: number;
-    public unitPrice: number;
-
-    public constructor(init?: Partial<Tracks>) { (Object as any).assign(this, init); }
-}
-
 export class QueryDb<T> extends QueryBase
 {
 
@@ -1252,10 +1230,7 @@ export class FormDataTest implements IReturn<FormDataTest>
     public checkboxColors?: Colors[];
     public selectColors: Colors;
     public multiSelectColors?: Colors[];
-    // @Input(Type="file")
     public profileUrl?: string;
-
-    // @Input(Type="file")
     public attachments: Attachment[];
 
     public constructor(init?: Partial<FormDataTest>) { (Object as any).assign(this, init); }
@@ -1287,6 +1262,7 @@ export class AllTypes implements IReturn<AllTypes>
 {
     public id: number;
     public nullableId?: number;
+    public boolean: boolean;
     public byte: number;
     public short: number;
     public int: number;
@@ -1567,10 +1543,7 @@ export class UpdatePhoneScreen implements IReturn<PhoneScreen>, IPatchDb<PhoneSc
 {
     public id: number;
     public jobApplicationId?: number;
-    // @Input(Type="textarea")
-    // @FieldCss(Field="col-span-12 text-center")
     public notes?: string;
-
     public applicationStatus?: JobApplicationStatus;
 
     public constructor(init?: Partial<UpdatePhoneScreen>) { (Object as any).assign(this, init); }
@@ -1604,10 +1577,7 @@ export class UpdateInterview implements IReturn<Interview>, IPatchDb<Interview>
     public id: number;
 
     public jobApplicationId?: number;
-    // @Input(Type="textarea")
-    // @FieldCss(Field="col-span-12 text-center")
     public notes?: string;
-
     public applicationStatus?: JobApplicationStatus;
 
     public constructor(init?: Partial<UpdateInterview>) { (Object as any).assign(this, init); }
@@ -1661,7 +1631,6 @@ export class MovieGETRequest implements IReturn<Movie>
 {
     /** @description Unique Id of the movie */
     // @Validate(Validator="NotEmpty")
-    // @Input(Required=true)
     public movieID: string;
 
     public constructor(init?: Partial<MovieGETRequest>) { (Object as any).assign(this, init); }
@@ -1670,9 +1639,6 @@ export class MovieGETRequest implements IReturn<Movie>
     public createResponse() { return new Movie(); }
 }
 
-// @Field(Disabled=true, Name="MovieID")
-// @Field(Disabled=true, Name="MovieNo")
-// @Field(Ignore=true, Name="MovieRef")
 export class MoviePOSTRequest extends Movie implements IReturn<Movie>
 {
     public movieID: string;
@@ -2024,6 +1990,25 @@ export class Register implements IReturn<RegisterResponse>, IPost
     public createResponse() { return new RegisterResponse(); }
 }
 
+// @Route("/tracks/{TrackId}", "PUT")
+export class UpdateTracks implements IReturn<IdResponse>, IPut, IUpdateDb<Tracks>
+{
+    public trackId: number;
+    public name: string;
+    public albumId?: number;
+    public mediaTypeId: number;
+    public genreId?: number;
+    public composer: string;
+    public milliseconds: number;
+    public bytes?: number;
+    public unitPrice: number;
+
+    public constructor(init?: Partial<UpdateTracks>) { (Object as any).assign(this, init); }
+    public getTypeName() { return 'UpdateTracks'; }
+    public getMethod() { return 'PUT'; }
+    public createResponse() { return new IdResponse(); }
+}
+
 export class CreateContact implements IReturn<Contact>, ICreateDb<Contact>
 {
     // @Validate(Validator="NotEmpty")
@@ -2032,9 +2017,7 @@ export class CreateContact implements IReturn<Contact>, ICreateDb<Contact>
     // @Validate(Validator="NotEmpty")
     public lastName: string;
 
-    // @Input(Type="file")
     public profileUrl?: string;
-
     public salaryExpectation?: number;
     // @Validate(Validator="NotEmpty")
     public jobType: string;
@@ -2048,8 +2031,6 @@ export class CreateContact implements IReturn<Contact>, ICreateDb<Contact>
     public email: string;
 
     public phone?: string;
-    // @Input(Type="textarea")
-    // @FieldCss(Field="col-span-12 text-center")
     public about?: string;
 
     public constructor(init?: Partial<CreateContact>) { (Object as any).assign(this, init); }
@@ -2067,9 +2048,7 @@ export class UpdateContact implements IReturn<Contact>, IPatchDb<Contact>
     // @Validate(Validator="NotEmpty")
     public lastName: string;
 
-    // @Input(Type="file")
     public profileUrl?: string;
-
     public salaryExpectation?: number;
     // @Validate(Validator="NotEmpty")
     public jobType: string;
@@ -2081,8 +2060,6 @@ export class UpdateContact implements IReturn<Contact>, IPatchDb<Contact>
     public email: string;
 
     public phone?: string;
-    // @Input(Type="textarea")
-    // @FieldCss(Field="col-span-12 text-center")
     public about?: string;
 
     public constructor(init?: Partial<UpdateContact>) { (Object as any).assign(this, init); }
@@ -2110,10 +2087,7 @@ export class CreateJob implements IReturn<Job>, ICreateDb<Job>
     // @Validate(Validator="GreaterThan(0)")
     public salaryRangeUpper: number;
 
-    // @Input(Type="textarea")
-    // @FieldCss(Field="col-span-12 text-center")
     public description: string;
-
     public employmentType: EmploymentType;
     public company: string;
     public location: string;
@@ -2131,8 +2105,6 @@ export class UpdateJob implements IReturn<Job>, IPatchDb<Job>
     public title?: string;
     public salaryRangeLower?: number;
     public salaryRangeUpper?: number;
-    // @Input(Type="textarea")
-    // @FieldCss(Field="col-span-12 text-center")
     public description?: string;
 
     public constructor(init?: Partial<UpdateJob>) { (Object as any).assign(this, init); }
@@ -2161,7 +2133,6 @@ export class CreateJobApplication implements IReturn<JobApplication>, ICreateDb<
 
     public appliedDate: string;
     public applicationStatus: JobApplicationStatus;
-    // @Input(Type="file")
     public attachments: JobApplicationAttachment[];
 
     public constructor(init?: Partial<CreateJobApplication>) { (Object as any).assign(this, init); }
@@ -2177,7 +2148,6 @@ export class UpdateJobApplication implements IReturn<JobApplication>, IPatchDb<J
     public contactId?: number;
     public appliedDate?: string;
     public applicationStatus: JobApplicationStatus;
-    // @Input(Type="file")
     public attachments?: JobApplicationAttachment[];
 
     public constructor(init?: Partial<UpdateJobApplication>) { (Object as any).assign(this, init); }
@@ -2233,8 +2203,6 @@ export class CreateJobApplicationComment implements IReturn<JobApplicationCommen
     public jobApplicationId: number;
 
     // @Validate(Validator="NotEmpty")
-    // @Input(Type="textarea")
-    // @FieldCss(Field="col-span-12 text-center")
     public comment: string;
 
     public constructor(init?: Partial<CreateJobApplicationComment>) { (Object as any).assign(this, init); }
@@ -2247,8 +2215,6 @@ export class UpdateJobApplicationComment implements IReturn<JobApplicationCommen
 {
     public id: number;
     public jobApplicationId?: number;
-    // @Input(Type="textarea")
-    // @FieldCss(Field="col-span-12 text-center")
     public comment?: string;
 
     public constructor(init?: Partial<UpdateJobApplicationComment>) { (Object as any).assign(this, init); }
@@ -2269,8 +2235,6 @@ export class DeleteJobApplicationComment implements IReturnVoid, IDeleteDb<JobAp
 
 /** @description Create a new Booking */
 // @Route("/bookings", "POST")
-// @LocodeCss(Field="col-span-12 sm:col-span-6", Fieldset="grid grid-cols-8 gap-2", Form="border overflow-hidden max-w-screen-lg")
-// @ExplorerCss(Field="col-span-12 sm:col-span-6", Fieldset="grid grid-cols-6 gap-8", Form="border border-indigo-500 overflow-hidden max-w-screen-lg")
 // @ValidateRequest(Validator="HasRole(`Employee`)")
 export class CreateBooking implements IReturn<IdResponse>, ICreateDb<Booking>
 {
@@ -2285,13 +2249,12 @@ export class CreateBooking implements IReturn<IdResponse>, ICreateDb<Booking>
     // @Validate(Validator="GreaterThan(0)")
     public cost: number;
 
+    // @Required()
     public bookingStartDate: string;
-    // @FieldCss(Input="bg-green-100", Label="text-green-800")
-    public bookingEndDate?: string;
 
-    // @Input(Type="textarea")
-    // @FieldCss(Field="col-span-12 text-center", Input="bg-green-100")
+    public bookingEndDate?: string;
     public notes?: string;
+    public couponId?: string;
 
     public constructor(init?: Partial<CreateBooking>) { (Object as any).assign(this, init); }
     public getTypeName() { return 'CreateBooking'; }
@@ -2301,17 +2264,11 @@ export class CreateBooking implements IReturn<IdResponse>, ICreateDb<Booking>
 
 /** @description Update an existing Booking */
 // @Route("/booking/{Id}", "PATCH")
-// @LocodeCss(Field="col-span-12 sm:col-span-6", Fieldset="grid grid-cols-6 gap-8", Form="border border-indigo-500 overflow-hidden max-w-screen-lg")
-// @ExplorerCss(Field="col-span-12 sm:col-span-6", Fieldset="grid grid-cols-8 gap-2", Form="border overflow-hidden max-w-screen-lg")
-// @ValidateRequest(Validator="HasRole(`Manager`)")
-// @Field(InputCss="bg-gray-100", LabelCss="text-gray-800", Name="BookingEndDate")
-// @Field(FieldCss="col-span-12 text-center", InputCss="bg-gray-100", Name="Notes", Type="textarea")
+// @ValidateRequest(Validator="HasRole(`Employee`)")
 export class UpdateBooking implements IReturn<IdResponse>, IPatchDb<Booking>
 {
     public id: number;
-    // @Validate(Validator="NotNull")
-    public name: string;
-
+    public name?: string;
     public roomType?: RoomType;
     // @Validate(Validator="GreaterThan(0)")
     public roomNumber?: number;
@@ -2322,6 +2279,7 @@ export class UpdateBooking implements IReturn<IdResponse>, IPatchDb<Booking>
     public bookingStartDate?: string;
     public bookingEndDate?: string;
     public notes?: string;
+    public couponId?: string;
     public cancelled?: boolean;
 
     public constructor(init?: Partial<UpdateBooking>) { (Object as any).assign(this, init); }
@@ -2332,7 +2290,7 @@ export class UpdateBooking implements IReturn<IdResponse>, IPatchDb<Booking>
 
 /** @description Delete a Booking */
 // @Route("/booking/{Id}", "DELETE")
-// @ValidateRequest(Validator="HasRole(`Admin`)")
+// @ValidateRequest(Validator="HasRole(`Manager`)")
 export class DeleteBooking implements IReturnVoid, IDeleteDb<Booking>
 {
     public id: number;
@@ -2343,10 +2301,62 @@ export class DeleteBooking implements IReturnVoid, IDeleteDb<Booking>
     public createResponse() {}
 }
 
+// @Route("/coupons", "POST")
+// @ValidateRequest(Validator="HasRole(`Employee`)")
+export class CreateCoupon implements IReturn<IdResponse>, ICreateDb<Coupon>
+{
+    // @Validate(Validator="NotEmpty")
+    public description: string;
+
+    // @Validate(Validator="GreaterThan(0)")
+    public discount: number;
+
+    // @Validate(Validator="NotNull")
+    public expiryDate: string;
+
+    public constructor(init?: Partial<CreateCoupon>) { (Object as any).assign(this, init); }
+    public getTypeName() { return 'CreateCoupon'; }
+    public getMethod() { return 'POST'; }
+    public createResponse() { return new IdResponse(); }
+}
+
+// @Route("/coupons/{Id}", "PATCH")
+// @ValidateRequest(Validator="HasRole(`Employee`)")
+export class UpdateCoupon implements IReturn<IdResponse>, IPatchDb<Coupon>
+{
+    public id: string;
+    // @Validate(Validator="NotEmpty")
+    public description: string;
+
+    // @Validate(Validator="NotNull")
+    // @Validate(Validator="GreaterThan(0)")
+    public discount: number;
+
+    // @Validate(Validator="NotNull")
+    public expiryDate: string;
+
+    public constructor(init?: Partial<UpdateCoupon>) { (Object as any).assign(this, init); }
+    public getTypeName() { return 'UpdateCoupon'; }
+    public getMethod() { return 'PATCH'; }
+    public createResponse() { return new IdResponse(); }
+}
+
+/** @description Delete a Coupon */
+// @Route("/coupons/{Id}", "DELETE")
+// @ValidateRequest(Validator="HasRole(`Manager`)")
+export class DeleteCoupon implements IReturnVoid, IDeleteDb<Coupon>
+{
+    public id: string;
+
+    public constructor(init?: Partial<DeleteCoupon>) { (Object as any).assign(this, init); }
+    public getTypeName() { return 'DeleteCoupon'; }
+    public getMethod() { return 'DELETE'; }
+    public createResponse() {}
+}
+
 export class CreateFileSystemItem implements IReturn<FileSystemItem>, ICreateDb<FileSystemItem>, IFileItem
 {
     public fileAccessType?: FileAccessType;
-    // @Input(Type="file")
     public file: FileSystemFile;
 
     public constructor(init?: Partial<CreateFileSystemItem>) { (Object as any).assign(this, init); }
@@ -2415,10 +2425,7 @@ export class CreateProfile implements IReturn<IdResponse>, ICreateDb<Profile>
     // @Validate(Validator="InclusiveBetween(0,100)")
     public energy: number;
 
-    // @Input(Type="file")
     public profileUrl?: string;
-
-    // @Input(Type="file")
     public coverUrl?: string;
 
     public constructor(init?: Partial<CreateProfile>) { (Object as any).assign(this, init); }
@@ -2438,10 +2445,7 @@ export class UpdateProfile implements IReturn<IdResponse>, IPatchDb<Profile>
     // @Validate(Validator="InclusiveBetween(0,100)")
     public energy?: number;
 
-    // @Input(Type="file")
     public profileUrl?: string;
-
-    // @Input(Type="file")
     public coverUrl?: string;
 
     public constructor(init?: Partial<UpdateProfile>) { (Object as any).assign(this, init); }
@@ -2469,7 +2473,6 @@ export class CreateGameItem implements IReturn<IdResponse>, ICreateDb<GameItem>
     public description: string;
 
     // @Validate(Validator="NotEmpty")
-    // @Input(Type="file")
     public imageUrl: string;
 
     public constructor(init?: Partial<CreateGameItem>) { (Object as any).assign(this, init); }
@@ -2486,7 +2489,6 @@ export class UpdateGameItem implements IReturn<IdResponse>, IPatchDb<GameItem>
     // @Validate(Validator="NotEmpty")
     public description: string;
 
-    // @Input(Type="file")
     public imageUrl?: string;
 
     public constructor(init?: Partial<UpdateGameItem>) { (Object as any).assign(this, init); }
@@ -2520,16 +2522,40 @@ export class CreateMqBooking extends AuditBase implements IReturn<IdResponse>, I
     public cost: number;
 
     public bookingStartDate: string;
-    // @FieldCss(Input="bg-green-100", Label="text-green-800")
     public bookingEndDate?: string;
-
-    // @Input(Type="textarea")
-    // @FieldCss(Field="col-span-12 text-center", Input="bg-green-100")
     public notes?: string;
 
     public constructor(init?: Partial<CreateMqBooking>) { super(init); (Object as any).assign(this, init); }
     public getTypeName() { return 'CreateMqBooking'; }
     public getMethod() { return 'POST'; }
+    public createResponse() { return new IdResponse(); }
+}
+
+// @Route("/orderdetails/{Id}", "PATCH")
+// @DataContract
+export class PatchOrderDetail implements IReturn<IdResponse>, IPatch, IPatchDb<OrderDetail>
+{
+    // @DataMember(Order=1)
+    public id: string;
+
+    // @DataMember(Order=2)
+    public orderId: number;
+
+    // @DataMember(Order=3)
+    public productId: number;
+
+    // @DataMember(Order=4)
+    public unitPrice: number;
+
+    // @DataMember(Order=5)
+    public quantity: number;
+
+    // @DataMember(Order=6)
+    public discount: number;
+
+    public constructor(init?: Partial<PatchOrderDetail>) { (Object as any).assign(this, init); }
+    public getTypeName() { return 'PatchOrderDetail'; }
+    public getMethod() { return 'PATCH'; }
     public createResponse() { return new IdResponse(); }
 }
 
@@ -3039,7 +3065,6 @@ export class UpdateEmployee implements IReturn<IdResponse>, IPut, IUpdateDb<Empl
     public reportsTo?: number;
 
     // @DataMember(Order=18)
-    // @Input(Type="file")
     public photoPath: string;
 
     public constructor(init?: Partial<UpdateEmployee>) { (Object as any).assign(this, init); }
@@ -4040,25 +4065,6 @@ export class UpdatePlaylists implements IReturn<IdResponse>, IPut, IUpdateDb<Pla
     public createResponse() { return new IdResponse(); }
 }
 
-// @Route("/tracks/{TrackId}", "PUT")
-export class UpdateTracks implements IReturn<IdResponse>, IPut, IUpdateDb<Tracks>
-{
-    public trackId: number;
-    public name: string;
-    public albumId?: number;
-    public mediaTypeId: number;
-    public genreId?: number;
-    public composer: string;
-    public milliseconds: number;
-    public bytes?: number;
-    public unitPrice: number;
-
-    public constructor(init?: Partial<UpdateTracks>) { (Object as any).assign(this, init); }
-    public getTypeName() { return 'UpdateTracks'; }
-    public getMethod() { return 'PUT'; }
-    public createResponse() { return new IdResponse(); }
-}
-
 // @Route("/appusers", "GET")
 // @Route("/appusers/{Id}", "GET")
 // @ValidateRequest(Validator="IsAdmin")
@@ -4516,6 +4522,18 @@ export class QueryBookings extends QueryDb<Booking> implements IReturn<QueryResp
     public createResponse() { return new QueryResponse<Booking>(); }
 }
 
+/** @description Find Coupons */
+// @Route("/coupons", "GET")
+export class QueryCoupons extends QueryDb<Coupon> implements IReturn<QueryResponse<Coupon>>
+{
+    public id: string;
+
+    public constructor(init?: Partial<QueryCoupons>) { super(init); (Object as any).assign(this, init); }
+    public getTypeName() { return 'QueryCoupons'; }
+    public getMethod() { return 'GET'; }
+    public createResponse() { return new QueryResponse<Coupon>(); }
+}
+
 export class QueryFileSystemItems extends QueryDb<FileSystemItem> implements IReturn<QueryResponse<FileSystemItem>>
 {
     public appUserId?: number;
@@ -4564,7 +4582,6 @@ export class QueryGameItem extends QueryDb<GameItem> implements IReturn<QueryRes
     public createResponse() { return new QueryResponse<GameItem>(); }
 }
 
-// @Icon(Svg="<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'><path fill='currentColor' d='M17 12h-2.85a6.25 6.25 0 0 0-6.21 5H2v2h5.93a6.22 6.22 0 0 0 6.22 5H17Z' class='clr-i-solid clr-i-solid-path-1'/><path fill='currentColor' d='M28.23 17A6.25 6.25 0 0 0 22 12h-3v12h3a6.22 6.22 0 0 0 6.22-5H34v-2Z' class='clr-i-solid clr-i-solid-path-2'/><path fill='none' d='M0 0h36v36H0z'/></svg>")
 export class QueryPlayerGameItem extends QueryDb<PlayerGameItem> implements IReturn<QueryResponse<PlayerGameItem>>
 {
     public id?: number;
@@ -4577,7 +4594,6 @@ export class QueryPlayerGameItem extends QueryDb<PlayerGameItem> implements IRet
     public createResponse() { return new QueryResponse<PlayerGameItem>(); }
 }
 
-// @Icon(Svg="<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path fill='currentColor' d='M18 5H2C.9 5 0 5.9 0 7v6c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 8H2V7h16v6zM7 8H3v4h4V8zm5 0H8v4h4V8zm5 0h-4v4h4V8z'/></svg>")
 export class QueryLevel extends QueryDb<Level> implements IReturn<QueryResponse<Level>>
 {
     public id?: string;
@@ -4861,7 +4877,6 @@ export class CreateEmployee implements IReturn<IdResponse>, IPost, ICreateDb<Emp
     public reportsTo?: number;
 
     // @DataMember(Order=18)
-    // @Input(Type="file")
     public photoPath: string;
 
     public constructor(init?: Partial<CreateEmployee>) { (Object as any).assign(this, init); }
@@ -5760,7 +5775,6 @@ export class PatchEmployee implements IReturn<IdResponse>, IPatch, IPatchDb<Empl
     public reportsTo?: number;
 
     // @DataMember(Order=18)
-    // @Input(Type="file")
     public photoPath: string;
 
     public constructor(init?: Partial<PatchEmployee>) { (Object as any).assign(this, init); }
@@ -5933,30 +5947,3 @@ export class PatchOrder implements IReturn<IdResponse>, IPatch, IPatchDb<Order>
     public createResponse() { return new IdResponse(); }
 }
 
-// @Route("/orderdetails/{Id}", "PATCH")
-// @DataContract
-export class PatchOrderDetail implements IReturn<IdResponse>, IPatch, IPatchDb<OrderDetail>
-{
-    // @DataMember(Order=1)
-    public id: string;
-
-    // @DataMember(Order=2)
-    public orderId: number;
-
-    // @DataMember(Order=3)
-    public productId: number;
-
-    // @DataMember(Order=4)
-    public unitPrice: number;
-
-    // @DataMember(Order=5)
-    public quantity: number;
-
-    // @DataMember(Order=6)
-    public discount: number;
-
-    public constructor(init?: Partial<PatchOrderDetail>) { (Object as any).assign(this, init); }
-    public getTypeName() { return 'PatchOrderDetail'; }
-    public getMethod() { return 'PATCH'; }
-    public createResponse() { return new IdResponse(); }
-}

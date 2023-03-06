@@ -18,6 +18,9 @@
     <div class="pt-4 pb-16">
         <div class="mx-auto max-w-2xl not-prose">
             <NavList title="">
+                <NavListItem title="AutoQueryGrid" href="/vue/gallery/autoquerygrid" :iconSvg="Icons.AutoQueryGrid">
+                    Instant customizable UIs for calling AutoQuery CRUD APIs
+                </NavListItem>
                 <NavListItem title="DataGrid" href="/vue/gallery/datagrid" :iconSvg="Icons.DataGrid">
                     DataGrid Component Examples for rendering tabular data
                 </NavListItem>

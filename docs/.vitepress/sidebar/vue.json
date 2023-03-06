@@ -12,6 +12,10 @@
     "text": "Component Gallery",
     "children": [
       {
+        "text": "AutoQueryGrid",
+        "link": "/vue/gallery/autoquerygrid"
+      },
+      {
         "text": "DataGrid",
         "link": "/vue/gallery/datagrid"
       },
