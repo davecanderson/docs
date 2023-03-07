@@ -102,6 +102,29 @@ Where it will be able to be used within format components, e.g:
 
 That can also be used to decorate properties in C# DTOs with the [Format Attribute](/locode/formatters).
 
+<ApiReference component="Overriding built-in Formatters" />
+
+Using `setFormatters` also allows you to override the default formatting functions used by providing alternative implementations for:
+
+```ts
+setFormatters({
+    currency,
+    bytes,
+    link,
+    linkTel,
+    linkMailTo,
+    icon,
+    iconRounded,
+    attachment,
+    hidden,
+    time,
+    relativeTime,
+    relativeTimeFromMs,
+    formatDate,
+    formatNumber,
+})
+```
+
 <ApiReference component="TypeScript Definition" />
 
 TypeScript definition of the API surface area and type information for correct usage of `useFormatters()`
