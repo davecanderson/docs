@@ -79,8 +79,8 @@ setDefaultFormats({
 
 <ApiReference component="setFormatters">Register custom formatters</ApiReference>
 
-Custom formatters can also be registered for usage in `<PreviewFormat/>` components, e.g. you could
-register a formatter that renders a QR Code image of the content with:
+Use `setFormatters` to register new formatters that you want to use in `[Format("method")]` or 
+within `<PreviewFormat/>` components, e.g. you could register a formatter that renders a QR Code image of the content with:
 
 ```ts
 import { QRCode } from "qrcode-svg"
@@ -100,11 +100,16 @@ Where it will be able to be used within format components, e.g:
 <PreviewFormat :value="url" :format="{ method:'qrcode' }" />
 ```
 
-That can also be used to decorate properties in C# DTOs with the [Format Attribute](/locode/formatters).
+That can also be used to decorate properties in C# DTOs with the [Format Attribute](/locode/formatters), e.g:
 
-<ApiReference component="Registering Formatters" />
+```csharp
+[Format("qrcode")]
+public string Code { get; set; }
+```
 
-Use `setFormatters` to register new formatters that you want to call with `[Format("method")]` or to override the built-in formatting functions by registering alternative implementations for:
+<ApiReference component="Overriding built-in formatters" />
+
+`setFormatters` can also be to override the built-in formatting functions by registering alternative implementations for:
 
 ```ts
 setFormatters({
