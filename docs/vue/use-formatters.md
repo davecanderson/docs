@@ -102,9 +102,9 @@ Where it will be able to be used within format components, e.g:
 
 That can also be used to decorate properties in C# DTOs with the [Format Attribute](/locode/formatters).
 
-<ApiReference component="Overriding built-in Formatters" />
+<ApiReference component="Registering Formatters" />
 
-Using `setFormatters` also allows you to override the default formatting functions used by providing alternative implementations for:
+Use `setFormatters` to register new formatters that you want to call with `[Format("method")]` or to override the built-in formatting functions by registering alternative implementations for:
 
 ```ts
 setFormatters({
