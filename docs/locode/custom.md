@@ -25,20 +25,12 @@ When customizing any ServiceStack UI App you can enable static typing and intell
 [ES6 import syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) 
 to enable static analysis on any built-in functionality you want to use.
 
-### TypeScript Definitions only used during development
-
-Referencing types are only used to enable static analysis benefits during development and have no impact on runtime execution where they're removed in order for your code to run as-is inside the browser.
-
-::: tip
-To satisfy the source transforms, each **import** statement should be on a **single line** and should contain **no preceding white space**.
-:::
-
 ### Install
 
 Add TypeScript definitions for ServiceStack UI's to your Host project with:
 
 :::sh
-npm install @servicestack/ui
+npm install -D @servicestack/ui
 :::
 
 ### Update
@@ -57,18 +49,18 @@ Type definitions for functionality available in ServiceStack UI's
 
 ### Library Reference
 
-| Namespace                                            | Description                                                                                                  |
-|------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
-| [shared](https://api.locode.dev/modules/shared.html) | Type Definitions for all Types and shared functionality used in all UI's                                     |
+| Namespace                                            | Description                                                                          |
+|------------------------------------------------------|--------------------------------------------------------------------------------------|
+| [shared](https://api.locode.dev/modules/shared.html) | Type Definitions for all Types and shared functionality used in all UI's             |
 | [client](https://api.locode.dev/modules/client.html) | Type Definitions for the [@servicestack/client](https://github.com/ServiceStack/servicestack-client) library |
 
 ### UIs
 
-| UI                                                       | Description                                                                                                  |
-|----------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
-| [locode](https://api.locode.dev/modules/locode.html)     | Global App and Type instances available in [Locode Apps](https://www.locode.dev)                                 |
-| [explorer](https://api.locode.dev/modules/explorer.html) | Global App and Type instances available in [API Explorer](/api-explorer)        |
-| [admin](https://api.locode.dev/modules/admin.html)       | Global App and Type instances available in ServiceStack's [Admin UI](/admin-ui) |
+| UI                                                       | Description                                                                      |
+|----------------------------------------------------------|----------------------------------------------------------------------------------|
+| [locode](https://api.locode.dev/modules/locode.html)     | Global App and Type instances available in [Locode Apps](https://www.locode.dev) |
+| [explorer](https://api.locode.dev/modules/explorer.html) | Global App and Type instances available in [API Explorer](/api-explorer)         |
+| [admin](https://api.locode.dev/modules/admin.html)       | Global App and Type instances available in ServiceStack's [Admin UI](/admin-ui)  |
 
 
 ## Custom UI
@@ -91,13 +83,13 @@ We'll go through each App's folder to better visualize their extension placehold
 ### /locode
 
 Lets you customize [Locode Apps](https://www.locode.dev) where [Custom Forms](/locode/custom-forms) can either be registered in 
-`custom.html` or added to `/components/*.html` where you can also override any of Locode's components by including 
+`custom.html` or added to `/components/*.mjs` where you can also override any of Locode's components by including 
 a locally modified copy from
-[/components/*.html](https://github.com/ServiceStack/ServiceStack/tree/main/ServiceStack/src/ServiceStack/modules/locode/components)
+[/components/*.mjs](https://github.com/ServiceStack/ServiceStack/tree/main/ServiceStack/src/ServiceStack/modules/locode/components)
 
 ```
     /components
-        *.html
+        *.mjs
     custom.js
     custom.css
     custom.html
@@ -106,16 +98,16 @@ a locally modified copy from
 ### /ui
 
 Is where to customize your Services [API Explorer UI](/api-explorer) where each API can
-be documented by adding [Custom API Docs](/api-explorer#api-docs) to `/docs/*.html`,
+be documented by adding [Custom API Docs](/api-explorer#api-docs) to `/docs/*.mjs`,
 whilst existing components can be overridden in 
 [/components/*.html](https://github.com/ServiceStack/ServiceStack/tree/main/ServiceStack/src/ServiceStack/modules/ui/components)
 and custom UI added to `custom.*`
 
 ```
     /docs
-        *.html
+        *.mjs
     /components
-        *.html
+        *.mjs
     custom.js
     custom.css
     custom.html
@@ -124,12 +116,12 @@ and custom UI added to `custom.*`
 ### /admin-ui
 
 Is where to add any customizations to [Admin UI](/admin-ui) by overriding existing components in 
-[/components/*.html](https://github.com/ServiceStack/ServiceStack/tree/main/ServiceStack/src/ServiceStack/modules/admin-ui/components)
+[/components/*.mjs](https://github.com/ServiceStack/ServiceStack/tree/main/ServiceStack/src/ServiceStack/modules/admin-ui/components)
 or adding custom UI to `custom.*`
 
 ```
     /components
-        *.html
+        *.mjs
     custom.js
     custom.css
     custom.html
@@ -143,7 +135,6 @@ whilst custom HTML can be added to the `<head/>`, at the start and end of the `<
 the `custom-*.html` placeholders below:
 
 ```
-    *.html
     custom-head.html
     custom-body.html
     custom-end.html        
@@ -154,42 +145,41 @@ the `custom-*.html` placeholders below:
 The [Blazor WASM](/templates-blazor) template includes example App customizations with
 [Custom API Docs](/api-explorer#api-docs) for its 
 [CreateBooking](https://blazor-wasm-api.jamstacks.net/ui/CreateBooking?tab=details) and
-[Todos APIs](https://blazor-wasm-api.jamstacks.net/ui/QueryTodos?tab=details) whilst replacing the existing **shared** 
-`Brand` Component changes the top-left App Branding UI in each App:
+[Todos APIs](https://blazor-wasm-api.jamstacks.net/ui/QueryTodos?tab=details):
 
 <ul class="list-none">
     <li>
         <a href="https://github.com/NetCoreTemplates/blazor-wasm/tree/main/MyApp/wwwroot/modules" class="font-medium">/modules</a>
         <ul class="list-none">
             <li>
-                <span class="font-medium">/ui</span>
+                <span class="font-medium">/ui/docs</span>
                 <ul class="list-none">
                     <li>
-                        <span class="font-medium">/docs</span>
-                        <ul class="list-none">
-                            <li>
-                                <a href="https://github.com/NetCoreTemplates/blazor-wasm/blob/main/MyApp/wwwroot/modules/ui/docs/CreateBookingsDocs.html">
-                                    CreateBookingsDocs.html
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://github.com/NetCoreTemplates/blazor-wasm/blob/main/MyApp/wwwroot/modules/ui/docs/TodosDocs.html">
-                                    TodosDocs.html
-                                </a>
-                            </li>
-                        </ul>
+                        <a href="https://github.com/ServiceStack/ServiceStack/blob/main/ServiceStack.Blazor/tests/ServiceStack.Blazor.Bootstrap.Tests/Server/modules/ui/docs/CreateBookingDocs.mjs">
+                            CreateBookingDocs.mjs
+                        </a>
                     </li>
-                </ul>
-            </li>
-            <li>
-                <span class="font-medium">/shared</span>
-                <ul class="list-none">
                     <li>
-                        <a href="https://github.com/NetCoreTemplates/blazor-wasm/blob/main/MyApp/wwwroot/modules/shared/Brand.html">
-                            Brand.html
+                        <a href="https://github.com/ServiceStack/ServiceStack/blob/main/ServiceStack.Blazor/tests/ServiceStack.Blazor.Bootstrap.Tests/Server/modules/ui/docs/TodoDocs.mjs">
+                            TodoDocs.mjs
                         </a>
                     </li>
                 </ul>
+            </li>
+        </ul>
+    </li>
+</ul>
+
+Whilst replacing the existing **shared** `Brand` Component changes the top-left App Branding UI in each App:
+
+<ul class="list-none">
+    <li>
+        <a href="https://github.com/ServiceStack/ServiceStack/tree/main/ServiceStack/src/ServiceStack/js/components" class="font-medium">/js/components</a>
+        <ul class="list-none">
+            <li>
+                <a href="https://github.com/ServiceStack/ServiceStack/blob/main/ServiceStack.Blazor/tests/ServiceStack.Blazor.Bootstrap.Tests/Server/js/components/Brand.mjs">
+                    Brand.mjs
+                </a>
             </li>
         </ul>
     </li>

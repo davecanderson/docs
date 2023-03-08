@@ -332,23 +332,38 @@ Where it generates clean API docs displayed in a human-friendly table layout con
 
 ## API Docs
 
-We can further enhance API Explorer with our own custom [Vue.js Components](https://vuejs.org/guide/essentials/component-basics.html) by adding them to your Host projects local `/modules/ui/docs` folder which the Blazor WASM project template utilizes to showcase some customization examples:
+We can further enhance API Explorer with our own custom **HTML Components** by adding them to your Host projects local `/modules` folder which the Blazor WASM project template utilizes to showcase some customization examples:
 
 <ul class="list-none">
     <li>
         <a href="https://github.com/NetCoreTemplates/blazor-wasm/tree/main/MyApp/wwwroot/modules" class="font-medium">/modules</a>
         <ul class="list-none">
             <li>
-                <span class="font-medium">/ui/docs</span>
+                <span class="font-medium">/ui</span>
                 <ul class="list-none">
                     <li>
-                        <a href="https://github.com/ServiceStack/ServiceStack/blob/main/ServiceStack.Blazor/tests/ServiceStack.Blazor.Bootstrap.Tests/Server/modules/ui/docs/CreateBookingDocs.mjs">
-                            CreateBookingDocs.mjs
-                        </a>
+                        <span class="font-medium">/docs</span>
+                        <ul class="list-none">
+                            <li>
+                                <a href="https://github.com/NetCoreTemplates/blazor-wasm/blob/dd71c4ee8eac0536ae8a3c4b70b515348d8daf85/MyApp/wwwroot/modules/ui/docs/CreateBookingsDocs.html">
+                                    CreateBookingsDocs.html
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/NetCoreTemplates/blazor-wasm/blob/dd71c4ee8eac0536ae8a3c4b70b515348d8daf85/MyApp/wwwroot/modules/ui/docs/TodosDocs.html">
+                                    TodosDocs.html
+                                </a>
+                            </li>
+                        </ul>
                     </li>
+                </ul>
+            </li>
+            <li>
+                <span class="font-medium">/shared</span>
+                <ul class="list-none">
                     <li>
-                        <a href="https://github.com/ServiceStack/ServiceStack/blob/main/ServiceStack.Blazor/tests/ServiceStack.Blazor.Bootstrap.Tests/Server/modules/ui/docs/TodoDocs.mjs">
-                            TodoDocs.mjs
+                        <a href="https://github.com/NetCoreTemplates/blazor-wasm/blob/dd71c4ee8eac0536ae8a3c4b70b515348d8daf85/MyApp/wwwroot/modules/shared/Brand.html">
+                            Brand.html
                         </a>
                     </li>
                 </ul>
@@ -357,67 +372,42 @@ We can further enhance API Explorer with our own custom [Vue.js Components](http
     </li>
 </ul>
 
+Where you can enhance any of your APIs or DTOs with rich API docs by adding **HTML Components** to `/modules/ui/docs/*.html` which gets included together with API Explorers own components in its single file download. API Explorer is built using [petite-vue](https://github.com/vuejs/petite-vue) which is a **6kb** subset of Vue optimized for progressive enhancement your components can also take advantage of to enhance it with rich dynamic UIs. 
 
-Where you can enhance any of your APIs or DTOs with rich API docs by adding **Vue Components** to `/modules/ui/docs/*.mjs` which gets included together with API Explorers own components in its single file download. API Explorer is built using [Vue.js](https://vuejs.org/guide/introduction.html) which is a popular 
-JavaScript framework that's optimal for progressive enhancement that your components can also take advantage of to enhance it with rich dynamic UIs. 
+The `*.html` file names aren't important, to create an API doc component it just needs to be named `{Type}Docs`. Here's the simple component example 
+[CreateBookingsDocs.html](https://github.com/NetCoreTemplates/blazor-wasm/blob/main/MyApp/wwwroot/modules/ui/docs/CreateBookingsDocs.html) uses to generate its custom UI that just references the id of its `<template>` UI:
 
-For auto registration of components the `*.mjs` should match the API doc component which needs to be named `{Type}Docs`.
-
-Here's a simple [CreateBookingDocs.mjs](https://github.com/ServiceStack/ServiceStack/blob/main/ServiceStack.Blazor/tests/ServiceStack.Blazor.Bootstrap.Tests/Server/modules/ui/docs/CreateBookingDocs.mjs) component example used to generate API Docs for the `CreateBooking` API  which just references **server** [AppMetadata](https://api.locode.dev/classes/shared.AppMetadata.html) to access server API info from the `/metadata/app.json` endpoint:
-
-```js
-import { inject } from "vue"
-
-export const CreateBookingDocs = {
-    template:/*html*/`
-    <div class="text-center my-3">
-        <div class="flex justify-center">
-            <svg class="w-10 h-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
-                <path fill="#CFD8DC" d="M5 38V14h38v24c0 2.2-1.8 4-4 4H9c-2.2 0-4-1.8-4-4z"/><path fill="#F44336" d="M43 10v6H5v-6c0-2.2 1.8-4 4-4h30c2.2 0 4 1.8 4 4z"/>
-                <g fill="#B71C1C"><circle cx="33" cy="10" r="3"/><circle cx="15" cy="10" r="3"/></g>
-                <g fill="#B0BEC5"><path d="M33 3c-1.1 0-2 .9-2 2v5c0 1.1.9 2 2 2s2-.9 2-2V5c0-1.1-.9-2-2-2z"/><path d="M15 3c-1.1 0-2 .9-2 2v5c0 1.1.9 2 2 2s2-.9 2-2V5c0-1.1-.9-2-2-2z"/></g>
-                <g fill="#90A4AE"><path d="M13 20h4v4h-4z"/><path d="M19 20h4v4h-4z"/><path d="M25 20h4v4h-4z"/><path d="M31 20h4v4h-4z"/><path d="M13 26h4v4h-4z"/><path d="M19 26h4v4h-4z"/><path d="M25 26h4v4h-4z"/><path d="M31 26h4v4h-4z"/><path d="M13 32h4v4h-4z"/><path d="M19 32h4v4h-4z"/><path d="M25 32h4v4h-4z"/><path d="M31 32h4v4h-4z"/></g>
-            </svg>
-            <h2 class="text-3xl ml-3 mb-3">Create Bookings API</h2>
-        </div>
-        <div class="text-gray-500 text-lg">
-            <p>
-                Create a new room Booking for our {{serviceName}} hotels.
-            </p>
-            <p>
-                Here are some
-                <a class="svg-external text-blue-800" target="_blank"
-                    href="https://edition.cnn.com/travel/article/scoring-best-hotel-rooms/index.html">
-                    good tips on making room reservations
-                </a>
-            </p>
-        </div>
+```html
+<script>App.components({ CreateBookingDocs: '#create-booking-docs' })</script>
+<template id="create-booking-docs">
+<div class="text-center my-3">
+    <div class="flex justify-center">
+        <svg>...</svg>
+        <h2 class="text-3xl ml-3 mb-3">Create Bookings API</h2>
     </div>
-    `,
-    setup() {
-        const server = inject('server')
-        return { serviceName: server.app.serviceName }
-    }
-}
+    <div class="text-gray-500 text-lg">
+        <p>
+            Create a new room Booking for our {{serviceName}} hotels.
+        </p>
+        <p>
+            Here are some 
+            <a class="svg-external text-blue-800" target="_blank" 
+                href="https://edition.cnn.com/travel/article/scoring-best-hotel-rooms/index.html">
+                good tips on making room reservations
+            </a>
+        </p>
+    </div>
+</div>
+</template>
 ```
 
 ### Dynamic Components
 
-[QueryTodos](https://blazor-wasm-api.jamstacks.net/ui/QueryTodos?tab=details) is a more advanced example that generates a dynamic UI shared by all TODO APIs
-that generate its reactive **Mini Navigation UI** users can use to cycle through **all TODO API docs** with a `v-href="{ op }"` custom directive:
+[QueryTodos](https://blazor-wasm-api.jamstacks.net/ui/QueryTodos?tab=details) is a more advanced example that generates a dynamic UI shared by all TODO APIs:
 
-<a href="https://blazor-wasm-api.jamstacks.net/ui/QueryTodos?tab=details" class="block my-8 p-4 rounded shadow hover:shadow-lg">
-    <img src="/images/apiexplorer/api-details-docs-Todos.png">
-</a>
-
-Where instead of registering a single component, it exports a `install(app)` function to register API Doc components for all TODO CRUD APIs, all registered
-with the same `TodosDocs` component:
-
-```js
-import { inject, computed } from "vue"
-import { humanize } from "@servicestack/client"
-
-export function install(app) {
+```html
+<script>
+(function (){
     let apis = {
         QueryTodos:  'Query Todos, returns all Todos by default',
         CreateTodo:  'Create a Todo',
@@ -426,112 +416,91 @@ export function install(app) {
         DeleteTodos: 'Delete multiple Todos by Ids',
     }
     let apiNames = Object.keys(apis)
-    const TodosDocs = {
-        template:/*html*/`
-        <div class="mx-auto max-w-screen-md text-center py-8">
-            <h2 class="text-center text-3xl">{{humanize(op.request.name)}}</h2>
-            <p class="text-gray-500 text-lg my-3">{{apis[op.request.name]}}</p>
-            <div class="flex justify-center text-left">
-                <table>
-                    <caption class="mt-3 text-lg font-normal">Other Todo APIs</caption>
-                    <tr v-for="(info,name) in otherApis">
-                        <th class="text-right font-medium pr-3">
-                            <a v-href="{ op:name }" class="text-blue-800">{{humanize(name)}}</a>
-                        </th>
-                        <td class="text-gray-500">{{info}}</td>
-                    </tr>
-                </table>
-            </div>
-        </div>`,
-        setup() {
-            const store = inject('store')
-            const op = computed(() => store.op)
-            const otherApis = computed(() => apiNames.filter(x => x !== store.op.request.name)
-                 .reduce((acc,x) => { acc[x] = apis[x]; return acc }, {}))
-            return { 
-                op,
-                apis,
-                otherApis,
-                humanize,
-            }
+    function TodosDocs({ op, store, routes, breakpoints }) {
+        return {
+            $template: '#Todos-docs',
+            get op() { return resolve(op) }, 
+            routes,
+            apis,
+            get otherApis() { return apiNames.filter(x => x !== this.op.request.name)
+                .reduce((acc,x) => { acc[x] = apis[x]; return acc }, {}) },
         }
     }
-    const components = apiNames.reduce((acc, x) => { acc[x + 'Docs'] = TodosDocs; return acc }, {})
-    app.components(components)
-}
+    App.components(apiNames.reduce((acc, x) => { acc[x + 'Docs'] = TodosDocs; return acc }, {}))
+})() 
+</script>
+<template id="Todos-docs">
+<div class="mx-auto max-w-screen-md text-center py-8">
+    <h2 class="text-center text-3xl">{{humanize(op.request.name)}}</h2>
+    <p class="text-gray-500 text-lg my-3">{{apis[op.request.name]}}</p>
+    <div class="flex justify-center text-left">
+        <table>
+            <caption class="mt-3 text-lg font-normal">Other Todo APIs</caption>
+            <tr v-for="(info,name) in otherApis">
+                <th class="text-right font-medium pr-3">
+                    <a v-href="{ op:name }" class="text-blue-800">{{humanize(name)}}</a>
+                </th>
+                <td class="text-gray-500">{{info}}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+</template>
 ```
 
-## Built-in App functionality
+To generate its reactive **Mini Navigation UI** users can use to cycle through **all TODO API docs** with a `v-href="{ op }"` custom directive:
 
-### JavaScript Libraries
+<a href="https://blazor-wasm-api.jamstacks.net/ui/QueryTodos?tab=details" class="block my-8 p-4 rounded shadow hover:shadow-lg">
+    <img src="/images/apiexplorer/api-details-docs-Todos.png">
+</a>
 
-Your custom components can utilize built in libraries embedded in ServiceStack.dll where they will have access to the latest [Vue 3](https://vuejs.org/guide/introduction.html) reactive fx, [@servicestack/client](/javascript-client) client library and [Vue 3 Tailwind Component library](/vue/) which they can import by package name, e.g:
+API Doc HTML components are injected with the following properties:
+
+ - `op` - Operation metadata about your API
+ - [store](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/modules/ui/js/stores.js) - API Explorer's Reactive object model
+ - [routes](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/modules/shared/plugins/usePageRoutes.js) - App `usePageRoutes` plugin Reactive store to manage its SPA routing
+ - [breakpoints](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/modules/shared/plugins/useBreakpoints.js) - App `useBreakpoints` plugin Reactive store used that maintains responsive layout breakpoint properties
+
+Components also have access to the entire functionality in the `@servicestack/client` library:
+
+ - [index.d.ts](https://github.com/ServiceStack/servicestack-client/blob/master/src/index.d.ts) - TypeScript library declaration
+ - [index.ts](https://github.com/ServiceStack/servicestack-client/blob/master/src/index.ts) - Source code implementation
+
+You're also not limited with what's in API Explorer, with full access to HTML you can also import & use any `<script>` library features.
+
+As we explore differing API Docs requirements we'll document useful functionality available to API doc components, in the meantime you can browse 
+[API Explorer's source code](https://github.com/ServiceStack/ServiceStack/tree/master/src/ServiceStack/modules) or 
+use JavaScript's reflective capabilities to discover what's available, e.g:
 
 ```js
-import { ref } from "vue"
-import { useClient } from "@servicestack/vue"
-import { humanify } from "@servicestack/client"
+[store,routes,breakpoints].map(Object.keys) // available methods & getters on reactive stores
+Object.keys(exports)                        // all imported functionality e.g. @servicestack/client + DTOs
 ```
-
-**Static Analysis**
-
-As all package dependencies are written in TypeScript you can install them as dev dependencies to get static analysis from its TypeScript definitions at dev time:
-
-```bash
-npm install -D vue
-npm install -D @servicestack/client
-npm install -D @servicestack/vue
-```
-
-Your components can access your Apps Typed DTOs directly from the [ES6 Module DTO endpoint](/javascript-add-servicestack-reference) at `/types/mjs`, e.g:
-
-```js
-import { QueryCoupons } from "/types/mjs"
-```
-
-#### App functionality
-
-Your components access to most App functionality via the injected dependencies for functionality defined in API Explorer's [app.mjs](https://github.com/ServiceStack/ServiceStack/blob/main/ServiceStack/tests/NorthwindAuto/ui/lib/app.mjs):
-
-```js
-const app = inject('app')                  // App for customizing Vue App, register components, providers, plugins, etc
-const client = inject('client')            // JsonServiceClient for API Calls
-const server = inject('server')            // AppMetadata (metadata for your Server App and APIs)
-const store = inject('store')              // API Explorer's Reactive object model
-const routes = inject('routes')            // usePageRoutes() Reactive store to manage its SPA routing
-const breakpoints = inject('breakpoints')  // useBreakpoints() Reactive store to Tailwind responsive breakpoints
-```
-
-Most of which creates instance of common library features in [core.mjs](https://github.com/ServiceStack/ServiceStack/blob/main/ServiceStack/tests/NorthwindAuto/wwwroot/js/core.mjs) that are documented at [api.locode.dev/modules/explorer.html](https://api.locode.dev/modules/explorer.html).
-
-You're also not limited with what's in API Explorer, with full access to [JavaScript Modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)
-you can import external 3rd Party packages the same way you import built-in packages.
 
 ### Built-in API Docs
 
-ServiceStack's own built-in APIs uses custom API Doc components itself to document its APIs, e.g. [/ui/docs/RegisterDocs.mjs](https://github.com/ServiceStack/ServiceStack/blob/main/ServiceStack/src/ServiceStack/modules/ui/docs/RegisterDocs.mjs) 
+ServiceStack's own built-in APIs uses custom API Doc components itself to document its APIs, e.g. [/ui/docs/RegisterDocs.html](https://github.com/ServiceStack/ServiceStack/blob/v6.6/ServiceStack/src/ServiceStack/modules/ui/docs/RegisterDocs.html) 
 
-```js
-export const RegisterDocs = {
-    template:/*html*/`
-      <div class="max-w-screen-md mx-auto text-center">
-          <h2 class="text-2xl font-medium mb-3">Register API</h2>
-          <p class="text-gray-500">
-            Public API users can use to create a new User Account, can be added to your AppHost with:
-          </p>
-          <pre class="my-3"><code v-highlightjs="'Plugins.Add(new RegistrationFeature());'"></code></pre>
-      </div>    
-    `
-}
+```html
+<script>App.components({ RegisterDocs:'#register-docs-template' })</script>
+<template id="register-docs-template">
+<div class="max-w-screen-md mx-auto text-center">
+    <h2 class="text-2xl font-medium mb-3">Register API</h2>
+    <p class="text-gray-500">
+        Public API users can use to create a new User Account, can be added to your AppHost with:
+    </p>
+    <pre class="my-3"><code v-html="highlight(`Plugins.Add(new RegistrationFeature());`)"></code></pre>
+</div>
+</template>
 ```
 
-Generates docs for the built-in **Register** API that includes **C#** Syntax highlighting using the pre-configured [highlightjs](https://highlightjs.org) directive:
+Generates docs for the built-in **Register** API that includes **C#** Syntax highlighting:
 
 <a href="https://blazor-wasm-api.jamstacks.net/ui/Register?tab=details" class="block my-8 p-4 rounded shadow hover:shadow-lg">
     <img src="/images/apiexplorer/api-details-docs-Register.png">
 </a>
 
-Whilst [/ui/docs/AuthenticateDocs.mjs](https://github.com/ServiceStack/ServiceStack/blob/main/ServiceStack/src/ServiceStack/modules/ui/docs/AuthenticateDocs.mjs) demonstrates a more advanced example in generating a responsive dynamic tab layout containing multiple relevant ServiceStack Auth YouTube videos:
+Whilst [/ui/docs/AuthenticateDocs.html](https://github.com/ServiceStack/ServiceStack/blob/v6.6/ServiceStack/src/ServiceStack/modules/ui/docs/AuthenticateDocs.html) demonstrates a more advanced example in generating a responsive dynamic tab layout containing multiple relevant ServiceStack Auth YouTube videos:
 
 <a href="https://blazor-wasm-api.jamstacks.net/ui/Authenticate?tab=details" class="block my-8 p-4 rounded shadow hover:shadow-lg">
     <img src="/images/apiexplorer/api-details-docs-Authenticate.png">
@@ -551,39 +520,8 @@ Which results in being more productive then using C# attributes as changes are i
 
 ## Override built-in Components
 
-The built-in UIs also lets you override existing components by adding custom versions in `/js/components` e.g. 
-
-<ul class="list-none">
-    <li>
-        <a href="https://github.com/ServiceStack/ServiceStack/tree/main/ServiceStack/src/ServiceStack/js/components" class="font-medium">/js/components</a>
-        <ul class="list-none">
-            <li>
-                <a href="https://github.com/ServiceStack/ServiceStack/blob/main/ServiceStack.Blazor/tests/ServiceStack.Blazor.Bootstrap.Tests/Server/js/components/Brand.mjs">
-                    Brand.mjs
-                </a>
-            </li>
-        </ul>
-    </li>
-</ul>
-
-```js
-const Brand = {
-    template:/*html*/`
-    <div class="flex items-center flex-shrink-0 max-w-sidebar">
-        <a title="My App" v-href="{ $page:'' }"
-           class="text-2xl whitespace-nowrap overflow-x-hidden flex items-center">
-           <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 ml-1 mr-2" viewBox="0 0 24 24">
-               <path d="M23.834 8.101a13.912 13.912 0 0 1-13.643 11.72a10.105 10.105 0 0 1-1.994-.12a6.111 6.111 0 0 1-5.082-5.761a5.934 5.934 0 0 1 11.867-.084c.025.983-.401 1.846-1.277 1.871c-.936 0-1.374-.668-1.374-1.567v-2.5a1.531 1.531 0 0 0-1.52-1.533H8.715a3.648 3.648 0 1 0 2.695 6.08l.073-.11l.074.121a2.58 2.58 0 0 0 2.2 1.048a2.909 2.909 0 0 0 2.695-3.04a7.912 7.912 0 0 0-.217-1.933a7.404 7.404 0 0 0-14.64 1.603a7.497 7.497 0 0 0 7.308 7.405s.549.05 1.167.035a15.803 15.803 0 0 0 8.475-2.528c.036-.025.072.025.048.061a12.44 12.44 0 0 1-9.69 3.963a8.744 8.744 0 0 1-8.9-8.972a9.049 9.049 0 0 1 3.635-7.247a8.863 8.863 0 0 1 5.229-1.726h2.813a7.915 7.915 0 0 0 5.839-2.578a.11.11 0 0 1 .059-.034a.112.112 0 0 1 .12.053a.113.113 0 0 1 .015.067a7.934 7.934 0 0 1-1.227 3.549a.107.107 0 0 0-.014.06a.11.11 0 0 0 .073.095a.109.109 0 0 0 .062.004a8.505 8.505 0 0 0 5.913-4.876a.155.155 0 0 1 .055-.053a.15.15 0 0 1 .147 0a.153.153 0 0 1 .054.053A10.779 10.779 0 0 1 23.834 8.1zM8.895 11.628a2.188 2.188 0 1 0 2.188 2.188v-2.042a.158.158 0 0 0-.15-.15z" fill="#5C2D91"/>
-            </svg>
-           My App
-        </a>
-    </div>
-    `
-}
-export default Brand
-```
-
-Which override's the built-in `Brand` component to replace the Logo on the top-right of API Explorer, [Locode](/locode/) and the [Admin UI](/admin-ui) with the custom version below:
+You're also able to completely replace **any of API Explorers built-in components** by adding a local file with the same path used in [/ServiceStack/modules](https://github.com/ServiceStack/ServiceStack/tree/master/src/ServiceStack/modules). The Blazor WASM template does with its local 
+[/modules/shared/Brand.html](https://github.com/NetCoreTemplates/blazor-wasm/blob/main/MyApp/wwwroot/modules/shared/Brand.html) which overrides the top-right branding navigation for all API Explorer and Admin UIs:
 
 <div class="flex justify-center py-8">
     <a href="https://blazor-wasm-api.jamstacks.net/ui/">

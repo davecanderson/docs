@@ -2,8 +2,8 @@
 title: Custom Forms
 ---
 
-To override Locode's built-in Form UI you can add custom [PetiteVue](https://github.com/vuejs/petite-vue) HTML components 
-to your Host Project **/wwwroot** folder at `/modules/locode/custom.html` using the naming conventions below:
+To override Locode's built-in Form UI you can add custom [Vue components](https://vuejs.org/guide/essentials/component-basics.html)
+to your Host Project **/wwwroot** folder at `/modules/locode/components/*.mjs` using the naming conventions below:
 
 | Component Name | Description           |
 |----------------|-----------------------|
@@ -11,110 +11,138 @@ to your Host Project **/wwwroot** folder at `/modules/locode/custom.html` using 
 | `Edit{Table}`  | Custom Update Form UI |
 
 The [chinook.locode.dev](https://chinook.locode.dev) demo does this to create a custom Form UI for creating and
-editing Albums by registering `NewAlbums` and `EditAlbums` components in 
-[/modules/locode/custom.html](https://github.com/NetCoreApps/Chinook/blob/main/Chinook/wwwroot/modules/locode/custom.html) used to render Chinook's [custom Create Album form](https://chinook.locode.dev/locode/QueryAlbums?new=true)
+editing Albums by registering `NewAlbums` in [NewAlbums.mjs](https://github.com/NetCoreApps/Chinook/blob/main/Chinook/wwwroot/modules/locode/components/NewAlbums.mjs)
+and `EditAlbums` component in [EditAlbums.mjs](https://github.com/NetCoreApps/Chinook/blob/main/Chinook/wwwroot/modules/locode/components/EditAlbums.mjs)
+which are used to render Chinook's [custom Create Album form](https://chinook.locode.dev/locode/QueryAlbums?create)
 to update its `Albums` table.
 
-It's able to benefit from static analysis and intelli-sense by [installing @servicestack/ui](/locode/custom) and importing 
-static types using standard ES6 import syntax which it can reference using standard [JSDoc annotations](https://jsdoc.app) 
-or [TypeScript's JSDoc support](https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html) as an alternative
-to maintaining a separate `custom.ts` file. By using JSDoc comments directly in `custom.js` we can avoid the
-additional build-step and get instant feedback on each save when we run our App with `$ dotnet watch`
+## Built-in App functionality
+
+### JavaScript Libraries
+
+Your custom components can utilize built in libraries embedded in ServiceStack.dll where they will have access to the latest [Vue 3](https://vuejs.org/guide/introduction.html) reactive fx, [@servicestack/client](/javascript-client) client library and [Vue 3 Tailwind Component library](/vue/) which they can import by package name, e.g:
+
+```js
+import { ref } from "vue"
+import { useClient } from "@servicestack/vue"
+import { humanify } from "@servicestack/client"
+```
+
+#### Static Analysis
+
+As all package dependencies are written in TypeScript you can install them as dev dependencies to get static analysis from its TypeScript definitions at dev time:
+
+```bash
+npm install -D vue
+npm install -D @servicestack/client
+npm install -D @servicestack/vue
+```
+
+Your components can access your Apps Typed DTOs directly from the [ES6 Module DTO endpoint](/javascript-add-servicestack-reference) at `/types/mjs`, e.g:
+
+```js
+import { CreateAlbums } from "/types/mjs"
+```
+
+### App functionality
+
+Your components access to most App functionality via the injected dependencies for functionality defined in Locode's [app.mjs](https://github.com/ServiceStack/ServiceStack/blob/main/ServiceStack/tests/NorthwindAuto/locode/lib/app.mjs):
+
+```js
+const app = inject('app')                  // App for customizing Vue App, register components, providers, plugins, etc
+const client = inject('client')            // JsonServiceClient for API Calls
+const server = inject('server')            // AppMetadata (metadata for your Server App and APIs)
+const store = inject('store')              // API Explorer's Reactive object model
+const routes = inject('routes')            // usePageRoutes() Reactive store to manage its SPA routing
+const breakpoints = inject('breakpoints')  // useBreakpoints() Reactive store to Tailwind responsive breakpoints
+```
+
+Most of which creates instance of common library features in [core.mjs](https://github.com/ServiceStack/ServiceStack/blob/main/ServiceStack/tests/NorthwindAuto/wwwroot/js/core.mjs) that are documented at [api.locode.dev/modules/locode.html](https://api.locode.dev/modules/locode.html).
+
+You're also not limited with what's in API Explorer, with full access to [JavaScript Modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)
+you can import external 3rd Party packages the same way you import built-in packages.
 
 ### Code walkthrough
 
-`CreateComponentArgs` contains a type method signature for the params passed into `New*` components to enable 
-intelli-sense when using them. 
+Your components will have full control to implement their desired functionality how they want, which can get a lot of integrated functionality for free by leveraging the [Vue Component library](/vue/), e.g. this custom component uses:
 
-As `custom.js` is loaded without any source code transforms, we don't have access to TypeScript's newer high-level 
-JS features like Optional Chaining `?.` so we instead use a custom `map()` function which only executes the 
-property access lambda if the target isn't `null`.
+ - [ModalDialog](/vue/gallery/modals) - to load our custom Create Albums Form component in a Modal Dialog
+ - [ErrorSummary](/vue/gallery/alerts) - to display any non-contextual summary API errors
+ - [TextInput](/vue/gallery/form-inputs) - to create a validation bound form for the `CreateAlbums` **Title** property
+ - [LookupInput](/vue/gallery/form-inputs) - to create a Lookup input to select an Artist for the `CreateAlbums` **ArtistId** property
 
-`apiState` contains the call context for the API call to the **Create** CRUD API, which is invoked using its `apiForm` API
-with a populated `FormData` created from serializing the FORM Input's. If successful `save()` is called to notify the
-parent results should update to include the latest changes, before calling `done()` to close the form.
+Whilst `<SubmitAlbumButton>` is an example of using a shared component in 
+[SubmitAlbumButton.mjs](https://github.com/NetCoreApps/Chinook/blob/main/Chinook/wwwroot/modules/locode/components/SubmitAlbumButton.mjs).
 
-If the response failed the error response information is retained in the `apiState` call context which is used to render
-contextual validation errors next to each failed input.
+```js
+import { ref } from "vue"
+import { useClient, useMetadata } from "@servicestack/vue"
+import { CreateAlbums } from "/types/mjs"
 
-```html
-<script>
-import { CreateComponentArgs, map, inputClass } from "@servicestack/ui"
-import { App, Forms } from "@servicestack/ui/locode"
-
-App.components({
-    /** @param {CreateComponentArgs} args */
-    NewAlbums({ store, routes, settings, state, save, done }) {
-        return {
-            $template: '#new-album-template',
-            store, routes, settings,
-            /** @type {State} */
-            get state() { return state && state() },
-            get apiState() { return map(this.state, x => x.apiCreate) },
-            get model() { return map(this.apiState, x => x.model) || {} },
-            inputClass(prop,cls) { return inputClass(this.apiState.fieldError(prop),cls) },
-
-            done,
-            submit() {
-                this.apiState.apiForm(Forms.formData(this.$refs.form, this.apiState.op))
-                    .then(r => {
-                        if (r.api.succeeded) {
-                            save()
-                            done()
-                        }
-                    })
-            }
-        }
-    }
-})
-</script>
-```
-
-The `NewAlbums` UI shows an example of using our own custom HTML `<input/>` including how to render adjacent contextual
-validation errors.
-
-Whilst `v-scope=Input()` shows how we can customize and use the built-in PetiteVue `Input()` component for the `ArtistId`
-property which in this case defaults to using a **Lookup** Input control so users are presented with a rich modal dialog 
-to select the Artist they want instead of having to enter Ids manually.
-
-```html
-<template id="new-album-template">
-<div v-if="apiState" class="album-form flex justify-center">
-    <div class="relative flex flex-col">
-        <div v-scope="CloseButton({ onclick:done })" title="Close"></div>
-        <div v-if="apiState.errorSummary" v-scope="ErrorSummary({ errorSummary: () => apiState.errorSummary })"></div>
-        <form ref="form" @submit.prevent="submit" class="shadow-md rounded-full w-96 h-96 flex justify-center items-center">
-        <div class="flex flex-col justify-center items-center text-center">
+export const NewAlbums = {
+    template:/*html*/`
+    <ModalDialog @done="done" sizeClass="">
+      <div class="album-form relative flex flex-col">
+        <ErrorSummary except="title,artistId"/>
+        <form @submit.prevent="submit" class="m-4 shadow-md rounded-full w-96 h-96 flex justify-center items-center">
+          <div class="flex flex-col justify-center items-center text-center">
             <h1 class="text-3xl font-medium text-rose-500 mb-4">New Album</h1>
             <fieldset>
-                <!---: Using custom input -->
-                <div class="mb-4">
-                    <input type="text" name="Title" :class="inputClass('Title')" placeholder="Album Title">
-                    <p id="title-error" v-if="apiState.fieldError('Title')" v-html="apiState.fieldError('Title')"></p>
-                </div>
+              <TextInput id="title" v-model="request.title" label="" placeholder="Album Title" class="mb-3" />
 
-                <!---: Using Input Lookup component -->
-                <div v-scope="Input({ field:apiState.field('ArtistId', f => {f.input.label='';f.input.placeholder='Select Artist'}), model, api:() => apiState.api })" class="mb-4"></div>
+              <LookupInput id="artistId" v-model="request" label="" placeholder="Select Artist"
+                           :input="lookupProp.input" :metadataType="dataModelType" class="mb-3" />
 
-                <div v-scope="SubmitAlbumButton()"></div>
+              <SubmitAlbumButton />
             </fieldset>
-        </div>
+          </div>
         </form>
-    </div>
-</div>
-</template>
+      </div>
+    </ModalDialog>
+    `,
+    props: ['type'],
+    emits: ['done','save'],
+    setup(props, { emit }) {
+        const client = useClient()
+        const { typeOf } = useMetadata()
+
+        const dataModelType = typeOf("Albums")
+        const lookupProp = dataModelType.properties.find(x => x.name === 'ArtistId')
+        const request = ref(new CreateAlbums())
+
+        /** @param {Event} e */
+        async function submit(e) {
+            const form = e.target
+            const api = await client.apiForm(new CreateAlbums(), new FormData(form))
+            if (api.succeeded) {
+                emit('save', api.response)
+            }
+        }
+
+        function done() {
+            emit('done')
+        }
+
+        return { request, lookupProp, dataModelType, submit, done }
+    }
+}
 ```
 
-When registered this custom component replaces Locode's Auto Form UI with a custom [Create Album Form](https://chinook.locode.dev/locode/QueryAlbums?new=true):
+The only integration needed to communicate back with Locode's
+[AutoQueryGrid component](/vue/gallery/autoquerygrid) is to emit `done` when the form is dismissed without changes or emit `save` if changes are made to
+refresh the AutoQueryGrid resultset to see the latest changes.
 
-[![](/images/locode/chinook/custom-new.png)](https://chinook.locode.dev/locode/QueryAlbums?new=true)
+Invoking APIs with `useClient()` APIs will propagate any error information from any [declarative validation attributes](/locode/declarative#type-validation-attributes) into validation-aware components which alleviates us from needing to perform any manual validation ourselves.
+
+When registered this custom component replaces Locode's Auto Form UI with a custom [Create Album Form](https://chinook.locode.dev/locode/QueryAlbums?create):
+
+[![](/images/locode/chinook/custom-createform.png)](https://chinook.locode.dev/locode/QueryAlbums?create)
 
 That when submitting an empty form will trigger the contextual validation errors to appear:
 
-[![](/images/locode/chinook/custom-new-errors.png)](https://chinook.locode.dev/locode/QueryAlbums?new=true)
+[![](/images/locode/chinook/custom-createform-errors.png)](https://chinook.locode.dev/locode/QueryAlbums?new=true)
 
-As enforced by the [Declarative Validation](/declarative-validation) rules on the 
-`CreateAlbums` AutoQuery CRUD DTO its calling:
+As enforced by the [Declarative Validation](/declarative-validation) rules on the `CreateAlbums` AutoQuery CRUD DTO its calling:
 
 ```csharp
 [Route("/albums", "POST"), Tag(Tags.Media)]
@@ -123,6 +151,7 @@ public class CreateAlbums
 {
     [ValidateNotEmpty]
     public string Title { get; set; }
+
     [ValidateGreaterThan(0)]
     public long ArtistId { get; set; }
 }
@@ -130,65 +159,67 @@ public class CreateAlbums
 
 ## Custom Edit Form
 
-The custom `EditAlbums` Form has a little larger implementation due to needing to load the data of the Album it wants
-to update which it does by calling the AutoQuery API for `Albums`, predictably called `QueryAlbums`. It updates
-the form on load or when the edit route changes, enabled by registering the `routes.onEditChange()` callback when the 
-component is **mounted** and **unmounted**.
-
-Otherwise, its implementation closely follows the `NewAlbums` implementation above:
+The custom `EditAlbums` form has a very similar implementation the `NewAlbums` implementation above other than populating the Input components with 
+the existing Album's values, accessible via the **model** property.
 
 ```js
-import { EditComponentArgs, map } from "@servicestack/ui"
-import { App, Forms } from "@servicestack/ui/locode"
+import { useClient, useMetadata } from "@servicestack/vue"
+import { ref } from "vue"
+import { UpdateAlbums } from "/types/mjs"
 
-App.components({
-    /** @param {EditComponentArgs} args */
-    EditAlbums({ store, routes, settings, state, save, done }) {
-        return {
-            $template: '#edit-album-template',
-            store, routes, settings,
-            get state() { return state && state() },
-            get apiState() { return map(this.state, x => x.apiPatch) },
-            api: null,
-            errorSummary: null,
-            model: {},
-            origModel: {},
-            done,
-            submit() {
-                this.apiState.apiForm(Forms.formData(this.$refs.form, this.apiState.op))
-                    .then(r => {
-                        if (r.api.succeeded) {
-                            save()
-                            done()
-                        }
-                    })
-            },
+export const EditAlbums = {
+    template:/*html*/`
+      <ModalDialog @done="done" sizeClass="">
+        <div class="album-form relative flex flex-col">
+          <ErrorSummary except="title,artistId" />
+          <form @submit.prevent="submit" class="m-4 shadow-md rounded-full w-96 h-96 max-w-96 flex justify-center items-center">
+            <div class="flex flex-col justify-center items-center text-center">
+              <h1 class="text-3xl font-medium text-rose-500 mb-4">Edit Album {{ request.albumId }}</h1>
+              <fieldset>
+                <input type="hidden" name="albumId" :value="request.albumId">
+                <TextInput id="title" v-model="request.title" label="" placeholder="Album Title" class="mb-3" />
 
-            updated() {
-                let state = this.state
-                if (!state || !state.opQuery || !routes.edit) return
+                <LookupInput id="artistId" v-model="request" label="" placeholder="Select Artist"
+                             :input="lookupProp.input" :metadataType="dataModelType" class="mb-3" />
 
-                this.model = this.apiState.model
-                this.errorSummary = ''
-                let apiQuery = state.apiQuery
-                apiQuery.apiSend({ albumId:routes.edit })
-                    .then(r => {
-                        let results = map(r.api.response, x => x.results)
-                        if (apiQuery.errorSummary) this.errorSummary = apiQuery.errorSummary
-                        this.api = r.api
-                        this.origModel = this.apiState.createModel(results[0])
-                        this.model = Object.assign({}, this.origModel)
-                    })
-            },
+                <SubmitAlbumButton />
+              </fieldset>
+            </div>
+          </form>
+        </div>
+      </ModalDialog>
+    `,
+    props: ['model','type','deleteType'],
+    emits: ['done','save'],
+    setup(props, { emit }) {
+        const client = useClient()
+        const { typeOf } = useMetadata()
 
-            mounted() { routes.onEditChange(() => this.updated()) },
-            unmounted() { routes.onEditChange(null) },
+        const dataModelType = typeOf("Albums")
+        const lookupProp = dataModelType.properties.find(x => x.name === 'ArtistId')
+        const request = ref(new UpdateAlbums(props.model))
+
+        /** @param {Event} e */
+        async function submit(e) {
+            const form = e.target
+            const api = await client.apiForm(new UpdateAlbums(), new FormData(form))
+            if (api.succeeded) {
+                emit('save', api.response)
+            }
         }
+
+        function done() {
+            emit('done')
+        }
+
+        return { request, lookupProp, dataModelType, submit, done }
     }
-})
+} 
 ```
 
-Except it uses the defined `apiPatch` call context to update the album, which for Chinook is called `PatchAlbums`:
+If applicable **deleteType** will be populated with an API to Delete Albums that the current user has authorization to access, should you wish to implement delete functionality.
+
+Then to perform the updates we just need to call an Update Albums API, which for Chinook is called `PatchAlbums`:
 
 ```csharp
 [Route("/albums/{AlbumId}", "PATCH"), Tag(Tags.Media)]
@@ -201,54 +232,28 @@ public class PatchAlbums
 }
 ```
 
-The Edit Form UI is a fairly straight-forward Tailwind Form that just uses the built-in `Input()` components with its
-**label** hidden to fit in with the custom Forms aesthetics: 
+Which is all that's need to implement our custom Edit Albums Form:
 
-```html
-<template id="edit-album-template">
-<div v-if="apiState" class="album-form flex justify-center" @vue:mounted="mounted" @vue:unmounted="unmounted">
-    <div class="relative flex flex-col">
-        <div v-scope="CloseButton({ onclick:done })" title="Close"></div>
-        <div v-if="apiState.errorSummary" v-scope="ErrorSummary({ errorSummary: () => apiState.errorSummary })"></div>
-        <form ref="form" @submit.prevent="submit" class="shadow-md rounded-full w-96 h-96 max-w-96 flex justify-center items-center">
-            <div class="flex flex-col justify-center items-center text-center">
-                <h1 class="text-3xl font-medium text-rose-500 mb-4">Edit Album {{model.albumId}}</h1>
-                <fieldset>
-                    <input type="hidden" name="albumId" :value="model.albumId">
-                    <!---: Using built-in Input components without labels -->
-                    <div v-scope="Input({ field:apiState.field('Title', f => f.input.label=''), model:() => model, api:() => apiState.api })" class="mb-4"></div>
-                    <div v-scope="Input({ field:apiState.field('ArtistId', f => {f.input.label='';f.input.placeholder='Select Artist'}), model:() => model, api:() => apiState.api })" class="mb-4"></div>
-                    <div v-scope="SubmitAlbumButton()"></div>
-                </fieldset>
-            </div>
-        </form>
-    </div>
-</div>
-</template>
-```
+[![](/images/locode/chinook/custom-editform.png)](https://chinook.locode.dev/locode/QueryAlbums?edit=6)
 
-In order to render our custom Edit Albums Form:
+To minimize code duplication both custom forms makes use of a shared
+[SubmitAlbumButton.mjs](https://github.com/NetCoreApps/Chinook/blob/main/Chinook/wwwroot/modules/locode/components/SubmitAlbumButton.mjs) component, defined as:
 
-[![](/images/locode/chinook/custom-edit.png)](https://chinook.locode.dev/locode/QueryAlbums?edit=6)
-
-To minimize code duplication both custom forms makes use of a `SubmitAlbumButton` Reusable Component, defined as:
-
-```html
-<!---: Reuse functionality with custom components -->
-<script>App.components({ SubmitAlbumButton: '#submit-album-template' })</script>
-<template id="submit-album-template">
-<button type="submit" class="inline-flex items-center p-3 border border-transparent rounded-full shadow-sm text-white bg-rose-600 hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-500">
-    <svg class="h-8 w-8" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid meet" viewBox="0 0 48 48">
-        <g fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="4">
-            <path stroke-linecap="round" d="M24 44C12.954 44 4 35.046 4 24S12.954 4 24 4s20 8.954 20 20"/>
-            <path d="M20 24v-6.928l6 3.464L32 24l-6 3.464l-6 3.464V24Z"/><path stroke-linecap="round" d="M37.05 32v10M42 36.95H32"/>
-        </g>
-    </svg>
-</button>
-</template>
+```js
+export const SubmitAlbumButton = {
+    template:`
+    <button type="submit" class="inline-flex items-center p-3 border border-transparent rounded-full shadow-sm text-white bg-rose-600 hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-500">
+        <svg class="h-8 w-8" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid meet" viewBox="0 0 48 48">
+            <g fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="4">
+                <path stroke-linecap="round" d="M24 44C12.954 44 4 35.046 4 24S12.954 4 24 4s20 8.954 20 20"/>
+                <path d="M20 24v-6.928l6 3.464L32 24l-6 3.464l-6 3.464V24Z"/><path stroke-linecap="round" d="M37.05 32v10M42 36.95H32"/>
+            </g>
+        </svg>
+    </button>`
+}
 ```
 
 ## Custom Locode Home Page
 
 Next we'll look at how we can create a [custom Home page](/locode/custom-components) by overriding Locode's
-existing `Welcome.html` component.
+existing `Welcome.mjs` component.
