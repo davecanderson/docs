@@ -25,7 +25,10 @@ public class GetCustomers : IReturn<GetCustomersResponse> {...}
 
 public class GetCustomersResponse
 {
+    [DataMember]
     public List<Customer> Results { get; set; }
+
+    [DataMember]
     public ResponseStatus ResponseStatus { get; set; }
 }
 
