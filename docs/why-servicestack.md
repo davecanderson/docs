@@ -478,12 +478,12 @@ E.g. the [React Desktop Apps](https://github.com/ServiceStackApps/ReactDesktopAp
 
 ## Goals of Service Design
 
-The primary benefits of Services are that they offer the highest level of software re-use, they're [Real Computers all the way down](http://mythz.servicestack.net/#messaging) retaining the ability to represent anything. Especially at this level, encapsulation and its external interactions are paramount which sees the [Service Layer as its most important Contract](http://stackoverflow.com/a/15369736/85785), constantly evolving to support new capabilities whilst serving and outliving its many consumers. 
+The primary benefits of Services are that they offer the highest level of software re-use, they're [Real Computers all the way down](https://mythz.servicestack.net/#messaging) retaining the ability to represent anything. Especially at this level, encapsulation and its external interactions are paramount which sees the [Service Layer as its most important Contract](http://stackoverflow.com/a/15369736/85785), constantly evolving to support new capabilities whilst serving and outliving its many consumers. 
 
-Extra special attention should be given to Service design with the primary goals of exposing its capabilities behind [consistent and self-describing](http://stackoverflow.com/a/15941229/85785), intent-based [tell-dont-ask](http://pragprog.com/articles/tell-dont-ask) APIs. 
+Extra special attention should be given to Service design with the primary goals of exposing its capabilities behind [consistent and self-describing](/why-servicestack#goals-of-service-design), intent-based [tell-dont-ask](https://pragprog.com/articles/tell-dont-ask) APIs. 
 
 A Services ability to encapsulate complexity is what empowers consumers to be able to perform higher-level tasks like provisioning a cluster of AWS servers or being able to send a tweet to millions of followers in seconds with just a simple HTTP request, i.e. being able to re-use existing hardened functionality without the required effort, resources and infrastructure to facilitate the request yourself. To maximize accessibility it's recommended for Service Interfaces to be orientated around resources and verbs, retain a flat structure, customizable with key value pairs so they're accessible via the built-in QueryString 
-and FormData support present in all HTTP clients, from HTML Forms to command-line utilities like [curl](http://curl.haxx.se).
+and FormData support present in all HTTP clients, from HTML Forms to command-line utilities like [curl](https://curl.haxx.se).
 
 ### WCF the anti-DTO Web Services Framework
 
@@ -529,19 +529,4 @@ public class Customers : IReturn<List<Customer>>
 Fewer and more batch-full services require less maintenance and promote the development of more re-usable and efficient services. 
 In addition, message APIs are much more resilient to changes as you're able to safely add more functionality or return more data without breaking or needing to re-gen existing clients. Message-based APIs also lend them better for cached, asynchronous, deferred, proxied and reliable execution with the use of brokers and proxies.
 
-Comparatively there is almost no win for a remote RPC API, except to maybe [hide a remote service even exists](http://en.wikipedia.org/wiki/Fallacies_of_Distributed_Computing) by making a remote call look like a method call even though they're millions of times slower, leading new developers to develop inefficient, brittle systems from the start. 
-
-# Community Resources
-
-  - [Interview with ServiceStack on InfoQ](http://www.infoq.com/articles/interview-servicestack)
-    / [Part II](http://www.infoq.com/articles/interview-servicestack-2) by [@infoq](http://twitter.com/infoq)
-  - [Great example showing how you can re-use ServiceStack services in Websites and REST APIs](http://northwind.mattjcowan.com/customers) by [@mattjcowan](https://twitter.com/mattjcowan)
-  - [RESTful Data Services in .NET](https://coldie.net/?tag=servicestack)
-  - [Making mPACT API Better](https://web.archive.org/web/20130401041733/http://blog.mblast.com/mbwordpress/mpact-api/making-mpact-api-better/) by [@mBLAST](https://twitter.com/mBLAST)
-  - ["ServiceStack" framework](http://dragansr.blogspot.com/2012/12/service-stack-framework) by [@dragansr](https://twitter.com/dragansr)
-  - [servicestack.net – Skip WCF and use this](http://fafx.wordpress.com/category/tools/servicestack-net/) by [thefafxproject](http://fafx.wordpress.com/)
-  - [Libraries and components used by DiceFeud](http://dicefeud.blogspot.se/2012/08/libraries-and-components) by [John Hård](http://www.blogger.com/profile/17364481663076074340)
-  - [ServiceStack: a good alternative to WCF (French)](http://sgbd.arbinada.com/node/77)
-  - [ReST Web Services in .NET Framework](http://www.aminemami.com/blog/2011/09/rest-web-services-in-net-framework/) by [@amin_emami](https://twitter.com/amin_emami)
-  - [ServiceStack Awesomeness](http://emmanuelnelson.com/blogs/service-stack-awesomeness) by [@emmanuelnelson](http://emmanuelnelson.com/about-me)
-  - [After Glow Web UI progress (ServiceStack it is!)](http://afterglow.frozenpickle.com/2013/01/02/web-ui-progress-servicestack-it-is/) by [@spazzarama](https://github.com/spazzarama)
+Comparatively there is almost no win for a remote RPC API, except to maybe [hide a remote service even exists](https://en.wikipedia.org/wiki/Fallacies_of_Distributed_Computing) by making a remote call look like a method call even though they're millions of times slower, leading new developers to develop inefficient, brittle systems from the start. 

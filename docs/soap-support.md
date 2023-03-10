@@ -14,7 +14,7 @@ Plugins.Add(new SoapFormat());
 
 ## SOAP + REST
 
-SOAP only supports a single `POST` request but REST services also make use of `GET`, `PUT`, `DELETE`, etc requests, which aren't used in SOAP. So if you want to support SOAP and REST, you need to create one service for each operation which is also the [recommended API structure](http://stackoverflow.com/a/15235822/85785) for creating [message-based Services](http://stackoverflow.com/a/15941229/85785). The difference to be able to support SOAP is that Service implementations need to be defined with `Any()`, e.g:
+SOAP only supports a single `POST` request but REST services also make use of `GET`, `PUT`, `DELETE`, etc requests, which aren't used in SOAP. So if you want to support SOAP and REST, you need to create one service for each operation which is also the [recommended API structure](/physical-project-structure) for creating [message-based Services](/why-servicestack#goals-of-service-design). The difference to be able to support SOAP is that Service implementations need to be defined with `Any()`, e.g:
 
 ```csharp
 //Request DTO - Add DataMember attribute for all properties.
