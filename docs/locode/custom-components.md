@@ -52,7 +52,7 @@ Which uses the [DataGrid](/vue/gallery/datagrid) component to render its [custom
 
 That makes use of the [Declarative UI Attributes](/locode/declarative#ui-metadata-attributes) in its
 [Invoices](https://github.com/NetCoreApps/Chinook/blob/main/Chinook.ServiceModel/Types/Models.cs) data model to render a formatted currency
-**Total** and a direct link to the Customer that made the invoice from:
+**Total** and a direct link to the Customer that the invoice was for:
 
 ```csharp
 [Icon(Svg = Icons.Invoices)]

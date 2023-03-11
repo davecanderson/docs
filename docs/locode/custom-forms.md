@@ -52,14 +52,14 @@ Your components access to most App functionality via the injected dependencies f
 const app = inject('app')                  // App for customizing Vue App, register components, providers, plugins, etc
 const client = inject('client')            // JsonServiceClient for API Calls
 const server = inject('server')            // AppMetadata (metadata for your Server App and APIs)
-const store = inject('store')              // API Explorer's Reactive object model
+const store = inject('store')              // Locode's Reactive object model
 const routes = inject('routes')            // usePageRoutes() Reactive store to manage its SPA routing
 const breakpoints = inject('breakpoints')  // useBreakpoints() Reactive store to Tailwind responsive breakpoints
 ```
 
 Most of which creates instance of common library features in [core.mjs](https://github.com/ServiceStack/ServiceStack/blob/main/ServiceStack/tests/NorthwindAuto/wwwroot/js/core.mjs) that are documented at [api.locode.dev/modules/locode.html](https://api.locode.dev/modules/locode.html).
 
-You're also not limited with what's in API Explorer, with full access to [JavaScript Modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)
+You're also not limited with what's in Locode, with full access to [JavaScript Modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)
 you can import external 3rd Party packages the same way you import built-in packages.
 
 ### Code walkthrough

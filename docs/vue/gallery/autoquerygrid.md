@@ -235,12 +235,12 @@ const close = () => coupon.value = null
 <CustomBooking />
 
 <h2 class="pt-8 mb-4 text-2xl font-semibold text-gray-900 dark:text-gray-100">
-  Displaying Referential Data
+  Data Reference Labels
 </h2>
 
 [AutoQuery](/autoquery-rdbms) is able to infer relationships from the [POCO References](/ormlite/reference-support) of your Data Models where if your DataModel includes `[Reference]` attributes so that its related Data is returned in your AutoQuery APIs, AutoQueryGrid will be able to make use of it to render the Contacts & Job Names and Icons instead of just the plain Foreign Key Ids.
 
-An example of this in the [JobApplications](https://blazor-gallery.servicestack.net/locode/QueryJobApplications) page which automatically displays the Job and Contact name instead of their ids, based on this DataModel DTO:
+An example of this in the [JobApplications](https://blazor-gallery.servicestack.net/locode/QueryJobApplications) DataModel DTO:
 
 ```csharp
 [Icon(Svg = Icons.Application)]
@@ -273,7 +273,12 @@ public class JobApplication : AuditBase
 }
 ```
 
-<AutoQueryGrid type="JobApplication" />
+Which AutoQueryGrid uses to automatically display the Job and Contact name instead of their ids:
+
+```html
+<AutoQueryGrid type="JobApplication" :prefs="{take:5}" />
+```
+<AutoQueryGrid type="JobApplication" :prefs="{take:5}" />
 
 With the original ids are discoverable by hovering over the Job & Contact labels. 
 

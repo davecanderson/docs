@@ -369,7 +369,7 @@ Here's a simple [CreateBookingDocs.mjs](https://github.com/ServiceStack/ServiceS
 import { inject } from "vue"
 
 export const CreateBookingDocs = {
-    template:/*html*/`
+    template:`
     <div class="text-center my-3">
         <div class="flex justify-center">
             <svg class="w-10 h-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
@@ -418,16 +418,16 @@ import { inject, computed } from "vue"
 import { humanize } from "@servicestack/client"
 
 export function install(app) {
-    let apis = {
+    const apis = {
         QueryTodos:  'Query Todos, returns all Todos by default',
         CreateTodo:  'Create a Todo',
         UpdateTodo:  'Update a Todo',
         DeleteTodo:  'Delete Todo by Id',
         DeleteTodos: 'Delete multiple Todos by Ids',
     }
-    let apiNames = Object.keys(apis)
+    const apiNames = Object.keys(apis)
     const TodosDocs = {
-        template:/*html*/`
+        template:`
         <div class="mx-auto max-w-screen-md text-center py-8">
             <h2 class="text-center text-3xl">{{humanize(op.request.name)}}</h2>
             <p class="text-gray-500 text-lg my-3">{{apis[op.request.name]}}</p>
@@ -513,15 +513,14 @@ ServiceStack's own built-in APIs uses custom API Doc components itself to docume
 
 ```js
 export const RegisterDocs = {
-    template:/*html*/`
+    template:`
       <div class="max-w-screen-md mx-auto text-center">
           <h2 class="text-2xl font-medium mb-3">Register API</h2>
           <p class="text-gray-500">
             Public API users can use to create a new User Account, can be added to your AppHost with:
           </p>
           <pre class="my-3"><code v-highlightjs="'Plugins.Add(new RegistrationFeature());'"></code></pre>
-      </div>    
-    `
+      </div>`
 }
 ```
 
@@ -568,7 +567,7 @@ The built-in UIs also lets you override existing components by adding custom ver
 
 ```js
 const Brand = {
-    template:/*html*/`
+    template:`
     <div class="flex items-center flex-shrink-0 max-w-sidebar">
         <a title="My App" v-href="{ $page:'' }"
            class="text-2xl whitespace-nowrap overflow-x-hidden flex items-center">

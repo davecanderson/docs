@@ -8,12 +8,8 @@ title: Combobox Component
 import { ref } from "vue"
 import { Icon } from "@iconify/vue"
 import ApiReference from "../../src/components/ApiReference.vue"
-import AutocompleteExamples from "../../src/gallery/inputs/AutocompleteExamples.vue"
 import metadata from "../../src/gallery/metadata.json"
-import { allContacts, files } from "../../src/gallery/data.ts"
 import { useMetadata } from '@servicestack/vue'
-
-const contact = allContacts[0]
 
 const { setMetadata } = useMetadata()
 setMetadata(metadata)
