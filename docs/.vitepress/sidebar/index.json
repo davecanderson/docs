@@ -115,6 +115,10 @@
     "text": "UIs",
     "children": [
       {
+        "text": "Auto HTML API",
+        "link": "/auto-html-api"        
+      },
+      {
         "text": "API Explorer",
         "link": "/api-explorer"
       },
