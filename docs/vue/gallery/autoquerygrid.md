@@ -193,8 +193,6 @@ Which columns are displayed and how they're formatted are further customizable w
 </AutoQueryGrid>
 ```
 
-<Responsive />
-
 <h2 class="pt-8 mb-4 text-2xl font-semibold text-gray-900 dark:text-gray-100">
   Custom Functionality
 </h2>
