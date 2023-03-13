@@ -66,3 +66,17 @@ step-by-step instructions for how to call your APIs from their preferred program
 A nice benefit of ServiceStack's API Design is that consuming APIs are fundamentally all done the same way in all languages, which just requires adding a 
 dependency containing a generic ServiceClient which can be used to call any ServiceStack API using the typed DTOs copied directly from the API docs page
 to enable an end-to-end typed API without any external tooling or build steps.
+
+### API Fallback HTML Page
+
+The Auto HTML API is the fallback HTML page returned for APIs when calling user-defined routes from a browser (i.e. **Accept: text/html**):
+
+#### [https://northwind.netcore.io/customers/ALFKI](https://northwind.netcore.io/customers/ALFKI)
+
+When calling the [/api pre-defined route](/routing#json-api-pre-defined-route) with the `.html` extension:
+
+#### [https://northwind.netcore.io/api/GetCustomerDetails.html?Id=ALFKI](https://northwind.netcore.io/api/GetCustomerDetails.html?Id=ALFKI)
+
+When calling the [/api pre-defined route](/routing#json-api-pre-defined-route) with `?format=html`:
+
+#### [https://northwind.netcore.io/api/GetCustomerDetails?Id=ALFKI&format=html](https://northwind.netcore.io/api/GetCustomerDetails?Id=ALFKI&format=html)
