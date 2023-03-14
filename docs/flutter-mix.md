@@ -2,9 +2,6 @@
 slug: flutter-mix
 title: Flutter Mix Template
 ---
-<script setup>
-import VueTailwindTemplates from "./src/components/VueTailwindTemplates.vue"
-</script>
 Two mix templates to help you build services with Flutter clients are the `flutter` and `flutter-grpc` mix templates.
 
 In this walk through we will be focusing on `mix flutter` template. See [here for details on `mix flutter-grpc`](./flutter-grpc-mix.md).
@@ -36,10 +33,6 @@ For example, you could [start with a new](./dotnet-new.md) `web` ServiceStack pr
 ```bash
 $ x new web MyApp
 ```
-
-Or alternatively download one of our Tailwind templates below.
-
-<VueTailwindTemplates />
 
 Then from your new solution directory `MyApp`, mix in the Flutter application using:
 
