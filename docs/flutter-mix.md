@@ -224,7 +224,7 @@ Future<Todo> updateTodo(Todo item) async {
 
 We've made an example codebase called [BookingsFlutter](https://github.com/NetCoreApps/BookingsFlutter) to show a more featured cross-platform application integrating with different types of services.
 
-![](./images/mix/flutter-mix-windows-todo.png)
+[![](./images/mix/flutter-mix-windows-todo.png)](https://github.com/NetCoreApps/BookingsFlutter)
 
 ### Questions?
 
