@@ -1,11 +1,13 @@
 ---
 slug: flutter-mix
-title: Flutter Mix Templates
+title: Flutter Mix Template
 ---
 <script setup>
 import VueTailwindTemplates from "./src/components/VueTailwindTemplates.vue"
 </script>
 Two mix templates to help you build services with Flutter clients are the `flutter` and `flutter-grpc` mix templates.
+
+In this walk through we will be focusing on `mix flutter` template. See [here for details on `mix flutter-grpc`](./flutter-grpc-mix.md).
 
 <iframe class="video-hd" src="https://www.youtube.com/embed/t4WcXo4Vnio" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
