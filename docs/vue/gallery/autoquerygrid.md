@@ -35,6 +35,11 @@ onMounted(async () => {
   <Breadcrumb>AutoQueryGrid Examples</Breadcrumb>
 </Breadcrumbs>
 
+
+<div class="my-8 flex justify-center">
+    <iframe class="video-hd" src="https://www.youtube.com/embed/znCoC-Ct0Ps" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+</div>
+
 <ApiReference Component="AutoQueryGrid<Model>">Default CRUD
 </ApiReference>
 
