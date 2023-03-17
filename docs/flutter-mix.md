@@ -10,7 +10,7 @@ In this walk through we will be focusing on `mix flutter` template. See [here fo
 
 These templates create a new Flutter application using your locally installed [Flutter SDK](https://docs.flutter.dev/get-started/install) that comes wired up to the ServiceStack project template it is mixed into.
 
-These mix templates can be added to ServiceStack templated projects using the [ServiceStack Dotnet X tool](./dotnet-tool.md), which can be installed using the command:
+These mix templates can be added to ServiceStack templated projects using the [ServiceStack dotnet x tool](./dotnet-tool.md), which can be installed using the command:
 
 ```bash
 $ dotnet tool install --global x 
