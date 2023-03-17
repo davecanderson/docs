@@ -4,23 +4,6 @@ title: Why ServiceStack
 ---
 
 Developed in the modern age, ServiceStack provides an alternate, cleaner POCO-driven way of creating web services.
- 
-- **Simplicity**
-- **Speed**
-- **Web Services Best Practices**
-- **Message-based Services** - Model-driven, code-first, friction-free development
-- **Native Clients** - Clean, end-to-end typed idiomatic APIs for most major platforms
-- **Modern** - No XML config, IOC built-in, no code-gen, conventional defaults
-- **Smart** - Infers greater intelligence from your strongly typed DTOs
-- **Effortless Features** - Most features enhance your existing DTOs making them trivial to enable
-- **Multi Platform** - Supports .NET 4.5 and .NET Core platforms for hosting on Windows, OSX, Linux
-- **Multiple Hosts** - Run in Web, Console, native Windows/OSX Desktop Apps, Windows Services
-- **Host Agnostic** - Services are decoupled from HTTP and can be hosted in MQ Services
-- **Highly testable** - Typed, idiomatic client APIs enable succinct, intuitive Integration tests
-- **Mature** - Stable with over 10+ years of development 
-- **Preserve Investment** - modern libraries that are [Continuously Improved](/release-notes-history) (not abandoned or replaced)
-- **Dependable** - Commercially supported and actively developed
-- **Increasing Value** - ServiceStack's [ever-growing features](https://servicestack.net/features) adds more capabilities around your Services with each release
 
 <iframe class="video-hd" src="https://www.youtube.com/embed/Vae0ALalIP0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
@@ -71,6 +54,26 @@ experiences using ServiceStack's real-time [Server Events](/server-events).
 ServiceStack Services also maximize productivity for consumers providing an 
 [instant end-to-end typed API without code-gen](/csharp-client) enabling
 the most productive development experience for developing .NET to .NET Web Services.
+
+### Benefits
+ 
+- **Simplicity** - All features are centered around APIs that accept and return Typed DTOs
+- **Speed** - Built for speed on high-performance components utilizing performance APIs available in each .NET runtime
+- **Web Services Best Practices** - Adopts time-tested SOA Integration Patterns for APIs and client integrations
+- **Message-based Services** - Model-driven, code-first, friction-free development
+- **Native Clients** - Clean, end-to-end typed idiomatic APIs for most major platforms
+- **Modern** - No XML config, IOC built-in, no code-gen, conventional defaults
+- **Smart** - Infers greater intelligence from your strongly typed DTOs
+- **Effortless Features** - Most features enhance your existing DTOs making them trivial to enable
+- **Multi Platform** - Supports .NET 4.5 and .NET Core platforms for hosting on Windows, OSX, Linux
+- **Multiple Hosts** - Run in Web, Console, native Windows/OSX Desktop Apps, Windows Services
+- **Host Agnostic** - Services are decoupled from HTTP and can be hosted in MQ Services
+- **Highly testable** - Typed, idiomatic client APIs enable succinct, intuitive Integration tests
+- **Mature** - Stable with over 10+ years of development 
+- **Preserve Investment** - modern libraries that are [Continuously Improved](/release-notes-history) (not abandoned or replaced)
+- **Dependable** - Commercially supported and actively developed
+- **Increasing Value** - ServiceStack's [ever-growing features](https://servicestack.net/features) adds more capabilities around your Services with each release
+
 
 ### Generate Instant Typed APIs from within all Major IDEs!
 
