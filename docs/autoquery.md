@@ -51,11 +51,10 @@ import AutoQueryExamples from "./src/components/AutoQueryExamples.vue"
 
 ## Fast, typed, code-first Queryable APIs
 
-ServiceStack's AutoQuery is a fresh, approach to enable Auto Querying functionality akin to OData's querying support for Web Api, but without its [web service anti-patterns](http://stackoverflow.com/a/9579090/85785), over-architected implementation, large complexity, poor performance, tight-coupling and inhibitive versionability, traits we've strongly recommended against in [Why not OData](/why-not-odata).
+ServiceStack's AutoQuery is a fresh, approach to enable Auto Querying functionality akin to OData's querying support for Web Api, but without its [webservice anti-patterns](/why-not-odata) where instead of adopting an opaque implementation encumbered syntax, it adheres to HTTP API simple flat structure
+by instead enhancing the ideal API the developer would naturally write and completes their implementation for them!
 
-## Introducing AutoQuery
-
-The solution to overcome most of OData issues is ultimately quite simple: enhance the ideal API the developer would naturally write and complete their implementation for them! This is the design philosophy behind AutoQuery which utilizes conventions to automate creation of intent-based self-descriptive APIs that are able to specify configurable conventions and leverage extensibility options to maximize the utility of AutoQuery services.
+This is the design philosophy behind AutoQuery which utilizes conventions to automate creation of intent-based self-descriptive APIs that are able to specify configurable conventions and leverage extensibility options to maximize the utility of AutoQuery services.
 
 AutoQuerying aims to work like optional typing by making it easy to expose contract-less data services for rapid prototyping, then allowing the API to be gradually formalized by decorating Request DTO's with its supported usage, whilst allowing complete freedom in either utilizing and extending AutoQuery's built-in functionality or replacing it entirely without breaking the Service Contract.
 
