@@ -8,7 +8,7 @@ import { Icon } from "@iconify/vue"
 import AutoQueryExamples from "./src/components/AutoQueryExamples.vue"
 </script>
 
-<link rel="stylesheet" href="/css/notitle.css">
+<i data-hide=".container>h1"></i>
 
 <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-20 pb-16 text-center lg:pt-20">
     <h1 class="mx-auto max-w-4xl font-display text-5xl font-medium tracking-tight text-slate-900 sm:text-6xl">

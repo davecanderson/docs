@@ -2,7 +2,7 @@
 title: Auto HTML API Page
 ---
 
-<style>h1 {display:none}</style>
+<i data-hide=".container>h1"></i>
 
 The Auto HTML Page provides instant utility for API consumers in consuming your APIs with a built-in API Response Visualizer, JSON syntax highlighting, integrated Postman-like UI and API SDK integration all-in-one.
 

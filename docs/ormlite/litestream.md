@@ -2,7 +2,7 @@
 title: Litestream
 ---
 
-<link rel="stylesheet" href="/css/notitle.css">
+<i data-hide=".container>h1"></i>
 
 <h2 id="litestream" class="mx-auto max-w-screen-md text-center py-8 border-none">
     <a href="https://litestream.io">
