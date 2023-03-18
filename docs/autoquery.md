@@ -51,8 +51,8 @@ import AutoQueryExamples from "./src/components/AutoQueryExamples.vue"
 
 ## Fast, typed, code-first Queryable APIs
 
-ServiceStack's AutoQuery is a fresh, approach to enable Auto Querying functionality akin to OData's querying support for Web Api, but without its [webservice anti-patterns](/why-not-odata) where instead of adopting an opaque implementation encumbered syntax, it adheres to HTTP API simple flat structure
-by instead enhancing the ideal API the developer would naturally write and completes their implementation for them!
+ServiceStack's AutoQuery is a fresh, approach to enable Auto Querying functionality akin to OData's querying support for Web Api, but without its [webservice anti-patterns](/why-not-odata) where instead of adopting an opaque implementation encumbered syntax, it adheres to HTTP API's simple flat structure by instead
+enhancing the ideal API the developer would naturally write and completes their implementation for them!
 
 This is the design philosophy behind AutoQuery which utilizes conventions to automate creation of intent-based self-descriptive APIs that are able to specify configurable conventions and leverage extensibility options to maximize the utility of AutoQuery services.
 
@@ -63,9 +63,15 @@ AutoQuerying aims to work like optional typing by making it easy to expose contr
 <div class="flex flex-wrap">
     <div class="w-full sm:w-1/2 px-4">
         <h3 class="mt-8 text-xl font-medium tracking-tight text-gray-900">Connect to anything with data</h3>
-        <p class="mx-auto mt-5 max-w-prose text-xl text-gray-500">
-            Expose data from various data sources including RDBMS, In memory, DynamoDb or even other services through consistent flexible APIs where clients can control the query details.
-        </p>
+            <p class="mx-auto mt-5 max-w-prose text-xl text-gray-500">
+                Expose data from various data sources including 
+                <a class="text-indigo-600 hover:text-indigo-800" href="/autoquery-rdbms">RDBMS</a>, 
+                <a class="text-indigo-600 hover:text-indigo-800" href="/autoquery-memory">In Memory</a>, 
+                <a class="text-indigo-600 hover:text-indigo-800" href="/autoquery-dynamodb">DynamoDb</a>
+                or even 
+                <a class="text-indigo-600 hover:text-indigo-800" href="/autoquery-service">other services </a>
+                through consistent flexible APIs where clients can control the query details.
+            </p>
         <h3 class="mt-8 text-xl font-medium tracking-tight text-gray-900">Works with your favorite databases</h3>
         <p class="mx-auto mt-5 max-w-prose text-xl text-gray-500">
             AutoQuery RDBMS works with anything OrmLite can connect to, including:
@@ -273,13 +279,13 @@ As all AutoQuery Services are pure HTTP APIs available in multiple data formats 
 rich integrations like being able to use its CSV Format to create live table data sources in Excel or
 easily import any query into any data store supporting CSV imports:
 
-![Easy Excel Data Source Integration](/images/autoquery/excel-add-datasource-guide.png)
+![Easy Excel Data Source Integration](/images/autoquery/import-csv.png)
 
 AutoQuery's usage of simple, user-defined Clean URLs and intuitive implicit query conventions makes it easy for
 stakeholders to create custom Queries of their Systems Data that they can link to directly in their Excel worksheets
 to generate Live Reports:
 
-![Added Excel Datasource](/images/autoquery/excel-import-data-example-2.png)
+![Added Excel Datasource](/images/autoquery/import-csv-table.png)
 
 <h2 class="mt-20 text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl border-none text-center">
     Leverage ServiceStack's ecosystem of features
