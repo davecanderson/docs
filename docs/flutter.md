@@ -5,15 +5,13 @@ title: Flutter
 
 Rapidly develop native cross-platform iOS and Android Apps with Flutter's calling ServiceStack's HTTP and gRPC end-to-end typed .NET API integrations.
 
-<iframe class="video-hd" src="https://www.youtube.com/embed/UQlYodNS1xc" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe class="video-hd" src="https://www.youtube.com/embed/t4WcXo4Vnio" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 ## Getting Started
 
 Two mix templates to help you build services with Flutter clients are the `flutter` and `flutter-grpc` mix templates.
 
 These templates create a new Flutter application using your locally installed [Flutter SDK](https://docs.flutter.dev/get-started/install) that comes wired up to the ServiceStack project template it is mixed into.
-
-<iframe class="video-hd" src="https://www.youtube.com/embed/t4WcXo4Vnio" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 These mix templates can be added to ServiceStack templated projects using the [ServiceStack dotnet x tool](./dotnet-tool.md), which can be installed using the command:
 
@@ -195,6 +193,9 @@ The `callService` method is an `async` method where Dart has a familiar syntax t
     });
   }
 ```
+
+<iframe class="video-hd" src="https://www.youtube.com/embed/UQlYodNS1xc" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
 
 ### Updating your client DTOs
 
