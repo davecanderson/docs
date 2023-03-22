@@ -21,7 +21,7 @@ $ dotnet tool install --global x
 
 - Flutter SDK
 - Dart SDK
-- ServiceStack dotnet X tool
+- ServiceStack dotnet x tool
 
 ![](./images/mix/flutter-mix-running-desktop.png)
 
