@@ -238,7 +238,7 @@ Future<Todo> updateTodo(Todo item) async {
 
 We've made an example codebase called [BookingsFlutter](https://github.com/NetCoreApps/BookingsFlutter) to show a more featured cross-platform application integrating with different types of services.
 
-[![](./images/mix/flutter-mix-windows-todo.png)](https://github.com/NetCoreApps/BookingsFlutter)
+<iframe class="video-hd" src="https://www.youtube.com/embed/eMbwaMuIk84" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 ## gRPC Examples
 
@@ -387,6 +387,8 @@ Refer to [/src/mobile/flutter/flutter_grpc](https://github.com/NetCoreApps/todo-
 for a complete example project.
 
 ### Flutter gRPC Mix Template
+
+<iframe class="video-hd" src="https://www.youtube.com/embed/fgts6sQ2Ags" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 The Flutter integration works with ServiceStack `grpc` template that has been *configured to support gRPC services*. It also makes the assumption that when working locally, the initial Flutter application will connect to the ServiceStack gRPC services via `localhost:5054` or if the client is running on an Android Emulator, `10.0.0.2:5054`.
 `5054` is the insecure HTTP port that is used by the `grpc` project template, but if you want to add `grpc` support to your application using `x mix grpc`, be sure to set up the use of the same port for local development, or modify your Flutter client to match your server setup.
