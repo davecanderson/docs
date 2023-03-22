@@ -221,7 +221,7 @@ For example, if you use one of our [Jamstack templates](https://jamstacks.net), 
 
 For a ServiceStack service to support gRPC, it needs to use the `[DataContract]` and `[DataMember(Order = x)]` attributes on the types exposed by your generated clients. Once these attributes are added
 
-```c#
+```csharp
 [Tag("todos")]
 [Route("/todos", "GET")]
 [DataContract]
