@@ -45,10 +45,14 @@
               "link": "/locode/custom"
           },
           {
+            "text": "Custom AutoQueryGrid",
+            "link": "/locode/custom-autoquerygrid"
+          },
+          {
               "text": "Custom Forms",
               "link": "/locode/custom-forms"
           },
-          {
+        {
               "text": "Custom Components",
               "link": "/locode/custom-components"
           }
