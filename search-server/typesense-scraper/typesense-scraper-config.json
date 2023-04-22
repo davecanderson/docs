@@ -10,6 +10,12 @@
     },
     {
       "url": "https://docs.servicestack.net/ormlite/"
+    },
+    {
+      "url": "https://docs.servicestack.net/vue/"
+    },
+    {
+      "url": "https://docs.servicestack.net/locode/"
     }
   ],
   "stop_urls": ["https://docs.servicestack.net/release*"],
