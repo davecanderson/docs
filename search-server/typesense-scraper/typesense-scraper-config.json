@@ -29,6 +29,6 @@
       "text": ".content p, .content ul li, .content table tbody tr"
     }
   },
-  "scrape_start_urls": false,
+  "scrape_start_urls": true,
   "strip_chars": " .,;:#"
 }
