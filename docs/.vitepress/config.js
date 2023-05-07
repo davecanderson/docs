@@ -72,6 +72,8 @@ module.exports = {
         }
     },
     head: [
+        ['script', { async:'', src: 'https://www.googletagmanager.com/gtag/js?id=G-79ESXEMPL0' } ],
+        ['script', {}, "window.dataLayer = window.dataLayer || [];\nfunction gtag(){dataLayer.push(arguments);}\ngtag('js', new Date());\ngtag('config','G-79ESXEMPL0');" ],
         ['script', { src: '/custom.js' }],
         ['script', { type:'module', src: '/custom.mjs' }],
     ],
