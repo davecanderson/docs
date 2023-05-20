@@ -1020,7 +1020,6 @@ public class MyAdminServices : Service
         return await service.PostAsync(new Authenticate {
             provider = AuthenticateService.CredentialsProvider,
             UserName = request.UserName,
-            UseTokenCookie = true, // if using JWT
         });
     }
 }
