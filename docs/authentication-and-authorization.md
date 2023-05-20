@@ -1016,14 +1016,12 @@ public class MyAdminServices : Service
 {
     public async Task<object> Any(ImpersonateUser request)
     {
-        using (var service = base.ResolveService<AuthenticateService>()) //In Process
-        {
-            return await service.PostAsync(new Authenticate {
-                provider = AuthenticateService.CredentialsProvider,
-                UserName = request.UserName,
-                UseTokenCookie = true, // if using JWT
-            });
-        }
+        using var service = base.ResolveService<AuthenticateService>(); //In Process
+        return await service.PostAsync(new Authenticate {
+            provider = AuthenticateService.CredentialsProvider,
+            UserName = request.UserName,
+            UseTokenCookie = true, // if using JWT
+        });
     }
 }
 ```
